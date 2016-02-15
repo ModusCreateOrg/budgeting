@@ -2,7 +2,7 @@
   "name": "webpack2-react-redux-budget-app-sample",
   "version": "1.0.0",
   "private": true,
-  "description": "Clean Redux setup for training",
+  "description": "Budgeting App Sample - React, Redux, Webpack 2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
