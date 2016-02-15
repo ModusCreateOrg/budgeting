@@ -11,6 +11,8 @@ This is a Webpack 2 version of a previous [Budgeting App](https://github.com/Mod
 - [x] [Redux](https://github.com/rackt/redux)
 - [x] [Babel](https://babeljs.io/)
 
+Make sure you have the latest node before using Webpack 2. Some depenencies my fail in older versions. 
+
 ## Setup
 
 ```
