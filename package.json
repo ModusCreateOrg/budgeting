@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress --port 3000",
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack --progress"
+    "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --hot --progress --port 3000",
+    "build": "node build.js production"
   },
   "license": "MIT",
   "devDependencies": {

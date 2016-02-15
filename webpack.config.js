@@ -9,7 +9,7 @@ module.exports = {
   context: path.join(__dirname, './client'),
   entry: {
     js: './index.js',
-    vendor: ['react']
+    vendor: ['react', 'react-dom', 'redux', 'redux-thunk']
   },
   output: {
     path: path.join(__dirname, './static'),
