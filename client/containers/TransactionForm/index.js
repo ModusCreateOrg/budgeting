@@ -29,6 +29,8 @@ export default class TransactionForm extends Component {
   }
 
   render() {
+    const onFieldKeyUp = this.onFieldKeyUp.bind(this);
+
     return (
       <Grid.Footer>
         <Grid.Row>
@@ -37,7 +39,7 @@ export default class TransactionForm extends Component {
               name="description"
               placeholder="Description"
               ref="descField"
-              onKeyUp={this.onFieldKeyUp.bind(this)}
+              onKeyUp={onFieldKeyUp}
             />
           </Grid.Cell>
           <Grid.Cell>
@@ -45,7 +47,7 @@ export default class TransactionForm extends Component {
               name="value"
               placeholder="Value"
               ref="valueField"
-              onKeyUp={this.onFieldKeyUp.bind(this)}
+              onKeyUp={onFieldKeyUp}
               type="number"
               step="any"
             />

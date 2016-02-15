@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Cell = ({ text, className, children }, { header })=> {
+const Cell = ({ text, className, children }, { header }) => {
   if (header === true) {
     return (
       <th className={className}>{text}</th>

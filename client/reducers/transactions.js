@@ -23,8 +23,8 @@ function addTransaction(state, action) {
   const { description, value } = action.transaction;
   const newState = [...state, {
     id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-    description: description,
-    value: value
+    description,
+    value
   }];
   return newState;
 }
@@ -35,16 +35,16 @@ function addTransaction(state, action) {
  * @param  {Object} action Dispatched action
  * @return {Object}        Default state
  */
-function transactions(state=defaultTransactions, action) {
+function transactions(state = defaultTransactions, action) {
   let newState;
   switch (action.type) {
-  case ADD_TRANSACTION:
-    return addTransaction(state, action);
-  case DELETE_TRANSACTION:
-    newState = state.filter(todo => todo.id !== action.id );
-    return newState;
-  default:
-    return state;
+    case ADD_TRANSACTION:
+      return addTransaction(state, action);
+    case DELETE_TRANSACTION:
+      newState = state.filter(todo => todo.id !== action.id);
+      return newState;
+    default:
+      return state;
   }
 }
 
@@ -55,12 +55,12 @@ function transactions(state=defaultTransactions, action) {
  * @param  {Object} action Dispatched action
  * @return {Object}        Default state
  */
-function transactionsGrid(state=defaultTransactionGridFields, action) {
+function transactionsGrid(state = defaultTransactionGridFields, action) {
   switch (action.type) {
-  case GET_TRANSACTION_GRID_FIELDS:
-    return state;
-  default:
-    return state;
+    case GET_TRANSACTION_GRID_FIELDS:
+      return state;
+    default:
+      return state;
   }
 }
 
@@ -70,20 +70,21 @@ function transactionsGrid(state=defaultTransactionGridFields, action) {
  * @param  {Object} action Dispatched action
  * @return {Object}        Default state
  */
-function summary(state=defaultSummary, action) {
+function summary(state = defaultSummary, action) {
+  let sum;
   switch (action.type) {
-  case REQUEST_SUM:
-    let sum = action.data.reduce((prev, current) => {
-      return {value: prev.value + current.value };
-    });
+    case REQUEST_SUM:
+      sum = action.data.reduce((prev, current) => (
+        { value: prev.value + current.value }
+      ));
 
-    sum = {value: Math.round(sum.value * 100) / 100};
+      sum = { value: Math.round(sum.value * 100) / 100 };
 
-    // Return ES2015 friendly
-    // or stage-0 {...state, ...sum}
-    return Object.assign({}, state, sum);
-  default:
-    return state;
+      // Return ES2015 friendly
+      // or stage-0 {...state, ...sum}
+      return Object.assign({}, state, sum);
+    default:
+      return state;
   }
 }
 
