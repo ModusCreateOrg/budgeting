@@ -9,7 +9,7 @@ module.exports = {
   context: path.join(__dirname, './client'),
   entry: {
     js: './index.js',
-    vendor: ['react', 'react-dom', 'redux', 'redux-thunk']
+    vendor: ['react']
   },
   output: {
     path: path.join(__dirname, './static'),
@@ -61,6 +61,9 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
+      },
+      output: {
+        comments: false
       },
       sourceMap: false
     }),
