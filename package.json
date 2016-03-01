@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --hot --progress --port 3000",
+    "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --progress --port 3000",
     "build": "node build.js production"
   },
   "license": "MIT",
@@ -19,18 +19,13 @@
     "babel-preset-react": "^6.3.13",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.4",
-    "install": "^0.4.2",
-    "npm": "^3.7.1",
-    "react-hot-loader": "^1.3.0",
     "style-loader": "^0.13.0",
     "webpack": "^2.1.0-beta.4",
-    "webpack-dev-server": "^2.0.0-beta",
-    "webpack-hot-middleware": "^2.2.0"
+    "webpack-dev-server": "^2.0.0-beta"
   },
   "dependencies": {
     "babel-runtime": "^6.3.19",
     "es6-promise": "^3.0.2",
-    "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.6",
