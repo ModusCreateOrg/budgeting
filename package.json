@@ -11,25 +11,25 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.5.0",
-    "babel-loader": "^6.2.2",
-    "babel-plugin-transform-class-properties": "^6.5.0",
-    "babel-plugin-transform-runtime": "^6.3.13",
-    "babel-preset-es2015-native-modules": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
+    "babel-core": "^6.7.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-plugin-transform-runtime": "^6.6.0",
+    "babel-preset-es2015-native-modules": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
-    "file-loader": "^0.8.4",
+    "file-loader": "^0.8.5",
     "style-loader": "^0.13.0",
     "webpack": "^2.1.0-beta.4",
     "webpack-dev-server": "^2.0.0-beta"
   },
   "dependencies": {
-    "babel-runtime": "^6.3.19",
-    "es6-promise": "^3.0.2",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "react-redux": "^4.0.6",
-    "redux": "^3.0.2",
-    "redux-thunk": "^1.0.3"
+    "babel-runtime": "^6.6.1",
+    "es6-promise": "^3.1.2",
+    "react": "^15.0.0-rc.1",
+    "react-dom": "^15.0.0-rc.1",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
+    "redux-thunk": "^2.0.1"
   }
 }
