@@ -59,14 +59,16 @@ module.exports = {
     rules: [
       {
         test: /\.html$/,
-        loader: 'file-loader',
+        exclude: /node_modules/,
+        use: 'file-loader',
         query: {
           name: '[name].[ext]'
         }
       },
       {
         test: /\.css$/,
-        loaders: [
+        exclude: /node_modules/,
+        use: [
           'style-loader',
           'css-loader'
         ]
@@ -74,7 +76,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: [
+        use: [
           'babel-loader'
         ]
       },
