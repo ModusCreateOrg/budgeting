@@ -1,7 +1,8 @@
 /* eslint no-var: 0 */
 var exec = require('child_process').exec;
 
-var cmdLine = './node_modules/.bin/webpack --progress';
+var executable = (!process.argv[3].indexOf('server')) ? 'webpack-dev-server' : 'webpack';
+var cmdLine = './node_modules/.bin/' + executable;
 var environ = (!process.argv[2].indexOf('development')) ? 'development' : 'production';
 var command;
 
