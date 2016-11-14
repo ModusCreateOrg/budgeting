@@ -12,7 +12,7 @@ function createTransaction(transaction) {
 
 export function deleteTransaction(id) {
   return {
-    type: ADD_TRANSACTION,
+    type: DELETE_TRANSACTION,
     id
   };
 }
