@@ -92,6 +92,7 @@ module.exports = {
     contentBase: './client',
     historyApiFallback: true,
     port: 3000,
+    compress: isProd,
     stats: { colors: true },
   }
 };

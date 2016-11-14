@@ -13,19 +13,27 @@ This is a Webpack 2 version of a previous [Budgeting App](https://github.com/Mod
 
 Make sure you have the latest node before using Webpack 2. Some depenencies my fail in older versions. 
 
+**Update 11/14:** Bumped to Webpack 2.1.0-beta.26 and React 15.3 with updates to webpack and babel config.
+
 ## Setup
 
 ```
 $ npm install
 ```
 
-## Running
+## Running in dev mode
 
 ```
 $ npm start
 ```
 
-## Build
+## Running in production mode
+
+```
+$ npm run prod
+```
+
+## Build (production)
 
 ```
 $ npm run build
