@@ -41,4 +41,4 @@ $ npm run build
 
 # License
 
-MIT
+[MIT](License.md)
