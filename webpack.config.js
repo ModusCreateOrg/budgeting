@@ -53,7 +53,7 @@ module.exports = {
   },
   output: {
     path: staticsPath,
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -83,10 +83,10 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
     modules: [
-      sourcePath,
-      'node_modules'
+      path.resolve(__dirname, 'node_modules'),
+      sourcePath
     ]
   },
   plugins: plugins,
