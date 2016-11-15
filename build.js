@@ -2,7 +2,7 @@
 var exec = require('child_process').exec;
 
 var executable = (!process.argv[3].indexOf('server')) ? 'webpack-dev-server' : 'webpack';
-var cmdLine = './node_modules/.bin/' + executable;
+var cmdLine = 'npm run ' + executable;
 var environ = (!process.argv[2].indexOf('development')) ? 'development' : 'production';
 var command;
 
