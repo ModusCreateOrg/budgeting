@@ -7,6 +7,8 @@ const isProd = nodeEnv === 'production';
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
 
+let babelPresets = [['es2015', { 'modules': false }], 'react'];
+
 const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
@@ -16,7 +18,6 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
   }),
-  new webpack.HotModuleReplacementPlugin(),
   new webpack.NamedModulesPlugin(),
 ];
 
@@ -44,6 +45,11 @@ if (isProd) {
       },
     })
   );
+} else {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin()
+  );
+  babelPresets.push('react-hmre');
 }
 
 module.exports = {
@@ -79,8 +85,14 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader'
-        ]
+          { loader: 'babel-loader',
+            query: {
+              babelrc: false,
+              presets: babelPresets,
+              plugins: ['transform-class-properties'],
+            }
+          }
+        ],
       },
     ],
   },
@@ -98,7 +110,7 @@ module.exports = {
     port: 3000,
     compress: isProd,
     stats: { colors: true },
-    inline: true,
-    hot: true,
+    inline: !isProd,
+    hot: !isProd,
   }
 };
