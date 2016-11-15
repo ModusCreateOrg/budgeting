@@ -6,9 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server",
-    "prod": "webpack-dev-server -p",
-    "build": "webpack -p"
+    "start": "node build.js development server",
+    "prod": "node build.js production server",
+    "build": "node build.js production filesystem"
   },
   "license": "MIT",
   "devDependencies": {
@@ -31,7 +31,7 @@
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
     "redux-thunk": "^2.0.1",
-    "webpack": "^2.1.0-beta.26",
+    "webpack": "git://github.com/webpack/webpack.git#feature/custom_stats",
     "webpack-dev-server": "^2.1.0-beta.10"
   }
 }
