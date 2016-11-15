@@ -7,7 +7,7 @@ const isProd = nodeEnv === 'production';
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
 
-let babelPresets = [['es2015', { 'modules': false }], 'react'];
+const babelPresets = [['es2015', { modules: false }], 'react'];
 
 const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
@@ -103,7 +103,7 @@ module.exports = {
       'node_modules'
     ]
   },
-  plugins: plugins,
+  plugins,
   devServer: {
     contentBase: './client',
     historyApiFallback: true,
