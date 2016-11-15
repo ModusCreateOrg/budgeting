@@ -16,6 +16,7 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
   }),
+  new webpack.HotModuleReplacementPlugin(),
   new webpack.NamedModulesPlugin(),
 ];
 
@@ -97,5 +98,7 @@ module.exports = {
     port: 3000,
     compress: isProd,
     stats: { colors: true },
+    inline: true,
+    hot: true,
   }
 };

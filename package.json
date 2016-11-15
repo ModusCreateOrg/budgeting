@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --hot --inline --config webpack.config.js",
+    "start": "webpack-dev-server --config webpack.config.js",
     "prod": "node build.js production server",
     "build": "node build.js production"
   },
