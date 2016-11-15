@@ -58,7 +58,7 @@ module.exports = {
   },
   output: {
     path: staticsPath,
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
@@ -94,7 +94,21 @@ module.exports = {
       sourcePath
     ]
   },
+
   plugins,
+
+  performance: {
+    maxAssetSize: 100,
+    maxInitialChunkSize: 300,
+    hints: true
+  },
+
+  stats: {
+    colors: {
+      green: '\u001b[32m',
+    }
+  },
+
   devServer: {
     contentBase: './client',
     historyApiFallback: true,

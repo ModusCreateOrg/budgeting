@@ -1,8 +1,13 @@
-# Budgeting - React + Redux Sample App
+# Budgeting - React + Redux Sample App + Performance Stats
 
 Sample app demonstrating the power and simplicity of React, Redux, and Webpack 2. Includes tree shaking configuration. 
 
 This is a Webpack 2 version of a previous [Budgeting App](https://github.com/ModusCreateOrg/budgeting-sample-app).
+
+## POC config showing Performance budgets
+This config includes POC for [Webpack Performance Budgets](https://github.com/webpack/webpack/issues/3216). Just install and build/run as usual. 
+
+Try `npm i && npm run build` to see the stats quickly.  
 
 ## Contains
 
