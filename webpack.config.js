@@ -7,8 +7,6 @@ const isProd = nodeEnv === 'production';
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
 
-const babelPresets = [['es2015', { modules: false }], 'react'];
-
 const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
@@ -49,7 +47,6 @@ if (isProd) {
   plugins.push(
     new webpack.HotModuleReplacementPlugin()
   );
-  babelPresets.push('react-hmre');
 }
 
 module.exports = {
@@ -85,13 +82,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          { loader: 'babel-loader',
-            query: {
-              babelrc: false,
-              presets: babelPresets,
-              plugins: ['transform-class-properties'],
-            }
-          }
+          'babel-loader'
         ],
       },
     ],
