@@ -15,7 +15,8 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
-  })
+  }),
+  new webpack.NamedModulesPlugin(),
 ];
 
 if (isProd) {
@@ -42,6 +43,10 @@ if (isProd) {
       },
     })
   );
+} else {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin()
+  );
 }
 
 module.exports = {
@@ -53,7 +58,7 @@ module.exports = {
   },
   output: {
     path: staticsPath,
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -78,23 +83,38 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'babel-loader'
-        ]
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
     modules: [
-      sourcePath,
-      'node_modules'
+      path.resolve(__dirname, 'node_modules'),
+      sourcePath
     ]
   },
-  plugins: plugins,
+  plugins,
   devServer: {
     contentBase: './client',
     historyApiFallback: true,
     port: 3000,
     compress: isProd,
-    stats: { colors: true },
+    inline: !isProd,
+    hot: !isProd,
+    stats: {
+      assets: true,
+      children: false,
+      chunks: false,
+      hash: false,
+      modules: false,
+      publicPath: false,
+      timings: true,
+      version: false,
+      warnings: true,
+      colors: {
+        green: '\u001b[32m',
+      }
+    },
   }
 };
