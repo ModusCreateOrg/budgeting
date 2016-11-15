@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build.js development server",
     "prod": "node build.js production server",
-    "build": "node build.js production filesystem"
+    "build": "node build.js production filesystem",
+    "webpack-dev-server": "webpack-dev-server",
+    "webpack": "webpack"
   },
   "license": "MIT",
   "devDependencies": {
