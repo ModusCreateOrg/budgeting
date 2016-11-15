@@ -15,7 +15,8 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
-  })
+  }),
+  new webpack.NamedModulesPlugin(),
 ];
 
 if (isProd) {
@@ -41,6 +42,10 @@ if (isProd) {
         comments: false
       },
     })
+  );
+} else {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin()
   );
 }
 
@@ -78,7 +83,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'babel-loader'
-        ]
+        ],
       },
     ],
   },
@@ -89,12 +94,14 @@ module.exports = {
       'node_modules'
     ]
   },
-  plugins: plugins,
+  plugins,
   devServer: {
     contentBase: './client',
     historyApiFallback: true,
     port: 3000,
     compress: isProd,
     stats: { colors: true },
+    inline: !isProd,
+    hot: !isProd,
   }
 };
