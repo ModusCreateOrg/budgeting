@@ -7,6 +7,8 @@ This is a Webpack 2 version of a previous [Budgeting App](https://github.com/Mod
 ## POC config showing Performance budgets
 This config includes POC for [Webpack Performance Budgets](https://github.com/webpack/webpack/issues/3216). Just install and build/run as usual. 
 
+![Webpack Performance Budgets](https://cloud.githubusercontent.com/assets/110953/19857345/90d6681e-9f3a-11e6-8e0a-be9f2742483a.png)
+
 Try `npm i && npm run build` to see the stats quickly.  
 
 ## Contains
