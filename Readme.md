@@ -4,6 +4,8 @@ Sample app demonstrating the power and simplicity of React, Redux, and Webpack 2
 
 This is a Webpack 2 version of a previous [Budgeting App](https://github.com/ModusCreateOrg/budgeting-sample-app).
 
+![Budgeting Webpack, React, Redux Sample App](https://raw.githubusercontent.com/ModusCreateOrg/budgeting-sample-app-webpack2/performance-stats/screenshot.png)
+
 ## POC config showing Performance budgets
 This config includes POC for [Webpack Performance Budgets](https://github.com/webpack/webpack/issues/3216). Just install and build/run as usual. 
 
