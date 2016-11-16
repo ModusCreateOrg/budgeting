@@ -27,3 +27,7 @@ rules:
   no-console: 0
   no-param-reassign: 0
   linebreak-style: 0
+  import/no-extraneous-dependencies: 0
+  import/no-unresolved: 0
+  import/extensions: 0
+  react/jsx-filename-extension: 0
