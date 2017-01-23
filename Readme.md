@@ -6,14 +6,14 @@ This is a Webpack 2 version of a previous [Budgeting App](https://github.com/Mod
 
 ## Contains
 
-- [x] [Webpack 2](https://webpack.github.io)
+- [x] [Webpack 2.2](https://webpack.github.io)
 - [x] [React](https://facebook.github.io/react/)
-- [x] [Redux](https://github.com/rackt/redux)
+- [x] [Redux](http://redux.js.org/)
 - [x] [Babel](https://babeljs.io/)
 
 Make sure you have the latest node before using Webpack 2. Some depenencies my fail in older versions. 
 
-**Update 11/14:** Bumped to Webpack 2.1.0-beta.26 and React 15.3 with updates to webpack and babel config.
+**Update 01/23/2017:** Bumped to Webpack 2.2 and React 15.4.2 with updates to webpack and babel config. Webpack's performance hints are on for production (`npm run prod`)
 
 ## Setup
 
