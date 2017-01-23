@@ -65,7 +65,7 @@ module.exports = {
       {
         test: /\.html$/,
         exclude: /node_modules/,
-        use: 'file-loader',
+        loader: 'file-loader',
         query: {
           name: '[name].[ext]'
         }
