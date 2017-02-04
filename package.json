@@ -30,7 +30,7 @@
     "eslint-plugin-react": "6.9.0",
     "file-loader": "0.8.5",
     "style-loader": "0.13.1",
-    "webpack": "2.2.0",
+    "webpack": "2.2.1",
     "webpack-dev-server": "2.2.0"
   },
   "dependencies": {
