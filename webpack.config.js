@@ -14,8 +14,8 @@ module.exports = function (env) {
       minChunks: Infinity,
       filename: 'vendor.bundle.js'
     }),
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: nodeEnv,
     }),
     new webpack.NamedModulesPlugin(),
   ];
