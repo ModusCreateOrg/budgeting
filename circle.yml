@@ -1,0 +1,17 @@
+machine:
+  node:
+    version: 7.4.0
+  environment:
+    CONTINUOUS_INTEGRATION: true
+    NODE_ENV: "production"
+
+dependencies:
+  override:
+    - npm install --only=dev
+    - npm install
+  cache_directories:
+    - node_modules
+
+test:
+  pre:
+    - npm run build
