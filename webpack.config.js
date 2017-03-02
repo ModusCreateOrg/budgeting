@@ -101,8 +101,8 @@ module.exports = function (env) {
     plugins,
 
     performance: isProd && {
-      maxAssetSize: 100,
-      maxEntrypointSize: 300,
+      maxAssetSize: 300000,
+      maxEntrypointSize: 50000,
       hints: 'warning',
     },
 
