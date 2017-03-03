@@ -1,3 +1,7 @@
+.header {
+	margin-bottom: 3em;
+}
+
 a {
 	padding: 35px 25px;
 	margin-top: -6px;
@@ -5,6 +9,7 @@ a {
 	font-size: 16px;
 	color: #b1b1b1;
 	border: 1px #dadada;
+	text-decoration: none;
 }
 
 a:active, a.selected {
