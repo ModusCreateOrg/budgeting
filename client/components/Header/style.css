@@ -1,20 +1,20 @@
 .header {
+	display: flex;
 	margin-bottom: 3em;
 }
 
 a {
 	padding: 35px 25px;
-	margin-top: -6px;
+	margin: -6px 6px 0;
 	border-radius: 6px;
 	font-size: 16px;
 	color: #b1b1b1;
-	border: 1px #dadada;
+	border: 1px solid #dadada;
 	text-decoration: none;
 }
 
 a:active, a.selected {
 	color: black;
 	text-decoration: underline;
-	border: none;
 	box-shadow: 0 1px 4px 1px rgba(0,0,0,0.16);
 }
