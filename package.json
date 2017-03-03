@@ -22,7 +22,7 @@
     "babel-preset-react": "6.23.0",
     "babel-preset-react-hmre": "1.1.1",
     "cross-env": "3.1.4",
-    "css-loader": "0.26.2",
+    "css-loader": "0.14.5",
     "eslint": "3.16.1",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
