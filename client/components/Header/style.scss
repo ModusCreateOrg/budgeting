@@ -1,3 +1,5 @@
+@import '~containers/App/variables';
+
 .header {
 	display: flex;
 	margin-bottom: 3em;
@@ -8,13 +10,13 @@ a {
 	margin: -6px 6px 0;
 	border-radius: 6px;
 	font-size: 16px;
-	color: #b1b1b1;
-	border: 1px solid #dadada;
+	color: $gray;
+	border: 1px solid $lightgray;
 	text-decoration: none;
 }
 
 a:active, a.selected {
-	color: black;
+	color: $black;
 	text-decoration: underline;
-	box-shadow: 0 1px 4px 1px rgba(0,0,0,0.16);
+	box-shadow: 0 1px 4px 1px $darkgray;
 }

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Route } from 'react-router-dom';
 import Header from 'components/Header';
-import './style.css';
+import './style.scss';
 
 const Budget = (props) => {
   return <h1>Budget</h1>;
