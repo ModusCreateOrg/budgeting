@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
@@ -18,6 +19,7 @@ module.exports = function (env) {
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
     new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin('style.css')
   ];
 
   if (isProd) {
@@ -76,11 +78,10 @@ module.exports = function (env) {
         {
           test: /\.scss$/,
           exclude: /node_modules/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
-          ]
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader', 'sass-loader']
+          })
         },
         {
           test: /\.(js|jsx)$/,
