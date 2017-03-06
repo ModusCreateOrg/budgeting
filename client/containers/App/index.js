@@ -1,24 +1,29 @@
 import React, { Component, PropTypes } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from 'components/Header';
 import './style.scss';
 
-const Budget = (props) => {
+const Budget = () => {
   return <h1>Budget</h1>;
 };
 
-const Reports = (props) => {
+const Reports = () => {
   return <h1>Reports</h1>;
 };
 
 export default class App extends Component {
 
   render() {
-    return <div>
-    	<Header />
+    return (
+    	<div>
+	    	<Header />
 
-    	<Route path="/budget" component={Budget} />
-    	<Route path="/reports" component={Reports} />
-    </div>
+	    	<Switch>
+		    	<Route path="/budget" component={Budget} />
+		    	<Route path="/reports" component={Reports} />
+		    	<Redirect to="/budget"/>
+	    	</Switch>
+	    </div>
+    );
   }
 }

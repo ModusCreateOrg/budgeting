@@ -5,7 +5,7 @@
 	margin-bottom: 3em;
 }
 
-a {
+.nav-link {
 	padding: 35px 25px;
 	margin: -6px 6px 0;
 	border-radius: 6px;
@@ -13,10 +13,10 @@ a {
 	color: $gray;
 	border: 1px solid $lightgray;
 	text-decoration: none;
-}
 
-a:active, a.selected {
-	color: $black;
-	text-decoration: underline;
-	box-shadow: 0 1px 4px 1px $darkgray;
+	&:active, &.selected {
+		color: $black;
+		text-decoration: underline;
+		box-shadow: 0 1px 4px 1px $darkgray;
+	}
 }
