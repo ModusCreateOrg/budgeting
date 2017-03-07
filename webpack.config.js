@@ -1,6 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
+<<<<<<< HEAD
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+=======
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+>>>>>>> 2fb3d895bb4a5c288f49920e69537db57ea2ae1e
 
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
