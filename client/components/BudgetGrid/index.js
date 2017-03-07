@@ -10,14 +10,26 @@ class BudgetGrid extends Component {
     data: {}
   }
 
+  formatAmount = (amount) => {
+    const isNegative = amount < 0;
+    const formatValue = Math.abs(amount).toFixed(2).toLocaleString();
+
+    return {
+      text: `${isNegative ? '-' : ''}$${formatValue}`,
+      isNegative
+    };
+  }
+
   renderRow(data) {
     const { data: { categories } } = this.props;
+    const amount = this.formatAmount(data.value);
+    const amountCls = amount.isNegative ? 'neg' : 'pos';
 
     return (
       <tr key={data.id}>
         <td>{categories[data.categoryId]}</td>
         <td>{data.description}</td>
-        <td>{data.value}</td>
+        <td className={amountCls}>{amount.text}</td>
       </tr>
     );
   }
@@ -40,7 +52,7 @@ class BudgetGrid extends Component {
           </tbody>
           <tfoot>
             <tr>
-              <td></td>
+              <td>&nbsp;</td>
             </tr>
           </tfoot>
         </table>

@@ -1,7 +1,7 @@
 @import '~containers/App/variables';
 
 .grid-container {
-  height: 200px;
+  height: 225px;
 }
 
 .budget-grid {
@@ -13,14 +13,6 @@
   border-collapse: collapse;
   font-size: 0.8em;
 
-  thead, tfoot {
-    background-color: #f0f0f0;
-  }
-
-  thead {
-    border-bottom: 1px solid $gray;
-  }
-
   tr {
     width: 100%;
     display: table;
@@ -30,14 +22,50 @@
   th, td {
     padding: 8px;
     text-align: left;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  thead, tfoot {
+    background-color: #f0f0f0;
+  }
+
+  thead {
+    border-bottom: 1px solid $gray;
+
+    th:last-child {
+      padding-right: 3.5em;
+    }
   }
 
   tbody {
     overflow-y: scroll;
     display: block;
 
+    tr {
+      border-bottom: 1px solid $lightgray;
+    }
+
     td {
       vertical-align: top;
+
+      &:first-child {
+        padding-left: 2em;
+      }
+
+      &.neg {
+        color: $red;
+      }
+
+      &.pos {
+        color: $green;
+      }
+
+      &:last-child {
+        padding-right: 2.5em;
+      }
     }
   }
 
