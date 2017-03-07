@@ -1,0 +1,17 @@
+@import '~containers/App/variables';
+
+.budget-grid {
+  border: 1px solid $gray;
+  padding: 3px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+
+  .grid-header {
+    background-color: #f0f0f0;
+
+    th {
+      padding: 4px;
+    }
+  }
+}
