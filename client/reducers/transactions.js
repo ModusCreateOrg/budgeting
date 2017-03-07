@@ -89,7 +89,7 @@ function summary(state = defaultSummary, action) {
   }
 }
 
-function categories(state = categoriesById, action) {
+function categories(state = categoriesById) {
   return state;
 }
 

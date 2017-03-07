@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 
 import Header from 'components/Header';
+import Budget from 'containers/Budget';
 import * as AppActions from 'actions';
 import './style.scss';
 
-const Budget = () => <h1>Budget</h1>;
 const Reports = () => <h1>Reports</h1>;
 
 class App extends Component {
+  static propTypes = {
+    transactions: PropTypes.array,
+    categories: PropTypes.object
+  }
+
   componentWillMount() {
     const { transactions, categories } = this.props;
 
