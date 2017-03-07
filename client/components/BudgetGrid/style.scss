@@ -1,17 +1,48 @@
 @import '~containers/App/variables';
 
+.grid-container {
+  height: 200px;
+}
+
 .budget-grid {
-  border: 1px solid $gray;
-  padding: 3px;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
   width: 100%;
+  border: 1px solid $gray;
   border-collapse: collapse;
   font-size: 0.8em;
 
-  .grid-header {
+  thead, tfoot {
     background-color: #f0f0f0;
+  }
 
-    th {
-      padding: 4px;
+  thead {
+    border-bottom: 1px solid $gray;
+  }
+
+  tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  tbody {
+    overflow-y: scroll;
+    display: block;
+
+    td {
+      vertical-align: top;
     }
+  }
+
+  tfoot {
+    height: 40px;
+    border-top: 1px solid $gray;
   }
 }

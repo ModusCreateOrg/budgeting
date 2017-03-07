@@ -26,16 +26,25 @@ class BudgetGrid extends Component {
     const { transactions } = this.props.data;
 
     return (
-      <table className="budget-grid">
-        <tbody>
-          <tr className="grid-header">
-            <th>Category</th>
-            <th>Description</th>
-            <th>Amount</th>
-          </tr>
-          {transactions.map(transaction => this.renderRow(transaction))}
-        </tbody>
-      </table>
+      <div className="grid-container">
+        <table className="budget-grid">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map(transaction => this.renderRow(transaction))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     );
   }
 }
