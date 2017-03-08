@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+import BudgetGridRow from './BudgetGridRow';
 import './style.scss';
 
 class BudgetGrid extends Component {
@@ -10,32 +11,8 @@ class BudgetGrid extends Component {
     data: {}
   }
 
-  formatAmount = (amount) => {
-    const isNegative = amount < 0;
-    const formatValue = Math.abs(amount).toLocaleString('en-us', { style: 'currency', currency: 'USD' });
-
-    return {
-      text: `${isNegative ? '-' : ''}${formatValue}`,
-      isNegative
-    };
-  }
-
-  renderRow(data) {
-    const { data: { categories } } = this.props;
-    const amount = this.formatAmount(data.value);
-    const amountCls = amount.isNegative ? 'neg' : 'pos';
-
-    return (
-      <tr key={data.id}>
-        <td>{categories[data.categoryId]}</td>
-        <td>{data.description}</td>
-        <td className={amountCls}>{amount.text}</td>
-      </tr>
-    );
-  }
-
   render() {
-    const { transactions } = this.props.data;
+    const { data: { transactions, categories } } = this.props;
 
     return (
       <div className="grid-container">
@@ -48,7 +25,13 @@ class BudgetGrid extends Component {
             </tr>
           </thead>
           <tbody>
-            {transactions.map(transaction => this.renderRow(transaction))}
+            {transactions.map(transaction => (
+              <BudgetGridRow
+                key={transaction.id}
+                transaction={transaction}
+                categories={categories}
+              />
+            ))}
           </tbody>
           <tfoot>
             <tr>

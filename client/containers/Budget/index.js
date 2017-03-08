@@ -5,6 +5,15 @@ import { connect } from 'react-redux';
 import * as AppActions from 'actions';
 import BudgetGrid from 'components/BudgetGrid';
 
+@connect(
+  ({ transactions }) => ({
+    transactions: transactions.transactions,
+    categories: transactions.categories
+  }),
+  (dispatch => ({
+    actions: bindActionCreators(AppActions, dispatch)
+  }))
+)
 class Budget extends Component {
   static propTypes = {
     transactions: PropTypes.array.isRequired,
@@ -24,19 +33,4 @@ class Budget extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { transactions } = state;
-
-  return {
-    transactions: transactions.transactions,
-    categories: transactions.categories
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(AppActions, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Budget);
+export default Budget;
