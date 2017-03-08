@@ -23,8 +23,20 @@
     padding: 8px;
     text-align: left;
 
+    &:first-child {
+      padding-left: 2em;
+    }
+
     &:last-child {
       text-align: right;
+    }
+
+    &:nth-child(1), &:nth-child(3) {
+      width: 20%;
+    }
+
+    &:nth-child(2) {
+      width: 60%;
     }
   }
 
@@ -50,10 +62,6 @@
 
     td {
       vertical-align: top;
-
-      &:first-child {
-        padding-left: 2em;
-      }
 
       &.neg {
         color: $red;

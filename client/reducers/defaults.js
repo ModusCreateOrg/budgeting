@@ -41,7 +41,7 @@ export const defaultTransactions = [
     id: 4,
     description: 'Milk & Eggs for the pancake party with neighbors',
     value: -12300,
-    categoryId: 1
+    categoryId: 3
   },
   {
     id: 5,
