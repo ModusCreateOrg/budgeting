@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
@@ -10,24 +11,49 @@ module.exports = function (env) {
   const isProd = nodeEnv === 'production';
 
   const plugins = [
+    // extract vendor packages in a separate chunk
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
       filename: 'vendor.bundle.js'
     }),
+
+    // setting production environment will strip out
+    // some of the development code from the app
+    // and libraries
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
+
+    // show module names instead of numbers in webpack stats
     new webpack.NamedModulesPlugin(),
-    new ExtractTextPlugin('style.css')
+
+    // create css bundle
+    new ExtractTextPlugin('style.css'),
+
+    // create index.html
+    new HtmlWebpackPlugin({
+      template: './index.ejs',
+      inject: true,
+      production: isProd,
+      minify: isProd && {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
   ];
 
   if (isProd) {
     plugins.push(
-      new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false
-      }),
+      // minify remove some of the dead code
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false,
@@ -53,7 +79,7 @@ module.exports = function (env) {
   }
 
   return {
-    devtool: isProd ? 'source-map' : 'eval',
+    devtool: isProd ? 'source-map' : 'cheap-module-source-map',
     context: sourcePath,
     entry: {
       js: './index.js',
@@ -80,7 +106,17 @@ module.exports = function (env) {
           exclude: /node_modules/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: ['css-loader', 'sass-loader']
+            use: [
+              'css-loader',
+              {
+                loader: 'sass-loader',
+                options: {
+                  outputStyle: isProd ? 'collapsed' : 'expanded',
+                  sourceMap: isProd,
+                  includePaths: [sourcePath],
+                },
+              },
+            ],
           })
         },
         {
