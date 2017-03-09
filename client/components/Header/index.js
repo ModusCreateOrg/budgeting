@@ -3,7 +3,13 @@ import { Route, Link } from 'react-router-dom';
 import './style.scss';
 
 const NavLink = ({ to, label }) => (
-  <Route to={to} exact children={({ match }) => <Link to={to} className={`nav-link ${match.url === to ? 'selected' : ''}`}>{ label }</Link>} />
+  <Route
+    to={to}
+    exact
+    children={({ location }) =>
+      <Link to={to} className={`nav-link ${location.pathname === to ? 'selected' : ''}`}>{ label }</Link>
+    }
+  />
 );
 
 NavLink.propTypes = {
