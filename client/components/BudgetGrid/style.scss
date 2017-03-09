@@ -1,4 +1,4 @@
-@import '~theme/variables';
+@import 'theme/variables';
 
 .grid-container {
   height: 225px;
@@ -22,6 +22,7 @@
   th, td {
     padding: 8px;
     text-align: left;
+    overflow: hidden;
 
     &:first-child {
       padding-left: 2em;

@@ -16,3 +16,8 @@ test:
   pre:
     - npm run lint
     - npm run build
+deployment:
+  github:
+    branch: v2
+    commands:
+      - npm run deploy
