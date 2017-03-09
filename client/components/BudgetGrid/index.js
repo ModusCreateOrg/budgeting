@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import BudgetGridRow from './BudgetGridRow';
+import EntryFormRow from './EntryFormRow';
 import './style.scss';
 
 class BudgetGrid extends Component {
@@ -34,15 +35,12 @@ class BudgetGrid extends Component {
             ))}
           </tbody>
           <tfoot>
-            <tr>
-              <td>&nbsp;</td>
-            </tr>
+            <EntryFormRow categories={categories} />
           </tfoot>
         </table>
       </div>
     );
   }
 }
-
 
 export default BudgetGrid;

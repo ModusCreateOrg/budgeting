@@ -30,6 +30,11 @@
 
     &:last-child {
       text-align: right;
+
+      button {
+        margin-left: 5px;
+        text-transform: uppercase;
+      }
     }
 
     &:nth-child(1), &:nth-child(3) {
@@ -38,6 +43,12 @@
 
     &:nth-child(2) {
       width: 60%;
+    }
+
+    &:first-child, &:nth-child(2) {
+      input, select {
+        width: 100%;
+      }
     }
   }
 
