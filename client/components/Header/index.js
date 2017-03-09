@@ -6,8 +6,8 @@ const NavLink = ({ to, label }) => (
   <Route
     to={to}
     exact
-    children={({ location }) =>
-      <Link to={to} className={`nav-link ${location.pathname === to ? 'selected' : ''}`}>{ label }</Link>
+    children={({ location: { pathname } }) =>
+      <Link to={to} className={`nav-link ${pathname === to ? 'selected' : ''}`}>{ label }</Link>
     }
   />
 );
