@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../images/mclogo.svg';
+import logo from 'images/mclogo.svg';
 
 const Logo = () => (
   <a className="logo" href="http://www.moduscreate.com">

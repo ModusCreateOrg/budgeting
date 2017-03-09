@@ -97,7 +97,7 @@ module.exports = function (env) {
           use: {
             loader: 'file-loader',
             query: {
-              name: '[name].[ext]'
+              name: 'static/[name].[hash:8].[ext]'
             },
           },
         },
