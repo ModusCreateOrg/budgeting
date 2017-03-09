@@ -10,7 +10,8 @@ import {
 import {
   defaultTransactions,
   defaultTransactionGridFields,
-  defaultSummary
+  defaultSummary,
+  categoriesById
 } from './defaults';
 
 /**
@@ -88,8 +89,13 @@ function summary(state = defaultSummary, action) {
   }
 }
 
+function categories(state = categoriesById) {
+  return state;
+}
+
 export default combineReducers({
   transactionsGrid,
   transactions,
-  summary
+  summary,
+  categories
 });
