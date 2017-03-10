@@ -2,8 +2,16 @@ import {
   defaultSummary
 } from './defaults';
 
-const REQUEST_SUM = 'budgeting-sample-app/summary/REQUEST_SUM';
 
+/**
+ * Action Constants
+ */
+const REQUEST_SUM = 'budget/summary/REQUEST_SUM';
+
+
+/**
+ * Actions
+ */
 export const actions = {
   requestSum: data => ({
     type: REQUEST_SUM,
@@ -11,13 +19,16 @@ export const actions = {
   })
 };
 
+
 /**
- * Summary calculation
- * @param  {Object} state  Current state
- * @param  {Object} action Dispatched action
- * @return {Object}        Default state
+ * Helpers
  */
-export default function reducer(state = defaultSummary, action) {
+
+
+/**
+ * Reducer
+ */
+export default function summaryReducer(state = defaultSummary, action) {
   let sum;
   switch (action.type) {
     case REQUEST_SUM:

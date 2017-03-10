@@ -2,6 +2,25 @@ import {
   categoriesById
 } from './defaults';
 
-export default function reducer(state = categoriesById) {
+
+/**
+ * Action Constansts
+ */
+
+
+/**
+ * Actions
+ */
+
+
+/**
+ * Helpers
+ */
+
+
+/**
+ * Reducer
+ */
+export default function categoriesReducer(state = categoriesById) {
   return state;
 }

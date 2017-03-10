@@ -4,9 +4,17 @@ import {
 
 import { actions as summaryActions } from './summary';
 
-const ADD_TRANSACTION = 'budgeting-sample-app/transaction/ADD_TRANSACTION';
-const DELETE_TRANSACTION = 'budgeting-sample-app/transaction/DELETE_TRANSACTION';
 
+/**
+ * Action Constants
+ */
+const ADD_TRANSACTION = 'budget/transaction/ADD';
+const DELETE_TRANSACTION = 'budget/transaction/DELETE';
+
+
+/**
+ * Actions
+ */
 export const actions = {
   createTransaction: transaction => ({
     type: ADD_TRANSACTION,
@@ -21,35 +29,37 @@ export const actions = {
   addTransaction: transaction => (
     (dispatch, getState) => {
       const addedResult = dispatch(actions.createTransaction(transaction));
-      dispatch(summaryActions.requestSum(getState().transactions.transactions));
+      dispatch(summaryActions.requestSum(getState().transactions));
       return addedResult;
     }
   )
 };
 
+
 /**
- * Add a new transaction.
- * This is a helper function for the transactions reducer
- * @param {Object} state
- * @param {Object} action
+ * Helpers
  */
+
+function getNextTransactionID(state) {
+  return state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+}
+
+// Add a new transaction.
 function addTransactionToState(state, action) {
   const { description, value } = action.transaction;
   const newState = [...state, {
-    id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+    id: getNextTransactionID(state),
     description,
     value
   }];
   return newState;
 }
 
+
 /**
- * Main transactions reducer
- * @param  {Object} state  Current state
- * @param  {Object} action Dispatched action
- * @return {Object}        Default state
+ * Reducer
  */
-export default function reducer(state = defaultTransactions, action) {
+export default function transactionsReducer(state = defaultTransactions, action) {
   let newState;
   switch (action.type) {
     case ADD_TRANSACTION:
