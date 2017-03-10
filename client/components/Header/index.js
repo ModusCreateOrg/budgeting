@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Route, Link } from 'react-router-dom';
+import Logo from './Logo';
 import './style.scss';
 
 const NavLink = ({ to, label }) => (
@@ -21,5 +22,6 @@ export default () => (
   <div className="header">
     <NavLink to="/budget" label="Budget" />
     <NavLink to="/reports" label="Reports" />
+    <Logo />
   </div>
 );
