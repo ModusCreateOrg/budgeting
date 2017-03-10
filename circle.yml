@@ -3,21 +3,20 @@ machine:
     version: 7.4.0
   environment:
     CONTINUOUS_INTEGRATION: true
-    NODE_ENV: "production"
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
 dependencies:
   override:
-    - npm install --only=dev
-    - npm install
+    - yarn
   cache_directories:
-    - node_modules
+    - ~/.cache/yarn
 
 test:
   pre:
-    - npm run lint
-    - npm run build
+    - yarn run lint
+    - yarn run build
 deployment:
   github:
     branch: v2
     commands:
-      - npm run deploy
+      - yarn run deploy
