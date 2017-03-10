@@ -1,0 +1,16 @@
+.entry-form-row {
+  td {
+    &:first-child, &:nth-child(2) {
+      input, select {
+        width: 100%;
+      }
+    }
+
+    &:last-child {
+      button {
+        margin-left: 5px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

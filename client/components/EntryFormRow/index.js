@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import DataSelector from './DataSelector';
+import './style.scss';
 
 class EntryFormRow extends Component {
   static propTypes = {
@@ -6,37 +8,23 @@ class EntryFormRow extends Component {
   }
 
   state = {
-    categoryId: 16,
+    categoryId: '16',
     description: '',
     amount: ''
-  }
-
-  getCategoryOptions() {
-    const { categories } = this.props;
-
-    return Object.keys(categories).map(categoryId => (
-      <option
-        key={categoryId}
-        value={categoryId}
-      >
-        { categories[categoryId] }
-      </option>
-    ));
   }
 
   handleFieldChange = e => this.setState({ [e.target.name]: e.target.value })
 
   render() {
     return (
-      <tr>
+      <tr className="entry-form-row">
         <td>
-          <select
+          <DataSelector
             name="categoryId"
             value={this.state.categoryId}
+            data={this.props.categories}
             onChange={this.handleFieldChange}
-          >
-            { this.getCategoryOptions() }
-          </select>
+          />
         </td>
         <td>
           <input

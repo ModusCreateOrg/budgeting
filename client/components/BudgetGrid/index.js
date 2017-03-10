@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import EntryFormRow from 'components/EntryFormRow';
 import BudgetGridRow from './BudgetGridRow';
-import EntryFormRow from './EntryFormRow';
 import './style.scss';
 
 class BudgetGrid extends Component {
