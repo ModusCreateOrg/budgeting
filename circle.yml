@@ -3,7 +3,6 @@ machine:
     version: 7.4.0
   environment:
     CONTINUOUS_INTEGRATION: true
-    NODE_ENV: "production"
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
 dependencies:
