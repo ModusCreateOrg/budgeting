@@ -69,7 +69,3 @@ export const defaultTransactionGridFields = [
     mapping: 'value'
   }
 ];
-
-export const defaultSummary = {
-  description: 'Balance'
-};

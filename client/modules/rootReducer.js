@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 import categories from './categories';
-import summary from './summary';
 import transactionGrid from './transactionGrid';
 import transactions from './transactions';
 
@@ -10,7 +9,6 @@ import transactions from './transactions';
  */
 export default combineReducers({
   categories,
-  summary,
   transactionGrid,
   transactions,
 });

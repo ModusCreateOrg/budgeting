@@ -19,6 +19,12 @@ import {
 
 
 /**
+ * Selectors
+ */
+export const getCategories = state => state.categories;
+
+
+/**
  * Reducer
  */
 export default function categoriesReducer(state = categoriesById) {
