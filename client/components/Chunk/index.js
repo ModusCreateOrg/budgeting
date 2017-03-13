@@ -1,3 +1,7 @@
+// This component is based on the react-router v4 code splitting example here:
+// https://reacttraining.com/react-router/web/guides/code-splitting
+// This version is refactored to use the ES2015 import() loader spec.
+
 import { Component, PropTypes } from 'react';
 
 class Chunk extends Component {
