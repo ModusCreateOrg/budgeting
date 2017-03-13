@@ -9,6 +9,8 @@ This is a Webpack 2 version of a previous [Budgeting App](https://github.com/Mod
 - [x] [Webpack 2.2](https://webpack.github.io)
 - [x] [React](https://facebook.github.io/react/)
 - [x] [Redux](http://redux.js.org/)
+- [x] [Reselect](https://github.com/reactjs/reselect/)
+- [x] [Ducks](https://github.com/erikras/ducks-modular-redux/)
 - [x] [Babel](https://babeljs.io/)
 
 Make sure you have the latest node before using Webpack 2. Some depenencies my fail in older versions. 

@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as AppActions from 'actions';
+import { actions as AppActions } from 'modules/transactions';
 import BudgetGrid from 'components/BudgetGrid';
 
 @connect(
-  ({ transactions }) => ({
-    transactions: transactions.transactions,
-    categories: transactions.categories
+  ({ transactions, categories }) => ({
+    transactions,
+    categories
   }),
   (dispatch => ({
     actions: bindActionCreators(AppActions, dispatch)
