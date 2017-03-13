@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
+import { Component, PropTypes } from 'react';
 
 class Chunk extends Component {
+  static propTypes = {
+    load: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired
+  }
+
   state = {
     // short for "module" but that's a keyword in js, so "mod"
     mod: null
   }
 
   componentWillMount() {
-    this.load(this.props)
+    this.load(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.load !== this.props.load) {
-      this.load(nextProps)
+      this.load(nextProps);
     }
   }
 

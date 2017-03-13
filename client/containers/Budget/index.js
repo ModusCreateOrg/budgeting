@@ -25,8 +25,8 @@ class Budget extends Component {
     const data = { transactions, categories };
 
     return (
-      <Chunk load={() => import('components/BudgetGrid/index.js')}>
-        { (Comp) => Comp ? <Comp data={data} /> : <h1>Budget</h1> }
+      <Chunk load={() => import('components/BudgetGrid')}>
+        { Comp => (Comp ? <Comp data={data} /> : null) }
       </Chunk>
     );
   }
