@@ -1,6 +1,12 @@
 .header {
+  position: relative;
   display: flex;
   margin-bottom: 3em; }
+
+.logo {
+  width: 60px;
+  height: 60px;
+  margin: 10px 0px 0px auto; }
 
 .nav-link {
   padding: 35px 25px;
