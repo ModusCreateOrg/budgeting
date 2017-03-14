@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  getBalance,
-  getInflowBalance,
-  getOutflowBalance
+  getFormattedBalance,
+  getFormattedInflowBalance,
+  getFormattedOutflowBalance
 } from 'modules/transactions';
 
 import BalanceItem from 'components/Balance';
@@ -12,16 +12,16 @@ import BalanceRow from 'components/Balance/BalanceRow';
 
 @connect(
   state => ({
-    balance: getBalance(state),
-    inflow: getInflowBalance(state),
-    outflow: getOutflowBalance(state)    
+    balance: getFormattedBalance(state),
+    inflow: getFormattedInflowBalance(state),
+    outflow: getFormattedOutflowBalance(state)    
   })
 )
 class Balance extends Component {
   static propTypes = {
-    balance: PropTypes.string.isRequired,
-    inflow: PropTypes.string.isRequired,
-    outflow: PropTypes.string.isRequired
+    balance: PropTypes.object.isRequired,
+    inflow: PropTypes.object.isRequired,
+    outflow: PropTypes.object.isRequired
   }
 
   render() {

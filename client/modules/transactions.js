@@ -4,6 +4,7 @@ import {
   defaultTransactions
 } from './defaults';
 
+import formatAmount from 'utils/formatAmount';
 
 /**
  * Action Constants
@@ -79,6 +80,21 @@ export const getOutflowBalance = createSelector(
   [getOutflowTransactions],
   transactions => totalTransactions(transactions)
 );
+
+export const getFormattedBalance = createSelector(
+  [getBalance],
+  amount => formatAmount(amount, false)
+)
+
+export const getFormattedInflowBalance = createSelector(
+  [getInflowBalance],
+  amount => formatAmount(amount, false)
+)
+
+export const getFormattedOutflowBalance = createSelector(
+  [getOutflowBalance],
+  amount => formatAmount(amount, false)
+)
 
 
 /**

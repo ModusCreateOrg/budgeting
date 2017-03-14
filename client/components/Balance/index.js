@@ -1,17 +1,15 @@
 import React, { PropTypes } from 'react';
 
-import formatAmount from 'utils/formatAmount';
 import './style.scss';
 
 const Balance = ({ title, symbol, amount, colorize }) => {
-  const formattedAmount = formatAmount(amount, false);
-  const amountCls = colorize && (formattedAmount.isNegative ? 'neg' : 'pos');
+  const amountCls = colorize && (amount.isNegative ? 'neg' : 'pos');
 
   return (
     <div className="balance-wrapper">
       <div className="balance-symbol">{symbol}</div>
       <div className="balance-item">
-        <div className={`balance-amount ${amountCls}`}>{formattedAmount.text}</div>
+        <div className={`balance-amount ${amountCls}`}>{amount.text}</div>
         <div className="balance-title">{title}</div>
       </div>
     </div>
@@ -21,7 +19,7 @@ const Balance = ({ title, symbol, amount, colorize }) => {
 Balance.propTypes = {
   title: PropTypes.string.isRequired,
   symbol: PropTypes.string,
-  amount: PropTypes.string.isRequired,
+  amount: PropTypes.object.isRequired,
   colorize: PropTypes.bool
 };
 
