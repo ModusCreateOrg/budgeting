@@ -46,15 +46,38 @@ function addTransactionToState(state, action) {
   return newState;
 }
 
+function totalTransactions(transactions) {
+  return transactions.reduce((total, item) => total + parseFloat(item.value), 0).toFixed(2);
+}
 
 /**
  * Selectors
  */
 export const getTransactions = state => state.transactions;
 
-export const getSummary = createSelector(
+export const getInflowTransactions = createSelector(
   [getTransactions],
-  transactions => transactions.reduce((total, item) => total + parseFloat(item.value), 0).toFixed(2)
+  transactions => transactions.filter(item => item.value > 0)
+);
+
+export const getOutflowTransactions = createSelector(
+  [getTransactions],
+  transactions => transactions.filter(item => item.value < 0)
+);
+
+export const getBalance = createSelector(
+  [getTransactions],
+  transactions => totalTransactions(transactions)
+);
+
+export const getInflowBalance = createSelector(
+  [getInflowTransactions],
+  transactions => totalTransactions(transactions)
+);
+
+export const getOutflowBalance = createSelector(
+  [getOutflowTransactions],
+  transactions => totalTransactions(transactions)
 );
 
 
