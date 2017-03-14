@@ -10,6 +10,7 @@ import {
 import { getCategories } from 'modules/categories';
 
 import BudgetGrid from 'components/BudgetGrid';
+import Balance from 'containers/Balance';
 
 @connect(
   state => ({
@@ -33,6 +34,7 @@ class Budget extends Component {
     return (
       <div>
         <BudgetGrid data={data} />
+        <Balance />
       </div>
     );
   }
