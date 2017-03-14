@@ -8,6 +8,7 @@ import {
 } from 'modules/transactions';
 
 import BalanceItem from 'components/Balance';
+import BalancePrefix from 'components/Balance/BalancePrefix';
 import BalanceRow from 'components/Balance/BalanceRow';
 
 @connect(
@@ -30,8 +31,10 @@ class Balance extends Component {
     return (
       <BalanceRow>
         <BalanceItem amount={inflow} title="Total Inflow" />
-        <BalanceItem amount={outflow} title="Total Outflow" symbol="-" />
-        <BalanceItem amount={balance} title="Working Balance" symbol="=" colorize={false} />
+        <BalancePrefix text="-" />
+        <BalanceItem amount={outflow} title="Total Outflow" />
+        <BalancePrefix text="=" />
+        <BalanceItem amount={balance} title="Working Balance" colorize={false} />
       </BalanceRow>
     );
   }
