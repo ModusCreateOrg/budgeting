@@ -2,15 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { actions as AppActions } from 'modules/transactions';
+import {
+  actions as AppActions,
+  getTransactions
+} from 'modules/transactions';
+
+import { getCategories } from 'modules/categories';
+
 import Chunk from 'components/Chunk';
 
-const loadBudgetGrid = () => import('components/BudgetGrid');
+const loadBudgetContainer = () => import('./BudgetContainer');
 
 @connect(
-  ({ transactions, categories }) => ({
-    transactions,
-    categories
+  state => ({
+    transactions: getTransactions(state),
+    categories: getCategories(state)
   }),
   (dispatch => ({
     actions: bindActionCreators(AppActions, dispatch)
@@ -27,7 +33,7 @@ class Budget extends Component {
     const data = { transactions, categories };
 
     return (
-      <Chunk load={loadBudgetGrid}>
+      <Chunk load={loadBudgetContainer}>
         { Comp => Comp && <Comp data={data} /> }
       </Chunk>
     );

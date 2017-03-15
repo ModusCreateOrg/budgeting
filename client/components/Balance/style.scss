@@ -1,0 +1,52 @@
+@import 'theme/variables';
+
+.balance-row-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.balance-row {
+  display: flex;
+  padding: 0 1em;  
+  border: 2px solid $gray;
+  border-radius: 6px;    
+  background-color: $verylightgray;
+  font-size: 0.8em;
+  font-weight: bold;
+
+  .balance-wrapper {
+    display: flex;
+  }  
+
+  .balance-symbol {
+    align-self: center;
+    padding-bottom: 1.2em;
+  }  
+
+  .balance-item {
+    flex: 1;
+    padding: 0.5em 0;  
+
+    .balance-amount {
+      display: inline-block;
+      padding: 1em;
+      margin: 0.5em;
+      border: 2px solid $gray;
+      border-radius: 6px;    
+      background-color: white;
+
+      &.neg {
+        color: $red;
+      }
+      &.pos {
+        color: $green;
+      }
+    }
+
+    .balance-title {
+      text-align: center;
+    }
+  }
+
+}

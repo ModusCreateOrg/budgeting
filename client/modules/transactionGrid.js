@@ -20,6 +20,11 @@ const GET_TRANSACTION_GRID_FIELDS = 'budget/transactionGrid/GET_FIELDS';
 
 
 /**
+ * Selectors
+ */
+
+
+/**
  * Reducer
  * Reserved for future use. Intended for dynamic grid column setup
  */
