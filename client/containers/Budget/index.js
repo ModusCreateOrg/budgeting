@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { actions as AppActions } from 'modules/transactions';
 import Chunk from 'components/Chunk';
 
+const loadBudgetGrid = () => import('components/BudgetGrid');
+
 @connect(
   ({ transactions, categories }) => ({
     transactions,
@@ -25,8 +27,8 @@ class Budget extends Component {
     const data = { transactions, categories };
 
     return (
-      <Chunk load={() => import('components/BudgetGrid')}>
-        { Comp => (Comp ? <Comp data={data} /> : null) }
+      <Chunk load={loadBudgetGrid}>
+        { Comp => Comp && <Comp data={data} /> }
       </Chunk>
     );
   }
