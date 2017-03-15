@@ -1,0 +1,1 @@
+webpackJsonp([1],{"./components/ReportsPanel/index.js":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var o=t("../node_modules/react/react.js"),r=t.n(o),s=function(){return r.a.createElement("h1",null,"Reports")};n.default=s}});

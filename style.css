@@ -20,55 +20,6 @@
     color: #000;
     text-decoration: underline;
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.16); }
-.grid-container {
-  height: 225px; }
-
-.budget-grid {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-  width: 100%;
-  border: 1px solid #b1b1b1;
-  border-collapse: collapse;
-  font-size: 0.8em; }
-  .budget-grid tr {
-    width: 100%;
-    display: table;
-    table-layout: fixed; }
-  .budget-grid th, .budget-grid td {
-    padding: 8px;
-    text-align: left;
-    overflow: hidden; }
-    .budget-grid th:first-child, .budget-grid td:first-child {
-      padding-left: 2em; }
-    .budget-grid th:last-child, .budget-grid td:last-child {
-      text-align: right; }
-    .budget-grid th:nth-child(1), .budget-grid th:nth-child(3), .budget-grid td:nth-child(1), .budget-grid td:nth-child(3) {
-      width: 20%; }
-    .budget-grid th:nth-child(2), .budget-grid td:nth-child(2) {
-      width: 60%; }
-  .budget-grid thead, .budget-grid tfoot {
-    background-color: #f0f0f0; }
-  .budget-grid thead {
-    border-bottom: 1px solid #b1b1b1; }
-    .budget-grid thead th:last-child {
-      padding-right: 3.5em; }
-  .budget-grid tbody {
-    overflow-y: scroll;
-    display: block; }
-    .budget-grid tbody tr {
-      border-bottom: 1px solid #dadada; }
-    .budget-grid tbody td {
-      vertical-align: top; }
-      .budget-grid tbody td.neg {
-        color: #eb2a2a; }
-      .budget-grid tbody td.pos {
-        color: #189c2d; }
-      .budget-grid tbody td:last-child {
-        padding-right: 2.5em; }
-  .budget-grid tfoot {
-    height: 40px;
-    border-top: 1px solid #b1b1b1; }
 html,
 body {
   -webkit-overflow-scrolling: touch; }
