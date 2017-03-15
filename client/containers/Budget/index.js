@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as AppActions } from 'modules/transactions';
-import BudgetGrid from 'components/BudgetGrid';
+import Chunk from 'components/Chunk';
 
 @connect(
   ({ transactions, categories }) => ({
@@ -25,9 +25,9 @@ class Budget extends Component {
     const data = { transactions, categories };
 
     return (
-      <div>
-        <BudgetGrid data={data} />
-      </div>
+      <Chunk load={() => import('components/BudgetGrid')}>
+        { Comp => (Comp ? <Comp data={data} /> : null) }
+      </Chunk>
     );
   }
 }
