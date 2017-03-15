@@ -109,7 +109,7 @@ module.exports = function (env) {
     },
     output: {
       path: staticsPath,
-      filename: '[name]-[chunkhash:8].js',
+      filename: '[name]-[hash:8].js',
       chunkFilename: 'chunk[name]-[chunkhash:8].js',
     },
     module: {
