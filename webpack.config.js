@@ -3,6 +3,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const port = (process.env.PORT || 3000);
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
 
@@ -171,7 +172,7 @@ module.exports = function (env) {
     devServer: {
       contentBase: './client',
       historyApiFallback: true,
-      port: 3000,
+      port: port,
       compress: isProd,
       inline: !isProd,
       hot: !isProd,
