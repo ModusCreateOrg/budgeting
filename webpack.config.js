@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = (process.env.PORT || 3000);
 const sourcePath = path.join(__dirname, './client');
-const staticsPath = path.join(__dirname, './static');
+const buildDirectory = path.join(__dirname, './build');
 
 const stats = {
   assets: true,
@@ -108,7 +108,7 @@ module.exports = function (env) {
       ],
     },
     output: {
-      path: staticsPath,
+      path: buildDirectory,
       filename: '[name]-[hash:8].js',
       chunkFilename: 'chunk[name]-[chunkhash:8].js',
     },
