@@ -4,10 +4,10 @@ import BudgetGrid from 'components/BudgetGrid';
 import Balance from 'containers/Balance';
 
 const BudgetContainer = ({ data }) => (
-  <div>
+  <section>
     <BudgetGrid data={data} />
     <Balance />
-  </div>
+  </section>
 );
 
 BudgetContainer.propTypes = {

@@ -7,7 +7,7 @@ import Reports from 'containers/Reports';
 import './style.scss';
 
 const App = () => (
-  <div>
+  <main>
     <Header />
 
     <Switch>
@@ -15,7 +15,7 @@ const App = () => (
       <Route path="/reports" component={Reports} />
       <Redirect to="/budget" />
     </Switch>
-  </div>
+  </main>
 );
 
 export default App;

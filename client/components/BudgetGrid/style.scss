@@ -1,14 +1,9 @@
 @import 'theme/variables';
 
-.grid-container {
-  height: 225px;
-}
-
 .budget-grid {
   display: flex;
   flex-flow: column;
-  height: 100%;
-  width: 100%;
+  flex: 1;
   border: 1px solid $gray;
   border-collapse: collapse;
   font-size: 0.8em;
@@ -56,6 +51,7 @@
   tbody {
     overflow-y: scroll;
     display: block;
+    flex: 1;
 
     tr {
       border-bottom: 1px solid $lightgray;
