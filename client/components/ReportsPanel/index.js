@@ -1,5 +1,7 @@
 import React from 'react';
 
-const ReportsPanel = () => <h1>Reports</h1>;
+import ReportsTabbar from './ReportsTabbar';
+
+const ReportsPanel = () => <ReportsTabbar />;
 
 export default ReportsPanel;
