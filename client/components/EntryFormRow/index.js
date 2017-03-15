@@ -17,7 +17,7 @@ class EntryFormRow extends Component {
 
   render() {
     return (
-      <tr className="entry-form-row">
+      <tr className="entryFormRow">
         <td>
           <DataSelector
             name="categoryId"
@@ -42,6 +42,7 @@ class EntryFormRow extends Component {
             value={this.state.amount}
             onChange={this.handleFieldChange}
             placeholder="Value"
+            className="amountField"
           />
 
           <button>Add</button>

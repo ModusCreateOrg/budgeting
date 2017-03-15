@@ -1,43 +1,36 @@
 @import 'theme/variables';
 
-.grid-container {
-  height: 225px;
-}
-
 .budget-grid {
   display: flex;
   flex-flow: column;
-  height: 100%;
-  width: 100%;
+  flex: 1;
   border: 1px solid $gray;
   border-collapse: collapse;
   font-size: 0.8em;
 
   tr {
     width: 100%;
-    display: table;
-    table-layout: fixed;
+    display: flex;
+    align-items: stretch;
+    height: inherit;
+    padding: 8px;
   }
 
   th, td {
-    padding: 8px;
     text-align: left;
     overflow: hidden;
-
-    &:first-child {
-      padding-left: 2em;
-    }
 
     &:last-child {
       text-align: right;
     }
 
     &:nth-child(1), &:nth-child(3) {
-      width: 20%;
+      flex: 1;
+      min-width: 120px;
     }
 
     &:nth-child(2) {
-      width: 60%;
+      flex: 3;
     }
   }
 
@@ -56,6 +49,7 @@
   tbody {
     overflow-y: scroll;
     display: block;
+    flex: 1;
 
     tr {
       border-bottom: 1px solid $lightgray;
@@ -63,6 +57,7 @@
 
     td {
       vertical-align: top;
+      padding-left: 2em;
 
       &.neg {
         color: $red;
