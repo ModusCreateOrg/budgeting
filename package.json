@@ -9,7 +9,8 @@
     "start": "webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
     "build": "rimraf static && cross-env NODE_ENV=production webpack --env.prod=true",
-    "deploy": "npm run build && gh-pages -d static",
+    "deploy-github": "npm run build && gh-pages -d static",
+    "deploy-firebase": "npm run build && firebase deploy",
     "lint": "eslint ./client ./webpack.config.js -f table || true"
   },
   "license": "MIT",
