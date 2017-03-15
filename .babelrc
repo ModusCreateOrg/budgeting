@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "syntax-dynamic-import",
     "transform-decorators-legacy",
     "transform-class-properties"
   ],

@@ -9,8 +9,9 @@ import {
 
 import { getCategories } from 'modules/categories';
 
-import BudgetGrid from 'components/BudgetGrid';
-import Balance from 'containers/Balance';
+import Chunk from 'components/Chunk';
+
+const loadBudgetContainer = () => import('./BudgetContainer');
 
 @connect(
   state => ({
@@ -32,10 +33,9 @@ class Budget extends Component {
     const data = { transactions, categories };
 
     return (
-      <div>
-        <BudgetGrid data={data} />
-        <Balance />
-      </div>
+      <Chunk load={loadBudgetContainer}>
+        { Comp => Comp && <Comp data={data} /> }
+      </Chunk>
     );
   }
 }

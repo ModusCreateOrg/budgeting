@@ -9,7 +9,8 @@
     "start": "webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
     "build": "rimraf static && cross-env NODE_ENV=production webpack --env.prod=true",
-    "deploy": "npm run build && gh-pages -d static",
+    "deploy-github": "npm run build && gh-pages -d static",
+    "deploy-firebase": "npm run build && firebase deploy",
     "lint": "eslint ./client ./webpack.config.js -f table || true"
   },
   "license": "MIT",
@@ -17,6 +18,7 @@
     "babel-core": "6.16.0",
     "babel-eslint": "7.1.1",
     "babel-loader": "6.2.7",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "6.22.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "6.15.0",
