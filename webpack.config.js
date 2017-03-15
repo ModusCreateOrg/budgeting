@@ -6,6 +6,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
 
+const stats = {
+  assets: true,
+  children: false,
+  chunks: false,
+  hash: false,
+  modules: false,
+  publicPath: false,
+  timings: true,
+  version: false,
+  warnings: true,
+  colors: {
+    green: '\u001b[32m',
+  }
+};
+
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
@@ -15,7 +30,6 @@ module.exports = function (env) {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.bundle.js'
     }),
 
     // setting production environment will strip out
@@ -82,12 +96,20 @@ module.exports = function (env) {
     devtool: isProd ? 'source-map' : 'cheap-module-source-map',
     context: sourcePath,
     entry: {
-      js: './index.js',
-      vendor: ['react']
+      main: './index.js',
+      vendor: [
+        'react',
+        'react-dom',
+        'redux',
+        'redux-thunk',
+        'react-redux',
+        'hoist-non-react-statics',
+      ],
     },
     output: {
       path: staticsPath,
-      filename: '[name].bundle.js',
+      filename: '[name]-[chunkhash:8].js',
+      chunkFilename: 'chunk[name]-[chunkhash:8].js',
     },
     module: {
       rules: [
@@ -97,7 +119,7 @@ module.exports = function (env) {
           use: {
             loader: 'file-loader',
             query: {
-              name: 'static/[name].[hash:8].[ext]'
+              name: 'static/[name]-[hash:8].[ext]'
             },
           },
         },
@@ -140,15 +162,11 @@ module.exports = function (env) {
 
     performance: isProd && {
       maxAssetSize: 300000,
-      maxEntrypointSize: 50000,
+      maxEntrypointSize: 300000,
       hints: 'warning',
     },
 
-    stats: {
-      colors: {
-        green: '\u001b[32m',
-      }
-    },
+    stats: stats,
 
     devServer: {
       contentBase: './client',
@@ -157,20 +175,7 @@ module.exports = function (env) {
       compress: isProd,
       inline: !isProd,
       hot: !isProd,
-      stats: {
-        assets: true,
-        children: false,
-        chunks: false,
-        hash: false,
-        modules: false,
-        publicPath: false,
-        timings: true,
-        version: false,
-        warnings: true,
-        colors: {
-          green: '\u001b[32m',
-        }
-      },
+      stats: stats,
     }
   };
 };
