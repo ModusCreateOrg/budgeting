@@ -33,7 +33,7 @@ export const actions = {
  * Helpers
  */
 function getNextTransactionID(state) {
-  return state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+  return state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
 }
 
 // Add a new transaction.
