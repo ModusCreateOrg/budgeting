@@ -1,0 +1,29 @@
+@import 'theme/variables';
+
+.reports {
+  .tabbar {
+    border: $border;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+
+    a {
+      float: left;
+      padding: 1em 2em;
+      white-space: nowrap;
+      font-size: 0.9em;
+      outline: none;
+
+      &:last-child {
+        border-left: $border;
+        border-right: $border;
+      }
+
+      &:active, &.selected {
+        color: $white;
+        background-color: $gray;
+      }
+    }
+  }
+}
