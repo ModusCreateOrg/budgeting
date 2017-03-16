@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import './style.scss';
 
-const NavLink = props => (
+const Link = props => (
   <a
     tabIndex="0"
     data-link={props.id}
@@ -13,7 +13,7 @@ const NavLink = props => (
   </a>
 );
 
-NavLink.propTypes = {
+Link.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   handleSelection: PropTypes.func.isRequired,
@@ -44,8 +44,8 @@ class ReportsTabbar extends Component {
     return (
       <section className="reports">
         <div className="tabbar">
-          <NavLink id="flows" handleSelection={this.getClassName} handleClick={this.handleClick} label="Inflow vs Outflow" />
-          <NavLink id="spending" handleSelection={this.getClassName} handleClick={this.handleClick} label="Spending by Category" />
+          <Link id="flows" handleSelection={this.getClassName} handleClick={this.handleClick} label="Inflow vs Outflow" />
+          <Link id="spending" handleSelection={this.getClassName} handleClick={this.handleClick} label="Spending by Category" />
         </div>
       </section>
     );
