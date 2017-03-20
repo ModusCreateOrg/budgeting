@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
 
+console.log(styles);
+
 class EntryFormRow extends Component {
   static propTypes = {
     categories: PropTypes.object.isRequired
@@ -17,7 +19,7 @@ class EntryFormRow extends Component {
 
   render() {
     return (
-      <tr className={styles.entryRowForm}>
+      <tr className={styles.entryFormRow}>
         <td>
           <DataSelector
             name="categoryId"
