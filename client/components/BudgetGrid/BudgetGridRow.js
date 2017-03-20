@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react';
 
 import formatAmount from 'utils/formatAmount';
 
+import styles from './style.scss';
+
 const BudgetGridRow = (props) => {
   const { transaction, categories } = props;
   const amount = formatAmount(transaction.value);
-  const amountCls = amount.isNegative ? 'neg' : 'pos';
+  const amountCls = amount.isNegative ? styles.neg : styles.pos;
 
   return (
     <tr key={transaction.id}>

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
-import './style.scss';
+import styles from './style.scss';
 
 const Balance = ({ children }) => {
   return (
-    <div className="balance-row-container">
-      <div className="balance-row">
+    <div className={styles.balanceRowContainer}>
+      <div className={styles.balanceRow}>
         {children}
       </div>
     </div>

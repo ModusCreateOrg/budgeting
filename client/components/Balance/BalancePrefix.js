@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import './style.scss';
+import styles from './style.scss';
 
-const BalancePrefix = ({ text }) => <div className="balance-symbol">{text}</div>;
+const BalancePrefix = ({ text }) => <div className={styles.balanceSymbol}>{text}</div>;
 
 BalancePrefix.propTypes = {
   text: PropTypes.string.isRequired
