@@ -9,3 +9,12 @@ const store = createStore(rootReducer, composeEnhancers(
 ));
 
 export default store;
+
+// hot reloading for reducers
+if (module.hot) {
+  module.hot.accept('../modules/rootReducer', () => {
+    const nextReducer = require('../modules/rootReducer').default; // eslint-disable-line
+
+    store.replaceReducer(nextReducer);
+  });
+}
