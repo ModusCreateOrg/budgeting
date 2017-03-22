@@ -93,11 +93,27 @@ module.exports = function (env) {
     );
   }
 
+  const entryPoint = isProd ? './index.js' : [
+    // activate HMR for React
+    'react-hot-loader/patch',
+
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+    'webpack-dev-server/client?http://0.0.0.0:' + port,
+
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates
+    'webpack/hot/only-dev-server',
+
+    // the entry point of our app
+    './index.js'
+  ];
+
   return {
     devtool: isProd ? 'source-map' : 'cheap-module-source-map',
     context: sourcePath,
     entry: {
-      main: './index.js',
+      main: entryPoint,
       vendor: [
         'react',
         'react-dom',
@@ -109,6 +125,7 @@ module.exports = function (env) {
     },
     output: {
       path: buildDirectory,
+      publicPath: '/',
       filename: '[name]-[hash:8].js',
       chunkFilename: 'chunk[name]-[chunkhash:8].js',
     },
@@ -177,11 +194,12 @@ module.exports = function (env) {
 
     devServer: {
       contentBase: './client',
+      publicPath: '/',
       historyApiFallback: true,
       port: port,
+      host: '0.0.0.0',
+      hot: true,
       compress: isProd,
-      inline: !isProd,
-      hot: !isProd,
       stats: stats,
     }
   };
