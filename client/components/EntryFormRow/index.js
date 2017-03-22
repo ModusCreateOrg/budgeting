@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
 
-console.log(styles);
-
 class EntryFormRow extends Component {
   static propTypes = {
     categories: PropTypes.object.isRequired
