@@ -133,8 +133,8 @@ module.exports = function (env) {
               {
                 loader: 'css-loader',
                 options: {
-                  modules: true,
-                  localIdentName: '[name]__[local]--[hash:base64:5]'
+                  module: true,
+                  localIdentName: isProd ? '[hash:base64:5]' : '[path][name]-[local]'
                 }
               },
               {
