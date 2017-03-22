@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
-const host = (process.env.PORT || 'localhost');
+const host = (process.env.HOST || 'localhost');
 const port = (process.env.PORT || 3000);
 const sourcePath = path.join(__dirname, './client');
 const buildDirectory = path.join(__dirname, './build');
