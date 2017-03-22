@@ -24,8 +24,5 @@ renderApp(App);
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('containers/App', () => {
-    console.log('re-rendering');
-    renderApp(App); // eslint-disable-line global-require
-  });
+  module.hot.accept('containers/App', () => renderApp(App));
 }
