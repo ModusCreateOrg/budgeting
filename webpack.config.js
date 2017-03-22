@@ -205,7 +205,7 @@ module.exports = function (env) {
       historyApiFallback: true,
       port: port,
       host: host,
-      hot: true,
+      hot: !isProd,
       compress: isProd,
       stats: stats,
     }
