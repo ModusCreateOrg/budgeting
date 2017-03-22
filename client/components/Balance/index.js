@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 
-import './style.scss';
+import styles from './style.scss';
 
 const Balance = ({ title, amount, colorize }) => {
-  const amountCls = colorize && (amount.isNegative ? 'neg' : 'pos');
+  const amountCls = colorize && (amount.isNegative ? styles.neg : styles.pos);
 
   return (
-    <div className="balance-wrapper">
-      <div className="balance-item">
-        <div className={`balance-amount ${amountCls}`}>{amount.text}</div>
-        <div className="balance-title">{title}</div>
+    <div className={styles.balanceWrapper}>
+      <div className={styles.balanceItem}>
+        <div className={`${styles.balanceAmount} ${amountCls}`}>{amount.text}</div>
+        <div className={styles.balanceTitle}>{title}</div>
       </div>
     </div>
   );

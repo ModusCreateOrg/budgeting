@@ -130,7 +130,13 @@ module.exports = function (env) {
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
-              'css-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  module: true,
+                  localIdentName: isProd ? '[hash:base64:5]' : '[path][name]-[local]'
+                }
+              },
               {
                 loader: 'sass-loader',
                 options: {

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import EntryFormRow from 'components/EntryFormRow';
 import BudgetGridRow from './BudgetGridRow';
-import './style.scss';
+import styles from './style.scss';
 
 class BudgetGrid extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ class BudgetGrid extends Component {
     const { data: { transactions, categories } } = this.props;
 
     return (
-      <table className="budget-grid">
+      <table className={styles.budgetGrid}>
         <thead>
           <tr>
             <th>Category</th>

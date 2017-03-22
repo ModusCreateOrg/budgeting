@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { Route, Link } from 'react-router-dom';
 import Logo from './Logo';
-import './style.scss';
+import styles from './style.scss';
 
 const NavLink = ({ to, label }) => (
   <Route
     to={to}
     exact
     children={({ location: { pathname } }) =>
-      <Link to={to} className={`nav-link ${pathname === to ? 'selected' : ''}`}>{ label }</Link>
+      <Link to={to} className={`${styles.navLink} ${pathname === to ? styles.selected : ''}`}>{ label }</Link>
     }
   />
 );
@@ -19,7 +19,7 @@ NavLink.propTypes = {
 };
 
 export default () => (
-  <div className="header">
+  <div className={styles.header}>
     <NavLink to="/budget" label="Budget" />
     <NavLink to="/reports" label="Reports" />
     <Logo />

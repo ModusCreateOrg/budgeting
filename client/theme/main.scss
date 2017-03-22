@@ -21,7 +21,7 @@ body {
   }
 }
 
-#root {
+:global(#root) {
   height: 100%;
 }
 

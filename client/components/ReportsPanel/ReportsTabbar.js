@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import './style.scss';
+import styles from './style.scss';
 
 const Link = props => (
   <a
@@ -29,7 +29,7 @@ class ReportsTabbar extends Component {
   getClassName = (className) => {
     const { selected } = this.state;
 
-    return className === selected ? 'selected' : '';
+    return className === selected ? styles.selected : '';
   };
 
   handleClick = (e) => {
@@ -42,8 +42,8 @@ class ReportsTabbar extends Component {
 
   render() {
     return (
-      <section className="reports">
-        <div className="tabbar">
+      <section className={styles.reports}>
+        <div className={styles.tabbar}>
           <Link id="flows" handleSelection={this.getClassName} handleClick={this.handleClick} label="Inflow vs Outflow" />
           <Link id="spending" handleSelection={this.getClassName} handleClick={this.handleClick} label="Spending by Category" />
         </div>
