@@ -3,6 +3,9 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// replace localhost with 0.0.0.0 if you want to access
+// your app from wifi or a virtual machine
+const host = (process.env.HOST || 'localhost');
 const port = (process.env.PORT || 3000);
 const sourcePath = path.join(__dirname, './client');
 const buildDirectory = path.join(__dirname, './build');
@@ -39,9 +42,6 @@ module.exports = function (env) {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
-
-    // show module names instead of numbers in webpack stats
-    new webpack.NamedModulesPlugin(),
 
     // create css bundle
     new ExtractTextPlugin('style.css'),
@@ -89,15 +89,38 @@ module.exports = function (env) {
     );
   } else {
     plugins.push(
-      new webpack.HotModuleReplacementPlugin()
+      // make hot reloading work
+      new webpack.HotModuleReplacementPlugin(),
+
+      // show module names instead of numbers in webpack stats
+      new webpack.NamedModulesPlugin(),
+
+      // don't spit out any errors in compiled assets
+      new webpack.NoEmitOnErrorsPlugin()
     );
   }
+
+  const entryPoint = isProd ? './index.js' : [
+    // activate HMR for React
+    'react-hot-loader/patch',
+
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+    'webpack-dev-server/client?http://' + host + ':' + port,
+
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates
+    'webpack/hot/only-dev-server',
+
+    // the entry point of our app
+    './index.js'
+  ];
 
   return {
     devtool: isProd ? 'source-map' : 'cheap-module-source-map',
     context: sourcePath,
     entry: {
-      main: './index.js',
+      main: entryPoint,
       vendor: [
         'react',
         'react-dom',
@@ -109,6 +132,7 @@ module.exports = function (env) {
     },
     output: {
       path: buildDirectory,
+      publicPath: '/',
       filename: '[name]-[hash:8].js',
       chunkFilename: 'chunk[name]-[chunkhash:8].js',
     },
@@ -177,11 +201,12 @@ module.exports = function (env) {
 
     devServer: {
       contentBase: './client',
+      publicPath: '/',
       historyApiFallback: true,
       port: port,
-      compress: isProd,
-      inline: !isProd,
+      host: host,
       hot: !isProd,
+      compress: isProd,
       stats: stats,
     }
   };
