@@ -15,7 +15,7 @@ import BalanceRow from 'components/Balance/BalanceRow';
   state => ({
     balance: getFormattedBalance(state),
     inflow: getFormattedInflowBalance(state),
-    outflow: getFormattedOutflowBalance(state)    
+    outflow: getFormattedOutflowBalance(state)
   })
 )
 class Balance extends Component {

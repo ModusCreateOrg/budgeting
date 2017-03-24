@@ -106,7 +106,7 @@ module.exports = function (env) {
 
     // bundle the client for webpack-dev-server
     // and connect to the provided endpoint
-    'webpack-dev-server/client?http://' + host + ':' + port,
+    `webpack-dev-server/client?http://${host}:${port}`,
 
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates

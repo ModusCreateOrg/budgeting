@@ -1,10 +1,9 @@
 import { createSelector } from 'reselect';
+import formatAmount from 'utils/formatAmount';
 
 import {
   defaultTransactions
 } from './defaults';
-
-import formatAmount from 'utils/formatAmount';
 
 /**
  * Action Constants
@@ -38,9 +37,10 @@ function getNextTransactionID(state) {
 
 // Add a new transaction.
 function addTransactionToState(state, action) {
-  const { description, value } = action.transaction;
+  const { categoryId, description, value } = action.transaction;
   const newState = [...state, {
     id: getNextTransactionID(state),
+    categoryId,
     description,
     value
   }];
@@ -84,17 +84,17 @@ export const getOutflowBalance = createSelector(
 export const getFormattedBalance = createSelector(
   [getBalance],
   amount => formatAmount(amount, false)
-)
+);
 
 export const getFormattedInflowBalance = createSelector(
   [getInflowBalance],
   amount => formatAmount(amount, false)
-)
+);
 
 export const getFormattedOutflowBalance = createSelector(
   [getOutflowBalance],
   amount => formatAmount(amount, false)
-)
+);
 
 
 /**
