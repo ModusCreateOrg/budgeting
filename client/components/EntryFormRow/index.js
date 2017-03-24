@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import DataSelector from './DataSelector';
-import './style.scss';
+import styles from './style.scss';
 
 class EntryFormRow extends Component {
   static propTypes = {
@@ -17,7 +17,7 @@ class EntryFormRow extends Component {
 
   render() {
     return (
-      <tr className="entry-form-row">
+      <tr className={styles.entryFormRow}>
         <td>
           <DataSelector
             name="categoryId"
@@ -42,6 +42,7 @@ class EntryFormRow extends Component {
             value={this.state.amount}
             onChange={this.handleFieldChange}
             placeholder="Value"
+            className={styles.amountField}
           />
 
           <button>Add</button>

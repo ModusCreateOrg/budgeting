@@ -3,12 +3,11 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Budget from 'containers/Budget';
+import Reports from 'containers/Reports';
 import './style.scss';
 
-const Reports = () => <h1>Reports</h1>;
-
 const App = () => (
-  <div>
+  <main>
     <Header />
 
     <Switch>
@@ -16,7 +15,7 @@ const App = () => (
       <Route path="/reports" component={Reports} />
       <Redirect to="/budget" />
     </Switch>
-  </div>
+  </main>
 );
 
 export default App;

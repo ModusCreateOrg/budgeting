@@ -1,20 +1,16 @@
-@import 'theme/variables';
+@import 'theme/main';
 
-html,
-body {
-  -webkit-overflow-scrolling: touch;
+main,
+main > section {
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0 0.8em;
-  font-family: $font-default;
-  font-size: 16px;
-}
+main {
+  height: 100%;
 
-@media only screen and (min-width: 48em) {
-  body {
-    padding: 0 3em;
+  section {
+    height: 400px;
+    flex: 1;
   }
 }

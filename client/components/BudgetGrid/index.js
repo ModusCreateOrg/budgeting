@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import EntryFormRow from 'components/EntryFormRow';
 import BudgetGridRow from './BudgetGridRow';
-import './style.scss';
+import styles from './style.scss';
 
 class BudgetGrid extends Component {
   static propTypes = {
@@ -16,29 +16,27 @@ class BudgetGrid extends Component {
     const { data: { transactions, categories } } = this.props;
 
     return (
-      <div className="grid-container">
-        <table className="budget-grid">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map(transaction => (
-              <BudgetGridRow
-                key={transaction.id}
-                transaction={transaction}
-                categories={categories}
-              />
-            ))}
-          </tbody>
-          <tfoot>
-            <EntryFormRow categories={categories} />
-          </tfoot>
-        </table>
-      </div>
+      <table className={styles.budgetGrid}>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map(transaction => (
+            <BudgetGridRow
+              key={transaction.id}
+              transaction={transaction}
+              categories={categories}
+            />
+          ))}
+        </tbody>
+        <tfoot>
+          <EntryFormRow categories={categories} />
+        </tfoot>
+      </table>
     );
   }
 }

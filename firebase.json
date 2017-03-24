@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": "build",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/*",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</chunk1-5aee259a.js>;rel=preload;as=script;nopush,</chunk0-7b2614a6.js>;rel=preload;as=script;nopush,</static/mclogo-22f11896.svg>;rel=preload;as=image;nopush"
+          }
+        ]
+      }
+    ]
+  }
+}

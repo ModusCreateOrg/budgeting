@@ -1,16 +1,34 @@
-.entry-form-row {
+.entryFormRow {
+  & {
+    padding: 2px !important;
+  }
+
   td {
-    &:first-child, &:nth-child(2) {
-      input, select {
-        width: 100%;
-      }
+    display: flex;
+    flex-wrap: nowrap;
+
+    input, select {
+      flex: 1;
+      min-width: 50px;
+      height: 100%;
+      padding: 0 0.8em;
+      font-size: 1.1em;
     }
 
-    &:last-child {
-      button {
-        margin-left: 5px;
-        text-transform: uppercase;
-      }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    button {
+      margin-left: 5px;
+      text-transform: uppercase;
+      width: 45px;
+    }
+
+    .amountField {
+
     }
   }
 }

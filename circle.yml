@@ -12,7 +12,7 @@ dependencies:
     - ~/.cache/yarn
 
 test:
-  pre:
+  override:
     - yarn run lint
     - yarn run build
 deployment:
