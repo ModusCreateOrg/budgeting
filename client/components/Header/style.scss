@@ -9,7 +9,15 @@
 .logo {
   width: 60px;
   height: 60px;
-  margin: 10px 0px 0px auto;
+  margin: 10px 0px 0px 12px;
+}
+
+.gitHubButton {
+  margin: 22px 14px 0px 0px;
+
+  &:nth-of-type(1) {
+    margin-left: auto;
+  }
 }
 
 .navLink {

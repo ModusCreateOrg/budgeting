@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Route, Link } from 'react-router-dom';
 import Logo from './Logo';
+import GitHubButton from '../GitHubButton';
 import styles from './style.scss';
 
 const NavLink = ({ to, label }) => (
@@ -22,6 +23,8 @@ export default () => (
   <div className={styles.header}>
     <NavLink to="/budget" label="Budget" />
     <NavLink to="/reports" label="Reports" />
+    <GitHubButton className={styles.gitHubButton} type="Star" />
+    <GitHubButton className={styles.gitHubButton} type="Fork" />
     <Logo />
   </div>
 );
