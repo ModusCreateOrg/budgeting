@@ -1,4 +1,5 @@
 import {
+  DEFAULT_CATEGORY_ID,
   categoriesById
 } from './defaults';
 
@@ -22,6 +23,8 @@ import {
  * Selectors
  */
 export const getCategories = state => state.categories;
+
+export const getDefaultCategoryId = () => DEFAULT_CATEGORY_ID;
 
 
 /**

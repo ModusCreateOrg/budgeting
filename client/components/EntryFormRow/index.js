@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getCategories } from 'modules/categories';
+import {
+  getDefaultCategoryId,
+  getCategories
+} from 'modules/categories';
 import { actions as AppActions } from 'modules/transactions';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
 
 @connect(
   state => ({
+    defaultCategoryId: getDefaultCategoryId(),
     categories: getCategories(state)
   }),
   (dispatch => ({
@@ -16,29 +20,28 @@ import styles from './style.scss';
 )
 class EntryFormRow extends Component {
   static propTypes = {
+    defaultCategoryId: PropTypes.string.isRequired,
     categories: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
   }
 
   state = {
-    categoryId: '16',
+    categoryId: this.props.defaultCategoryId,
     description: '',
     value: ''
   }
 
-  handleFieldChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleFieldChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  handleKeyUp = e => e.keyCode === 13 && this.addEntry();
+
+  handleAddButtonClick = () => this.addEntry();
 
   handleValueRefUpdate = (ref) => {
     this.valueRef = ref;
   }
 
-  addEntry = (e) => {
-    e.preventDefault();
-
-    if (e.keyCode && e.keyCode !== 13) {
-      return;
-    }
-
+  addEntry = () => {
     const { categoryId, description, value } = this.state;
 
     this.props.actions.addTransaction({ categoryId, description, value });
@@ -69,7 +72,7 @@ class EntryFormRow extends Component {
             name="description"
             value={this.state.description}
             onChange={this.handleFieldChange}
-            onKeyUp={this.addEntry}
+            onKeyUp={this.handleKeyUp}
             placeholder="Description"
           />
         </td>
@@ -80,12 +83,12 @@ class EntryFormRow extends Component {
             value={this.state.value}
             ref={this.handleValueRefUpdate}
             onChange={this.handleFieldChange}
-            onKeyUp={this.addEntry}
+            onKeyUp={this.handleKeyUp}
             placeholder="Value"
             className={styles.amountField}
           />
 
-          <button onClick={this.addEntry}>
+          <button onClick={this.handleAddButtonClick}>
             Add
           </button>
         </td>

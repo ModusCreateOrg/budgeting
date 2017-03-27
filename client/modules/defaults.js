@@ -18,6 +18,8 @@ export const categoriesById = {
   17: 'Gifting'
 };
 
+export const DEFAULT_CATEGORY_ID = '16';
+
 export const defaultTransactions = [
   {
     id: 1,
