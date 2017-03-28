@@ -34,7 +34,7 @@ class BudgetGrid extends Component {
           ))}
         </tbody>
         <tfoot>
-          <EntryFormRow categories={categories} />
+          <EntryFormRow />
         </tfoot>
       </table>
     );
