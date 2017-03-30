@@ -8,12 +8,14 @@
     flex-direction: row;
     max-height: 50px;
 
-    a {
+    .navLink {
       float: left;
       padding: 1em 2em;
       white-space: nowrap;
       font-size: 0.9em;
       outline: none;
+      color: $black;
+      text-decoration: none;
 
       &:last-child {
         border-left: $border;

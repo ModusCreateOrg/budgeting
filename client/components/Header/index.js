@@ -9,7 +9,7 @@ const NavLink = ({ to, label }) => (
     to={to}
     exact
     children={({ location: { pathname } }) =>
-      <Link to={to} className={`${styles.navLink} ${pathname === to ? styles.selected : ''}`}>{ label }</Link>
+      <Link to={to} className={`${styles.navLink} ${pathname.indexOf(to) !== -1 ? styles.selected : ''}`}>{ label }</Link>
     }
   />
 );
