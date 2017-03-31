@@ -1,55 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
+import NavLink from 'components/NavLink';
 import styles from './style.scss';
 
-const Link = props => (
-  <a
-    tabIndex="0"
-    data-link={props.id}
-    className={props.handleSelection(props.id)}
-    onClick={props.handleClick}
-  >
-    {props.label}
-  </a>
+const ReportsTabbar = () => (
+  <div className={styles.tabbar}>
+    <NavLink to="/reports/inflow-outflow" label="Inflow vs Outflow" styles={styles} />
+    <NavLink to="/reports/spending" label="Spending by Category" styles={styles} />
+  </div>
 );
-
-Link.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  handleSelection: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired
-};
-
-
-class ReportsTabbar extends Component {
-  state = {
-    selected: 'flows'
-  }
-
-  getClassName = (className) => {
-    const { selected } = this.state;
-
-    return className === selected ? styles.selected : '';
-  };
-
-  handleClick = (e) => {
-    const selected = e.target.getAttribute('data-link');
-
-    this.setState({
-      selected
-    });
-  };
-
-  render() {
-    return (
-      <section className={styles.reports}>
-        <div className={styles.tabbar}>
-          <Link id="flows" handleSelection={this.getClassName} handleClick={this.handleClick} label="Inflow vs Outflow" />
-          <Link id="spending" handleSelection={this.getClassName} handleClick={this.handleClick} label="Spending by Category" />
-        </div>
-      </section>
-    );
-  }
-}
 
 export default ReportsTabbar;
