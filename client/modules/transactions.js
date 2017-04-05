@@ -51,6 +51,16 @@ function totalTransactions(transactions) {
   return transactions.reduce((total, item) => total + parseFloat(item.value), 0).toFixed(2);
 }
 
+function summarizeTransactions(transactions) {
+  return transactions.reduce((summary, { categoryId, value }) => {
+    const sum = summary.find(item => item.categoryId === categoryId) ||
+      summary[summary.push({ categoryId, value: 0 }) - 1];
+
+    sum.value += Math.abs(value);
+    return summary;
+  }, []);
+}
+
 /**
  * Selectors
  */
@@ -96,6 +106,10 @@ export const getFormattedOutflowBalance = createSelector(
   amount => formatAmount(amount, false)
 );
 
+export const getOutflowByCategory = createSelector(
+  [getOutflowTransactions],
+  transactions => summarizeTransactions(transactions)
+);
 
 /**
  * Reducer

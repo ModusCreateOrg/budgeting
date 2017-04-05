@@ -1,0 +1,17 @@
+.donutChart {
+  display: flex;
+  height: 100%;  
+  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+  flex-flow: wrap;  
+}
+
+.mainSvg {
+  filter: drop-shadow( 2px 2px 4px rgba(0,0,0,.5) );
+}
+
+.legend {
+  font-size: larger;
+  font-weight: bold;
+}

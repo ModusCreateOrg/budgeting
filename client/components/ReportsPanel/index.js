@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import Spending from 'containers/Spending';
 import ReportsTabbar from './ReportsTabbar';
 
 const InflowOutflow = () => <h1>Inflow vs Outflow</h1>;
-const Spending = () => <h1>Spending by Category</h1>;
 
 const ReportsPanel = () => (
   <section>
