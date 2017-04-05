@@ -1,31 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getOutflowByCategory } from 'modules/transactions';
-import {
-  getCategories,
-  applyCategoryName
-} from 'modules/categories';
+import { getOutflowByCategoryName } from 'modules/rootReducer';
 
 import DonutChart from 'components/DonutChart';
 
 @connect(
   state => ({
-    data: getOutflowByCategory(state),
-    categories: getCategories(state)
+    data: getOutflowByCategoryName(state)
   })
 )
 class Spending extends Component {
   static propTypes = {
-    data: PropTypes.array.isRequired,
-    categories: PropTypes.object.isRequired
+    data: PropTypes.array.isRequired
   }
 
   render() {
-    const { data, categories } = this.props;
+    const { data } = this.props;
 
     return (
-      <DonutChart data={applyCategoryName(data, categories)} />
+      <DonutChart data={data} />
     );
   }
 }

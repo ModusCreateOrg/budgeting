@@ -1,8 +1,20 @@
 import { combineReducers } from 'redux';
+import { createSelector } from 'reselect';
 
-import categories from './categories';
+import categories, { applyCategoryName, getCategories } from './categories';
 import transactionGrid from './transactionGrid';
-import transactions from './transactions';
+import transactions, { getOutflowByCategory } from './transactions';
+
+
+/**
+ * Selectors
+ */
+export const getOutflowByCategoryName = createSelector(
+  getOutflowByCategory,
+  getCategories,
+  (trans, cat) => applyCategoryName(trans, cat)
+);
+
 
 /**
  * Routing to be implemented

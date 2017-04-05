@@ -17,12 +17,10 @@ import {
 /**
  * Helpers
  */
-export const applyCategoryName = (transactions, categories) => {
-  return transactions.map((transaction) => {
-    transaction.category = categories[transaction.categoryId];
-    return transaction;
-  });
-};
+export const applyCategoryName = (transactions, categories) => transactions.map((transaction) => {
+  transaction.category = categories[transaction.categoryId];
+  return transaction;
+});
 
 /**
  * Selectors
