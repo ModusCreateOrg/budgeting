@@ -26,9 +26,13 @@ class DonutChart extends Component {
 
   static defaultProps = {
     color: scaleSequential().interpolator(interpolateMagma),
-    height: 400,
+    height: 300,
     innerRatio: 4,
   };
+
+  componentWillMount() {
+    this.updateChartVariables();
+  }
 
   componentDidMount() {
     const me = this;
@@ -42,9 +46,21 @@ class DonutChart extends Component {
         const pathArc = me.getPathArc();
         const startAngle = this.getAttribute('data-startAngle');
         const endAngle = this.getAttribute('data-endAngle');
-        const interpolateArc = interpolate({ startAngle: 0, endAngle: 0 }, { startAngle, endAngle });
+        const interpolateArc = interpolate(
+          { startAngle: 0, endAngle: 0 },
+          { startAngle, endAngle }
+        );
+
         return t => pathArc(interpolateArc(t));
       });
+  }
+
+  componentWillReceiveProps({ data, color, height }) {
+    const old = this.props;
+
+    if (old.data !== data || old.color !== color || old.height !== height) {
+      this.updateChartVariables();
+    }
   }
 
   getPathArc = () => {
@@ -56,18 +72,28 @@ class DonutChart extends Component {
     this.svgRef = ref;
   }
 
-  render() {
+  chartPadding = 8;
+
+  updateChartVariables = () => {
     const { data, color, height } = this.props;
-    const outerRadius = height / 2;
-    const pathArc = this.getPathArc();
-    const colorFn = color.domain && color.domain([0, data.length]);
+    this.outerRadius = height / 2;
+    this.pathArc = this.getPathArc();
+    this.colorFn = color.domain && color.domain([0, data.length]);
+    this.boxLength = height + (this.chartPadding * 2);
+    this.viewBox = `-${this.chartPadding} -${this.chartPadding} ${this.boxLength} ${this.boxLength}`;
+  }
+
+  render() {
+    const { data } = this.props;
+    const { outerRadius, pathArc, colorFn, boxLength, viewBox } = this;
 
     return (
       <div className={styles.donutChart}>
         <svg
           className={styles.mainSvg}
-          width={height}
-          height={height}
+          width={boxLength}
+          height={boxLength}
+          viewBox={viewBox}
           ref={this.handleSvgRefUpdate}
         >
           <g transform={`translate(${outerRadius},${outerRadius})`}>

@@ -1467,7 +1467,7 @@ d3-zoom@1.1.4:
     d3-selection "1"
     d3-transition "1"
 
-d3@^4.7.4:
+d3@4.7.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/d3/-/d3-4.7.4.tgz#a2f40eb57decc51bc469010d48ae74a20e025772"
   dependencies:
