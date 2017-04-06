@@ -1,7 +1,20 @@
 import React, { Component, PropTypes } from 'react';
-import { arc, pie, scaleSequential, interpolateMagma, select, interpolate } from 'd3';
 
+import {
+  arc,
+  pie,
+  scaleSequential,
+  interpolateMagma,
+  select,
+  interpolate
+} from 'd3';
+
+import Legend from './Legend';
 import styles from './styles.scss';
+
+const chart = pie()
+        .value(d => d.value)
+        .sort(null);
 
 class DonutChart extends Component {
   static propTypes = {
@@ -9,46 +22,48 @@ class DonutChart extends Component {
     color: PropTypes.func,
     height: PropTypes.number,
     innerRatio: PropTypes.number,
-    padAngle: PropTypes.number,
   };
 
   static defaultProps = {
     color: scaleSequential().interpolator(interpolateMagma),
     height: 400,
     innerRatio: 4,
-    padAngle: 0.05,
   };
 
-  // Path Animation - not working. "d" attribute is coming up undefined
-  // componentDidMount() {
-  //   const svg = select(this.svgRef);
-  //   const path = svg.selectAll('path');
+  componentDidMount() {
+    const me = this;
+    const svg = select(this.svgRef);
+    const path = svg.selectAll('path');
 
-  //   path.transition()
-  //     .duration(1000)
-  //     .attrTween('d', (d) => {
-  //       const interpolateArc = interpolate({ startAngle: 0, endAngle: 0 }, d);
-  //       return t => arc(interpolateArc(t));
-  //     });
-  // }
+    // do not use an arrow function for the attrTween callback, it will scope "this"" incorrectly
+    path.transition()
+      .duration(1000)
+      .attrTween('d', function () {
+        const pathArc = me.getPathArc();
+        const startAngle = this.getAttribute('data-startAngle');
+        const endAngle = this.getAttribute('data-endAngle');
+        const interpolateArc = interpolate({ startAngle: 0, endAngle: 0 }, { startAngle, endAngle });
+        return t => pathArc(interpolateArc(t));
+      });
+  }
+
+  getPathArc = () => {
+    const { height, innerRatio } = this.props;
+    return arc().innerRadius(height / innerRatio).outerRadius(height / 2);
+  }
 
   handleSvgRefUpdate = (ref) => {
     this.svgRef = ref;
   }
 
   render() {
-    const { data, color, height, innerRatio, padAngle } = this.props;
+    const { data, color, height } = this.props;
     const outerRadius = height / 2;
-    const pathArc = arc().innerRadius(height / innerRatio).outerRadius(outerRadius);
+    const pathArc = this.getPathArc();
     const colorFn = color.domain && color.domain([0, data.length]);
-    const chart = pie()
-          .value(d => d.value)
-          .padAngle(padAngle)
-          .sort(null);
 
     return (
       <div className={styles.donutChart}>
-
         <svg
           className={styles.mainSvg}
           width={height}
@@ -57,17 +72,25 @@ class DonutChart extends Component {
         >
           <g transform={`translate(${outerRadius},${outerRadius})`}>
             {chart(data).map(
-              (item, idx) => <path fill={colorFn(idx)} d={pathArc(item)} key={item.data.categoryId} />
+              (item, idx) => (
+                <path
+                  fill={colorFn(idx)}
+                  d={pathArc(item)}
+                  data-endAngle={item.endAngle}
+                  data-startAngle={item.startAngle}
+                  key={item.data.categoryId}
+                />
+              )
             )}
           </g>
         </svg>
 
-        <ul className={styles.legend}>
-          {data.map(
-            (item, idx) => <li style={{ color: colorFn(idx) }} key={item.categoryId}>{item.category}</li>
-          )}
-        </ul>
-
+        <Legend
+          data={data}
+          color={colorFn}
+          dataLabel="category"
+          dataKey="categoryId"
+        />
       </div>
     );
   }
