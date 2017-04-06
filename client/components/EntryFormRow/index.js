@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   getDefaultCategoryId,
   getCategories
-} from 'modules/categories';
+} from 'selectors/categories';
 import { actions as AppActions } from 'modules/transactions';
 import DataSelector from './DataSelector';
 import styles from './style.scss';

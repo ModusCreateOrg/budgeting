@@ -10,7 +10,7 @@
 .balanceRow {
   display: flex;
   padding: 0 1em;
-  border: 2px solid $gray;
+  border: 1px solid $gray;
   border-radius: 6px;
   background-color: $verylightgray;
   font-size: 0.8em;
@@ -33,7 +33,7 @@
       display: inline-block;
       padding: 1em;
       margin: 0.5em;
-      border: 2px solid $gray;
+      border: 1px solid $gray;
       border-radius: 6px;
       background-color: white;
 

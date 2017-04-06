@@ -1,6 +1,3 @@
-import { createSelector } from 'reselect';
-import formatAmount from 'utils/formatAmount';
-
 import {
   defaultTransactions
 } from './defaults';
@@ -40,62 +37,12 @@ function addTransactionToState(state, action) {
   const { categoryId, description, value } = action.transaction;
   const newState = [...state, {
     id: getNextTransactionID(state),
-    categoryId,
+    categoryId: parseInt(categoryId, 10),
     description,
     value
   }];
   return newState;
 }
-
-function totalTransactions(transactions) {
-  return transactions.reduce((total, item) => total + parseFloat(item.value), 0).toFixed(2);
-}
-
-/**
- * Selectors
- */
-export const getTransactions = state => state.transactions;
-
-export const getInflowTransactions = createSelector(
-  [getTransactions],
-  transactions => transactions.filter(item => item.value > 0)
-);
-
-export const getOutflowTransactions = createSelector(
-  [getTransactions],
-  transactions => transactions.filter(item => item.value < 0)
-);
-
-export const getBalance = createSelector(
-  [getTransactions],
-  transactions => totalTransactions(transactions)
-);
-
-export const getInflowBalance = createSelector(
-  [getInflowTransactions],
-  transactions => totalTransactions(transactions)
-);
-
-export const getOutflowBalance = createSelector(
-  [getOutflowTransactions],
-  transactions => totalTransactions(transactions)
-);
-
-export const getFormattedBalance = createSelector(
-  [getBalance],
-  amount => formatAmount(amount, false)
-);
-
-export const getFormattedInflowBalance = createSelector(
-  [getInflowBalance],
-  amount => formatAmount(amount, false)
-);
-
-export const getFormattedOutflowBalance = createSelector(
-  [getOutflowBalance],
-  amount => formatAmount(amount, false)
-);
-
 
 /**
  * Reducer
