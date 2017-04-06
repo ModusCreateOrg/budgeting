@@ -4,11 +4,10 @@ import {
   arc,
   pie,
   scaleSequential,
-  interpolateMagma,
-  select,
-  interpolate
+  interpolateMagma
 } from 'd3';
 
+import Path from './Path';
 import Legend from './Legend';
 import styles from './styles.scss';
 
@@ -34,27 +33,6 @@ class DonutChart extends Component {
     this.updateChartVariables();
   }
 
-  componentDidMount() {
-    const me = this;
-    const svg = select(this.svgRef);
-    const path = svg.selectAll('path');
-
-    // do not use an arrow function for the attrTween callback, it will scope "this"" incorrectly
-    path.transition()
-      .duration(1000)
-      .attrTween('d', function () {
-        const pathArc = me.getPathArc();
-        const startAngle = this.getAttribute('data-startAngle');
-        const endAngle = this.getAttribute('data-endAngle');
-        const interpolateArc = interpolate(
-          { startAngle: 0, endAngle: 0 },
-          { startAngle, endAngle }
-        );
-
-        return t => pathArc(interpolateArc(t));
-      });
-  }
-
   componentWillReceiveProps({ data, color, height }) {
     const old = this.props;
 
@@ -66,10 +44,6 @@ class DonutChart extends Component {
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc().innerRadius(height / innerRatio).outerRadius(height / 2);
-  }
-
-  handleSvgRefUpdate = (ref) => {
-    this.svgRef = ref;
   }
 
   chartPadding = 8;
@@ -94,17 +68,16 @@ class DonutChart extends Component {
           width={boxLength}
           height={boxLength}
           viewBox={viewBox}
-          ref={this.handleSvgRefUpdate}
         >
           <g transform={`translate(${outerRadius},${outerRadius})`}>
             {chart(data).map(
-              (item, idx) => (
-                <path
-                  fill={colorFn(idx)}
-                  d={pathArc(item)}
-                  data-endAngle={item.endAngle}
-                  data-startAngle={item.startAngle}
-                  key={item.data.categoryId}
+              (datum, index) => (
+                <Path
+                  data={datum}
+                  index={index}
+                  fill={colorFn(index)}
+                  arcFn={pathArc}
+                  key={datum.data.categoryId}
                 />
               )
             )}
