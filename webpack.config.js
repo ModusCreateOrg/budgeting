@@ -36,6 +36,12 @@ module.exports = function (env) {
       minChunks: Infinity,
     }),
 
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      children: true,
+      minChunks: 2,
+    }),
+
     // setting production environment will strip out
     // some of the development code from the app
     // and libraries
