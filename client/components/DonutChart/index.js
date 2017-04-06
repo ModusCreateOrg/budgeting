@@ -13,8 +13,8 @@ import Legend from './Legend';
 import styles from './styles.scss';
 
 const chart = pie()
-        .value(d => d.value)
-        .sort(null);
+  .value(d => d.value)
+  .sort(null);
 
 class DonutChart extends Component {
   static propTypes = {
