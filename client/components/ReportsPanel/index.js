@@ -1,8 +1,16 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
+import transactionReducer from 'modules/transactions';
+import categoryReducer from 'modules/categories';
+import { injectAsyncReducers } from 'store';
 import Spending from 'containers/Spending';
 import ReportsTabbar from './ReportsTabbar';
+
+// inject reducers that might not have been originally there
+injectAsyncReducers({
+  transactions: transactionReducer,
+  categories: categoryReducer,
+});
 
 const InflowOutflow = () => <h1>Inflow vs Outflow</h1>;
 

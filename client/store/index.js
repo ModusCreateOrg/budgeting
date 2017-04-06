@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import rootReducer from 'modules/rootReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(
+const store = createStore(combineReducers(rootReducer), composeEnhancers(
   applyMiddleware(thunk)
 ));
 export default store;
@@ -21,7 +21,9 @@ let injected = [];
 store.asyncReducers = {};
 
 function replaceReducers(nextReducer) {
-  store.replaceReducer(combineReducers(Object.assign({}, nextReducer, store.asyncReducers)));
+  const merged = Object.assign({}, nextReducer, store.asyncReducers);
+  const combined = combineReducers(merged);
+  store.replaceReducer(combined);
 }
 
 export function injectAsyncReducers(asyncReducers) {

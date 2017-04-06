@@ -56,16 +56,3 @@ export const defaultTransactions = [
     categoryId: 15
   }
 ];
-
-export const defaultTransactionGridFields = [
-  {
-    name: 'Description',
-    className: 'flex',
-    mapping: 'description'
-  },
-  {
-    name: 'Value',
-    className: 'align-right',
-    mapping: 'value'
-  }
-];

@@ -1,13 +1,12 @@
-import { combineReducers } from 'redux';
-import categories from './categories';
-import transactionGrid from './transactionGrid';
-import transactions from './transactions';
+// Empty placeholder to reserve reducer namespace.
+// Otherwise redux may complain when we asyncrhonously
+// inject reducers.
+const placeholder = (state = {}) => state;
 
 /**
  * Routing to be implemented
  */
-export default combineReducers({
-  categories,
-  transactionGrid,
-  transactions,
-});
+export default {
+  categories: placeholder,
+  transactions: placeholder,
+};
