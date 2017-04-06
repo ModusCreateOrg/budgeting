@@ -40,7 +40,7 @@ function addTransactionToState(state, action) {
   const { categoryId, description, value } = action.transaction;
   const newState = [...state, {
     id: getNextTransactionID(state),
-    categoryId,
+    categoryId: parseInt(categoryId, 10),
     description,
     value
   }];
