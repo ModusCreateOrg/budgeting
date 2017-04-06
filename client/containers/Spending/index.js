@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getOutflowByCategoryName } from 'modules/rootReducer';
+import { getOutflowByCategoryName } from 'selectors/transactions';
 
 import DonutChart from 'components/DonutChart';
 

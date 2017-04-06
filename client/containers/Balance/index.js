@@ -5,7 +5,7 @@ import {
   getFormattedBalance,
   getFormattedInflowBalance,
   getFormattedOutflowBalance
-} from 'modules/transactions';
+} from 'selectors/transactions';
 
 import BalanceItem from 'components/Balance';
 import BalancePrefix from 'components/Balance/BalancePrefix';

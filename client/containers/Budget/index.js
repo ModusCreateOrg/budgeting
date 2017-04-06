@@ -1,14 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import {
-  actions as AppActions,
-  getTransactions
-} from 'modules/transactions';
-
-import { getCategories } from 'modules/categories';
-
+import { actions as AppActions } from 'modules/transactions';
+import { getTransactions } from 'selectors/transactions';
+import { getCategories } from 'selectors/categories';
 import Chunk from 'components/Chunk';
 
 const loadBudgetContainer = () => import('./BudgetContainer');

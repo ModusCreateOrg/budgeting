@@ -1,7 +1,4 @@
-import {
-  DEFAULT_CATEGORY_ID,
-  categoriesById
-} from './defaults';
+import { categoriesById } from './defaults';
 
 
 /**
@@ -12,22 +9,6 @@ import {
 /**
  * Actions
  */
-
-
-/**
- * Helpers
- */
-export const applyCategoryName = (transactions, categories) => transactions.map((transaction) => {
-  transaction.category = categories[transaction.categoryId];
-  return transaction;
-});
-
-/**
- * Selectors
- */
-export const getCategories = state => state.categories;
-
-export const getDefaultCategoryId = () => DEFAULT_CATEGORY_ID;
 
 
 /**
