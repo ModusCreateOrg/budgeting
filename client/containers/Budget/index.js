@@ -6,9 +6,7 @@ const loadBudgetContainer = () => import('./BudgetContainer');
 class Budget extends Component {
   render() {
     return (
-      <Chunk load={loadBudgetContainer}>
-        { Comp => Comp && <Comp /> }
-      </Chunk>
+      <Chunk load={loadBudgetContainer} />
     );
   }
 }

@@ -17,30 +17,26 @@ export default store;
  * @param {Object} store - the store object
  * @param {Object} asyncReducer - async reducer modules
  */
-let injected = [];
 store.asyncReducers = {};
 
-function replaceReducers(nextReducer) {
-  const merged = Object.assign({}, nextReducer, store.asyncReducers);
+function replaceReducers(defaultReducers) {
+  const merged = Object.assign({}, defaultReducers, store.asyncReducers);
   const combined = combineReducers(merged);
   store.replaceReducer(combined);
 }
 
 export function injectAsyncReducers(asyncReducers) {
-  const newReducers = Object.keys(asyncReducers);
-  const alreadyInjected = newReducers.every(reducer => injected.includes(reducer));
+  const injectReducers = Object
+    .keys(asyncReducers)
+    .reduce((all, item) => {
+      if (store.asyncReducers[item]) {
+        delete all[item];
+      }
 
-  // don't re-inject reducers that are already there
-  if (alreadyInjected) {
-    return;
-  }
+      return all;
+    }, asyncReducers);
 
-  // mark injected reducers (unique)
-  injected = injected
-    .concat(newReducers)
-    .filter((value, index, arr) => arr.indexOf(value) === index);
-
-  store.asyncReducers = Object.assign({}, store.asyncReducers, asyncReducers);
+  store.asyncReducers = Object.assign({}, store.asyncReducers, injectReducers);
   replaceReducers(rootReducer);
 }
 

@@ -1,19 +1,34 @@
 import React, { Component, PropTypes } from 'react';
-
+import { connect } from 'react-redux';
+import { getTransactions } from 'selectors/transactions';
+import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'components/EntryFormRow';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 
+@connect(
+  state => {
+    console.log('state', state);
+
+    return {
+      transactions: getTransactions(state),
+      categories: getCategories(state),
+    };
+  }
+)
 class BudgetGrid extends Component {
   static propTypes = {
-    data: PropTypes.object
-  }
+    transactions: PropTypes.array,
+    categories: PropTypes.object,
+  };
+
   static defaultProps = {
-    data: {}
-  }
+    transactions: [],
+    categories: {},
+  };
 
   render() {
-    const { data: { transactions, categories } } = this.props;
+    const { transactions, categories } = this.props;
 
     return (
       <table className={styles.budgetGrid}>
@@ -25,13 +40,15 @@ class BudgetGrid extends Component {
           </tr>
         </thead>
         <tbody>
-          {transactions.map(transaction => (
-            <BudgetGridRow
-              key={transaction.id}
-              transaction={transaction}
-              categories={categories}
-            />
-          ))}
+          {
+            transactions.map(transaction => (
+              <BudgetGridRow
+                key={transaction.id}
+                transaction={transaction}
+                categories={categories}
+              />
+            ))
+          }
         </tbody>
         <tfoot>
           <EntryFormRow />

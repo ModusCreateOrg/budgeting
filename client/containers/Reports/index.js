@@ -5,9 +5,7 @@ import Chunk from 'components/Chunk';
 const loadReportsPanel = () => import('components/ReportsPanel');
 
 const Reports = () => (
-  <Chunk load={loadReportsPanel}>
-    { Comp => (Comp ? <Comp /> : null) }
-  </Chunk>
+  <Chunk load={loadReportsPanel} />
 );
 
 export default Reports;

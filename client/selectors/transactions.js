@@ -21,7 +21,7 @@ const applyCategoryName = (transactions, categories) => transactions.map((transa
   return transaction;
 });
 
-export const getTransactions = state => state.transactions;
+export const getTransactions = state => state.transactions || [];
 
 const getInflowTransactions = createSelector(
   [getTransactions],
