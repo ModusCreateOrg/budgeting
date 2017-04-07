@@ -6,16 +6,10 @@ import EntryFormRow from 'components/EntryFormRow';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 
-@connect(
-  state => {
-    console.log('state', state);
-
-    return {
-      transactions: getTransactions(state),
-      categories: getCategories(state),
-    };
-  }
-)
+@connect(state => ({
+  transactions: getTransactions(state),
+  categories: getCategories(state),
+}))
 class BudgetGrid extends Component {
   static propTypes = {
     transactions: PropTypes.array,

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Loading from 'components/Loading';
 
 class Chunk extends Component {
   static propTypes = {
@@ -36,7 +37,7 @@ class Chunk extends Component {
   render() {
     const { LoadedComponent } = this.state;
 
-    return LoadedComponent ? <LoadedComponent {...this.props} /> : null;
+    return LoadedComponent ? <LoadedComponent {...this.props} /> : <Loading />;
   }
 }
 

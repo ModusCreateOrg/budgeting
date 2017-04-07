@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import Chunk from 'components/Chunk';
+import React from 'react';
+import transactionReducer from 'modules/transactions';
+import categoryReducer from 'modules/categories';
+import { injectAsyncReducers } from 'store';
+import BudgetGrid from 'components/BudgetGrid';
+import Balance from 'containers/Balance';
 
-const loadBudgetContainer = () => import('./BudgetContainer');
+// inject reducers that might not have been originally there
+injectAsyncReducers({
+  transactions: transactionReducer,
+  categories: categoryReducer,
+});
 
-class Budget extends Component {
-  render() {
-    return (
-      <Chunk load={loadBudgetContainer} />
-    );
-  }
-}
+const BudgetContainer = () => (
+  <section>
+    <BudgetGrid />
+    <Balance />
+  </section>
+);
 
-export default Budget;
+export default BudgetContainer;
