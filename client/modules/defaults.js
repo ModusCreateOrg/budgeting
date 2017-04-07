@@ -18,6 +18,8 @@ export const categoriesById = {
   17: 'Gifting'
 };
 
+export const inflowCategories = [15];
+
 export const defaultTransactions = [
   {
     id: 1,

@@ -1,5 +1,6 @@
 import {
-  defaultTransactions
+  defaultTransactions,
+  inflowCategories,
 } from './defaults';
 
 /**
@@ -10,22 +11,6 @@ const DELETE_TRANSACTION = 'budget/transaction/DELETE';
 
 
 /**
- * Actions
- */
-export const actions = {
-  addTransaction: transaction => ({
-    type: ADD_TRANSACTION,
-    transaction
-  }),
-
-  deleteTransaction: id => ({
-    type: DELETE_TRANSACTION,
-    id
-  }),
-};
-
-
-/**
  * Helpers
  */
 function getNextTransactionID(state) {
@@ -33,16 +18,33 @@ function getNextTransactionID(state) {
 }
 
 // Add a new transaction.
-function addTransactionToState(state, action) {
-  const { categoryId, description, value } = action.transaction;
-  const newState = [...state, {
+function normalizeTransaction(state, { categoryId, description, value }) {
+  const categoryNumId = parseInt(categoryId, 10);
+  const realValue = inflowCategories.includes(categoryNumId) ?
+    Math.abs(value) : Math.abs(value) * -1;
+
+  return {
     id: getNextTransactionID(state),
-    categoryId: parseInt(categoryId, 10),
+    categoryId: categoryNumId,
     description,
-    value
-  }];
-  return newState;
+    value: realValue,
+  };
 }
+
+/**
+ * Actions
+ */
+export const actions = {
+  addTransaction: transaction => (dispatch, getState) => dispatch({
+    type: ADD_TRANSACTION,
+    transaction: normalizeTransaction(getState().transactions, transaction)
+  }),
+
+  deleteTransaction: id => ({
+    type: DELETE_TRANSACTION,
+    id
+  }),
+};
 
 /**
  * Reducer
@@ -52,7 +54,7 @@ export default function transactionsReducer(state = defaultTransactions, action)
 
   switch (action.type) {
     case ADD_TRANSACTION:
-      return addTransactionToState(state, action);
+      return [...state, ...action.transaction];
 
     case DELETE_TRANSACTION:
       newState = state.filter(todo => todo.id !== action.id);

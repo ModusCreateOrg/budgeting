@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   getDefaultCategoryId,
   getCategories
 } from 'selectors/categories';
-import { actions as AppActions } from 'modules/transactions';
+import { actions } from 'modules/transactions';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
 
@@ -14,15 +13,15 @@ import styles from './style.scss';
     defaultCategoryId: getDefaultCategoryId(),
     categories: getCategories(state)
   }),
-  (dispatch => ({
-    actions: bindActionCreators(AppActions, dispatch)
-  }))
+  ({
+    addTransaction: actions.addTransaction
+  })
 )
 class EntryFormRow extends Component {
   static propTypes = {
     defaultCategoryId: PropTypes.string.isRequired,
     categories: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    addTransaction: PropTypes.func.isRequired
   }
 
   state = {
@@ -44,13 +43,16 @@ class EntryFormRow extends Component {
   addEntry = () => {
     const { categoryId, description, value } = this.state;
 
-    this.props.actions.addTransaction({ categoryId, description, value });
+    // do nothing if there's no value added
+    if (value) {
+      this.props.addTransaction({ categoryId, description, value });
 
-    // keep the chosen category but clear everything else
-    this.setState({
-      description: '',
-      value: ''
-    });
+      // keep the chosen category but clear everything else
+      this.setState({
+        description: '',
+        value: ''
+      });
+    }
 
     this.valueRef.focus();
   }

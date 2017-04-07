@@ -11,8 +11,15 @@
       flex: 1;
       min-width: 50px;
       height: 100%;
-      padding: 0 0.8em;
       font-size: 1.1em;
+
+      padding: .5em .6em;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-shadow: inset 0 1px 3px rgba(50,50,50,.16);
+      border-radius: 4px;
+      vertical-align: middle;
+      box-sizing: border-box;
     }
 
     input[type=number]::-webkit-inner-spin-button,
@@ -22,9 +29,16 @@
     }
 
     button {
+      color: #fff;
       margin-left: 5px;
       text-transform: uppercase;
       width: 45px;
+      background: rgb(28, 184, 65);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: .5em 1em;
+      text-decoration: none;
+      border: transparent;
     }
 
     .amountField {
