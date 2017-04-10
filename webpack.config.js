@@ -30,6 +30,8 @@ module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
 
+  let cssLoader;
+
   const plugins = [
     // extract vendor packages in a separate chunk
     new webpack.optimize.CommonsChunkPlugin({
@@ -91,6 +93,28 @@ module.exports = function (env) {
         },
       })
     );
+
+    cssLoader = ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            module: true, // css-loader 0.14.5 compatible
+            modules: true,
+            localIdentName: '[hash:base64:5]'
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            outputStyle: 'collapsed',
+            sourceMap: true,
+            includePaths: [sourcePath],
+          },
+        },
+      ],
+    });
   } else {
     plugins.push(
       // make hot reloading work
@@ -102,6 +126,27 @@ module.exports = function (env) {
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin()
     );
+
+    cssLoader = [
+      {
+        loader: 'style-loader',
+      },
+      {
+        loader: 'css-loader',
+        options: {
+          module: true,
+          localIdentName: '[path][name]-[local]',
+        }
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          outputStyle: 'expanded',
+          sourceMap: false,
+          includePaths: [sourcePath],
+        },
+      },
+    ];
   }
 
   const entryPoint = isProd ? './index.js' : [
@@ -155,26 +200,7 @@ module.exports = function (env) {
         {
           test: /\.scss$/,
           exclude: /node_modules/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  module: true,
-                  localIdentName: isProd ? '[hash:base64:5]' : '[path][name]-[local]'
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  outputStyle: isProd ? 'collapsed' : 'expanded',
-                  sourceMap: isProd,
-                  includePaths: [sourcePath],
-                },
-              },
-            ],
-          })
+          use: cssLoader,
         },
         {
           test: /\.(js|jsx)$/,
