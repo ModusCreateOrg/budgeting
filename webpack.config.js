@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -75,7 +76,7 @@ module.exports = function (env) {
   if (isProd) {
     plugins.push(
       // minify remove some of the dead code
-      new webpack.optimize.UglifyJsPlugin({
+      new UglifyJSPlugin({
         compress: {
           warnings: false,
           screw_ie8: true,
@@ -87,9 +88,6 @@ module.exports = function (env) {
           evaluate: true,
           if_return: true,
           join_vars: true,
-        },
-        output: {
-          comments: false,
         },
       })
     );
