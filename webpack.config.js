@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -28,6 +29,8 @@ const stats = {
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
+
+  let cssLoader;
 
   const plugins = [
     // extract vendor packages in a separate chunk
@@ -75,7 +78,7 @@ module.exports = function (env) {
   if (isProd) {
     plugins.push(
       // minify remove some of the dead code
-      new webpack.optimize.UglifyJsPlugin({
+      new UglifyJSPlugin({
         compress: {
           warnings: false,
           screw_ie8: true,
@@ -88,11 +91,30 @@ module.exports = function (env) {
           if_return: true,
           join_vars: true,
         },
-        output: {
-          comments: false,
-        },
       })
     );
+
+    cssLoader = ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            module: true, // css-loader 0.14.5 compatible
+            modules: true,
+            localIdentName: '[hash:base64:5]'
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            outputStyle: 'collapsed',
+            sourceMap: true,
+            includePaths: [sourcePath],
+          },
+        },
+      ],
+    });
   } else {
     plugins.push(
       // make hot reloading work
@@ -104,6 +126,27 @@ module.exports = function (env) {
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin()
     );
+
+    cssLoader = [
+      {
+        loader: 'style-loader',
+      },
+      {
+        loader: 'css-loader',
+        options: {
+          module: true,
+          localIdentName: '[path][name]-[local]',
+        }
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          outputStyle: 'expanded',
+          sourceMap: false,
+          includePaths: [sourcePath],
+        },
+      },
+    ];
   }
 
   const entryPoint = isProd ? './index.js' : [
@@ -157,26 +200,7 @@ module.exports = function (env) {
         {
           test: /\.scss$/,
           exclude: /node_modules/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  module: true,
-                  localIdentName: isProd ? '[hash:base64:5]' : '[path][name]-[local]'
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  outputStyle: isProd ? 'collapsed' : 'expanded',
-                  sourceMap: isProd,
-                  includePaths: [sourcePath],
-                },
-              },
-            ],
-          })
+          use: cssLoader,
         },
         {
           test: /\.(js|jsx)$/,
