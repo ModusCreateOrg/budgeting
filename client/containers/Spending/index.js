@@ -19,7 +19,12 @@ class Spending extends Component {
     const { data } = this.props;
 
     return (
-      <DonutChart data={data} />
+      <DonutChart
+        data={data}
+        dataValue="value"
+        dataLabel="category"
+        dataKey="categoryId"
+      />
     );
   }
 }

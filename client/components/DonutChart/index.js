@@ -11,13 +11,13 @@ import Path from './Path';
 import Legend from './Legend';
 import styles from './styles.scss';
 
-const chart = pie()
-  .value(d => d.value)
-  .sort(null);
 
 class DonutChart extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
+    dataValue: PropTypes.string.isRequired,
+    dataLabel: PropTypes.string.isRequired,
+    dataKey: PropTypes.string.isRequired,
     color: PropTypes.func,
     height: PropTypes.number,
     innerRatio: PropTypes.number,
@@ -49,7 +49,9 @@ class DonutChart extends Component {
   chartPadding = 8;
 
   updateChartVariables = () => {
-    const { data, color, height } = this.props;
+    const { data, dataValue, color, height } = this.props;
+
+    this.chart = pie().value(d => d[dataValue]).sort(null);
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
     this.colorFn = color.domain && color.domain([0, data.length]);
@@ -58,7 +60,7 @@ class DonutChart extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, dataLabel, dataValue, dataKey } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, viewBox } = this;
 
     return (
@@ -70,14 +72,14 @@ class DonutChart extends Component {
           viewBox={viewBox}
         >
           <g transform={`translate(${outerRadius},${outerRadius})`}>
-            {chart(data).map(
+            {this.chart(data).map(
               (datum, index) => (
                 <Path
                   data={datum}
                   index={index}
                   fill={colorFn(index)}
                   arcFn={pathArc}
-                  key={datum.data.categoryId}
+                  key={datum.data[dataKey]}
                 />
               )
             )}
@@ -87,8 +89,9 @@ class DonutChart extends Component {
         <Legend
           data={data}
           color={colorFn}
-          dataLabel="category"
-          dataKey="categoryId"
+          dataValue={dataValue}
+          dataLabel={dataLabel}
+          dataKey={dataKey}
         />
       </div>
     );

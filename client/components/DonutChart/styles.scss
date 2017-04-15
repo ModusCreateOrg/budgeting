@@ -1,3 +1,5 @@
+@import 'theme/variables';
+
 .donutChart {
   display: flex;
   height: 100%;  
@@ -14,4 +16,10 @@
 .legend {
   font-size: larger;
   font-weight: bold;
+}
+
+.value {
+  font-size: smaller;
+  color: $gray;
+  padding-left: 0.5em;
 }
