@@ -8,7 +8,7 @@ import {
 } from 'd3';
 
 import Path from './Path';
-import Legend from './Legend';
+import Legend from 'components/Legend';
 import styles from './styles.scss';
 
 
