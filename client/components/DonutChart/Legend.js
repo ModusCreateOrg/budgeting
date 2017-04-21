@@ -1,16 +1,18 @@
 import React, { PropTypes } from 'react';
 
-import formatAmount from 'utils/formatAmount';
+import LegendItem from './LegendItem';
 import styles from './styles.scss';
 
 const Legend = ({ data, color, dataValue, dataLabel, dataKey }) => (
   <ul className={styles.legend}>
     {data.map(
       (item, idx) => (
-        <li style={{ color: color(idx) }} key={item[dataKey]}>
-          <span>{item[dataLabel]}</span>
-          <span className={styles.value}> {formatAmount(item[dataValue]).text} </span>
-        </li>
+        <LegendItem
+          color={color(idx)}
+          key={item[dataKey]}
+          label={item[dataLabel]}
+          value={item[dataValue]}
+        />
       )
     )}
   </ul>

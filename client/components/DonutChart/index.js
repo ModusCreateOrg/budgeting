@@ -86,13 +86,7 @@ class DonutChart extends Component {
           </g>
         </svg>
 
-        <Legend
-          data={data}
-          color={colorFn}
-          dataValue={dataValue}
-          dataLabel={dataLabel}
-          dataKey={dataKey}
-        />
+        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }
