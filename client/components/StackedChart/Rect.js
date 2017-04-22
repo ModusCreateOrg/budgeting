@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import {
-  select,
-  interpolate
-} from 'd3';
-
+import {select, interpolate} from 'd3';
 
 class Rect extends Component {
   
@@ -36,15 +32,8 @@ class Rect extends Component {
 
   render() {
     const {width, height, fill, y} = this.props;
-
-    return (
-      <rect 
-        ref={this.handleRefUpdate}
-        { ...{y, height, width, fill}}
-      />
-    );
+    return <rect ref={this.handleRefUpdate} { ...{y, height, width, fill}}/>;
   }
 };
-
 
 export default Rect;
