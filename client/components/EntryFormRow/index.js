@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {
-  getDefaultCategoryId,
-  getCategories
-} from 'selectors/categories';
+import { getDefaultCategoryId, getCategories } from 'selectors/categories';
 import { actions } from 'modules/transactions';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
@@ -11,24 +8,24 @@ import styles from './style.scss';
 @connect(
   state => ({
     defaultCategoryId: getDefaultCategoryId(),
-    categories: getCategories(state)
+    categories: getCategories(state),
   }),
-  ({
-    addTransaction: actions.addTransaction
-  })
+  {
+    addTransaction: actions.addTransaction,
+  }
 )
 class EntryFormRow extends Component {
   static propTypes = {
     defaultCategoryId: PropTypes.string.isRequired,
     categories: PropTypes.object.isRequired,
-    addTransaction: PropTypes.func.isRequired
-  }
+    addTransaction: PropTypes.func.isRequired,
+  };
 
   state = {
     categoryId: this.props.defaultCategoryId,
     description: '',
-    value: ''
-  }
+    value: '',
+  };
 
   handleFieldChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -36,9 +33,9 @@ class EntryFormRow extends Component {
 
   handleAddButtonClick = () => this.addEntry();
 
-  handleValueRefUpdate = (ref) => {
+  handleValueRefUpdate = ref => {
     this.valueRef = ref;
-  }
+  };
 
   addEntry = () => {
     const { categoryId, description, value } = this.state;
@@ -50,12 +47,12 @@ class EntryFormRow extends Component {
       // keep the chosen category but clear everything else
       this.setState({
         description: '',
-        value: ''
+        value: '',
       });
     }
 
     this.valueRef.focus();
-  }
+  };
 
   render() {
     return (

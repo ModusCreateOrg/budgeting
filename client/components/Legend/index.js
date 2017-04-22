@@ -5,16 +5,9 @@ import styles from './styles.scss';
 
 const Legend = ({ data, color, dataValue, dataLabel, dataKey }) => (
   <ul className={styles.legend}>
-    {data.map(
-      (item, idx) => (
-        <LegendItem
-          color={color(idx)}
-          key={item[dataKey]}
-          label={item[dataLabel]}
-          value={item[dataValue]}
-        />
-      )
-    )}
+    {data.map((item, idx) => (
+      <LegendItem color={color(idx)} key={item[dataKey]} label={item[dataLabel]} value={item[dataValue]} />
+    ))}
   </ul>
 );
 

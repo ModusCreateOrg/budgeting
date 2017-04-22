@@ -1,15 +1,12 @@
 import { categoriesById } from './defaults';
 
-
 /**
  * Action Constansts
  */
 
-
 /**
  * Actions
  */
-
 
 /**
  * Reducer

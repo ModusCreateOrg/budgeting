@@ -4,8 +4,6 @@ import Chunk from 'components/Chunk';
 
 const loadReportsPanel = () => import('components/ReportsPanel' /* webpackChunkName: "reports" */);
 
-const Reports = () => (
-  <Chunk load={loadReportsPanel} />
-);
+const Reports = () => <Chunk load={loadReportsPanel} />;
 
 export default Reports;

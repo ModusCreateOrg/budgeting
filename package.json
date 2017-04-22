@@ -11,7 +11,8 @@
     "build": "rimraf build && cross-env NODE_ENV=production webpack --env.prod=true",
     "deploy-github": "npm run build && gh-pages -d build",
     "deploy-firebase": "npm run build && firebase deploy",
-    "lint": "eslint ./client ./webpack.config.js -f table || true"
+    "lint": "eslint ./client -f table || true",
+    "lint:fix": "eslint ./client -f table --fix"
   },
   "license": "MIT",
   "devDependencies": {
@@ -28,13 +29,16 @@
     "css-loader": "0.14.5",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "14.0.0",
+    "eslint-config-prettier": "^1.7.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "3.0.2",
+    "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "6.9.0",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.8.5",
     "html-webpack-plugin": "2.28.0",
     "node-sass": "^4.5.0",
+    "prettier": "^1.2.2",
     "rimraf": "2.6.1",
     "sass-loader": "6.0.2",
     "style-loader": "0.13.1",

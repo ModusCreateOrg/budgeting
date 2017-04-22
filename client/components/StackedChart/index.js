@@ -1,19 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-
-import {
-  max,
-  scaleBand,
-  scaleLinear,
-  scaleSequential,
-  interpolateMagma
-} from 'd3';
-
+import Legend from 'components/Legend';
+import Chart from 'components/Chart';
+import { max, scaleBand, scaleLinear, scaleSequential, interpolateMagma } from 'd3';
 import Bar from './Bar';
 import Xaxis from './Xaxis';
-import Legend from 'components/Legend';
-import Chart from 'components/Chart'
 import styles from './styles.scss';
-
 
 class StackedChart extends Component {
   static propTypes = {
@@ -24,14 +15,14 @@ class StackedChart extends Component {
     dataKey: PropTypes.string.isRequired,
     data: PropTypes.shape({
       inflow: PropTypes.array,
-      outflow: PropTypes.array
+      outflow: PropTypes.array,
     }).isRequired,
   };
 
   static defaultProps = {
     width: 300,
     height: 500,
-    dataValue: 'value'
+    dataValue: 'value',
   };
 
   componentWillMount() {
@@ -46,19 +37,12 @@ class StackedChart extends Component {
     }
   }
 
-  barPadding = 0.15;
-  chartPadding = 10;
-  color = {
-    inflow: scaleLinear().range(['#003300', '#009966']),
-    outflow: scaleSequential().interpolator(interpolateMagma),
-  }
-
-  getTotalValue = (total, datum) => (total + datum.value);
+  getTotalValue = (total, datum) => total + datum.value;
 
   updateChartVariables = () => {
     const { width, height, data } = this.props;
     const { color, barPadding, chartPadding } = this;
-    
+
     this.dataKeys = Object.keys(data);
     const totals = this.dataKeys.map(key => data[key].reduce(this.getTotalValue, 0));
 
@@ -73,9 +57,18 @@ class StackedChart extends Component {
       return colorFn;
     }, {});
 
-    this.boxLength = width + (chartPadding * 2);
-    this.boxHeight = height + (chartPadding * 2);
-  }
+    this.boxLength = width + chartPadding * 2;
+    this.boxHeight = height + chartPadding * 2;
+  };
+
+  barPadding = 0.15;
+
+  chartPadding = 10;
+
+  color = {
+    inflow: scaleLinear().range(['#003300', '#009966']),
+    outflow: scaleSequential().interpolator(interpolateMagma),
+  };
 
   render() {
     const { xScale, yScale, colorFn, dataKeys, boxLength, boxHeight, chartPadding } = this;
@@ -83,7 +76,7 @@ class StackedChart extends Component {
 
     return (
       <div className={styles.stackedChart}>
-        <Chart 
+        <Chart
           width={boxLength}
           height={boxHeight}
           padding={chartPadding}
@@ -112,8 +105,6 @@ class StackedChart extends Component {
       </div>
     );
   }
-
 }
-
 
 export default StackedChart;
