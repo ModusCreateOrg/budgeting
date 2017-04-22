@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import Rect from './Rect';
+
 class Bar extends Component {
   static propTypes = {
     yScale: PropTypes.func.isRequired,
@@ -36,7 +38,7 @@ class Bar extends Component {
       <g transform={transform}>
 
         {data.map((datum, idx) => (
-          <rect
+          <Rect 
             key={datum.categoryId}
             y={yPositions[idx]}
             height={yScale(datum.value)}
