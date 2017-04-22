@@ -1,0 +1,13 @@
+.stackedChart {
+  display: flex;
+  height: 100%;  
+  justify-content: center;
+  align-content: flex-start;
+  flex-flow: wrap;  
+}
+
+.xAxis {
+   font-size: 22px;
+   font-family: sans-serif;
+   text-anchor: middle;
+}
