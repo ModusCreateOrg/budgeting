@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
+import InflowOutflow from 'containers/InflowOutflow';
 import Spending from 'containers/Spending';
 import ReportsTabbar from './ReportsTabbar';
 
@@ -11,8 +12,6 @@ injectAsyncReducers({
   transactions: transactionReducer,
   categories: categoryReducer,
 });
-
-const InflowOutflow = () => <h1>Inflow vs Outflow</h1>;
 
 const ReportsPanel = () => (
   <section>

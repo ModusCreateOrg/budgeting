@@ -12,7 +12,7 @@ const LegendItem = ({ color, label, value }) => (
 
 LegendItem.propTypes = {
   color: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
 };
 

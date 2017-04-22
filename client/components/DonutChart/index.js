@@ -8,16 +8,17 @@ import {
 } from 'd3';
 
 import Path from './Path';
-import Legend from './Legend';
+import Legend from 'components/Legend';
+import Chart from 'components/Chart';
 import styles from './styles.scss';
 
 
 class DonutChart extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
-    dataValue: PropTypes.string.isRequired,
     dataLabel: PropTypes.string.isRequired,
     dataKey: PropTypes.string.isRequired,
+    dataValue: PropTypes.string,
     color: PropTypes.func,
     height: PropTypes.number,
     innerRatio: PropTypes.number,
@@ -27,6 +28,7 @@ class DonutChart extends Component {
     color: scaleSequential().interpolator(interpolateMagma),
     height: 300,
     innerRatio: 4,
+    dataValue: 'value'
   };
 
   componentWillMount() {
@@ -56,35 +58,32 @@ class DonutChart extends Component {
     this.pathArc = this.getPathArc();
     this.colorFn = color.domain && color.domain([0, data.length]);
     this.boxLength = height + (this.chartPadding * 2);
-    this.viewBox = `-${this.chartPadding} -${this.chartPadding} ${this.boxLength} ${this.boxLength}`;
   }
 
   render() {
     const { data, dataLabel, dataValue, dataKey } = this.props;
-    const { outerRadius, pathArc, colorFn, boxLength, viewBox } = this;
+    const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
     return (
       <div className={styles.donutChart}>
-        <svg
-          className={styles.mainSvg}
+        <Chart 
           width={boxLength}
           height={boxLength}
-          viewBox={viewBox}
+          padding={chartPadding}
+          transform={`translate(${outerRadius},${outerRadius})`}
         >
-          <g transform={`translate(${outerRadius},${outerRadius})`}>
-            {this.chart(data).map(
-              (datum, index) => (
-                <Path
-                  data={datum}
-                  index={index}
-                  fill={colorFn(index)}
-                  arcFn={pathArc}
-                  key={datum.data[dataKey]}
-                />
-              )
-            )}
-          </g>
-        </svg>
+          {this.chart(data).map(
+            (datum, index) => (
+              <Path
+                data={datum}
+                index={index}
+                fill={colorFn(index)}
+                arcFn={pathArc}
+                key={datum.data[dataKey]}
+              />
+            )
+          )}
+        </Chart>
 
         <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
@@ -92,5 +91,6 @@ class DonutChart extends Component {
   }
 
 }
+
 
 export default DonutChart;

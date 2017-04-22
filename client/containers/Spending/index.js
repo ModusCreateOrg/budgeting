@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getOutflowByCategoryName } from 'selectors/transactions';
+import {
+  sortTransactions, 
+  getOutflowByCategoryName
+} from 'selectors/transactions';
 
 import DonutChart from 'components/DonutChart';
 
 @connect(
   state => ({
-    data: getOutflowByCategoryName(state)
+    data: sortTransactions(getOutflowByCategoryName(state))
   })
 )
 class Spending extends Component {
@@ -21,7 +24,6 @@ class Spending extends Component {
     return (
       <DonutChart
         data={data}
-        dataValue="value"
         dataLabel="category"
         dataKey="categoryId"
       />

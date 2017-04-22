@@ -54,7 +54,7 @@ export const defaultTransactions = [
   {
     id: 6,
     description: 'Paycheck',
-    value: 297000,
+    value: 57000,
     categoryId: 15
   }
 ];

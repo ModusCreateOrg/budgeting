@@ -16,6 +16,11 @@ function summarizeTransactions(transactions) {
   }, []);
 }
 
+export const sortTransactions = transactions => {
+  const unsorted = [...transactions];
+  return unsorted.sort((a, b) => a.value < b.value);
+}
+
 const applyCategoryName = (transactions, categories) => transactions.map((transaction) => {
   transaction.category = categories[transaction.categoryId];
   return transaction;
@@ -68,8 +73,19 @@ const getOutflowByCategory = createSelector(
   transactions => summarizeTransactions(transactions)
 );
 
+const getInflowByCategory = createSelector(
+  [getInflowTransactions],
+  transactions => summarizeTransactions(transactions)
+);
+
 export const getOutflowByCategoryName = createSelector(
   getOutflowByCategory,
+  getCategories,
+  (trans, cat) => applyCategoryName(trans, cat)
+);
+
+export const getInflowByCategoryName = createSelector(
+  getInflowByCategory,
   getCategories,
   (trans, cat) => applyCategoryName(trans, cat)
 );
