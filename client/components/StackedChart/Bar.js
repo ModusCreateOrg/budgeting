@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-
 class Bar extends Component {
-  
   static propTypes = {
     yScale: PropTypes.func.isRequired,
     colorFn: PropTypes.func.isRequired,
@@ -24,22 +22,22 @@ class Bar extends Component {
   }
 
   updateChartVariables = () => {
-    const {yScale, data} = this.props;
+    const { yScale, data } = this.props;
     let start = yScale.range()[0];
 
-    this.yPositions = data.map(datum => start -= yScale(datum.value));
-  }
+    this.yPositions = data.map(datum => (start -= yScale(datum.value)));
+  };
 
   render() {
-    const {yPositions} = this;
-    const {width, yScale, colorFn, data, transform} = this.props;
+    const { yPositions } = this;
+    const { width, yScale, colorFn, data, transform } = this.props;
 
     return (
       <g transform={transform}>
-        
+
         {data.map((datum, idx) => (
-          <rect 
-            key={idx}
+          <rect
+            key={datum.categoryId}
             y={yPositions[idx]}
             height={yScale(datum.value)}
             width={width}
@@ -50,7 +48,6 @@ class Bar extends Component {
       </g>
     );
   }
-};
-
+}
 
 export default Bar;

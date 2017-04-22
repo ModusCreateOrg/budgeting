@@ -1,17 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-
-import {
-  arc,
-  pie,
-  scaleSequential,
-  interpolateMagma
-} from 'd3';
-
-import Path from './Path';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
-import styles from './styles.scss';
+import { arc, pie, scaleSequential, interpolateMagma } from 'd3';
 
+import Path from './Path';
+import styles from './styles.scss';
 
 class DonutChart extends Component {
   static propTypes = {
@@ -28,7 +21,7 @@ class DonutChart extends Component {
     color: scaleSequential().interpolator(interpolateMagma),
     height: 300,
     innerRatio: 4,
-    dataValue: 'value'
+    dataValue: 'value',
   };
 
   componentWillMount() {
@@ -46,7 +39,7 @@ class DonutChart extends Component {
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc().innerRadius(height / innerRatio).outerRadius(height / 2);
-  }
+  };
 
   chartPadding = 8;
 
@@ -57,8 +50,8 @@ class DonutChart extends Component {
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
     this.colorFn = color.domain && color.domain([0, data.length]);
-    this.boxLength = height + (this.chartPadding * 2);
-  }
+    this.boxLength = height + this.chartPadding * 2;
+  };
 
   render() {
     const { data, dataLabel, dataValue, dataKey } = this.props;
@@ -66,31 +59,21 @@ class DonutChart extends Component {
 
     return (
       <div className={styles.donutChart}>
-        <Chart 
+        <Chart
           width={boxLength}
           height={boxLength}
           padding={chartPadding}
           transform={`translate(${outerRadius},${outerRadius})`}
         >
-          {this.chart(data).map(
-            (datum, index) => (
-              <Path
-                data={datum}
-                index={index}
-                fill={colorFn(index)}
-                arcFn={pathArc}
-                key={datum.data[dataKey]}
-              />
-            )
-          )}
+          {this.chart(data).map((datum, index) => (
+            <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
+          ))}
         </Chart>
 
         <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }
-
 }
-
 
 export default DonutChart;

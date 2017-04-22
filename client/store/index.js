@@ -4,9 +4,7 @@ import thunk from 'redux-thunk';
 import rootReducer from 'modules/rootReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(combineReducers(rootReducer), composeEnhancers(
-  applyMiddleware(thunk)
-));
+const store = createStore(combineReducers(rootReducer), composeEnhancers(applyMiddleware(thunk)));
 export default store;
 
 /**
@@ -26,20 +24,17 @@ function replaceReducers(defaultReducers) {
 }
 
 export function injectAsyncReducers(asyncReducers) {
-  const injectReducers = Object
-    .keys(asyncReducers)
-    .reduce((all, item) => {
-      if (store.asyncReducers[item]) {
-        delete all[item];
-      }
+  const injectReducers = Object.keys(asyncReducers).reduce((all, item) => {
+    if (store.asyncReducers[item]) {
+      delete all[item];
+    }
 
-      return all;
-    }, asyncReducers);
+    return all;
+  }, asyncReducers);
 
   store.asyncReducers = Object.assign({}, store.asyncReducers, injectReducers);
   replaceReducers(rootReducer);
 }
-
 
 // hot reloading for reducers
 if (module.hot) {

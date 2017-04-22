@@ -4,11 +4,11 @@ import Loading from 'components/Loading';
 class Chunk extends Component {
   static propTypes = {
     load: PropTypes.func.isRequired,
-  }
+  };
 
   state = {
-    LoadedComponent: null
-  }
+    LoadedComponent: null,
+  };
 
   componentWillMount() {
     this.load(this.props);
@@ -22,16 +22,15 @@ class Chunk extends Component {
 
   load(props) {
     this.setState({
-      LoadedComponent: null
+      LoadedComponent: null,
     });
 
-    props.load()
-      .then((mod) => {
-        this.setState({
-          // handle both es imports and cjs
-          LoadedComponent: mod.default ? mod.default : mod
-        });
+    props.load().then(mod => {
+      this.setState({
+        // handle both es imports and cjs
+        LoadedComponent: mod.default ? mod.default : mod,
       });
+    });
   }
 
   render() {

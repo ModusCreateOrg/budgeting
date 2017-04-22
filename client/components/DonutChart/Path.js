@@ -1,21 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 
-import {
-  select,
-  interpolate
-} from 'd3';
+import { select, interpolate } from 'd3';
 
 class Path extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     fill: PropTypes.string.isRequired,
     arcFn: PropTypes.func.isRequired,
-    animDuration: PropTypes.number
+    animDuration: PropTypes.number,
   };
 
   static defaultProps = {
-    animDuration: 1000
-  }
+    animDuration: 1000,
+  };
 
   componentDidMount() {
     const { data, arcFn, animDuration } = this.props;
@@ -25,27 +22,18 @@ class Path extends Component {
       { startAngle: data.startAngle, endAngle: data.endAngle }
     );
 
-    path.transition()
-      .duration(animDuration)
-      .attrTween('d', () => t => arcFn(interpolateArc(t)));
+    path.transition().duration(animDuration).attrTween('d', () => t => arcFn(interpolateArc(t)));
   }
 
-  handleRefUpdate = (ref) => {
+  handleRefUpdate = ref => {
     this.pathRef = ref;
-  }
+  };
 
   render() {
     const { data, arcFn, fill } = this.props;
 
-    return (
-      <path
-        ref={this.handleRefUpdate}
-        fill={fill}
-        d={arcFn(data)}
-      />
-    );
+    return <path ref={this.handleRefUpdate} fill={fill} d={arcFn(data)} />;
   }
-
 }
 
 export default Path;

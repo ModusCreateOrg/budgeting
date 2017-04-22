@@ -5,16 +5,18 @@ const NavLink = ({ to, label, styles }) => (
   <Route
     to={to}
     exact
-    children={({ location: { pathname } }) =>
-      <Link to={to} className={`${styles.navLink} ${pathname.indexOf(to) !== -1 ? styles.selected : ''}`}>{ label }</Link>
-    }
+    children={({ location: { pathname } }) => (
+      <Link to={to} className={`${styles.navLink} ${pathname.indexOf(to) !== -1 ? styles.selected : ''}`}>
+        {label}
+      </Link>
+    )}
   />
 );
 
 NavLink.propTypes = {
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  styles: PropTypes.object.isRequired
+  styles: PropTypes.object.isRequired,
 };
 
 export default NavLink;

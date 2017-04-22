@@ -7,7 +7,7 @@ import { AppContainer } from 'react-hot-loader';
 import App from 'containers/App';
 import store from 'store';
 
-const renderApp = (Component) => {
+const renderApp = Component => {
   ReactDOM.render(
     <Provider store={store}>
       <Router>

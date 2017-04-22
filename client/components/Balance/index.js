@@ -18,11 +18,11 @@ const Balance = ({ title, amount, colorize }) => {
 Balance.propTypes = {
   title: PropTypes.string.isRequired,
   amount: PropTypes.object.isRequired,
-  colorize: PropTypes.bool
+  colorize: PropTypes.bool,
 };
 
 Balance.defaultProps = {
-  colorize: true
+  colorize: true,
 };
 
 export default Balance;
