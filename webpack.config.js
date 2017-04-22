@@ -33,12 +33,6 @@ module.exports = function(env) {
   let cssLoader;
 
   const plugins = [
-    // extract vendor packages in a separate chunk
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
-    }),
-
     new webpack.optimize.CommonsChunkPlugin({
       async: true,
       children: true,
@@ -170,7 +164,6 @@ module.exports = function(env) {
     context: sourcePath,
     entry: {
       main: entryPoint,
-      vendor: ['react', 'react-dom', 'redux', 'redux-thunk', 'react-redux', 'hoist-non-react-statics'],
     },
     output: {
       path: buildDirectory,
