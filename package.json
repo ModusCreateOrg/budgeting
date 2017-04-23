@@ -1,8 +1,9 @@
 {
   "name": "webpack2-react-redux-budget-app-sample",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Budgeting App Sample - React, Redux, Webpack 2",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"All good, the world is still spinning\"",
@@ -14,7 +15,6 @@
     "lint": "eslint ./client -f table || true",
     "lint:fix": "eslint ./client -f table --fix"
   },
-  "license": "MIT",
   "devDependencies": {
     "babel-core": "6.24.0",
     "babel-eslint": "7.1.1",
