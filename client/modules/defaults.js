@@ -24,7 +24,7 @@ export const defaultTransactions = [
   {
     id: 1,
     description: "Trader Joe's food",
-    value: -1023.34,
+    value: -423.34,
     categoryId: 1,
   },
   {
@@ -37,24 +37,24 @@ export const defaultTransactions = [
     id: 3,
     description: 'Ebay sale - guitar',
     value: 1102.00,
-    categoryId: 16,
+    categoryId: 15,
   },
   {
     id: 4,
     description: 'Milk & Eggs for the pancake party with neighbors',
-    value: -12300,
+    value: -2300,
     categoryId: 3,
   },
   {
     id: 5,
     description: 'The usual weekly run',
-    value: -32100,
+    value: -1100,
     categoryId: 16,
   },
   {
     id: 6,
     description: 'Paycheck',
-    value: 57000,
+    value: 5700,
     categoryId: 15,
   },
 ];
