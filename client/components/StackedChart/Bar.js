@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-
 import Rect from './Rect';
 
 class Bar extends Component {
@@ -38,7 +37,7 @@ class Bar extends Component {
       <g transform={transform}>
 
         {data.map((datum, idx) => (
-          <Rect 
+          <Rect
             key={datum.categoryId}
             y={yPositions[idx]}
             height={yScale(datum.value)}

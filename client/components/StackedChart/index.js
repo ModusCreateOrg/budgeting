@@ -1,10 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
-import { max, scaleBand, scaleLinear, scaleSequential, interpolateMagma } from 'd3';
+import { max, scaleBand, scaleLinear, scaleOrdinal, schemeCategory20 } from 'd3';
+import { shuffle } from 'utils/array';
 import Bar from './Bar';
 import Xaxis from './Xaxis';
 import styles from './styles.scss';
+
+const outflowScheme = shuffle(schemeCategory20);
+const inflowScheme = outflowScheme.splice(0, 2);
 
 class StackedChart extends Component {
   static propTypes = {
@@ -66,8 +70,8 @@ class StackedChart extends Component {
   chartPadding = 10;
 
   color = {
-    inflow: scaleLinear().range(['#003300', '#009966']),
-    outflow: scaleSequential().interpolator(interpolateMagma),
+    inflow: scaleLinear().range(inflowScheme),
+    outflow: scaleOrdinal(outflowScheme),
   };
 
   render() {

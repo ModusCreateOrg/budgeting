@@ -1,13 +1,15 @@
+@import 'theme/variables';
+
 .stackedChart {
   display: flex;
-  height: 100%;  
+  height: 100%;
   justify-content: center;
   align-content: flex-start;
-  flex-flow: wrap;  
+  flex-flow: wrap;
 }
 
 .xAxis {
-   font-size: 22px;
-   font-family: sans-serif;
+   font-size: 16px;
+   font-family: $font-default;
    text-anchor: middle;
 }

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import {select, interpolate} from 'd3';
+import { select, interpolate } from 'd3';
 
 class Rect extends Component {
-  
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
@@ -13,27 +12,25 @@ class Rect extends Component {
   };
 
   static defaultProps = {
-    animDuration: 1000
-  }
+    animDuration: 1000,
+  };
 
   componentDidMount() {
     const { animDuration } = this.props;
     const rect = select(this.rectRef);
-    const interpolateY = interpolate(1000, this.rectRef.getAttribute('y'));
+    const interpolateHeight = interpolate(1000, this.rectRef.getAttribute('height'));
 
-    rect.transition()
-      .duration(animDuration * Math.random())
-      .attrTween('y', () => t => interpolateY(t))
+    rect.transition().duration(animDuration * Math.random()).attrTween('height', () => t => interpolateHeight(t));
   }
 
-  handleRefUpdate = (ref) => {
+  handleRefUpdate = ref => {
     this.rectRef = ref;
-  }
+  };
 
   render() {
-    const {width, height, fill, y} = this.props;
-    return <rect ref={this.handleRefUpdate} { ...{y, height, width, fill}}/>;
+    const { width, height, fill, y } = this.props;
+    return <rect ref={this.handleRefUpdate} {...{ y, height, width, fill }} />;
   }
-};
+}
 
 export default Rect;

@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
-import { arc, pie, scaleSequential, interpolateMagma } from 'd3';
-
+import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
+import { shuffle } from 'utils/array';
 import Path from './Path';
 import styles from './styles.scss';
+
+const randomScheme = shuffle(schemeCategory20);
 
 class DonutChart extends Component {
   static propTypes = {
@@ -18,7 +20,7 @@ class DonutChart extends Component {
   };
 
   static defaultProps = {
-    color: scaleSequential().interpolator(interpolateMagma),
+    color: scaleOrdinal(randomScheme),
     height: 300,
     innerRatio: 4,
     dataValue: 'value',
