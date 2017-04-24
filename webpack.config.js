@@ -8,7 +8,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // your app from wifi or a virtual machine
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
-const sourcePath = path.join(__dirname, './client');
+const sourcePath = path.join(__dirname, './app');
 const buildDirectory = path.join(__dirname, './build');
 
 const stats = {
@@ -211,7 +211,7 @@ module.exports = function(env) {
     stats: stats,
 
     devServer: {
-      contentBase: './client',
+      contentBase: './app',
       publicPath: '/',
       historyApiFallback: true,
       port: port,
