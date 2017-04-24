@@ -1,6 +1,11 @@
+# ⚠️ A new version of this app is available 🎉
+[A new version with completely refactored codebase is now available](https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2). 
+
+The updated app features **React Router 4**, **automatic code splitting**, **PRPL**, and tons of tricks that you can use in your own project for best performance.
+
 # Budgeting - React + Redux Sample App
 
-Sample app demonstrating the power and simplicity of React, Redux, and Webpack 2. Includes tree shaking configuration. 
+Sample app demonstrating the power and simplicity of **React**, **Redux**, and **Webpack 2**. Includes tree shaking configuration. 
 
 This is a Webpack 2 version of a previous [Budgeting App](https://github.com/ModusCreateOrg/budgeting-sample-app).
 
