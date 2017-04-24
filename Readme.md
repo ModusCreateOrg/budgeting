@@ -4,6 +4,8 @@ Sample app demonstrating the power and simplicity of React, Redux, React Router,
 
 [See demo online](https://budgeting-a937b.firebaseapp.com/).
 
+![React Budgeting App](https://cloud.githubusercontent.com/assets/733074/25340900/6ab1d536-2907-11e7-8083-b78f8ae601b4.png)
+
 ![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
 
 ## Budgeting Application
@@ -20,6 +22,7 @@ Feel free to use it as a reference app or a starter kit.
 - [x] Automatic code splitting with React Router 4 and `import()` statement
 - [x] Automatic common chunk bundling
 - [x] CSS modules
+- [x] Performance budgets in Webpack 2
 
 ## Performance
 ![Budgeting App Performance](https://cloud.githubusercontent.com/assets/733074/25339194/1af94448-2902-11e7-8982-c1a9b647fac0.png)
