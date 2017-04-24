@@ -23,7 +23,7 @@ Feel free to use it as a reference app or a starter kit.
 
 ## Performance
 ![Budgeting App Performance](https://cloud.githubusercontent.com/assets/733074/25339194/1af94448-2902-11e7-8982-c1a9b647fac0.png)
-__The app loads in 1 second on 3G, cache disabled__
+_The app loads in 1 second on 3G, cache disabled_
 
 Budgeting app is blazing fast, thanks to the smart architecture and Webpack 2 configuration. It takes about 1000ms (1s) to load it on 3G (see above).
 
@@ -72,6 +72,9 @@ Similar to Yarn, really...
 * `npm run build` - build app for deployment
 * `npm run lint` - lint check
 * `npm run lint:fix` - lint check + autofixes + prettify code with __prettier__
+
+## Want more?
+This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give as a buzz if we can help with your awesome project.
 
 ## License
 [MIT](License.md)
