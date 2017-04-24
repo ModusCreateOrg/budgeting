@@ -1,8 +1,8 @@
-# Budgeting -> React + Redux + React Router 4 Sample App
+# Budgeting :: A Modern React, Redux, React Router 4, Webpack Sample App
 
 ![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
 
-Sample app demonstrating the power and simplicity of React, Redux, React Router, and Webpack 2. Includes tree shaking configuration. 
+Architected as if it were a large mission-critical application, this sample app demonstrates the power and simplicity of React, Redux, React Router, and Webpack 2. Includes tree shaking configuration.
 
 [See live demo](https://budgeting-a937b.firebaseapp.com/).
 
