@@ -45,7 +45,7 @@ class StackedChart extends Component {
 
   updateChartVariables = () => {
     const { width, height, data } = this.props;
-    const { color, barPadding, chartPadding } = this;
+    const { color, barPadding, chartPadding, bottomPadding } = this;
 
     this.dataKeys = Object.keys(data);
     const totals = this.dataKeys.map(key => data[key].reduce(this.getTotalValue, 0));
@@ -53,7 +53,7 @@ class StackedChart extends Component {
     this.xScale = scaleBand().rangeRound([0, width - chartPadding * 2]).paddingInner(barPadding);
     this.xScale.domain([0, this.dataKeys.length - 1]);
 
-    this.yScale = scaleLinear().rangeRound([height - chartPadding * 4, 0]);
+    this.yScale = scaleLinear().rangeRound([height - (chartPadding * 2) - bottomPadding, 0]);
     this.yScale.domain([max(totals), 0]);
 
     this.colorFn = this.dataKeys.reduce((colorFn, key) => {
@@ -66,7 +66,7 @@ class StackedChart extends Component {
   };
 
   barPadding = 0.15;
-
+  bottomPadding = 40;
   chartPadding = 10;
 
   color = {
@@ -98,14 +98,13 @@ class StackedChart extends Component {
           ))}
 
           <Xaxis
-            className={styles.xAxis}
-            transform={`translate(0, ${yScale.range()[0] + chartPadding / 2})`}
+            transform={`translate(0, ${yScale.range()[0] + chartPadding / 3})`}
             data={data}
             xScale={xScale}
           />
         </Chart>
 
-        <Legend color={colorFn.outflow} data={data.outflow} {...{ dataValue, dataLabel, dataKey }} />
+        <Legend color={colorFn.outflow} reverse={true} data={data.outflow} {...{ dataValue, dataLabel, dataKey }} />
       </div>
     );
   }
