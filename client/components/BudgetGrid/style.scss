@@ -1,0 +1,80 @@
+@import 'theme/variables';
+
+.budgetGrid {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  border: 1px solid $gray;
+  border-collapse: collapse;
+  font-size: 0.8em;
+
+  tr {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    height: inherit;
+    padding: 8px;
+  }
+
+  th, td {
+    text-align: left;
+    overflow: hidden;
+
+    &:last-child {
+      text-align: right;
+    }
+
+    &:nth-child(1), &:nth-child(3) {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    &:nth-child(2) {
+      flex: 3;
+    }
+  }
+
+  thead, tfoot {
+    background-color: $verylightgray;
+  }
+
+  thead {
+    border-bottom: 1px solid $gray;
+
+    th:last-child {
+      padding-right: 3.5em;
+    }
+  }
+
+  tbody {
+    overflow-y: scroll;
+    display: block;
+    flex: 1;
+
+    tr {
+      border-bottom: 1px solid $lightgray;
+    }
+
+    td {
+      vertical-align: top;
+      padding-left: 2em;
+
+      &.neg {
+        color: $red;
+      }
+
+      &.pos {
+        color: $green;
+      }
+
+      &:last-child {
+        padding-right: 2.5em;
+      }
+    }
+  }
+
+  tfoot {
+    height: 40px;
+    border-top: 1px solid $gray;
+  }
+}

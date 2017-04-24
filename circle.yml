@@ -1,0 +1,22 @@
+machine:
+  node:
+    version: 7.4.0
+  environment:
+    CONTINUOUS_INTEGRATION: true
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+dependencies:
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+
+test:
+  override:
+    - yarn run lint
+    - yarn run build
+deployment:
+  github:
+    branch: v2
+    commands:
+      - yarn run deploy

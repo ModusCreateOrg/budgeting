@@ -1,5 +1,10 @@
 extends:
-  eslint-config-airbnb
+  - eslint-config-airbnb
+  - prettier
+  - prettier/react
+
+plugins:
+    - prettier
 
 parser:
   babel-eslint
@@ -27,7 +32,13 @@ rules:
   no-console: 0
   no-param-reassign: 0
   linebreak-style: 0
+  object-shorthand: 0
+  no-underscore-dangle: 0
   import/no-extraneous-dependencies: 0
   import/no-unresolved: 0
   import/extensions: 0
   react/jsx-filename-extension: 0
+  react/prefer-stateless-function: 0
+  react/no-children-prop: 0
+  react/forbid-prop-types: 0
+  prettier/prettier: ["error", {"trailingComma": "es5", "singleQuote": true, "printWidth": 120}]

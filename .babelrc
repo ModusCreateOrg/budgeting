@@ -1,15 +1,24 @@
 {
   "plugins": [
+    "syntax-dynamic-import",
+    "transform-decorators-legacy",
     "transform-class-properties"
   ],
   "presets": [
-    ["es2015", { "modules": false }],
+    ["env", {
+      "targets": {
+        "chrome": 52,
+        "browsers": ["last 2 versions", "safari 7"]
+      },
+      "modules": false,
+      "loose": true
+    }],
     "react"
   ],
   "env": {
     "development": {
-      "presets": [
-        "react-hmre"
+      "plugins": [
+        "react-hot-loader/babel"
       ]
     }
   }

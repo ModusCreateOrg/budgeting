@@ -1,0 +1,139 @@
+@-webkit-keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0
+  }
+  100% {
+    background-position: 468px 0
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0
+  }
+  100% {
+    background-position: 468px 0
+  }
+}
+
+.timelineItem {
+  background: #fff;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  padding: 12px;
+  margin: 0 auto;
+  min-height: 200px;
+  min-width: 300px;
+  max-width: 472px;
+  width: 90vw;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .16);
+}
+
+.animatedBackground {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: #eeeeee;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 96px;
+  position: relative;
+  list-style: none;
+
+  li {
+    background: #fff;
+    position: absolute;
+    box-sizing: border-box;
+  }
+}
+
+.headerTop,
+.headerBottom,
+.subheaderBottom {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.headerRight,
+.subheaderRight {
+  top: 10px;
+  left: 40px;
+  height: 8px;
+  width: 10px;
+}
+
+.headerBottom {
+  top: 18px;
+  height: 6px;
+}
+
+.subheaderRight {
+  top: 24px;
+  height: 6px;
+}
+
+.headerRight,
+.subheaderRight {
+  width: auto;
+  left: 300px;
+  right: 0;
+}
+
+.subheaderRight {
+  left: 230px;
+}
+
+.subheaderBottom {
+  top: 30px;
+  height: 10px;
+}
+
+.contentTop,
+.contentSecondLine,
+.contentThirdLine,
+.contentSecondEnd,
+.contentThirdEnd,
+.contentDirstEnd {
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 6px;
+}
+
+.contentTop {
+  height: 20px;
+}
+
+.contentFirstEnd,
+.contentSecondEnd,
+.contentThirdEnd {
+  width: auto;
+  left: 380px;
+  right: 0;
+  top: 60px;
+  height: 8px;
+}
+
+.contentSecondLine {
+  top: 68px;
+}
+
+.contentSecondEnd {
+  left: 420px;
+  top: 74px;
+}
+
+.contentThirdLine {
+  top: 82px;
+}
+
+.contentThirdEnd {
+  left: 300px;
+  top: 88px;
+}

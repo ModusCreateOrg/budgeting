@@ -1,0 +1,59 @@
+@import 'theme/variables';
+
+.header {
+  position: relative;
+  display: flex;
+  margin-bottom: 3em;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  margin: 10px 0px 0px 12px;
+}
+
+.gitHubButton {
+  margin: 22px 14px 0 0;
+
+  &:nth-of-type(1) {
+    margin-left: auto;
+  }
+}
+
+.navLink {
+  padding: 35px 25px;
+  margin: -6px 6px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  color: $gray;
+  border: 1px solid $lightgray;
+  text-decoration: none;
+
+  &:active, &.selected {
+    color: $black;
+    text-decoration: underline;
+    box-shadow: 0 1px 4px 1px $darkgray;
+  }
+}
+
+@media only screen and (max-width: 28em) {
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .gitHubButton {
+    order: 10;
+
+    &:nth-of-type(1) {
+      // margin-left: 0;
+    }
+
+    &:nth-of-type(2) {
+      margin-right: auto;
+    }
+  }
+
+  .logo {
+    margin-left: auto;
+  }
+}

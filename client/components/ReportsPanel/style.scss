@@ -1,0 +1,30 @@
+@import 'theme/variables';
+
+.tabbar {
+  border: $border;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  max-height: 3em;
+  margin-bottom: 2em;
+}
+
+.navLink {
+  float: left;
+  padding: 1em 2em;
+  white-space: nowrap;
+  font-size: 0.9em;
+  outline: none;
+  color: $black;
+  text-decoration: none;
+
+  &:last-child {
+    border-left: $border;
+    border-right: $border;
+  }
+
+  &:active, &.selected {
+    color: $white;
+    background-color: $gray;
+  }
+}
