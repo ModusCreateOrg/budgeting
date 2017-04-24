@@ -21,6 +21,10 @@ class StackedChart extends Component {
       inflow: PropTypes.array,
       outflow: PropTypes.array,
     }).isRequired,
+    totals: PropTypes.shape({
+      inflow: PropTypes.number,
+      outflow: PropTypes.number,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -41,20 +45,17 @@ class StackedChart extends Component {
     }
   }
 
-  getTotalValue = (total, datum) => total + datum.value;
-
   updateChartVariables = () => {
-    const { width, height, data } = this.props;
+    const { width, height, data, totals } = this.props;
     const { color, barPadding, chartPadding, bottomPadding } = this;
 
     this.dataKeys = Object.keys(data);
-    const totals = this.dataKeys.map(key => data[key].reduce(this.getTotalValue, 0));
 
     this.xScale = scaleBand().rangeRound([0, width - chartPadding * 2]).paddingInner(barPadding);
     this.xScale.domain([0, this.dataKeys.length - 1]);
 
     this.yScale = scaleLinear().rangeRound([height - (chartPadding * 2) - bottomPadding, 0]);
-    this.yScale.domain([max(totals), 0]);
+    this.yScale.domain([max([totals.inflow, totals.outflow]), 0]);
 
     this.colorFn = this.dataKeys.reduce((colorFn, key) => {
       colorFn[key] = color[key].domain([0, data[key].length]);
@@ -76,7 +77,7 @@ class StackedChart extends Component {
 
   render() {
     const { xScale, yScale, colorFn, dataKeys, boxLength, boxHeight, chartPadding } = this;
-    const { data, dataKey, dataLabel, dataValue } = this.props;
+    const { data, totals, dataKey, dataLabel, dataValue } = this.props;
 
     return (
       <div className={styles.stackedChart}>
@@ -100,6 +101,7 @@ class StackedChart extends Component {
           <Xaxis
             transform={`translate(0, ${yScale.range()[0] + chartPadding / 3})`}
             data={data}
+            totals={totals}
             xScale={xScale}
           />
         </Chart>

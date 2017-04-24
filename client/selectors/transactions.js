@@ -3,7 +3,7 @@ import formatAmount from 'utils/formatAmount';
 import { getCategories } from './categories';
 
 function totalTransactions(transactions) {
-  return transactions.reduce((total, item) => total + parseFloat(item.value), 0).toFixed(2);
+  return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
 }
 
 function summarizeTransactions(transactions) {
@@ -39,9 +39,9 @@ const getOutflowTransactions = createSelector([getTransactions], transactions =>
 
 const getBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
 
-const getInflowBalance = createSelector([getInflowTransactions], transactions => totalTransactions(transactions));
+export const getInflowBalance = createSelector([getInflowTransactions], transactions => totalTransactions(transactions));
 
-const getOutflowBalance = createSelector([getOutflowTransactions], transactions => totalTransactions(transactions));
+export const getOutflowBalance = createSelector([getOutflowTransactions], transactions => totalTransactions(transactions));
 
 export const getFormattedBalance = createSelector([getBalance], amount => formatAmount(amount, false));
 
