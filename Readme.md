@@ -53,12 +53,13 @@ performance: {
 },
 ```
 
-Changing values to 200kB might cause the build (`yarn run build`) process to show a warning.
+Adding lots of extra code to the entry chunk might cause the build (`yarn run build`) process to show a warning.
 
-![Performance Budgets](https://cloud.githubusercontent.com/assets/733074/25352295/e0f39468-292b-11e7-8795-b694745439f4.png)
+![Performance Budgets](https://cloud.githubusercontent.com/assets/733074/25352700/3ade5cfa-292d-11e7-8d2e-fed88c2c4da0.png)
+
 _Simulated size warning_
 
-Note that running webpack dev server in production mode (`npm run prod`) will trigger this warning because of the additional dev server code injected in the app. This code will not show in regular production builds.
+Note that running webpack dev server in production mode (`yarn run prod`) will trigger this warning because of the additional dev server code injected in the app. This code will not show in regular production builds.
 
 ## Stack
 The app was built using these aweseome technologies
