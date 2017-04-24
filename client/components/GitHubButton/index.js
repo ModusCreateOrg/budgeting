@@ -22,7 +22,7 @@ const GitHubButton = ({ type, className }) => (
       href="https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2"
       data-icon={getDataIcon(type)}
       data-count-href={getDataCountHref(type)}
-      data-count-api={getDataCountApi(type)}
+      data-show-count={getDataCountApi(type)}
       data-count-aria-label={getDataCountAriaLabel(type)}
       aria-label={getAriaLabel(type)}
     >
