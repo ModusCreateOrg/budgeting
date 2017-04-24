@@ -42,6 +42,24 @@ Charts are developed using the awesome D3 library. The idea behind showing chart
 
 D3 is used in the `/reports` route only. Given that major routes are separate chunks (code splitting FTW!), the entire D3 library is bundled with the code that needs it. That makes the `/reports` route a bit heavier than the initial `/budget` route, but it also makes routes much faster to load.
 
+## Performance Budgets
+We are looking to maintain the lightest possible application core (_aka entry chunk_). Our target is 300kB for the entrypoint and 300kB for all other assets. This is how we set it in [webpack configuration](https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/blob/master/webpack.config.js):
+
+```js
+performance: {
+  maxAssetSize: 300000,
+  maxEntrypointSize: 300000,
+  hints: 'warning',
+},
+```
+
+Changing values to 200kB might cause the build (`yarn run build`) process to show a warning.
+
+![Performance Budgets](https://cloud.githubusercontent.com/assets/733074/25352295/e0f39468-292b-11e7-8795-b694745439f4.png)
+_Simulated size warning_
+
+Note that running webpack dev server in production mode (`npm run prod`) will trigger this warning because of the additional dev server code injected in the app. This code will not show in regular production builds.
+
 ## Stack
 The app was built using these aweseome technologies
 
