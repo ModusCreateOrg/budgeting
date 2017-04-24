@@ -1,17 +1,17 @@
-# Budgeting - React + Redux + React Router 4 Sample App
+# Budgeting -> React + Redux + React Router 4 Sample App
+
+![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
 
 Sample app demonstrating the power and simplicity of React, Redux, React Router, and Webpack 2. Includes tree shaking configuration. 
 
-[See demo online](https://budgeting-a937b.firebaseapp.com/).
+[See live demo](https://budgeting-a937b.firebaseapp.com/).
 
 ![React Budgeting App](https://cloud.githubusercontent.com/assets/733074/25340900/6ab1d536-2907-11e7-8083-b78f8ae601b4.png)
-
-![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
 
 ## Budgeting Application
 The is a simple budget management application. It tracks inflow and outflow, shows remaining budget, and interesting reports with charts. As such, it offers more features than the usual Todo App. 
 
-The budgeting app is a showcase project that demonstrates important decisions in architecture and development of a modern React application.
+Budgeting app is a showcase project that demonstrates important decisions in architecture and development of a modern React application.
 
 Feel free to use it as a reference app or a starter kit.
 
@@ -28,17 +28,17 @@ Feel free to use it as a reference app or a starter kit.
 ![Budgeting App Performance](https://cloud.githubusercontent.com/assets/733074/25339194/1af94448-2902-11e7-8982-c1a9b647fac0.png)
 _The app loads in 1 second on 3G, cache disabled_
 
-Budgeting app is blazing fast, thanks to the smart architecture and Webpack 2 configuration. It takes about 1000ms (1s) to load it on 3G (see above).
+Budgeting app is **blazing fast**, thanks to the smart architecture and Webpack 2 configuration. It takes about 1000ms (1s) to load on 3G (see above).
 
-**But how?** 
+#### How did we get that performance?
 
 1. **Minimal application core.** We decided to ditch the usual convention of creating a vendor chunk. Instead, it's bundled in the app core. The app core is actually very small, containing just the code needed to bootstrap the app.
 2. **Common code is a chunk.** We let Webpack figure out which bundles we reuse in chunks and create a common chunk that's also asyncronous. 
-3. **Redux module injection**. Each chunk contains respective views __and__ redux modules. Yes, that means reducers, action creators, actions - are all dynamically injected as we navigate through routes. That adds to the _minimal application core_ concept and PRPL pattern. 
-4. **H2 Push.** The app is hosted on Firebase and we use the magic of HTTP2 Push to push some of the scripts before they are requested.
+3. **Redux module injection**. Each chunk contains respective views _and_ redux modules. Yes, that means reducers, action creators, actions - are all dynamically injected as we navigate through routes. That adds to the _minimal application core_ concept and PRPL pattern. 
+4. **H2 Push.** The app is hosted on Firebase and we use the magic of _HTTP2 Push_ to push some of the scripts before they are requested.
 
 ## Charts
-Charts are developed using the awesome D3 library. The idea behind showing charts is not only to show beautiful content, but also to demonstrate how to keep heavy content in a chunk that owns it. 
+Charts are developed using the awesome D3 library. The idea behind showing charts is not only to show beautiful content, but also to demonstrate keeping heavy content in a chunk that owns it. In other words - we show how applications can run fast even if they use larger libraries.
 
 D3 is used in the `/reports` route only. Given that major routes are separate chunks (code splitting FTW!), the entire D3 library is bundled with the code that needs it. That makes the `/reports` route a bit heavier than the initial `/budget` route, but it also makes routes much faster to load.
 
