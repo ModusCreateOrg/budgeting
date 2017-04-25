@@ -36,6 +36,7 @@ Budgeting app is **blazing fast**, thanks to the smart architecture and Webpack 
 2. **Common code is a chunk.** We let Webpack figure out which bundles we reuse in chunks and create a common chunk that's also asyncronous. 
 3. **Redux module injection**. Each chunk contains respective views _and_ redux modules. Yes, that means reducers, action creators, actions - are all dynamically injected as we navigate through routes. That adds to the _minimal application core_ concept and PRPL pattern. 
 4. **H2 Push.** The app is hosted on Firebase and we use the magic of _HTTP2 Push_ to push some of the scripts before they are requested.
+5. **Pre-caching**. Service Workers pre-cache resources so the browser can access them as soon as the user needs to.
 
 ## Charts
 Charts are developed using the awesome D3 library. The idea behind showing charts is not only to show beautiful content, but also to demonstrate keeping heavy content in a chunk that owns it. In other words - we show how applications can run fast even if they use larger libraries.
@@ -61,6 +62,32 @@ _Simulated size warning_
 
 Note that running webpack dev server in production mode (`yarn run prod`) will trigger this warning because of the additional dev server code injected in the app. This code will not show in regular production builds.
 
+## Service Workers
+Service workers are enabled only when serving static files, not through webpack-dev-server. Here's how you can test service worker functionality:
+1. Run `yarn run build` (or `npm run build`) to build the app
+2. Run `yarn run serve` (or `npm run serve`) to serve the app on [localhost:3000](http://localhost:3000)
+3. Run a new instance of Chrome with disabled security (because localhost is not on https): 
+
+**OS X**
+
+```bash
+open -a "Google Chrome Canary" --args --user-data-dir=/tmp/unsafe --unsafely-treat-insecure-origin-as-secure=http://localhost
+```
+
+**Linux**
+
+```bash
+/path/to/chrome --user-data-dir=/tmp/unsafe --unsafely-treat-insecure-origin-as-secure=http://localhost
+```
+
+**Windows**
+
+```bash
+chrome.exe --user-data-dir=c:\temp --unsafely-treat-insecure-origin-as-secure=http://localhost
+```
+
+4. Now you can observe network traffic in the Network tab or SW activity in Application > Service Workers in Developer Tools
+
 ## Stack
 The app was built using these aweseome technologies
 
@@ -82,6 +109,7 @@ The app was built using these aweseome technologies
 * `yarn start` - run development server
 * `yarn run prod` - run production server
 * `yarn run build` - build app for deployment
+* `yarn run serve` - serve previously built app using pushstate server
 * `yarn run lint` - lint check
 * `yarn run lint:fix` - lint check + autofixes + prettify code with __prettier__
 
@@ -92,8 +120,17 @@ Similar to Yarn, really...
 * `npm start` - run development server
 * `npm run prod` - run production server
 * `npm run build` - build app for deployment
+* `npm run serve` - serve previously built app using pushstate server
 * `npm run lint` - lint check
 * `npm run lint:fix` - lint check + autofixes + prettify code with __prettier__
+
+## Honorary Mentions
+
+* Thanks to [React experts at Modus Create](https://moduscreate.com) for the infinite amounts of experience poured into this app
+* Kudos to [Andrea Grisogono](https://twitter.com/scrumolina) who Scrumorganized the team
+* Thanks to community contributors who helped with code and screamed about issues. Yeah, we really do appreciate all the screaming. 
+* [Addy Osmani](https://twitter.com/addyosmani) and [Sam Saccone](https://twitter.com/samccone) who helped with the PRPL pattern
+* [Sean T Larkin](https://twitter.com/thelarkinn) who helped with Webpack wizardry
 
 ## Want more?
 This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give as a buzz if we can help with your awesome project.

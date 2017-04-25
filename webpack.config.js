@@ -3,6 +3,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -29,6 +30,8 @@ const stats = {
 module.exports = function(env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
+
+  const serviceWorkerBuild = env && env.sw;
 
   let cssLoader;
 
@@ -141,23 +144,41 @@ module.exports = function(env) {
     ];
   }
 
+  if (serviceWorkerBuild) {
+    plugins.push(
+      new SWPrecacheWebpackPlugin({
+        cacheId: 'budgeting-app',
+        filename: 'sw.js',
+        maximumFileSizeToCacheInBytes: 800000,
+        mergeStaticsConfig: true,
+        minify: true,
+        runtimeCaching: [
+          {
+            handler: 'cacheFirst',
+            urlPattern: /(.*?)/,
+          },
+        ],
+      })
+    );
+  }
+
   const entryPoint = isProd
     ? './index.js'
     : [
         // activate HMR for React
-      'react-hot-loader/patch',
+        'react-hot-loader/patch',
 
         // bundle the client for webpack-dev-server
         // and connect to the provided endpoint
-      `webpack-dev-server/client?http://${host}:${port}`,
+        `webpack-dev-server/client?http://${host}:${port}`,
 
         // bundle the client for hot reloading
         // only- means to only hot reload for successful updates
-      'webpack/hot/only-dev-server',
+        'webpack/hot/only-dev-server',
 
         // the entry point of our app
-      './index.js',
-    ];
+        './index.js',
+      ];
 
   return {
     devtool: isProd ? 'source-map' : 'cheap-module-source-map',
@@ -174,7 +195,7 @@ module.exports = function(env) {
     module: {
       rules: [
         {
-          test: /\.(html|svg)$/,
+          test: /\.(html|svg|jpe?g|png|ttf|woff2?)$/,
           exclude: /node_modules/,
           use: {
             loader: 'file-loader',
