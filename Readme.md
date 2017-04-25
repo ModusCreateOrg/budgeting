@@ -133,7 +133,7 @@ Similar to Yarn, really...
 * [Sean T Larkin](https://twitter.com/thelarkinn) who helped with Webpack wizardry
 
 ## Want more?
-This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give as a buzz if we can help with your awesome project.
+This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give us a buzz if we can help with your awesome project.
 
 ## License
 [MIT](License.md)
