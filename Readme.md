@@ -71,7 +71,7 @@ Service workers are enabled only when serving static files, not through webpack-
 **OS X**
 
 ```bash
-open -a "Google Chrome Canary" --args --user-data-dir=/tmp/unsafe --unsafely-treat-insecure-origin-as-secure=http://localhost
+open -a "Google Chrome" --args --user-data-dir=/tmp/unsafe --unsafely-treat-insecure-origin-as-secure=http://localhost
 ```
 
 **Linux**

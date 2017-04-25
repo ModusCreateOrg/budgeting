@@ -199,7 +199,7 @@ module.exports = function(env) {
           exclude: /node_modules/,
           use: {
             loader: 'file-loader',
-            query: {
+            options: {
               name: 'static/[name]-[hash:8].[ext]',
             },
           },
