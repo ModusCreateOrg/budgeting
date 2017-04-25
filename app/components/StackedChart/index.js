@@ -7,8 +7,8 @@ import Bar from './Bar';
 import Xaxis from './Xaxis';
 import styles from './styles.scss';
 
-const outflowScheme = shuffle(schemeCategory20);
-const inflowScheme = outflowScheme.splice(0, 2);
+const outflowScheme = shuffle([...schemeCategory20.slice(0, 4), ...schemeCategory20.slice(5)]);
+const inflowScheme = ['#2ca02c']; // inflow always green
 
 class StackedChart extends Component {
   static propTypes = {
@@ -71,7 +71,7 @@ class StackedChart extends Component {
   chartPadding = 10;
 
   color = {
-    inflow: scaleLinear().range(inflowScheme),
+    inflow: scaleOrdinal(inflowScheme),
     outflow: scaleOrdinal(outflowScheme),
   };
 
