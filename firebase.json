@@ -13,7 +13,7 @@
         "headers": [
           {
             "key": "Link",
-            "value": "</chunk0-4e5dd360.js>;rel=preload;as=script;nopush,</chunk1-806bf3ab.js>;rel=preload;as=script;nopush,</chunk2-6eef1b34.js>;rel=preload;as=script;nopush"
+            "value": "</main-4e5dd360.js>;rel=preload;as=script;push"
           }
         ]
       }

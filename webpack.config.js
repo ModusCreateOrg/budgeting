@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
@@ -69,6 +71,16 @@ module.exports = function(env) {
         minifyCSS: true,
         minifyURLs: true,
       },
+    }),
+
+    // make sure script tags are async to avoid blocking html render
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async',
+    }),
+
+    // preload chunks
+    new PreloadWebpackPlugin({
+      rel: 'prefetch',
     }),
   ];
 
@@ -190,7 +202,7 @@ module.exports = function(env) {
       path: buildDirectory,
       publicPath: '/',
       filename: '[name]-[hash:8].js',
-      chunkFilename: 'chunk[name]-[chunkhash:8].js',
+      chunkFilename: '[name]-[chunkhash:8].js',
     },
     module: {
       rules: [
