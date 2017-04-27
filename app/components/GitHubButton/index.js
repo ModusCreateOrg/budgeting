@@ -15,7 +15,7 @@ const GitHubButton = ({ type, className }) => (
       data-style="mega"
       href={getHref(type)}
       data-icon={getDataIcon(type)}
-      data-show-count={true}
+      data-show-count
       aria-label={getAriaLabel(type)}
     >
       {type}
@@ -31,5 +31,15 @@ GitHubButton.propTypes = {
 GitHubButton.defaultProps = {
   className: '',
 };
+
+// load github buttons js
+(function() {
+  const tagName = 'script';
+  const target = document.getElementsByTagName(tagName)[0];
+  const tag = document.createElement(tagName);
+  tag.async = true;
+  tag.src = 'https://buttons.github.io/buttons.js';
+  target.parentNode.insertBefore(tag, target);
+})();
 
 export default GitHubButton;
