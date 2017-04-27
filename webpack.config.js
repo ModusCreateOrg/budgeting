@@ -52,7 +52,7 @@ module.exports = function(env) {
     }),
 
     // create css bundle
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('style-[contenthash:8].css'),
 
     // create index.html
     new HtmlWebpackPlugin({

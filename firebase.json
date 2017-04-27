@@ -13,9 +13,16 @@
         "headers": [
           {
             "key": "Link",
-            "value": "</main-4e5dd360.js>;rel=preload;as=script;push"
+            "value": "</main-f82e3c06.js>;rel=preload;as=script;push"
           }
         ]
+      },
+      {
+        "source": "/*.@(js|svg|css)",
+        "headers": [{
+          "key": "Cache-Control",
+          "value": "max-age=31461276"
+        }]
       }
     ]
   }
