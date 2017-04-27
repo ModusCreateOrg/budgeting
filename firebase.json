@@ -13,7 +13,7 @@
         "headers": [
           {
             "key": "Link",
-            "value": "</chunk0-a9632f6d.js>;rel=preload;as=script;nopush,</chunk1-6ad12189.js>;rel=preload;as=script;nopush,</chunk2-6bde1313.js>;rel=preload;as=script;nopush,</static/mclogo-22f11896.svg>;rel=preload;as=image;nopush"
+            "value": "</chunk0-4e5dd360.js>;rel=preload;as=script;nopush,</chunk1-806bf3ab.js>;rel=preload;as=script;nopush,</chunk2-6eef1b34.js>;rel=preload;as=script;nopush"
           }
         ]
       }

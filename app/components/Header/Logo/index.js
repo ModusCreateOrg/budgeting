@@ -3,8 +3,8 @@ import logo from 'images/mclogo.svg';
 import styles from './style.scss';
 
 const Logo = () => (
-  <a className={styles.logo} href="http://www.moduscreate.com">
-    <img src={logo} alt="Modus Create" />
+  <a href="http://www.moduscreate.com">
+    <img src={logo} alt="Modus Create" className={styles.logo} />
   </a>
 );
 
