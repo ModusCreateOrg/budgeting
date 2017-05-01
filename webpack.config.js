@@ -79,9 +79,7 @@ module.exports = function(env) {
     }),
 
     // preload chunks
-    new PreloadWebpackPlugin({
-      rel: 'prefetch',
-    }),
+    new PreloadWebpackPlugin(),
   ];
 
   if (isProd) {
