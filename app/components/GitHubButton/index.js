@@ -1,13 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 
 // load github buttons js
+let gitHubApiLoaded = false;
 function insertGithubApi() {
+  if (gitHubApiLoaded) {
+    return false;
+  }
+
   const tagName = 'script';
   const target = document.getElementsByTagName(tagName)[0];
   const tag = document.createElement(tagName);
   tag.async = true;
   tag.src = 'https://buttons.github.io/buttons.js';
   target.parentNode.insertBefore(tag, target);
+  gitHubApiLoaded = true;
 }
 
 const getHref = type => {
