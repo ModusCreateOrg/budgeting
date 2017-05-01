@@ -30,6 +30,15 @@ _The app loads in 1 second on 3G, cache disabled_
 
 Budgeting app is **blazing fast**, thanks to the smart architecture and Webpack 2 configuration. It takes about 1000ms (1s) to load on 3G (see above).
 
+![Alex Russel Test](https://cloud.githubusercontent.com/assets/733074/25586449/acf14628-2e9f-11e7-8839-2f7c20809581.png)
+_Emerging Markets 3G Filmstrip_
+
+The [aggressive test](https://www.webpagetest.org/video/compare.php?tests=170501_0S_XQ5-r:2-c:0) above shows the budgeting app loads in under 5 seconds. It's a heavily limited connection that accounts for poor connectivity and limited bandwidth. 
+
+![Waterfall](https://cloud.githubusercontent.com/assets/733074/25586623/676a378a-2ea0-11e7-9342-c040751b6ec6.png)
+
+All important (aka critical path) assets are loaded as early as possible, while the others (e.g. images or GitHub buttons) will load after the first render.
+
 #### How did we get that performance?
 
 1. **Minimal application core.** We decided to ditch the usual convention of creating a vendor chunk. Instead, it's bundled in the app core. The app core is actually very small, containing just the code needed to bootstrap the app.
