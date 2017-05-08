@@ -44,7 +44,7 @@ export default class GitHubButton extends Component {
       <div className={className}>
         <a
           className="github-button"
-          data-style="mega"
+          data-style="large"
           href={getHref(type)}
           data-icon={getDataIcon(type)}
           data-show-count
