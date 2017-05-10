@@ -18,7 +18,7 @@ Feel free to use it as a reference app or a starter kit.
 ## Key concepts:
 
 - [x] [Webpack 2 Tree shaking](http://moduscreate.com/webpack-2-tree-shaking-configuration/)
-- [x] [PRPL pattern](www.slideshare.net/grgur/prpl-pattern-with-webpack-and-react) with minimal application core
+- [x] [PRPL pattern](https://www.slideshare.net/grgur/prpl-pattern-with-webpack-and-react) with minimal application core
 - [x] Automatic code splitting with React Router 4 and `import()` statement
 - [x] Automatic common chunk bundling
 - [x] CSS modules
