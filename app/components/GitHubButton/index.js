@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 // load github buttons js
 let gitHubApiLoaded = false;
-function insertGithubApi() {
+const insertGithubApi = () => {
   if (gitHubApiLoaded) {
     return false;
   }
@@ -14,7 +14,7 @@ function insertGithubApi() {
   tag.src = 'https://buttons.github.io/buttons.js';
   target.parentNode.insertBefore(tag, target);
   gitHubApiLoaded = true;
-}
+};
 
 const getHref = type => {
   const href = type === 'Fork' ? 'fork' : '';
@@ -44,7 +44,7 @@ export default class GitHubButton extends Component {
       <div className={className}>
         <a
           className="github-button"
-          data-style="large"
+          data-size="large"
           href={getHref(type)}
           data-icon={getDataIcon(type)}
           data-show-count
