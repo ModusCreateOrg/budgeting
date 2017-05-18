@@ -1,3 +1,4 @@
+// @flow
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -7,7 +8,7 @@ import { AppContainer } from 'react-hot-loader';
 import App from 'containers/App';
 import store from 'store';
 
-const renderApp = Component => {
+const renderApp = (Component: ReactClass<any>) => {
   ReactDOM.render(
     <Provider store={store}>
       <Router>

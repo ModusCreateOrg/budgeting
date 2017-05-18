@@ -2,9 +2,12 @@ extends:
   - eslint-config-airbnb
   - prettier
   - prettier/react
+  - prettier/flowtype
+  - plugin:flowtype/recommended
 
 plugins:
     - prettier
+    - flowtype
 
 parser:
   babel-eslint
