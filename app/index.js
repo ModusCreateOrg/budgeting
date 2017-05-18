@@ -8,7 +8,7 @@ import { AppContainer } from 'react-hot-loader';
 import App from 'containers/App';
 import store from 'store';
 
-const renderApp = (Component: ReactClass<any>) => {
+const renderApp = (Component: ReactClass<$FlowFixMe>) => {
   ReactDOM.render(
     <Provider store={store}>
       <Router>
