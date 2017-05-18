@@ -14,6 +14,7 @@ const insertGithubApi = () => {
   tag.src = 'https://buttons.github.io/buttons.js';
   target.parentNode.insertBefore(tag, target);
   gitHubApiLoaded = true;
+  return true;
 };
 
 const getHref = type => {

@@ -17,11 +17,11 @@ Legend.propTypes = {
   dataLabel: PropTypes.string.isRequired,
   dataKey: PropTypes.string.isRequired,
   color: PropTypes.func.isRequired,
-  reverse: PropTypes.bool
+  reverse: PropTypes.bool,
 };
 
 Legend.defaultProps = {
-  reverse: false
-}
+  reverse: false,
+};
 
 export default Legend;

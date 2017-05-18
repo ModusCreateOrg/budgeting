@@ -54,7 +54,7 @@ class StackedChart extends Component {
     this.xScale = scaleBand().rangeRound([0, width - chartPadding * 2]).paddingInner(barPadding);
     this.xScale.domain([0, this.dataKeys.length - 1]);
 
-    this.yScale = scaleLinear().rangeRound([height - (chartPadding * 2) - bottomPadding, 0]);
+    this.yScale = scaleLinear().rangeRound([height - chartPadding * 2 - bottomPadding, 0]);
     this.yScale.domain([max([totals.inflow, totals.outflow]), 0]);
 
     this.colorFn = this.dataKeys.reduce((colorFn, key) => {
@@ -106,7 +106,7 @@ class StackedChart extends Component {
           />
         </Chart>
 
-        <Legend color={colorFn.outflow} reverse={true} data={data.outflow} {...{ dataValue, dataLabel, dataKey }} />
+        <Legend color={colorFn.outflow} reverse data={data.outflow} {...{ dataValue, dataLabel, dataKey }} />
       </div>
     );
   }
