@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './style.scss';
 
 type BalancePrefixProps = {
-  text: string,
+  text?: string,
 };
 
 const BalancePrefix = ({ text }: BalancePrefixProps): React$Element<any> => (
