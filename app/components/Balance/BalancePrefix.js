@@ -1,11 +1,19 @@
-import React, { PropTypes } from 'react';
+// @flow
+
+import React from 'react';
 
 import styles from './style.scss';
 
-const BalancePrefix = ({ text }) => <div className={styles.balanceSymbol}>{text}</div>;
+type BalancePrefixProps = {
+  text: string,
+};
 
-BalancePrefix.propTypes = {
-  text: PropTypes.string.isRequired,
+const BalancePrefix = ({ text }: BalancePrefixProps): React$Element<any> => (
+  <div className={styles.balanceSymbol}>{text}</div>
+);
+
+BalancePrefix.defaultProps = {
+  text: '',
 };
 
 export default BalancePrefix;

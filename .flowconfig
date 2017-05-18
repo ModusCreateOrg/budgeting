@@ -28,3 +28,9 @@ munge_underscores=false
 
 unsafe.enable_getters_and_setters=true
 module.system.node.resolve_dirname=app
+
+module.file_ext=.css
+module.file_ext=.scss
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
