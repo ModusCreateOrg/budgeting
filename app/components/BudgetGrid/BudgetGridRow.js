@@ -1,19 +1,9 @@
 // @flow
 
 import React from 'react';
-
 import formatAmount from 'utils/formatAmount';
-
+import type Transaction from 'modules/transactions';
 import styles from './style.scss';
-
-// disable false positives
-/* eslint-disable react/no-unused-prop-types */
-type Transaction = {|
-  id: number,
-  categoryId: string,
-  description: string,
-  value: number,
-|};
 
 type BudgetGridRowProps = {
   transaction: Transaction,

@@ -1,3 +1,4 @@
+// @flow
 import { defaultTransactions, inflowCategories } from './defaults';
 
 /**
@@ -5,6 +6,13 @@ import { defaultTransactions, inflowCategories } from './defaults';
  */
 const ADD_TRANSACTION = 'budget/transaction/ADD';
 const DELETE_TRANSACTION = 'budget/transaction/DELETE';
+
+export type Transaction = {
+  id: number,
+  categoryId: number,
+  description: string,
+  value: number,
+};
 
 /**
  * Helpers
@@ -14,7 +22,7 @@ function getNextTransactionID(state) {
 }
 
 // Add a new transaction.
-function normalizeTransaction(state, { categoryId, description, value }) {
+function normalizeTransaction(state, { categoryId, description, value }): Transaction {
   const categoryNumId = parseInt(categoryId, 10);
   const realValue = inflowCategories.includes(categoryNumId) ? Math.abs(value) : Math.abs(value) * -1;
 
@@ -30,13 +38,13 @@ function normalizeTransaction(state, { categoryId, description, value }) {
  * Actions
  */
 export const actions = {
-  addTransaction: transaction => (dispatch, getState) =>
+  addTransaction: (transaction: Transaction) => (dispatch: Function, getState: Function) =>
     dispatch({
       type: ADD_TRANSACTION,
       transaction: normalizeTransaction(getState().transactions, transaction),
     }),
 
-  deleteTransaction: id => ({
+  deleteTransaction: (id: $PropertyType<Transaction, 'id'>) => ({
     type: DELETE_TRANSACTION,
     id,
   }),
@@ -45,7 +53,7 @@ export const actions = {
 /**
  * Reducer
  */
-export default function transactionsReducer(state = defaultTransactions, action) {
+export default function transactionsReducer(state: Object = defaultTransactions, action: Object) {
   let newState;
 
   switch (action.type) {
