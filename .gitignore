@@ -5,3 +5,4 @@ static
 *.log*
 _nogit
 build
+*.report.dom.html
