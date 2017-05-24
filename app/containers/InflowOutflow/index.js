@@ -1,7 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { sortTransactions, getInflowByCategoryName, getOutflowByCategoryName, getInflowBalance, getOutflowBalance } from 'selectors/transactions';
+import {
+  sortTransactions,
+  getInflowByCategoryName,
+  getOutflowByCategoryName,
+  getInflowBalance,
+  getOutflowBalance,
+} from 'selectors/transactions';
 
 import StackedChart from 'components/StackedChart';
 
@@ -13,7 +19,7 @@ import StackedChart from 'components/StackedChart';
   totals: {
     inflow: getInflowBalance(state),
     outflow: Math.abs(getOutflowBalance(state)),
-  }
+  },
 }))
 class InflowOutflow extends Component {
   static propTypes = {
