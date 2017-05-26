@@ -5,18 +5,11 @@ import { connect } from 'react-redux';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'components/EntryFormRow';
-// import type Transaction from 'modules/transactions';
+import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 
-type Transaction = {
-  id: number,
-  categoryId: number,
-  description: string,
-  value: number,
-};
-
-type BudgetGridProps = {
+type Props = {
   transactions: Transaction[],
   categories: Object,
 };
@@ -25,7 +18,7 @@ type BudgetGridProps = {
   transactions: getTransactions(state),
   categories: getCategories(state),
 }))
-export default class BudgetGrid extends Component<BudgetGridProps, BudgetGridProps, void> {
+export default class BudgetGrid extends Component<Props, Props, void> {
   static defaultProps = {
     transactions: [],
     categories: {},

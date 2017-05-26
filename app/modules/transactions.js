@@ -9,7 +9,7 @@ const DELETE_TRANSACTION = 'budget/transaction/DELETE';
 
 export type Transaction = {
   id: number,
-  categoryId: number,
+  categoryId: string,
   description: string,
   value: number,
 };
@@ -23,12 +23,11 @@ function getNextTransactionID(state) {
 
 // Add a new transaction.
 function normalizeTransaction(state, { categoryId, description, value }): Transaction {
-  const categoryNumId = parseInt(categoryId, 10);
-  const realValue = inflowCategories.includes(categoryNumId) ? Math.abs(value) : Math.abs(value) * -1;
+  const realValue = inflowCategories.includes(categoryId) ? Math.abs(value) : Math.abs(value) * -1;
 
   return {
     id: getNextTransactionID(state),
-    categoryId: categoryNumId,
+    categoryId,
     description,
     value: realValue,
   };
@@ -53,7 +52,7 @@ export const actions = {
 /**
  * Reducer
  */
-export default function transactionsReducer(state: Object = defaultTransactions, action: Object) {
+export default function transactionsReducer(state: Transaction[] = defaultTransactions, action: Object) {
   let newState;
 
   switch (action.type) {

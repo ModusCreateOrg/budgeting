@@ -1,16 +1,14 @@
+// @flow
 import { categoriesById } from './defaults';
 
 /**
- * Action Constansts
+ * Types
  */
-
-/**
- * Actions
- */
+export type Category = { [key: string]: string };
 
 /**
  * Reducer
  */
-export default function categoriesReducer(state = categoriesById) {
+export default function categoriesReducer(state: Category = categoriesById) {
   return state;
 }
