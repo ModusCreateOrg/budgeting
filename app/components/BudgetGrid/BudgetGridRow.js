@@ -2,7 +2,7 @@
 
 import React from 'react';
 import formatAmount from 'utils/formatAmount';
-import type Transaction from 'modules/transactions';
+import type { Transaction } from 'modules/transactions';
 import styles from './style.scss';
 
 type BudgetGridRowProps = {

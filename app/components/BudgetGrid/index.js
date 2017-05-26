@@ -17,7 +17,7 @@ type Transaction = {
 };
 
 type BudgetGridProps = {
-  transactions: (?Transaction)[],
+  transactions: Transaction[],
   categories: Object,
 };
 
@@ -26,7 +26,7 @@ type BudgetGridProps = {
   categories: getCategories(state),
 }))
 export default class BudgetGrid extends Component<BudgetGridProps, BudgetGridProps, void> {
-  static defaultProps: {
+  static defaultProps = {
     transactions: [],
     categories: {},
   };
