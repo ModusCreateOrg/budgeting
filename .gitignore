@@ -6,3 +6,4 @@ static
 _nogit
 build
 *.report.dom.html
+/dll

@@ -6,6 +6,7 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -35,6 +36,8 @@ module.exports = function(env) {
 
   const serviceWorkerBuild = env && env.sw;
 
+  const htmlTemplate = isProd ? 'index.prod.ejs' : 'index.dev.ejs';
+
   let cssLoader;
 
   const plugins = [
@@ -56,7 +59,7 @@ module.exports = function(env) {
 
     // create index.html
     new HtmlWebpackPlugin({
-      template: './index.ejs',
+      template: htmlTemplate,
       inject: true,
       production: isProd,
       minify: isProd && {
@@ -129,7 +132,21 @@ module.exports = function(env) {
       // show module names instead of numbers in webpack stats
       new webpack.NamedModulesPlugin(),
       // don't spit out any errors in compiled assets
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin(),
+
+      // load DLL files
+      /* eslint-disable global-require */
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json')}),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json')}),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json')}),
+      /* eslint-enable global-require */
+
+      // make DLL assets available for the app to download
+      new AddAssetHtmlPlugin([
+        { filepath: require.resolve('./dll/d3.dll.js') }, 
+        { filepath: require.resolve('./dll/react.dll.js') }, 
+        { filepath: require.resolve('./dll/reactContrib.dll.js') }, 
+      ])
     );
 
     cssLoader = [
