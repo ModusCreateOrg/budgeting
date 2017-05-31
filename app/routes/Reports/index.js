@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import Reports from 'components/ReportsPanel';
+import React from 'react';
 
-class ReportsRoute extends Component {
-  render() {
-    return <Reports />;
-  }
-}
+import Chunk from 'components/Chunk';
 
-export default ReportsRoute;
+const loadReportsPanel = () => import('components/ReportsPanel' /* webpackChunkName: "reports" */);
+
+const Reports = () => <Chunk load={loadReportsPanel} />;
+
+export default Reports;

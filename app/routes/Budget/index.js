@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import Budget from 'containers/Budget';
+import Chunk from 'components/Chunk';
 
-class BudgetRoute extends Component {
+const loadBudgetContainer = () => import('containers/Budget' /* webpackChunkName: "budget" */);
+
+class Budget extends Component {
   render() {
-    return <Budget />;
+    return <Chunk load={loadBudgetContainer} />;
   }
 }
 
-export default BudgetRoute;
+export default Budget;
