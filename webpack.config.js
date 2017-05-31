@@ -132,6 +132,7 @@ module.exports = function(env) {
       path: buildDirectory,
       publicPath: '/',
       filename: '[name]-[hash:8].js',
+      chunkFilename: '[name]-[chunkhash:8].js',
     },
     module: {
       rules: [
