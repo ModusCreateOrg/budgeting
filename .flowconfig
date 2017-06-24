@@ -1,0 +1,29 @@
+[libs]
+# ./node_modules/fbjs/flow/lib
+
+
+[include]
+
+
+[ignore]
+.*/chrome-devtools-frontend/.*
+.*/node_modules/jest-validate/src/.*
+.*/node_modules/fbjs/.*
+
+
+[options]
+esproposal.decorators=ignore
+
+# module.file_ext=.js
+# module.file_ext=.jsx
+# module.file_ext=.scss
+
+# module.name_mapper='^shared\(\/?.*\)$' -> '<PROJECT_ROOT>/src/shared/\1'
+# module.name_mapper='^app\/\(.*\)$' -> '<PROJECT_ROOT>/app/\1'
+# module.name_mapper='.+\.s?css' -> 'CSSModule'
+# module.name_mapper.extension='scss' -> 'CSSModule'
+# module.name_mapper.extension='scss' -> 'empty/object'
+
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow/CSSModule.js.flow'
+
+# module.system=haste

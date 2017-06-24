@@ -13,6 +13,7 @@
       "modules": false,
       "loose": true
     }],
+    "flow",
     "react"
   ],
   "env": {
