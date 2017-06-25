@@ -7,3 +7,4 @@ _nogit
 build
 *.report.dom.html
 /dll
+.idea
