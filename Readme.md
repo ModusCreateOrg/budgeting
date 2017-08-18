@@ -22,6 +22,7 @@ Feel free to use it as a reference app or a starter kit.
 - [x] Automatic code splitting with React Router 4 and `import()` statement
 - [x] Automatic common chunk bundling
 - [x] CSS modules
+- [x] Snapshot testing with Jest
 - [x] Performance budgets in Webpack 2
 
 ## Performance
@@ -107,6 +108,7 @@ The app was built using these aweseome technologies
 - [x] [Reselect](https://github.com/reactjs/reselect/)
 - [x] [Babel](https://babeljs.io/)
 - [x] [Prettier](https://github.com/prettier/prettier)
+- [x] [Jest](https://facebook.github.io/jest/)
 - [x] [Yarn](https://yarnpkg.com/en/)
 - [x] [Ducks](https://github.com/erikras/ducks-modular-redux/) 🐣
 - [x] [Sass](http://sass-lang.com/)
@@ -121,6 +123,9 @@ The app was built using these aweseome technologies
 * `yarn run serve` - serve previously built app using pushstate server
 * `yarn run lint` - lint check
 * `yarn run lint:fix` - lint check + autofixes + prettify code with __prettier__
+* `yarn run test` - run test suite
+* `yarn run test:fix` - run test suite watching files for changes
+
 
 ## NPM Scripts
 Similar to Yarn, really...
@@ -132,6 +137,8 @@ Similar to Yarn, really...
 * `npm run serve` - serve previously built app using pushstate server
 * `npm run lint` - lint check
 * `npm run lint:fix` - lint check + autofixes + prettify code with __prettier__
+* `npm run test` - run test suite
+* `npm run test:fix` - run test suite watching files for changes
 
 ## Honorary Mentions
 

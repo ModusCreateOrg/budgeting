@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<tr>
+  <td>
+    Groceries
+  </td>
+  <td>
+    Trader Joe's food
+  </td>
+  <td
+    className="neg"
+  >
+    -$423.34
+  </td>
+</tr>
+`;
