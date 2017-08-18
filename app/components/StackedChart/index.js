@@ -87,7 +87,7 @@ class StackedChart extends Component {
           padding={chartPadding}
           transform={`translate(${chartPadding},${chartPadding})`}
         >
-          {dataKeys.map((key, idx) => (
+          {dataKeys.map((key, idx) =>
             <Bar
               key={key}
               data={data[key]}
@@ -96,7 +96,7 @@ class StackedChart extends Component {
               width={xScale.bandwidth()}
               transform={`translate(${xScale(idx)}, 0)`}
             />
-          ))}
+          )}
 
           <Xaxis
             transform={`translate(0, ${yScale.range()[0] + chartPadding / 3})`}
