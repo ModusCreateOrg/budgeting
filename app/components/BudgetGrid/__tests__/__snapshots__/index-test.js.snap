@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<table
+  className="budgetGrid"
+>
+  <thead>
+    <tr>
+      <th>
+        Category
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Amount
+      </th>
+    </tr>
+  </thead>
+  <tbody />
+  <tfoot />
+</table>
+`;

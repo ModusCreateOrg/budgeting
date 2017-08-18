@@ -23,6 +23,7 @@ ecmaFeatures:
 
 env:
   browser: true
+  jest: true
 
 rules:
   indent: 2
