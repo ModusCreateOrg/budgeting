@@ -147,6 +147,7 @@ Similar to Yarn, really...
 * Thanks to community contributors who helped with code and screamed about issues. Yeah, we really do appreciate all the screaming. 
 * [Addy Osmani](https://twitter.com/addyosmani) and [Sam Saccone](https://twitter.com/samccone) who helped with the PRPL pattern
 * [Sean T Larkin](https://twitter.com/thelarkinn) who helped with Webpack wizardry
+* [Esteban Las](https://twitter.com/elas78) who helped with Jest integration
 
 ## Want more?
 This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give us a buzz if we can help with your awesome project.
