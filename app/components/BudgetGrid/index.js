@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
-import EntryFormRow from 'components/EntryFormRow';
+import EntryFormRow from 'containers/EntryFormRow';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 

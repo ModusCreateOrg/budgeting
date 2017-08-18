@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import App from 'containers/App';
+import App from 'components/App';
 import store from 'store';
 
 const renderApp = Component => {
@@ -24,5 +24,5 @@ renderApp(App);
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('containers/App', () => renderApp(App));
+  module.hot.accept('components/App', () => renderApp(App));
 }

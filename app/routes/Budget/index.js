@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Chunk from 'components/Chunk';
+import Chunk from 'containers/Chunk';
 
-const loadBudgetContainer = () => import('containers/Budget' /* webpackChunkName: "budget" */);
+const loadBudgetContainer = () => import('components/Budget' /* webpackChunkName: "budget" */);
 
 class Budget extends Component {
   render() {
