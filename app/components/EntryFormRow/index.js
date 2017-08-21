@@ -15,23 +15,29 @@ class EntryFormRow extends Component {
   };
 
   render() {
+    const {
+      categoryId,
+      categories,
+      value,
+      description,
+      handleFieldChange,
+      handleKeyUp,
+      handleValueRefUpdate,
+      handleAddButtonClick,
+    } = this.props;
+
     return (
       <tr className={styles.entryFormRow}>
         <td>
-          <DataSelector
-            name="categoryId"
-            value={this.props.categoryId}
-            data={this.props.categories}
-            onChange={this.props.handleFieldChange}
-          />
+          <DataSelector name="categoryId" value={categoryId} data={categories} onChange={handleFieldChange} />
         </td>
         <td>
           <input
             type="text"
             name="description"
-            value={this.props.description}
-            onChange={this.props.handleFieldChange}
-            onKeyUp={this.props.handleKeyUp}
+            value={description}
+            onChange={handleFieldChange}
+            onKeyUp={handleKeyUp}
             placeholder="Description"
           />
         </td>
@@ -39,14 +45,14 @@ class EntryFormRow extends Component {
           <input
             type="number"
             name="value"
-            value={this.props.value}
-            ref={this.props.handleValueRefUpdate}
-            onChange={this.props.handleFieldChange}
-            onKeyUp={this.props.handleKeyUp}
+            value={value}
+            ref={handleValueRefUpdate}
+            onChange={handleFieldChange}
+            onKeyUp={handleKeyUp}
             placeholder="Value"
             className={styles.amountField}
           />
-          <button onClick={this.props.handleAddButtonClick}>Add</button>
+          <button onClick={handleAddButtonClick}>Add</button>
         </td>
       </tr>
     );
