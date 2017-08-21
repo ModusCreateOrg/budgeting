@@ -142,12 +142,11 @@ Similar to Yarn, really...
 
 ## Honorary Mentions
 
-* Thanks to [React experts at Modus Create](https://moduscreate.com) for the infinite amounts of experience poured into this app
+* Thanks to [React experts at Modus Create](https://moduscreate.com), particularly [Tim Eagan](https://twitter.com/TimothyEagan), [Jason Malfatto](https://twitter.com/jmalfatto), [Brice Mason](https://twitter.com/bricemason), and [Esteban Las](https://twitter.com/elas78) for infinite amounts of experience poured into this app
 * Kudos to [Andrea Grisogono](https://twitter.com/scrumolina) who Scrumorganized the team
 * Thanks to community contributors who helped with code and screamed about issues. Yeah, we really do appreciate all the screaming. 
 * [Addy Osmani](https://twitter.com/addyosmani) and [Sam Saccone](https://twitter.com/samccone) who helped with the PRPL pattern
 * [Sean T Larkin](https://twitter.com/thelarkinn) who helped with Webpack wizardry
-* [Esteban Las](https://twitter.com/elas78) who helped with Jest integration
 
 ## Want more?
 This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give us a buzz if we can help with your awesome project.
