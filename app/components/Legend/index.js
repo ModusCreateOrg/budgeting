@@ -3,13 +3,12 @@ import React, { PropTypes } from 'react';
 import LegendItem from './LegendItem';
 import styles from './styles.scss';
 
-const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }) => (
+const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }) =>
   <ul className={`${styles.legend} ${reverse && styles.reverse}`}>
-    {data.map((item, idx) => (
+    {data.map((item, idx) =>
       <LegendItem color={color(idx)} key={item[dataKey]} label={item[dataLabel]} value={item[dataValue]} />
-    ))}
-  </ul>
-);
+    )}
+  </ul>;
 
 Legend.propTypes = {
   data: PropTypes.array.isRequired,
