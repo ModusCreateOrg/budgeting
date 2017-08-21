@@ -30,9 +30,9 @@ export class BudgetGrid extends Component {
           </tr>
         </thead>
         <tbody>
-          {transactions.map(transaction => (
+          {transactions.map(transaction =>
             <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
-          ))}
+          )}
         </tbody>
         <tfoot>
           <EntryFormRow />

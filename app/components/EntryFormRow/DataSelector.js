@@ -5,11 +5,11 @@ export default function DataSelector(props) {
 
   return (
     <select name={props.name} value={props.value} onChange={props.onChange}>
-      {Object.keys(data).map(id => (
+      {Object.keys(data).map(id =>
         <option key={id} value={id}>
           {data[id]}
         </option>
-      ))}
+      )}
     </select>
   );
 }

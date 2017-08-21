@@ -12,14 +12,11 @@ parser:
 settings:
   ecmascript: 6
 
-ecmaFeatures:
-  jsx: true
-  modules: true
-  destructuring: true
-  classes: true
-  forOf: true
-  blockBindings: true
-  arrowFunctions: true
+parserOptions:
+  sourceType: "module"
+  ecmaVersion: 6
+  ecmaFeatures:
+    jsx: true
 
 env:
   browser: true

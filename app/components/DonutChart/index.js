@@ -67,9 +67,9 @@ class DonutChart extends Component {
           padding={chartPadding}
           transform={`translate(${outerRadius},${outerRadius})`}
         >
-          {this.chart(data).map((datum, index) => (
+          {this.chart(data).map((datum, index) =>
             <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
-          ))}
+          )}
         </Chart>
 
         <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />

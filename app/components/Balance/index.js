@@ -8,8 +8,12 @@ const Balance = ({ title, amount, colorize }) => {
   return (
     <div className={styles.balanceWrapper}>
       <div className={styles.balanceItem}>
-        <div className={`${styles.balanceAmount} ${amountCls}`}>{amount.text}</div>
-        <div className={styles.balanceTitle}>{title}</div>
+        <div className={`${styles.balanceAmount} ${amountCls}`}>
+          {amount.text}
+        </div>
+        <div className={styles.balanceTitle}>
+          {title}
+        </div>
       </div>
     </div>
   );
