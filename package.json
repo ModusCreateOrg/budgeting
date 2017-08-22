@@ -8,6 +8,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "coverage": "jest --coverage",
     "start": "webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
     "build": "rimraf build && cross-env NODE_ENV=production webpack --env.prod=true --env.sw=true",
