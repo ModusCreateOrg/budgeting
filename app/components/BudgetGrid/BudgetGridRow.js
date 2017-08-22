@@ -18,9 +18,15 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps): React$E
 
   return (
     <tr key={id}>
-      <td>{category}</td>
-      <td>{description}</td>
-      <td className={amountCls}>{amount.text}</td>
+      <td>
+        {category}
+      </td>
+      <td>
+        {description}
+      </td>
+      <td className={amountCls}>
+        {amount.text}
+      </td>
     </tr>
   );
 };

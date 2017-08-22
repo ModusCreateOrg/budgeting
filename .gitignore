@@ -5,3 +5,7 @@ static
 *.log*
 _nogit
 build
+coverage
+*.report.dom.html
+/dll
+.idea

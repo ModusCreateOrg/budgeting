@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="balanceWrapper"
+>
+  <div
+    className="balanceItem"
+  >
+    <div
+      className="balanceAmount pos"
+    >
+      text
+    </div>
+    <div
+      className="balanceTitle"
+    >
+      title
+    </div>
+  </div>
+</div>
+`;

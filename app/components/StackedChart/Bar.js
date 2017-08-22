@@ -26,7 +26,10 @@ class Bar extends Component {
     const { yScale, data } = this.props;
     let start = yScale.range()[0];
 
-    this.yPositions = data.map(datum => (start -= yScale(datum.value)));
+    this.yPositions = data.map(datum => {
+      start -= yScale(datum.value);
+      return start;
+    });
   };
 
   render() {
@@ -35,8 +38,7 @@ class Bar extends Component {
 
     return (
       <g transform={transform}>
-
-        {data.map((datum, idx) => (
+        {data.map((datum, idx) =>
           <Rect
             key={datum.categoryId}
             y={yPositions[idx]}
@@ -44,8 +46,7 @@ class Bar extends Component {
             width={width}
             fill={colorFn(idx)}
           />
-        ))}
-
+        )}
       </g>
     );
   }

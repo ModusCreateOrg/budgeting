@@ -87,9 +87,7 @@ class EntryFormRow extends Component {
             className={styles.amountField}
           />
 
-          <button onClick={this.handleAddButtonClick}>
-            Add
-          </button>
+          <button onClick={this.handleAddButtonClick}>Add</button>
         </td>
       </tr>
     );

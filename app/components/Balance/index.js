@@ -19,7 +19,9 @@ const Balance = ({ title, amount, colorize }: BalanceProps): React$Element<any> 
         <div className={`${styles.balanceAmount} ${amountCls}`}>
           {amount.text}
         </div>
-        <div className={styles.balanceTitle}>{title}</div>
+        <div className={styles.balanceTitle}>
+          {title}
+        </div>
       </div>
     </div>
   );

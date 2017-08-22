@@ -14,11 +14,7 @@ type Props = {
   categories: Object,
 };
 
-@connect(state => ({
-  transactions: getTransactions(state),
-  categories: getCategories(state),
-}))
-export default class BudgetGrid extends Component<Props, Props, void> {
+export class BudgetGrid extends Component<Props, Props, void> {
   static defaultProps = {
     transactions: [],
     categories: {},
@@ -37,9 +33,9 @@ export default class BudgetGrid extends Component<Props, Props, void> {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction: Transaction): React$Element<any> => (
+          {transactions.map((transaction: Transaction): React$Element<any> =>
             <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
-          ))}
+          )}
         </tbody>
         <tfoot>
           <EntryFormRow />
@@ -48,3 +44,10 @@ export default class BudgetGrid extends Component<Props, Props, void> {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  transactions: getTransactions(state),
+  categories: getCategories(state),
+});
+
+export default connect(mapStateToProps)(BudgetGrid);

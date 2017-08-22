@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 let gitHubApiLoaded = false;
 const insertGithubApi = () => {
   if (gitHubApiLoaded) {
-    return false;
+    return;
   }
 
   const tagName = 'script';
