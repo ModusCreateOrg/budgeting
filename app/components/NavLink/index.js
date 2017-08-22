@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 import { Route, Link } from 'react-router-dom';
 
 const NavLink = ({ to, label, styles }) =>
@@ -12,9 +12,9 @@ const NavLink = ({ to, label, styles }) =>
   />;
 
 NavLink.propTypes = {
-  to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  styles: PropTypes.object.isRequired,
+  to: React.PropTypes.string.isRequired,
+  label: React.PropTypes.string.isRequired,
+  styles: React.PropTypes.object.isRequired,
 };
 
 export default NavLink;

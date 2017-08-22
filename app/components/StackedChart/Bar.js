@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import Rect from './Rect';
 
-class Bar extends Component {
+class Bar extends React.Component {
   static propTypes = {
-    yScale: PropTypes.func.isRequired,
-    colorFn: PropTypes.func.isRequired,
-    data: PropTypes.array.isRequired,
-    transform: PropTypes.string.isRequired,
-    width: PropTypes.number.isRequired,
+    yScale: React.PropTypes.func.isRequired,
+    colorFn: React.PropTypes.func.isRequired,
+    data: React.PropTypes.array.isRequired,
+    transform: React.PropTypes.string.isRequired,
+    width: React.PropTypes.number.isRequired,
   };
 
   componentWillMount() {

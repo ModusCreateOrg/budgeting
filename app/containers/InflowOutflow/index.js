@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -21,10 +21,10 @@ import StackedChart from 'components/StackedChart';
     outflow: Math.abs(getOutflowBalance(state)),
   },
 }))
-class InflowOutflow extends Component {
+class InflowOutflow extends React.Component {
   static propTypes = {
-    data: PropTypes.object.isRequired,
-    totals: PropTypes.object.isRequired,
+    data: React.PropTypes.object.isRequired,
+    totals: React.PropTypes.object.isRequired,
   };
 
   render() {

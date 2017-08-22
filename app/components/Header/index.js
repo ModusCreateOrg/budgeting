@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import NavLink from 'components/NavLink';
 import Logo from './Logo';

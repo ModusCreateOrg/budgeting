@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 
 import LegendItem from './LegendItem';
 import styles from './styles.scss';
@@ -11,12 +11,12 @@ const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }) =>
   </ul>;
 
 Legend.propTypes = {
-  data: PropTypes.array.isRequired,
-  dataValue: PropTypes.string.isRequired,
-  dataLabel: PropTypes.string.isRequired,
-  dataKey: PropTypes.string.isRequired,
-  color: PropTypes.func.isRequired,
-  reverse: PropTypes.bool,
+  data: React.PropTypes.array.isRequired,
+  dataValue: React.PropTypes.string.isRequired,
+  dataLabel: React.PropTypes.string.isRequired,
+  dataKey: React.PropTypes.string.isRequired,
+  color: React.PropTypes.func.isRequired,
+  reverse: React.PropTypes.bool,
 };
 
 Legend.defaultProps = {

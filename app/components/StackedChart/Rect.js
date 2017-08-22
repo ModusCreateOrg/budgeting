@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 
 import { select, interpolate } from 'd3';
 
-class Rect extends Component {
+class Rect extends React.Component {
   static propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    fill: PropTypes.string.isRequired,
-    y: PropTypes.number.isRequired,
-    animDuration: PropTypes.number,
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
+    fill: React.PropTypes.string.isRequired,
+    y: React.PropTypes.number.isRequired,
+    animDuration: React.PropTypes.number,
   };
 
   static defaultProps = {

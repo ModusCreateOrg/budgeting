@@ -1,16 +1,16 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import styles from './style.scss';
 
 type BalanceProps = {
   title: string,
   amount: Object,
-  colorize?: boolean,
+  colorize: boolean,
 };
 
-const Balance = ({ title, amount, colorize }: BalanceProps): React$Element<any> => {
+const Balance = ({ title, amount, colorize }: BalanceProps) => {
   const amountCls = colorize && amount.isNegative ? styles.neg : styles.pos || '';
 
   return (

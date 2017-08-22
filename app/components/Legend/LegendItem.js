@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 
 import formatAmount from 'utils/formatAmount';
 import styles from './styles.scss';
@@ -14,9 +14,9 @@ const LegendItem = ({ color, label, value }) =>
   </li>;
 
 LegendItem.propTypes = {
-  color: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
+  color: React.PropTypes.string.isRequired,
+  value: React.PropTypes.number.isRequired,
+  label: React.PropTypes.string.isRequired,
 };
 
 export default LegendItem;

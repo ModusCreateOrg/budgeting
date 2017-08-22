@@ -9,6 +9,9 @@
 [libs]
 flow-typed
 
+[lints]
+all=warn
+
 [options]
 module.system=haste
 
@@ -36,3 +39,5 @@ module.file_ext=.scss
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
+
+include_warnings=true

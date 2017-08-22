@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
@@ -14,7 +14,7 @@ type Props = {
   categories: Object,
 };
 
-export class BudgetGrid extends Component<Props, Props, void> {
+export class BudgetGrid extends React.Component<Props> {
   static defaultProps = {
     transactions: [],
     categories: {},
@@ -33,7 +33,7 @@ export class BudgetGrid extends Component<Props, Props, void> {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction: Transaction): React$Element<any> =>
+          {transactions.map((transaction: Transaction): React.Element<any> =>
             <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
           )}
         </tbody>

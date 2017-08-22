@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { sortTransactions, getOutflowByCategoryName } from 'selectors/transactions';
@@ -8,9 +8,9 @@ import DonutChart from 'components/DonutChart';
 @connect(state => ({
   data: sortTransactions(getOutflowByCategoryName(state)),
 }))
-class Spending extends Component {
+class Spending extends React.Component {
   static propTypes = {
-    data: PropTypes.array.isRequired,
+    data: React.PropTypes.array.isRequired,
   };
 
   render() {

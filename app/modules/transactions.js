@@ -8,10 +8,10 @@ const ADD_TRANSACTION = 'budget/transaction/ADD';
 const DELETE_TRANSACTION = 'budget/transaction/DELETE';
 
 export type Transaction = {
-  id: number,
-  categoryId: string,
-  description: string,
-  value: number,
+  +id: number,
+  +categoryId: string,
+  +description: string,
+  +value: number,
 };
 
 /**

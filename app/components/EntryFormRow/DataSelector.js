@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 
 export default function DataSelector(props) {
   const { data } = props;
@@ -15,10 +15,10 @@ export default function DataSelector(props) {
 }
 
 DataSelector.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
+  name: React.PropTypes.string,
+  value: React.PropTypes.string.isRequired,
+  data: React.PropTypes.object.isRequired,
+  onChange: React.PropTypes.func.isRequired,
 };
 
 DataSelector.defaultProps = {

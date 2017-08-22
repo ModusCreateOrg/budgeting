@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import styles from './style.scss';
@@ -10,7 +10,7 @@ type BudgetGridRowProps = {
   categories: Object,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps): React$Element<any> => {
+const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;

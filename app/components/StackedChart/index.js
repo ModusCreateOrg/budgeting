@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
 import { max, scaleBand, scaleLinear, scaleOrdinal, schemeCategory20 } from 'd3';
@@ -10,20 +10,20 @@ import styles from './styles.scss';
 const outflowScheme = shuffle([...schemeCategory20.slice(0, 4), ...schemeCategory20.slice(5)]);
 const inflowScheme = ['#2ca02c']; // inflow always green
 
-class StackedChart extends Component {
+class StackedChart extends React.Component {
   static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    dataValue: PropTypes.string,
-    dataLabel: PropTypes.string.isRequired,
-    dataKey: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-      inflow: PropTypes.array,
-      outflow: PropTypes.array,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    dataValue: React.PropTypes.string,
+    dataLabel: React.PropTypes.string.isRequired,
+    dataKey: React.PropTypes.string.isRequired,
+    data: React.PropTypes.shape({
+      inflow: React.PropTypes.array,
+      outflow: React.PropTypes.array,
     }).isRequired,
-    totals: PropTypes.shape({
-      inflow: PropTypes.number,
-      outflow: PropTypes.number,
+    totals: React.PropTypes.shape({
+      inflow: React.PropTypes.number,
+      outflow: React.PropTypes.number,
     }).isRequired,
   };
 

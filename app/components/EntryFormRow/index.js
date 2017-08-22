@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getDefaultCategoryId, getCategories } from 'selectors/categories';
 import { actions } from 'modules/transactions';
@@ -14,11 +14,11 @@ import styles from './style.scss';
     addTransaction: actions.addTransaction,
   }
 )
-class EntryFormRow extends Component {
+class EntryFormRow extends React.Component {
   static propTypes = {
-    defaultCategoryId: PropTypes.string.isRequired,
-    categories: PropTypes.object.isRequired,
-    addTransaction: PropTypes.func.isRequired,
+    defaultCategoryId: React.PropTypes.string.isRequired,
+    categories: React.PropTypes.object.isRequired,
+    addTransaction: React.PropTypes.func.isRequired,
   };
 
   state = {

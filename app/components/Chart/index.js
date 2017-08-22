@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 
 import styles from './styles.scss';
 
@@ -10,11 +10,11 @@ const Chart = ({ width, height, padding, transform, children }) =>
   </svg>;
 
 Chart.propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  padding: PropTypes.number,
-  transform: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  width: React.PropTypes.number.isRequired,
+  height: React.PropTypes.number.isRequired,
+  padding: React.PropTypes.number,
+  transform: React.PropTypes.string,
+  children: React.PropTypes.node.isRequired,
 };
 
 Chart.defaultProps = {

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
 import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
@@ -8,15 +8,15 @@ import styles from './styles.scss';
 
 const randomScheme = shuffle(schemeCategory20);
 
-class DonutChart extends Component {
+class DonutChart extends React.Component {
   static propTypes = {
-    data: PropTypes.array.isRequired,
-    dataLabel: PropTypes.string.isRequired,
-    dataKey: PropTypes.string.isRequired,
-    dataValue: PropTypes.string,
-    color: PropTypes.func,
-    height: PropTypes.number,
-    innerRatio: PropTypes.number,
+    data: React.PropTypes.array.isRequired,
+    dataLabel: React.PropTypes.string.isRequired,
+    dataKey: React.PropTypes.string.isRequired,
+    dataValue: React.PropTypes.string,
+    color: React.PropTypes.func,
+    height: React.PropTypes.number,
+    innerRatio: React.PropTypes.number,
   };
 
   static defaultProps = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import logo from 'images/mclogo.svg';
 import styles from './style.scss';
 

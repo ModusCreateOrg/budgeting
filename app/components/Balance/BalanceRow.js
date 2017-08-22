@@ -1,14 +1,14 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import styles from './style.scss';
 
 type BalanceProps = {
-  children: React$Element<any>,
+  children: React.Node,
 };
 
-const Balance = ({ children }: BalanceProps): React$Element<any> =>
+const Balance = ({ children }: BalanceProps) =>
   <div className={styles.balanceRowContainer}>
     <div className={styles.balanceRow}>
       {children}

@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import Loading from 'components/Loading';
 
-class Chunk extends Component {
+class Chunk extends React.Component {
   static propTypes = {
-    load: PropTypes.func.isRequired,
+    load: React.PropTypes.func.isRequired,
   };
 
   state = {

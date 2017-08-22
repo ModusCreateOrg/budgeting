@@ -4,7 +4,7 @@ import { categoriesById } from './defaults';
 /**
  * Types
  */
-export type Category = { [key: string]: string };
+export type Category = { +[key: string]: string };
 
 /**
  * Reducer

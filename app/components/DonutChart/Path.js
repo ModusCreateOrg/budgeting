@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 
 import { select, interpolate } from 'd3';
 
-class Path extends Component {
+class Path extends React.Component {
   static propTypes = {
-    data: PropTypes.object.isRequired,
-    fill: PropTypes.string.isRequired,
-    arcFn: PropTypes.func.isRequired,
-    animDuration: PropTypes.number,
+    data: React.PropTypes.object.isRequired,
+    fill: React.PropTypes.string.isRequired,
+    arcFn: React.PropTypes.func.isRequired,
+    animDuration: React.PropTypes.number,
   };
 
   static defaultProps = {

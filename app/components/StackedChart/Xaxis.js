@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 
 import formatAmount from 'utils/formatAmount';
 import styles from './styles.scss';
@@ -19,12 +19,12 @@ const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }) =>
   </g>;
 
 Xaxis.propTypes = {
-  transform: PropTypes.string,
-  labelColor: PropTypes.string,
-  valueColor: PropTypes.string,
-  data: PropTypes.object.isRequired,
-  totals: PropTypes.object.isRequired,
-  xScale: PropTypes.func.isRequired,
+  transform: React.PropTypes.string,
+  labelColor: React.PropTypes.string,
+  valueColor: React.PropTypes.string,
+  data: React.PropTypes.object.isRequired,
+  totals: React.PropTypes.object.isRequired,
+  xScale: React.PropTypes.func.isRequired,
 };
 
 Xaxis.defaultProps = {

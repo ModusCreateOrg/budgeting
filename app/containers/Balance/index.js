@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { getFormattedBalance, getFormattedInflowBalance, getFormattedOutflowBalance } from 'selectors/transactions';
@@ -12,11 +12,11 @@ import BalanceRow from 'components/Balance/BalanceRow';
   inflow: getFormattedInflowBalance(state),
   outflow: getFormattedOutflowBalance(state),
 }))
-class Balance extends Component {
+class Balance extends React.Component {
   static propTypes = {
-    balance: PropTypes.object.isRequired,
-    inflow: PropTypes.object.isRequired,
-    outflow: PropTypes.object.isRequired,
+    balance: React.PropTypes.object.isRequired,
+    inflow: React.PropTypes.object.isRequired,
+    outflow: React.PropTypes.object.isRequired,
   };
 
   render() {
