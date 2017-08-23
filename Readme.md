@@ -2,7 +2,7 @@
 
 ![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
 
-Architected as if it were a large mission-critical application, this sample app demonstrates the power and simplicity of React, Redux, React Router, and Webpack 2. Includes tree shaking configuration.
+Architected as if it were a large mission-critical application, this sample app demonstrates the power and simplicity of React, Redux, React Router, and Webpack 3. Includes tree shaking configuration.
 
 [See live demo](https://budgeting-a937b.firebaseapp.com/).
 
@@ -17,19 +17,19 @@ Feel free to use it as a reference app or a starter kit.
 
 ## Key concepts:
 
-- [x] [Webpack 2 Tree shaking](http://moduscreate.com/webpack-2-tree-shaking-configuration/)
+- [x] [Webpack 3 Tree shaking](http://moduscreate.com/webpack-2-tree-shaking-configuration/)
 - [x] [PRPL pattern](https://www.slideshare.net/grgur/prpl-pattern-with-webpack-and-react) with minimal application core
 - [x] Automatic code splitting with React Router 4 and `import()` statement
 - [x] Automatic common chunk bundling
 - [x] CSS modules
 - [x] Snapshot testing with Jest
-- [x] Performance budgets in Webpack 2
+- [x] Performance budgets in Webpack 3
 
 ## Performance
 ![Budgeting App Performance](https://cloud.githubusercontent.com/assets/733074/25339194/1af94448-2902-11e7-8982-c1a9b647fac0.png)
 _The app loads in 1 second on 3G, cache disabled_
 
-Budgeting app is **blazing fast**, thanks to the smart architecture and Webpack 2 configuration. It takes about 1000ms (1s) to load on 3G (see above).
+Budgeting app is **blazing fast**, thanks to the smart architecture and Webpack 3 configuration. It takes about 1000ms (1s) to load on 3G (see above).
 
 ![Alex Russel Test](https://cloud.githubusercontent.com/assets/733074/25586449/acf14628-2e9f-11e7-8839-2f7c20809581.png)
 _Emerging Markets 3G Filmstrip_
@@ -101,9 +101,9 @@ chrome.exe --user-data-dir=c:\temp --unsafely-treat-insecure-origin-as-secure=ht
 ## Stack
 The app was built using these aweseome technologies
 
-- [x] [Webpack 2.4](https://webpack.github.io)
+- [x] [Webpack 3.5](https://webpack.github.io)
 - [x] [React 15.x](https://facebook.github.io/react/)
-- [x] [Redux 3.6](http://redux.js.org/)
+- [x] [Redux 3.7](http://redux.js.org/)
 - [x] [React Router 4](https://reacttraining.com/react-router/)
 - [x] [Reselect](https://github.com/reactjs/reselect/)
 - [x] [Babel](https://babeljs.io/)
