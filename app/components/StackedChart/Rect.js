@@ -1,29 +1,35 @@
-import React, { Component, PropTypes } from 'react';
-
+// @flow
+import * as React from 'react';
 import { select, interpolate } from 'd3';
 
-class Rect extends Component {
-  static propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    fill: PropTypes.string.isRequired,
-    y: PropTypes.number.isRequired,
-    animDuration: PropTypes.number,
-  };
+type RectProps = {
+  width: number,
+  height: number,
+  fill: string,
+  y: number,
+  animDuration: number,
+};
 
+class Rect extends React.Component<RectProps> {
   static defaultProps = {
     animDuration: 1000,
   };
 
   componentDidMount() {
     const { animDuration } = this.props;
-    const rect = select(this.rectRef);
-    const interpolateHeight = interpolate(1000, this.rectRef.getAttribute('height'));
 
-    rect.transition().duration(animDuration * Math.random()).attrTween('height', () => t => interpolateHeight(t));
+    const rect = select(this.rectRef);
+
+    if (this.rectRef) {
+      const interpolateHeight = interpolate(1000, this.rectRef.getAttribute('height'));
+
+      rect.transition().duration(animDuration * Math.random()).attrTween('height', () => t => interpolateHeight(t));
+    }
   }
 
-  handleRefUpdate = ref => {
+  rectRef: ?HTMLElement;
+
+  handleRefUpdate = (ref: ?HTMLElement) => {
     this.rectRef = ref;
   };
 

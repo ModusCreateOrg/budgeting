@@ -1,16 +1,17 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
+import type { FormattedAmount } from 'utils/formatAmount';
 
 import styles from './style.scss';
 
 type BalanceProps = {
   title: string,
-  amount: Object,
-  colorize?: boolean,
+  amount: FormattedAmount,
+  colorize: boolean,
 };
 
-const Balance = ({ title, amount, colorize }: BalanceProps): React$Element<any> => {
+const Balance = ({ title, amount, colorize }: BalanceProps) => {
   const amountCls = colorize && amount.isNegative ? styles.neg : styles.pos || '';
 
   return (
@@ -19,7 +20,9 @@ const Balance = ({ title, amount, colorize }: BalanceProps): React$Element<any> 
         <div className={`${styles.balanceAmount} ${amountCls}`}>
           {amount.text}
         </div>
-        <div className={styles.balanceTitle}>{title}</div>
+        <div className={styles.balanceTitle}>
+          {title}
+        </div>
       </div>
     </div>
   );

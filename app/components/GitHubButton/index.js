@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import * as React from 'react';
 
 // load github buttons js
 let gitHubApiLoaded = false;
@@ -12,7 +13,10 @@ const insertGithubApi = () => {
   const tag = document.createElement(tagName);
   tag.async = true;
   tag.src = 'https://buttons.github.io/buttons.js';
-  target.parentNode.insertBefore(tag, target);
+
+  if (target.parentNode) {
+    target.parentNode.insertBefore(tag, target);
+  }
   gitHubApiLoaded = true;
   return true;
 };
@@ -25,12 +29,12 @@ const getHref = type => {
 const getAriaLabel = type => `${type} ModusCreateOrg/budgeting-sample-app-webpack2 on GitHub`;
 const getDataIcon = type => (type === 'Fork' ? 'octicon-repo-forked' : 'octicon-star');
 
-export default class GitHubButton extends Component {
-  static propTypes = {
-    type: PropTypes.oneOf(['Fork', 'Star']).isRequired,
-    className: PropTypes.string,
-  };
+type GitHubButtonProps = {
+  type: 'Fork' | 'Star',
+  className: string,
+};
 
+export default class GitHubButton extends React.Component<GitHubButtonProps> {
   static defaultProps = {
     className: '',
   };

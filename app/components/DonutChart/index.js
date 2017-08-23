@@ -1,6 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+
+import * as React from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
+import type { TransactionSummary } from 'selectors/transactions';
 import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
 import { shuffle } from 'utils/array';
 import Path from './Path';
@@ -8,17 +11,17 @@ import styles from './styles.scss';
 
 const randomScheme = shuffle(schemeCategory20);
 
-class DonutChart extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-    dataLabel: PropTypes.string.isRequired,
-    dataKey: PropTypes.string.isRequired,
-    dataValue: PropTypes.string,
-    color: PropTypes.func,
-    height: PropTypes.number,
-    innerRatio: PropTypes.number,
-  };
+type DonutChartProps = {
+  data: TransactionSummary[],
+  dataLabel: string,
+  dataKey: string,
+  dataValue: string,
+  color: Function,
+  height: number,
+  innerRatio: number,
+};
 
+class DonutChart extends React.Component<DonutChartProps> {
   static defaultProps = {
     color: scaleOrdinal(randomScheme),
     height: 300,
@@ -30,7 +33,9 @@ class DonutChart extends Component {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps({ data, color, height }) {
+  componentWillReceiveProps(nextProps: DonutChartProps) {
+    const { data, color, height } = nextProps;
+
     const old = this.props;
 
     if (old.data !== data || old.color !== color || old.height !== height) {
@@ -43,6 +48,11 @@ class DonutChart extends Component {
     return arc().innerRadius(height / innerRatio).outerRadius(height / 2);
   };
 
+  chart: any;
+  pathArc: any;
+  colorFn: any;
+  outerRadius: number;
+  boxLength: number;
   chartPadding = 8;
 
   updateChartVariables = () => {
@@ -67,9 +77,9 @@ class DonutChart extends Component {
           padding={chartPadding}
           transform={`translate(${outerRadius},${outerRadius})`}
         >
-          {this.chart(data).map((datum, index) => (
+          {this.chart(data).map((datum, index) =>
             <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
-          ))}
+          )}
         </Chart>
 
         <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />

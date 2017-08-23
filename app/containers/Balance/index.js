@@ -1,24 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import * as React from 'react';
 import { connect } from 'react-redux';
-
+import type { FormattedAmount } from 'utils/formatAmount';
 import { getFormattedBalance, getFormattedInflowBalance, getFormattedOutflowBalance } from 'selectors/transactions';
 
 import BalanceItem from 'components/Balance';
 import BalancePrefix from 'components/Balance/BalancePrefix';
 import BalanceRow from 'components/Balance/BalanceRow';
 
-@connect(state => ({
-  balance: getFormattedBalance(state),
-  inflow: getFormattedInflowBalance(state),
-  outflow: getFormattedOutflowBalance(state),
-}))
-class Balance extends Component {
-  static propTypes = {
-    balance: PropTypes.object.isRequired,
-    inflow: PropTypes.object.isRequired,
-    outflow: PropTypes.object.isRequired,
-  };
+type BalanceProps = {
+  balance: FormattedAmount,
+  inflow: FormattedAmount,
+  outflow: FormattedAmount,
+};
 
+class Balance extends React.Component<BalanceProps> {
   render() {
     const { inflow, outflow, balance } = this.props;
 
@@ -34,4 +30,10 @@ class Balance extends Component {
   }
 }
 
-export default Balance;
+const mapStateToProps = state => ({
+  balance: getFormattedBalance(state),
+  inflow: getFormattedInflowBalance(state),
+  outflow: getFormattedOutflowBalance(state),
+});
+
+export default connect(mapStateToProps)(Balance);

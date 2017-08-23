@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import * as React from 'react';
+import type { TransactionSummary } from 'selectors/transactions';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
 import { max, scaleBand, scaleLinear, scaleOrdinal, schemeCategory20 } from 'd3';
@@ -10,23 +12,23 @@ import styles from './styles.scss';
 const outflowScheme = shuffle([...schemeCategory20.slice(0, 4), ...schemeCategory20.slice(5)]);
 const inflowScheme = ['#2ca02c']; // inflow always green
 
-class StackedChart extends Component {
-  static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    dataValue: PropTypes.string,
-    dataLabel: PropTypes.string.isRequired,
-    dataKey: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-      inflow: PropTypes.array,
-      outflow: PropTypes.array,
-    }).isRequired,
-    totals: PropTypes.shape({
-      inflow: PropTypes.number,
-      outflow: PropTypes.number,
-    }).isRequired,
-  };
+type StackedChartProps = {
+  width: number,
+  height: number,
+  dataValue: string,
+  dataLabel: string,
+  dataKey: string,
+  data: {
+    inflow: TransactionSummary[],
+    outflow: TransactionSummary[],
+  },
+  totals: {
+    inflow: number,
+    outflow: number,
+  },
+};
 
+class StackedChart extends React.Component<StackedChartProps> {
   static defaultProps = {
     width: 300,
     height: 500,
@@ -37,13 +39,20 @@ class StackedChart extends Component {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps({ data }) {
+  componentWillReceiveProps(newProps: StackedChartProps) {
     const old = this.props;
 
-    if (old.data !== data) {
+    if (old.data !== newProps.data) {
       this.updateChartVariables();
     }
   }
+
+  dataKeys: string[];
+  xScale: Function;
+  yScale: Function;
+  colorFn: any;
+  boxLength: number;
+  boxHeight: number;
 
   updateChartVariables = () => {
     const { width, height, data, totals } = this.props;
@@ -87,7 +96,7 @@ class StackedChart extends Component {
           padding={chartPadding}
           transform={`translate(${chartPadding},${chartPadding})`}
         >
-          {dataKeys.map((key, idx) => (
+          {dataKeys.map((key, idx) =>
             <Bar
               key={key}
               data={data[key]}
@@ -96,7 +105,7 @@ class StackedChart extends Component {
               width={xScale.bandwidth()}
               transform={`translate(${xScale(idx)}, 0)`}
             />
-          ))}
+          )}
 
           <Xaxis
             transform={`translate(0, ${yScale.range()[0] + chartPadding / 3})`}

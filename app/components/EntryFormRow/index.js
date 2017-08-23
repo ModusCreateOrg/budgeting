@@ -1,39 +1,40 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getDefaultCategoryId, getCategories } from 'selectors/categories';
 import { actions } from 'modules/transactions';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
 
-@connect(
-  state => ({
-    defaultCategoryId: getDefaultCategoryId(),
-    categories: getCategories(state),
-  }),
-  {
-    addTransaction: actions.addTransaction,
-  }
-)
-class EntryFormRow extends Component {
-  static propTypes = {
-    defaultCategoryId: PropTypes.string.isRequired,
-    categories: PropTypes.object.isRequired,
-    addTransaction: PropTypes.func.isRequired,
-  };
+type EntryFormRowProps = {
+  defaultCategoryId: string,
+  categories: Object,
+  addTransaction: Function,
+};
 
+type EntryFormRowState = {
+  categoryId: string,
+  description: string,
+  value: string,
+};
+
+class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
   state = {
     categoryId: this.props.defaultCategoryId,
     description: '',
     value: '',
   };
 
-  handleFieldChange = e => this.setState({ [e.target.name]: e.target.value });
+  handleFieldChange = (e: SyntheticEvent<HTMLSelectElement>) =>
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
 
-  handleKeyUp = e => e.keyCode === 13 && this.addEntry();
+  handleKeyUp = (e: SyntheticEvent<HTMLInputElement>) => e.keyCode === 13 && this.addEntry();
 
   handleAddButtonClick = () => this.addEntry();
 
-  handleValueRefUpdate = ref => {
+  valueRef: ?HTMLElement;
+
+  handleValueRefUpdate = (ref: ?HTMLElement) => {
     this.valueRef = ref;
   };
 
@@ -51,7 +52,9 @@ class EntryFormRow extends Component {
       });
     }
 
-    this.valueRef.focus();
+    if (this.valueRef) {
+      this.valueRef.focus();
+    }
   };
 
   render() {
@@ -87,13 +90,21 @@ class EntryFormRow extends Component {
             className={styles.amountField}
           />
 
-          <button onClick={this.handleAddButtonClick}>
-            Add
-          </button>
+          <button onClick={this.handleAddButtonClick}>Add</button>
         </td>
       </tr>
     );
   }
 }
 
-export default EntryFormRow;
+const mapStateToProps = state => ({
+  defaultCategoryId: getDefaultCategoryId(),
+  categories: getCategories(state),
+});
+
+const mapDispatchToProps = {
+  addTransaction: actions.addTransaction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntryFormRow);
+// export default EntryFormRow;

@@ -1,12 +1,22 @@
+// @flow
+
 import { createSelector } from 'reselect';
 import formatAmount from 'utils/formatAmount';
+import type { State } from 'modules/rootReducer';
+import type { Transaction } from 'modules/transactions';
 import { getCategories } from './categories';
 
-function totalTransactions(transactions) {
+export type TransactionSummary = {
+  categoryId: string,
+  value: number,
+  category?: string,
+};
+
+function totalTransactions(transactions: Transaction[]): number {
   return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
 }
 
-function summarizeTransactions(transactions) {
+function summarizeTransactions(transactions: Transaction[]): TransactionSummary[] {
   return transactions.reduce((summary, { categoryId, value }) => {
     const sum =
       summary.find(item => item.categoryId === categoryId) || summary[summary.push({ categoryId, value: 0 }) - 1];
@@ -16,18 +26,18 @@ function summarizeTransactions(transactions) {
   }, []);
 }
 
-export const sortTransactions = transactions => {
+export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
   const unsorted = [...transactions];
-  return unsorted.sort((a, b) => a.value < b.value);
+  return unsorted.sort((a, b) => b.value - a.value);
 };
 
-const applyCategoryName = (transactions, categories) =>
+const applyCategoryName = (transactions: TransactionSummary[], categories) =>
   transactions.map(transaction => {
     transaction.category = categories[transaction.categoryId];
     return transaction;
   });
 
-export const getTransactions = state => state.transactions || [];
+export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)

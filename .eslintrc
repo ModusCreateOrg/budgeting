@@ -15,17 +15,15 @@ parser:
 settings:
   ecmascript: 6
 
-ecmaFeatures:
-  jsx: true
-  modules: true
-  destructuring: true
-  classes: true
-  forOf: true
-  blockBindings: true
-  arrowFunctions: true
+parserOptions:
+  sourceType: "module"
+  ecmaVersion: 6
+  ecmaFeatures:
+    jsx: true
 
 env:
   browser: true
+  jest: true
 
 rules:
   indent: 2
@@ -44,4 +42,5 @@ rules:
   react/prefer-stateless-function: 0
   react/no-children-prop: 0
   react/forbid-prop-types: 0
+  react/prop-types: 0
   prettier/prettier: ["error", {"trailingComma": "es5", "singleQuote": true, "printWidth": 120}]

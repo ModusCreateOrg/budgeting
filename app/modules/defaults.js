@@ -38,7 +38,7 @@ export const defaultTransactions = [
   {
     id: 3,
     description: 'Ebay sale - guitar',
-    value: 1102.00,
+    value: 1102.0,
     categoryId: '15',
   },
   {

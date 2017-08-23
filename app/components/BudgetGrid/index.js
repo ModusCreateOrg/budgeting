@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
@@ -9,21 +9,12 @@ import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 
-type Props = {
+type BudgetGridProps = {
   transactions: Transaction[],
   categories: Object,
 };
 
-@connect(state => ({
-  transactions: getTransactions(state),
-  categories: getCategories(state),
-}))
-export default class BudgetGrid extends Component<Props, Props, void> {
-  static defaultProps = {
-    transactions: [],
-    categories: {},
-  };
-
+export class BudgetGrid extends React.Component<BudgetGridProps> {
   render() {
     const { transactions, categories } = this.props;
 
@@ -37,9 +28,9 @@ export default class BudgetGrid extends Component<Props, Props, void> {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction: Transaction): React$Element<any> => (
+          {transactions.map((transaction: Transaction): React.Element<any> =>
             <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
-          ))}
+          )}
         </tbody>
         <tfoot>
           <EntryFormRow />
@@ -48,3 +39,12 @@ export default class BudgetGrid extends Component<Props, Props, void> {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  transactions: getTransactions(state),
+  categories: getCategories(state),
+});
+
+export default connect(mapStateToProps)(BudgetGrid);
+
+
