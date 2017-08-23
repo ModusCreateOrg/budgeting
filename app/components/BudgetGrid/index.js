@@ -9,17 +9,12 @@ import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 
-type Props = {
+type BudgetGridProps = {
   transactions: Transaction[],
   categories: Object,
 };
 
-export class BudgetGrid extends React.Component<Props> {
-  static defaultProps = {
-    transactions: [],
-    categories: {},
-  };
-
+export class BudgetGrid extends React.Component<BudgetGridProps> {
   render() {
     const { transactions, categories } = this.props;
 
@@ -51,3 +46,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(BudgetGrid);
+
+

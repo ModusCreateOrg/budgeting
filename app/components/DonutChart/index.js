@@ -1,6 +1,9 @@
+// @flow
+
 import * as React from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
+import type { TransactionSummary } from 'selectors/transactions';
 import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
 import { shuffle } from 'utils/array';
 import Path from './Path';
@@ -8,17 +11,17 @@ import styles from './styles.scss';
 
 const randomScheme = shuffle(schemeCategory20);
 
-class DonutChart extends React.Component {
-  static propTypes = {
-    data: React.PropTypes.array.isRequired,
-    dataLabel: React.PropTypes.string.isRequired,
-    dataKey: React.PropTypes.string.isRequired,
-    dataValue: React.PropTypes.string,
-    color: React.PropTypes.func,
-    height: React.PropTypes.number,
-    innerRatio: React.PropTypes.number,
-  };
+type DonutChartProps = {
+  data: TransactionSummary[],
+  dataLabel: string,
+  dataKey: string,
+  dataValue: string,
+  color: Function,
+  height: number,
+  innerRatio: number,
+};
 
+class DonutChart extends React.Component<DonutChartProps> {
   static defaultProps = {
     color: scaleOrdinal(randomScheme),
     height: 300,
@@ -30,7 +33,9 @@ class DonutChart extends React.Component {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps({ data, color, height }) {
+  componentWillReceiveProps(nextProps: DonutChartProps) {
+    const { data, color, height } = nextProps;
+
     const old = this.props;
 
     if (old.data !== data || old.color !== color || old.height !== height) {
@@ -43,6 +48,11 @@ class DonutChart extends React.Component {
     return arc().innerRadius(height / innerRatio).outerRadius(height / 2);
   };
 
+  chart: any;
+  pathArc: any;
+  colorFn: any;
+  outerRadius: number;
+  boxLength: number;
   chartPadding = 8;
 
   updateChartVariables = () => {

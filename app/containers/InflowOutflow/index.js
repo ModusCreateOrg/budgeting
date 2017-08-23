@@ -1,5 +1,7 @@
+// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import type { TransactionSummary } from 'selectors/transactions';
 
 import {
   sortTransactions,
@@ -11,17 +13,18 @@ import {
 
 import StackedChart from 'components/StackedChart';
 
-@connect(state => ({
+type InflowOutflowProps = {
   data: {
-    inflow: sortTransactions(getInflowByCategoryName(state)),
-    outflow: sortTransactions(getOutflowByCategoryName(state)),
+    inflow: TransactionSummary[],
+    outflow: TransactionSummary[],
   },
   totals: {
-    inflow: getInflowBalance(state),
-    outflow: Math.abs(getOutflowBalance(state)),
+    inflow: number,
+    outflow: number,
   },
-}))
-class InflowOutflow extends React.Component {
+};
+
+class InflowOutflow extends React.Component<InflowOutflowProps> {
   static propTypes = {
     data: React.PropTypes.object.isRequired,
     totals: React.PropTypes.object.isRequired,
@@ -33,4 +36,15 @@ class InflowOutflow extends React.Component {
   }
 }
 
-export default InflowOutflow;
+const mapStateToProps = state => ({
+  data: {
+    inflow: sortTransactions(getInflowByCategoryName(state)),
+    outflow: sortTransactions(getOutflowByCategoryName(state)),
+  },
+  totals: {
+    inflow: getInflowBalance(state),
+    outflow: Math.abs(getOutflowBalance(state)),
+  },
+});
+
+export default connect(mapStateToProps)(InflowOutflow);

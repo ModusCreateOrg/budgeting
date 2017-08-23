@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
+import type { FormattedAmount } from 'utils/formatAmount';
 
 import styles from './style.scss';
 
 type BalanceProps = {
   title: string,
-  amount: Object,
+  amount: FormattedAmount,
   colorize: boolean,
 };
 

@@ -1,7 +1,17 @@
+// @flow
+
 import * as React from 'react';
 import Loading from 'components/Loading';
 
-class Chunk extends React.Component {
+type ChunkProps = {
+  load: () => Promise<any>,
+};
+
+type ChunkState = {
+  LoadedComponent: ?React.ComponentType<any>,
+};
+
+class Chunk extends React.Component<ChunkProps, ChunkState> {
   static propTypes = {
     load: React.PropTypes.func.isRequired,
   };
@@ -14,13 +24,13 @@ class Chunk extends React.Component {
     this.load(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: ChunkProps) {
     if (nextProps.load !== this.props.load) {
       this.load(nextProps);
     }
   }
 
-  load(props) {
+  load(props: ChunkProps) {
     this.setState({
       LoadedComponent: null,
     });

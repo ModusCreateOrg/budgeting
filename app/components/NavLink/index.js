@@ -1,7 +1,14 @@
+// @flow
 import * as React from 'react';
 import { Route, Link } from 'react-router-dom';
 
-const NavLink = ({ to, label, styles }) =>
+type NavLinkProps = {
+  to: string,
+  label: string,
+  styles: Object,
+};
+
+const NavLink = ({ to, label, styles }: NavLinkProps) =>
   <Route
     to={to}
     exact
@@ -10,11 +17,5 @@ const NavLink = ({ to, label, styles }) =>
         {label}
       </Link>}
   />;
-
-NavLink.propTypes = {
-  to: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
-  styles: React.PropTypes.object.isRequired,
-};
 
 export default NavLink;

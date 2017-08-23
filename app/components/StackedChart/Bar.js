@@ -1,26 +1,31 @@
+// @flow
 import * as React from 'react';
+import type { TransactionSummary } from 'selectors/transactions';
 import Rect from './Rect';
 
-class Bar extends React.Component {
-  static propTypes = {
-    yScale: React.PropTypes.func.isRequired,
-    colorFn: React.PropTypes.func.isRequired,
-    data: React.PropTypes.array.isRequired,
-    transform: React.PropTypes.string.isRequired,
-    width: React.PropTypes.number.isRequired,
-  };
+type BarProps = {
+  yScale: Function,
+  colorFn: Function,
+  data: TransactionSummary[],
+  transform: string,
+  width: number,
+};
 
+class Bar extends React.Component<BarProps> {
   componentWillMount() {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps({ yScale, data }) {
+  componentWillReceiveProps(newProps: BarProps) {
+    const { yScale, data } = newProps;
     const old = this.props;
 
     if (old.yScale !== yScale || old.data !== data) {
       this.updateChartVariables();
     }
   }
+
+  yPositions: Array<any>;
 
   updateChartVariables = () => {
     const { yScale, data } = this.props;

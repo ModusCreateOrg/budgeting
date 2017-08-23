@@ -1,9 +1,22 @@
+// @flow
 import * as React from 'react';
-
+import type { TransactionSummary } from 'selectors/transactions';
 import formatAmount from 'utils/formatAmount';
 import styles from './styles.scss';
 
-const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }) =>
+type XaxisProps = {
+  transform: string,
+  labelColor: string,
+  valueColor: string,
+  data: {
+    inflow: TransactionSummary[],
+    outflow: TransactionSummary[],
+  },
+  totals: Object,
+  xScale: Function,
+};
+
+const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }: XaxisProps) =>
   <g className={styles.xAxis} transform={transform}>
     {Object.keys(data).map((key, idx) =>
       <g key={key} transform={`translate(${xScale(idx) + xScale.bandwidth() / 2}, 0)`}>
@@ -17,15 +30,6 @@ const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }) =>
       </g>
     )}
   </g>;
-
-Xaxis.propTypes = {
-  transform: React.PropTypes.string,
-  labelColor: React.PropTypes.string,
-  valueColor: React.PropTypes.string,
-  data: React.PropTypes.object.isRequired,
-  totals: React.PropTypes.object.isRequired,
-  xScale: React.PropTypes.func.isRequired,
-};
 
 Xaxis.defaultProps = {
   labelColor: '#000',

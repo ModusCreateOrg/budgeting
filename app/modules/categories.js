@@ -4,11 +4,11 @@ import { categoriesById } from './defaults';
 /**
  * Types
  */
-export type Category = { +[key: string]: string };
+export type Categories = { +[key: string]: string };
 
 /**
  * Reducer
  */
-export default function categoriesReducer(state: Category = categoriesById) {
+export default function categoriesReducer(state: Categories = categoriesById) {
   return state;
 }
