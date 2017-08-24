@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="stackedChart"
+>
+  <div
+    height={520}
+    padding={10}
+    transform="translate(10,10)"
+    width={320}
+  >
+    <div
+      colorFn={[Function]}
+      data={Array []}
+      transform="translate(0, 0)"
+      width={128}
+      yScale={[Function]}
+    />
+    <div
+      colorFn={[Function]}
+      data={Array []}
+      transform="translate(151, 0)"
+      width={128}
+      yScale={[Function]}
+    />
+    <div
+      data={
+        Object {
+          "inflow": Array [],
+          "outflow": Array [],
+        }
+      }
+      totals={
+        Object {
+          "inflow": 1,
+          "outflow": 1,
+        }
+      }
+      transform="translate(0, 443.3333333333333)"
+      xScale={[Function]}
+    />
+  </div>
+  <div
+    color={[Function]}
+    data={Array []}
+    dataKey="test"
+    dataLabel="test"
+    dataValue="value"
+    reverse={true}
+  />
+</div>
+`;

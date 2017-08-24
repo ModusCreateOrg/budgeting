@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="donutChart"
+>
+  <div
+    height={316}
+    padding={8}
+    transform="translate(150,150)"
+    width={316}
+  />
+  <div
+    color={[Function]}
+    data={Array []}
+    dataKey="test"
+    dataLabel="test"
+    dataValue="value"
+  />
+</div>
+`;
