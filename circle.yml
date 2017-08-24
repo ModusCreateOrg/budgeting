@@ -13,8 +13,9 @@ dependencies:
 
 test:
   override:
-    - yarn run lint
-    - yarn run build
+    - yarn lint
+    - yarn test
+    - yarn build
 deployment:
   github:
     branch: v2
