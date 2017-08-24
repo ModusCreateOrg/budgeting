@@ -16,6 +16,8 @@ test:
     - yarn lint
     - yarn test
     - yarn build
+  post:
+    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
 deployment:
   github:
     branch: v2
