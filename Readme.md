@@ -102,7 +102,7 @@ chrome.exe --user-data-dir=c:\temp --unsafely-treat-insecure-origin-as-secure=ht
 The app was built using these aweseome technologies
 
 - [x] [Webpack 3.5](https://webpack.github.io)
-- [x] [React 15.x](https://facebook.github.io/react/)
+- [x] [React 16.x](https://facebook.github.io/react/)
 - [x] [Redux 3.7](http://redux.js.org/)
 - [x] [React Router 4](https://reacttraining.com/react-router/)
 - [x] [Reselect](https://github.com/reactjs/reselect/)
