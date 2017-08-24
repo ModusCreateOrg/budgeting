@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/ModusCreateOrg/budgeting-sample-app-webpack2/badge.svg)](https://coveralls.io/github/ModusCreateOrg/budgeting-sample-app-webpack2) [![CircleCI](https://circleci.com/gh/ModusCreateOrg/budgeting-sample-app-webpack2.svg?style=svg)](https://circleci.com/gh/ModusCreateOrg/budgeting-sample-app-webpack2)
+
 # Budgeting :: A Modern React, Redux, React Router 4, Webpack Sample App
 
 ![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
