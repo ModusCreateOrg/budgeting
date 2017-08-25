@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
 import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
