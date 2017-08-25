@@ -1,8 +1,8 @@
 import React from 'react';
 
 import NavLink from 'components/NavLink';
+import GitHubButton from 'containers/GitHubButton';
 import Logo from './Logo';
-import GitHubButton from '../GitHubButton';
 import styles from './style.scss';
 
 export default () =>

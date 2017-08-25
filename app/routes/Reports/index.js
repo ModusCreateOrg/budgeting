@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Chunk from 'components/Chunk';
+import Chunk from 'containers/Chunk';
 
 const loadReportsPanel = () => import('components/ReportsPanel' /* webpackChunkName: "reports" */);
 
