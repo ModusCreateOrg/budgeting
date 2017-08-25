@@ -37,7 +37,10 @@ class Chunk extends Component {
   render() {
     const { LoadedComponent } = this.state;
 
-    return LoadedComponent ? <LoadedComponent {...this.props} /> : <Loading />;
+    const otherProps = Object.assign({}, this.props);
+    delete otherProps.load;
+
+    return LoadedComponent ? <LoadedComponent {...otherProps} /> : <Loading />;
   }
 }
 

@@ -19,9 +19,12 @@ class Rect extends Component {
   componentDidMount() {
     const { animDuration } = this.props;
     const rect = select(this.rectRef);
-    const interpolateHeight = interpolate(1000, this.rectRef.getAttribute('height'));
 
-    rect.transition().duration(animDuration * Math.random()).attrTween('height', () => t => interpolateHeight(t));
+    if (this.rectRef) {
+      const interpolateHeight = interpolate(1000, this.rectRef.getAttribute('height'));
+
+      rect.transition().duration(animDuration * Math.random()).attrTween('height', () => t => interpolateHeight(t));
+    }
   }
 
   handleRefUpdate = ref => {

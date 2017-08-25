@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<select
+  name=""
+  onChange={[Function]}
+  value="test"
+>
+  <option
+    value="foo"
+  >
+    foo
+  </option>
+  <option
+    value="bar"
+  >
+    bar
+  </option>
+</select>
+`;

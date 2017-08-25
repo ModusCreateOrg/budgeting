@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<svg
+  className="mainSvg"
+  height={100}
+  viewBox="-0 -0 100 100"
+  width={100}
+>
+  <g
+    transform=""
+  >
+    test
+  </g>
+</svg>
+`;
