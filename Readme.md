@@ -4,7 +4,7 @@
 
 ![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
 
-Architected as if it were a large mission-critical application, this sample app demonstrates the power and simplicity of React, Redux, React Router, and Webpack 3. Includes tree shaking configuration.
+Production-ready React + Webpack architecture implemented on consumer web apps of some of the most successful enterprises in the world. Perceived performance and development experience are key factors in this setup. You can use this code base for learning or to scaffold your mission-critical project.
 
 [See live demo](https://budgeting-a937b.firebaseapp.com/).
 
