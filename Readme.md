@@ -26,6 +26,7 @@ Feel free to use it as a reference app or a starter kit.
 - [x] CSS modules
 - [x] Snapshot testing with Jest
 - [x] Performance budgets in Webpack 3
+- [x] React 16 Error Boundaries
 
 ## Performance
 ![Budgeting App Performance](https://cloud.githubusercontent.com/assets/733074/25339194/1af94448-2902-11e7-8982-c1a9b647fac0.png)
