@@ -6,8 +6,10 @@ import Legend from '../';
 jest.mock('../LegendItem', () => 'div');
 
 it('renders correctly', () => {
+  const mockData = [{ key: 1 }, { key: 2 }];
+
   const tree = renderer
-    .create(<Legend data={['foo', 'bar']} dataValue="test" dataLabel="test" dataKey="test" color={() => {}} />)
+    .create(<Legend data={mockData} dataValue="test" dataLabel="test" dataKey="key" color={() => {}} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
