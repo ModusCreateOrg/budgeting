@@ -14,8 +14,10 @@ dependencies:
 test:
   override:
     - yarn lint
-    - yarn test
-    - yarn build
+    - yarn test:
+        parallel: true
+    - yarn build:
+        parallel: true
   post:
     - yarn coverage
     - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
