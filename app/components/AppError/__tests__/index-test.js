@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BalancePrefix from '../BalancePrefix';
+import AppError from '../';
 
 it('renders correctly', () => {
-  const tree = renderer.create(<BalancePrefix text="text" />).toJSON();
+  const tree = renderer.create(<AppError />).toJSON();
   expect(tree).toMatchSnapshot();
 });
