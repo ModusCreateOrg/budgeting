@@ -1,98 +1,81 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getDefaultCategoryId, getCategories } from 'selectors/categories';
-import { actions } from 'modules/transactions';
+import createForm, { formPropTypes } from 'utils/createForm';
+import Field from 'components/Field';
 import DataSelector from './DataSelector';
 import styles from './style.scss';
 
-@connect(
-  state => ({
-    defaultCategoryId: getDefaultCategoryId(),
-    categories: getCategories(state),
-  }),
-  {
-    addTransaction: actions.addTransaction,
-  }
-)
 class EntryFormRow extends Component {
   static propTypes = {
-    defaultCategoryId: PropTypes.string.isRequired,
+    ...formPropTypes,
     categories: PropTypes.object.isRequired,
-    addTransaction: PropTypes.func.isRequired,
   };
 
-  state = {
-    categoryId: this.props.defaultCategoryId,
-    description: '',
-    value: '',
+  handleKeyUp = event => {
+    // submit if pressing enter
+    const isEnterKey = event.keyCode === 13;
+    if (isEnterKey) {
+      this.handleSubmit();
+    }
   };
 
-  handleFieldChange = e => this.setState({ [e.target.name]: e.target.value });
+  handleSubmit = values => {
+    const { handleSubmit, initializeForm, fields } = this.props;
 
-  handleKeyUp = e => e.keyCode === 13 && this.addEntry();
+    // try to submit form
+    const success = handleSubmit(values);
 
-  handleAddButtonClick = () => this.addEntry();
-
-  handleValueRefUpdate = ref => {
-    this.valueRef = ref;
-  };
-
-  addEntry = () => {
-    const { categoryId, description, value } = this.state;
-
-    // do nothing if there's no value added
-    if (value) {
-      this.props.addTransaction({ categoryId, description, value });
-
+    if (success) {
       // keep the chosen category but clear everything else
-      this.setState({
-        description: '',
-        value: '',
+      initializeForm({
+        categoryId: fields.categoryId.value,
       });
     }
 
     this.valueRef.focus();
   };
 
+  handleValueRefUpdate = ref => {
+    this.valueRef = ref;
+  };
+
   render() {
+    const { fields: { categoryId, description, value }, valid } = this.props;
+
     return (
       <tr className={styles.entryFormRow}>
         <td>
-          <DataSelector
-            name="categoryId"
-            value={this.state.categoryId}
-            data={this.props.categories}
-            onChange={this.handleFieldChange}
-          />
+          <Field component={DataSelector} data={this.props.categories} {...categoryId} />
         </td>
         <td>
-          <input
-            type="text"
-            name="description"
-            value={this.state.description}
-            onChange={this.handleFieldChange}
-            onKeyUp={this.handleKeyUp}
-            placeholder="Description"
-          />
+          <Field component="input" type="text" placeholder="Description" onKeyUp={this.handleKeyUp} {...description} />
         </td>
         <td>
-          <input
+          <Field
+            component="input"
             type="number"
-            name="value"
-            value={this.state.value}
-            ref={this.handleValueRefUpdate}
-            onChange={this.handleFieldChange}
-            onKeyUp={this.handleKeyUp}
             placeholder="Value"
-            className={styles.amountField}
+            onKeyUp={this.handleKeyUp}
+            handleRef={this.handleValueRefUpdate}
+            {...value}
           />
-
-          <button onClick={this.handleAddButtonClick}>Add</button>
+          <button onClick={this.handleSubmit} disabled={!valid}>
+            Add
+          </button>
         </td>
       </tr>
     );
   }
 }
 
-export default EntryFormRow;
+const validateForm = ({ value }) => {
+  const errors = {};
+
+  if (!value) {
+    errors.value = 'You must provide a value';
+  }
+
+  return errors;
+};
+
+export default createForm({ fields: ['categoryId', 'description', 'value'], validate: validateForm })(EntryFormRow);
