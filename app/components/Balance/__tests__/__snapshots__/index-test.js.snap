@@ -20,3 +20,31 @@ exports[`renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders correctly with a prefix 1`] = `
+Array [
+  <div
+    className="balanceSymbol"
+>
+    prefix
+</div>,
+  <div
+    className="balanceWrapper"
+>
+    <div
+        className="balanceItem"
+    >
+        <div
+            className="balanceAmount pos"
+        >
+            text
+        </div>
+        <div
+            className="balanceTitle"
+        >
+            title
+        </div>
+    </div>
+</div>,
+]
+`;
