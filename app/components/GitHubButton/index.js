@@ -19,7 +19,7 @@ const insertGithubApi = () => {
 
 const getHref = type => {
   const href = type === 'Fork' ? 'fork' : '';
-  return `https:/github.com/ModusCreateOrg/budgeting-sample-app-webpack2/${href}`;
+  return `https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/${href}`;
 };
 
 const getAriaLabel = type => `${type} ModusCreateOrg/budgeting-sample-app-webpack2 on GitHub`;
