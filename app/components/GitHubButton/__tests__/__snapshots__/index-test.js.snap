@@ -10,7 +10,7 @@ exports[`renders correctly 1`] = `
     data-icon="octicon-repo-forked"
     data-show-count={true}
     data-size="large"
-    href="https:/github.com/ModusCreateOrg/budgeting-sample-app-webpack2/fork"
+    href="https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/fork"
   >
     Fork
   </a>
