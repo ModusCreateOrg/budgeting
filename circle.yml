@@ -23,6 +23,6 @@ test:
     - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deployment:
   github:
-    branch: v2
+    branch: master
     commands:
-      - yarn run deploy
+      - ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive

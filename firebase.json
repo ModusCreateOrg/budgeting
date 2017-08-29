@@ -9,19 +9,17 @@
     ],
     "headers": [
       {
-        "source": "/*",
-        "headers": [
-          {
-            "key": "Link",
-            "value": "</main-56b9da1e.js>;rel=preload;as=script;nopush,</0-9340c745.js>;rel=preload;as=script;nopush,</style-2c5727eb.css>;rel=preload;as=style;nopush"
-          }
-        ]
-      },
-      {
-        "source": "/*.@(js|svg|css|ico|png|jpe?g|gif|woff2?)",
+        "source": "/!(sw).@(js|svg|css|ico|png|jpe?g|gif|woff2?)",
         "headers": [{
           "key": "Cache-Control",
           "value": "max-age=31461276"
+        }]
+      },
+      {
+        "source" : "/sw.js",
+        "headers" : [{
+          "key" : "Cache-Control",
+          "value" : "no-cache"
         }]
       },
       {
