@@ -9,14 +9,7 @@
     ],
     "headers": [
       {
-        "source": "/*.@(js|svg|css|ico|png|jpe?g|gif|woff2?)",
-        "headers": [{
-          "key": "Cache-Control",
-          "value": "max-age=31461276"
-        }]
-      },
-      {
-        "source": "/static/*",
+        "source": "/!(sw).@(js|svg|css|ico|png|jpe?g|gif|woff2?)",
         "headers": [{
           "key": "Cache-Control",
           "value": "max-age=31461276"
@@ -24,9 +17,16 @@
       },
       {
         "source" : "/sw.js",
-        "headers" : [ {
+        "headers" : [{
           "key" : "Cache-Control",
           "value" : "no-cache"
+        }]
+      },
+      {
+        "source": "/static/*",
+        "headers": [{
+          "key": "Cache-Control",
+          "value": "max-age=31461276"
         }]
       }
     ]
