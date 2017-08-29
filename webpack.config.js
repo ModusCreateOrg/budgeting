@@ -3,7 +3,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
@@ -62,6 +61,7 @@ module.exports = function(env) {
       template: htmlTemplate,
       inject: true,
       production: isProd,
+      preload: ['*.css'],
       minify: isProd && {
         removeComments: true,
         collapseWhitespace: true,
@@ -79,10 +79,11 @@ module.exports = function(env) {
     // make sure script tags are async to avoid blocking html render
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
+      preload: {
+        test: /^0-|^main-|^style-.*$/,
+        chunks: 'all',
+      },
     }),
-
-    // preload chunks
-    new PreloadWebpackPlugin(),
   ];
 
   if (isProd) {

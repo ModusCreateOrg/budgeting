@@ -52,7 +52,6 @@
     "jest": "^20.0.4",
     "lighthouse": "^2.4.0",
     "node-sass": "^4.5.3",
-    "preload-webpack-plugin": "^1.2.3",
     "prettier": "1.5.3",
     "pushstate-server": "3.0.1",
     "react-test-renderer": "16.0.0-beta.5",
