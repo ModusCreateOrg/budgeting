@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { createElement } from 'react';
 import PropTypes from 'prop-types';
+import isObject from 'utils/isObject';
 
 /**
  * `Field` component.
@@ -37,6 +38,8 @@ class Field extends React.Component {
    * Return a field value from a SyntheticEvent or a value
    */
   getValue = eventOrValue => {
+    if (!isObject(eventOrValue)) return eventOrValue;
+
     const target = eventOrValue.target;
     if (target) {
       const type = target.type;
@@ -89,9 +92,9 @@ class Field extends React.Component {
     if (typeof component === 'string') {
       // don't pass extra props if component is a string, because
       // it can trigger "unknown prop" warnings
-      return React.createElement(component, { ...customProps, ...otherProps });
+      return createElement(component, { ...customProps, ...otherProps });
     }
-    return React.createElement(component, { ...customProps, ...extraProps, ...otherProps });
+    return createElement(component, { ...customProps, ...extraProps, ...otherProps });
   }
 }
 
