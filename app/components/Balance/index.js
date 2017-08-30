@@ -33,7 +33,6 @@ const Balance = ({ title, amount, colorize, prefix }: BalanceProps) => {
       </div>
     </div>
   );
-
   return [prefixElement, balanceElement];
 };
 

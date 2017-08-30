@@ -4,10 +4,11 @@ const path = require('path');
 const outputPath = path.resolve('dll');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-source-map',
   entry: {
-    react: ['react', 'react-dom'],
-    reactContrib: [
+    libs: [
+      'react',
+      'react-dom',
       'react-router',
       'redux',
       'react-redux',
@@ -15,8 +16,8 @@ module.exports = {
       'react-router-dom',
       'redux-thunk',
       'reselect',
+      'd3',
     ],
-    d3: ['d3'],
   },
 
   output: {
