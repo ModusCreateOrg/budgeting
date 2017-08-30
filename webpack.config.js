@@ -56,9 +56,6 @@ module.exports = function(env) {
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) },
     }),
 
-    // create css bundle
-    new ExtractTextPlugin('style-[contenthash:8].css'),
-
     // create index.html
     new HtmlWebpackPlugin({
       template: htmlTemplate,
@@ -91,6 +88,9 @@ module.exports = function(env) {
 
   if (isProd) {
     plugins.push(
+      // create css bundle
+      new ExtractTextPlugin('style-[contenthash:8].css'),
+
       // minify remove some of the dead code
       new UglifyJSPlugin({
         compress: {
@@ -157,8 +157,10 @@ module.exports = function(env) {
     );
 
     cssLoader = [
+      // cache css output for faster rebuilds
       'cache-loader',
       {
+        // build css/sass in threads (faster)
         loader: 'thread-loader',
         options: {
           workerParallelJobs: 2,
