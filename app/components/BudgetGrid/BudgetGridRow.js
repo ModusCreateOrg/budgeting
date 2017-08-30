@@ -20,13 +20,22 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   return (
     <tr key={id}>
       <td>
-        {category}
+        <div className={styles.cellLabel}>Category</div>
+        <div className={styles.cellContent}>
+          {category}
+        </div>
       </td>
       <td>
-        {description}
+        <div className={styles.cellLabel}>Description</div>
+        <div className={styles.cellContent}>
+          {description}
+        </div>
       </td>
       <td className={amountCls}>
-        {amount.text}
+        <div className={styles.cellLabel}>Amount</div>
+        <div className={styles.cellContent}>
+          {amount.text}
+        </div>
       </td>
     </tr>
   );

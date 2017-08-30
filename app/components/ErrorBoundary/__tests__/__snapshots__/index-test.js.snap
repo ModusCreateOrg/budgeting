@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a fallback component when the children component fails 1`] = `
+<div>
+  fallback
+</div>
+`;
+
+exports[`renders a working component 1`] = `
+<div>
+  working
+</div>
+`;

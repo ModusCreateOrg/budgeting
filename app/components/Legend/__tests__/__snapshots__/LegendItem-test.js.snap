@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  style={
+    Object {
+      "color": "test",
+    }
+  }
+>
+  <span>
+    test
+  </span>
+  <span
+    className="value"
+  >
+     
+    $3.00
+     
+  </span>
+</li>
+`;
