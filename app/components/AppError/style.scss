@@ -1,0 +1,18 @@
+.errorScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  padding: 15px 30px;
+  border-radius: 13px;
+
+  .errorTitle {
+    font-size: 24px;
+  }
+}

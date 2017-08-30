@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<rect
+  fill="test"
+  height={100}
+  width={100}
+  y={3}
+/>
+`;

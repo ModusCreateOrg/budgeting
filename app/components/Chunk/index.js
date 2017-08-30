@@ -12,10 +12,6 @@ type ChunkState = {
 };
 
 class Chunk extends React.Component<ChunkProps, ChunkState> {
-  static propTypes = {
-    load: React.PropTypes.func.isRequired,
-  };
-
   state = {
     LoadedComponent: null,
   };
@@ -46,7 +42,10 @@ class Chunk extends React.Component<ChunkProps, ChunkState> {
   render() {
     const { LoadedComponent } = this.state;
 
-    return LoadedComponent ? <LoadedComponent {...this.props} /> : <Loading />;
+    const otherProps = Object.assign({}, this.props);
+    delete otherProps.load;
+
+    return LoadedComponent ? <LoadedComponent {...otherProps} /> : <Loading />;
   }
 }
 

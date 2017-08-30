@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=""
+>
+  <a
+    aria-label="Fork ModusCreateOrg/budgeting-sample-app-webpack2 on GitHub"
+    className="github-button"
+    data-icon="octicon-repo-forked"
+    data-show-count={true}
+    data-size="large"
+    href="https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/fork"
+  >
+    Fork
+  </a>
+</div>
+`;

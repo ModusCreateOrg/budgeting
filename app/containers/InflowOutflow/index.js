@@ -25,11 +25,6 @@ type InflowOutflowProps = {
 };
 
 class InflowOutflow extends React.Component<InflowOutflowProps> {
-  static propTypes = {
-    data: React.PropTypes.object.isRequired,
-    totals: React.PropTypes.object.isRequired,
-  };
-
   render() {
     const { data, totals } = this.props;
     return <StackedChart data={data} totals={totals} dataLabel="category" dataKey="categoryId" />;
