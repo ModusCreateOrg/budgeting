@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-
 import { select, interpolate } from 'd3';
 
 type PathProps = {
