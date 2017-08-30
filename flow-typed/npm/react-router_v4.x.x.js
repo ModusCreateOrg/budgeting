@@ -1,9 +1,5 @@
-// flow-typed signature: b45080e7e6a55f1c9092f07c205cd527
-// flow-typed version: 3e35e41eb5/react-router_v4.x.x/flow_v0.53.x
-
-// flow-typed signature: b701192ca557cf27adf1b295517299fd
-// flow-typed version: b43dff3e0e/react-router_v4.x.x/flow_>=v0.53.x
-import * as React from "react";
+// flow-typed signature: ceeae0893bb35fb1379c19759d4c237c
+// flow-typed version: 37d8964a70/react-router_v4.x.x/flow_>=v0.53.x
 
 declare module "react-router" {
   // NOTE: many of these are re-exported by react-router-dom and
@@ -69,71 +65,61 @@ declare module "react-router" {
     url?: string
   };
 
-  declare type StaticRouterProps = {
+  declare export class StaticRouter extends React$Component<{
     basename?: string,
     location?: string | Location,
     context: StaticRouterContext,
-    children?: React$Element<*>
-  };
-  declare export class StaticRouter extends React$Component<
-    StaticRouterProps
-  > {}
+    children?: React$Node
+  }> {}
 
-  declare type MemoryRouterProps = {
+  declare export class MemoryRouter extends React$Component<{
     initialEntries?: Array<LocationShape | string>,
     initialIndex?: number,
     getUserConfirmation?: GetUserConfirmation,
     keyLength?: number,
-    children?: React$Element<*>
-  };
-  declare export class MemoryRouter extends React$Component<
-    MemoryRouterProps
-  > {}
+    children?: React$Node
+  }> {}
 
-  declare type RouterProps = {
+  declare export class Router extends React$Component<{
     history: RouterHistory,
-    children?: React$Element<*>
-  };
-  declare export class Router extends React$Component<RouterProps> {}
+    children?: React$Node
+  }> {}
 
-  declare type PromptProps = {
+  declare export class Prompt extends React$Component<{
     message: string | ((location: Location) => string | true),
     when?: boolean
-  };
-  declare export class Prompt extends React$Component<PromptProps> {}
+  }> {}
 
-  declare type RedirectProps = {
+  declare export class Redirect extends React$Component<{
     to: string | LocationShape,
     push?: boolean
-  };
-  declare export class Redirect extends React$Component<RedirectProps> {}
+  }> {}
 
-  declare type RouteProps = {
+  declare export class Route extends React$Component<{
     component?: React$ComponentType<*>,
-    render?: (router: ContextRouter) => React$Element<*>,
-    children?: (router: ContextRouter) => React$Element<*>,
+    render?: (router: ContextRouter) => React$Node,
+    children?: React$ComponentType<ContextRouter>,
     path?: string,
     exact?: boolean,
     strict?: boolean
-  };
-  declare export class Route extends React$Component<RouteProps> {}
+  }> {}
 
-  declare type SwithcProps = {
-    children?: Array<React$Element<*>>
-  };
-  declare export class Switch extends React$Component<SwithcProps> {}
+  declare export class Switch extends React$Component<{
+    children?: React$Node
+  }> {}
 
   declare export function withRouter<P>(
     Component: React$ComponentType<ContextRouter & P>
   ): React$ComponentType<P>;
 
   declare type MatchPathOptions = {
+    path?: string,
     exact?: boolean,
-    strict?: boolean
+    strict?: boolean,
+    sensitive?: boolean
   };
   declare export function matchPath(
     pathname: string,
-    path: string,
-    options?: MatchPathOptions
+    options?: MatchPathOptions | string
   ): null | Match;
 }

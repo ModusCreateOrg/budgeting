@@ -40,10 +40,6 @@
 
   thead {
     border-bottom: 1px solid $gray;
-
-    th:last-child {
-      padding-right: 3.5em;
-    }
   }
 
   tbody {
@@ -57,7 +53,7 @@
 
     td {
       vertical-align: top;
-      padding-left: 2em;
+      text-overflow: ellipsis;
 
       &.neg {
         color: $red;
@@ -66,10 +62,6 @@
       &.pos {
         color: $green;
       }
-
-      &:last-child {
-        padding-right: 2.5em;
-      }
     }
   }
 
@@ -77,4 +69,44 @@
     height: 40px;
     border-top: 1px solid $gray;
   }
+
+  @media only screen and (max-width: $screen-small) {
+    table, thead, tbody, tbody tr {
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      tr {
+        padding: 12px 8px;
+      }
+
+      td {
+        display: flex;
+        margin-bottom: 12px;
+
+        &:last-child {
+          text-align: left;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.cellLabel {
+  display: none;
+
+  @media only screen and (max-width: $screen-small) {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+}
+
+.cellContent {
+  flex: 1;
 }

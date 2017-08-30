@@ -3,7 +3,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
@@ -62,6 +61,7 @@ module.exports = function(env) {
       template: htmlTemplate,
       inject: true,
       production: isProd,
+      preload: ['*.css'],
       minify: isProd && {
         removeComments: true,
         collapseWhitespace: true,
@@ -79,10 +79,11 @@ module.exports = function(env) {
     // make sure script tags are async to avoid blocking html render
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
+      preload: {
+        test: /^0-|^main-|^style-.*$/,
+        chunks: 'all',
+      },
     }),
-
-    // preload chunks
-    new PreloadWebpackPlugin(),
   ];
 
   if (isProd) {
@@ -133,19 +134,18 @@ module.exports = function(env) {
       new webpack.NamedModulesPlugin(),
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin(),
-
       // load DLL files
       /* eslint-disable global-require */
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json')}),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json') }),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json') }),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json') }),
       /* eslint-enable global-require */
 
       // make DLL assets available for the app to download
       new AddAssetHtmlPlugin([
-        { filepath: require.resolve('./dll/d3.dll.js') }, 
-        { filepath: require.resolve('./dll/react.dll.js') }, 
-        { filepath: require.resolve('./dll/reactContrib.dll.js') }, 
+        { filepath: require.resolve('./dll/d3.dll.js') },
+        { filepath: require.resolve('./dll/react.dll.js') },
+        { filepath: require.resolve('./dll/reactContrib.dll.js') },
       ])
     );
 

@@ -5,7 +5,6 @@ import type { FormattedAmount } from 'utils/formatAmount';
 import { getFormattedBalance, getFormattedInflowBalance, getFormattedOutflowBalance } from 'selectors/transactions';
 
 import BalanceItem from 'components/Balance';
-import BalancePrefix from 'components/Balance/BalancePrefix';
 import BalanceRow from 'components/Balance/BalanceRow';
 
 type BalanceProps = {
@@ -21,10 +20,8 @@ class Balance extends React.Component<BalanceProps> {
     return (
       <BalanceRow>
         <BalanceItem amount={inflow} title="Total Inflow" />
-        <BalancePrefix text="-" />
-        <BalanceItem amount={outflow} title="Total Outflow" />
-        <BalancePrefix text="=" />
-        <BalanceItem amount={balance} title="Working Balance" colorize={false} />
+        <BalanceItem amount={outflow} title="Total Outflow" prefix="-" />
+        <BalanceItem amount={balance} title="Working Balance" colorize={false} prefix="=" />
       </BalanceRow>
     );
   }
