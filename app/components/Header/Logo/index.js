@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import logo from 'images/mclogo.svg';
 import styles from './style.scss';
 

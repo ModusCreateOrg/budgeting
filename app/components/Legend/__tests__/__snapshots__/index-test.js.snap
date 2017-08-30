@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <ul
-  className="legend false"
+  className="legend "
 >
   <div
     color={undefined}

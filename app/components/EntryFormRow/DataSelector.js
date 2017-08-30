@@ -1,11 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
+import type { Categories } from 'modules/categories';
 
-export default function DataSelector(props) {
-  const { data } = props;
+type DataSelectorProps = {
+  name: string,
+  value: string,
+  data: Categories,
+  onChange: (e: SyntheticEvent<HTMLSelectElement>) => void,
+};
+
+export default function DataSelector(props: DataSelectorProps) {
+  const { name, value, data, onChange } = props;
 
   return (
-    <select name={props.name} value={props.value} onChange={props.onChange}>
+    <select name={name} value={value} onChange={onChange}>
       {Object.keys(data).map(id =>
         <option key={id} value={id}>
           {data[id]}
@@ -14,13 +22,6 @@ export default function DataSelector(props) {
     </select>
   );
 }
-
-DataSelector.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
 
 DataSelector.defaultProps = {
   name: '',

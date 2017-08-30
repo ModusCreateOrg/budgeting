@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 
 import formatAmount from 'utils/formatAmount';
 import styles from './styles.scss';
 
-const LegendItem = ({ color, label, value }) =>
+type LegendItemProps = {
+  color: string,
+  value: number,
+  label: string,
+};
+
+const LegendItem = ({ color, label, value }: LegendItemProps) =>
   <li style={{ color }}>
     <span>
       {label}
@@ -13,11 +19,5 @@ const LegendItem = ({ color, label, value }) =>
       {' '}{formatAmount(value).text}{' '}
     </span>
   </li>;
-
-LegendItem.propTypes = {
-  color: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-};
 
 export default LegendItem;

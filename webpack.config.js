@@ -134,19 +134,18 @@ module.exports = function(env) {
       new webpack.NamedModulesPlugin(),
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin(),
-
       // load DLL files
       /* eslint-disable global-require */
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json')}),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json') }),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json') }),
+      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json') }),
       /* eslint-enable global-require */
 
       // make DLL assets available for the app to download
       new AddAssetHtmlPlugin([
-        { filepath: require.resolve('./dll/d3.dll.js') }, 
-        { filepath: require.resolve('./dll/react.dll.js') }, 
-        { filepath: require.resolve('./dll/reactContrib.dll.js') }, 
+        { filepath: require.resolve('./dll/d3.dll.js') },
+        { filepath: require.resolve('./dll/react.dll.js') },
+        { filepath: require.resolve('./dll/reactContrib.dll.js') },
       ])
     );
 
