@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import { BudgetGrid } from '../';
 
 // mock nested component
-jest.mock('components/EntryFormRow');
+jest.mock('containers/EntryFormRow');
 
 it('renders correctly', () => {
   const tree = renderer.create(<BudgetGrid />).toJSON();

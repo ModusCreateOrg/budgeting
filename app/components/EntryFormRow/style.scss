@@ -38,10 +38,10 @@
       padding: .5em 1em;
       text-decoration: none;
       border: transparent;
-    }
 
-    .amountField {
-
+      &:disabled {
+        background: darkgray;
+      }
     }
   }
 }
