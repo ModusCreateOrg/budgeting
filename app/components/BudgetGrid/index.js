@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'components/EntryFormRow';
+import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from './BudgetGridRow';
 import styles from './style.scss';
 
-export class BudgetGrid extends Component {
-  static propTypes = {
-    transactions: PropTypes.array,
-    categories: PropTypes.object,
-  };
+type BudgetGridProps = {
+  transactions: Transaction[],
+  categories: Object,
+};
 
+export class BudgetGrid extends React.Component<BudgetGridProps> {
   static defaultProps = {
     transactions: [],
     categories: {},
@@ -31,7 +32,7 @@ export class BudgetGrid extends Component {
           </tr>
         </thead>
         <tbody>
-          {transactions.map(transaction =>
+          {transactions.map((transaction: Transaction): React.Element<any> =>
             <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
           )}
         </tbody>

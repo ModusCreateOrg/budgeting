@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
+// @flow
+import * as React from 'react';
 import { select, interpolate } from 'd3';
 
-class Rect extends Component {
-  static propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    fill: PropTypes.string.isRequired,
-    y: PropTypes.number.isRequired,
-    animDuration: PropTypes.number,
-  };
+type RectProps = {
+  width: number,
+  height: number,
+  fill: string,
+  y: number,
+  animDuration: number,
+};
 
+class Rect extends React.Component<RectProps> {
   static defaultProps = {
     animDuration: 1000,
   };
 
   componentDidMount() {
     const { animDuration } = this.props;
+
     const rect = select(this.rectRef);
 
     if (this.rectRef) {
@@ -27,7 +27,9 @@ class Rect extends Component {
     }
   }
 
-  handleRefUpdate = ref => {
+  rectRef: ?HTMLElement;
+
+  handleRefUpdate = (ref: ?HTMLElement) => {
     this.rectRef = ref;
   };
 

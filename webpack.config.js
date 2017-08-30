@@ -6,6 +6,7 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+
 const sassThreadLoader = require('thread-loader');
 
 sassThreadLoader.warmup({ workerParallelJobs: 2 }, ['sass-loader', 'css-loader', 'style-loader', 'babel-loader']);
@@ -90,7 +91,6 @@ module.exports = function(env) {
     plugins.push(
       // create css bundle
       new ExtractTextPlugin('style-[contenthash:8].css'),
-
       // minify remove some of the dead code
       new UglifyJSPlugin({
         compress: {

@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 
 import NavLink from 'components/NavLink';
 import styles from './style.scss';

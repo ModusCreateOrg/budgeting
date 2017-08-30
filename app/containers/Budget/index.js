@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';

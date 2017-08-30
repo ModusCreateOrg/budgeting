@@ -1,8 +1,9 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 
 import NavLink from 'components/NavLink';
+import GitHubButton from 'components/GitHubButton';
 import Logo from './Logo';
-import GitHubButton from '../GitHubButton';
 import styles from './style.scss';
 
 export default () =>

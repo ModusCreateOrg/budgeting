@@ -2,9 +2,12 @@ extends:
   - eslint-config-airbnb
   - prettier
   - prettier/react
+  - prettier/flowtype
+  - plugin:flowtype/recommended
 
 plugins:
     - prettier
+    - flowtype
 
 parser:
   babel-eslint
@@ -39,4 +42,5 @@ rules:
   react/prefer-stateless-function: 0
   react/no-children-prop: 0
   react/forbid-prop-types: 0
+  react/prop-types: 0
   prettier/prettier: ["error", {"trailingComma": "es5", "singleQuote": true, "printWidth": 120}]
