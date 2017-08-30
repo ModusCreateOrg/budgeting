@@ -9,7 +9,7 @@ import DonutChart from 'components/DonutChart';
 
 type SpendingProps = {
   data: TransactionSummary[],
-}
+};
 
 class Spending extends React.Component<SpendingProps> {
   render() {
