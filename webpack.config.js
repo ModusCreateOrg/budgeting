@@ -6,6 +6,9 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const sassThreadLoader = require('thread-loader');
+
+sassThreadLoader.warmup({ workerParallelJobs: 2 }, ['sass-loader', 'css-loader', 'style-loader', 'babel-loader']);
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -109,6 +112,12 @@ module.exports = function(env) {
       fallback: 'style-loader',
       use: [
         {
+          loader: 'thread-loader',
+          options: {
+            workerParallelJobs: 2,
+          },
+        },
+        {
           loader: 'css-loader',
           options: {
             module: true, // css-loader 0.14.5 compatible
@@ -134,23 +143,25 @@ module.exports = function(env) {
       new webpack.NamedModulesPlugin(),
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin(),
-
       // load DLL files
       /* eslint-disable global-require */
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json')}),
+      new webpack.DllReferencePlugin({
+        context: __dirname,
+        manifest: require('./dll/libs-manifest.json'),
+      }),
       /* eslint-enable global-require */
 
       // make DLL assets available for the app to download
-      new AddAssetHtmlPlugin([
-        { filepath: require.resolve('./dll/d3.dll.js') }, 
-        { filepath: require.resolve('./dll/react.dll.js') }, 
-        { filepath: require.resolve('./dll/reactContrib.dll.js') }, 
-      ])
+      new AddAssetHtmlPlugin([{ filepath: require.resolve('./dll/libs.dll.js') }])
     );
 
     cssLoader = [
+      {
+        loader: 'thread-loader',
+        options: {
+          workerParallelJobs: 2,
+        },
+      },
       {
         loader: 'style-loader',
       },
@@ -209,7 +220,7 @@ module.exports = function(env) {
       ];
 
   return {
-    devtool: isProd ? 'source-map' : 'cheap-module-source-map',
+    devtool: isProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
     context: sourcePath,
     entry: {
       main: entryPoint,
@@ -224,7 +235,7 @@ module.exports = function(env) {
       rules: [
         {
           test: /\.(html|svg|jpe?g|png|ttf|woff2?)$/,
-          exclude: /node_modules/,
+          include: sourcePath,
           use: {
             loader: 'file-loader',
             options: {
@@ -234,19 +245,28 @@ module.exports = function(env) {
         },
         {
           test: /\.scss$/,
-          exclude: /node_modules/,
+          include: sourcePath,
           use: cssLoader,
         },
         {
           test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: ['babel-loader'],
+          include: sourcePath,
+          use: [
+            {
+              loader: 'thread-loader',
+              options: {
+                workerParallelJobs: 2,
+              },
+            },
+            'babel-loader',
+          ],
         },
       ],
     },
     resolve: {
-      extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
+      extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.scss'],
       modules: [path.resolve(__dirname, 'node_modules'), sourcePath],
+      symlinks: false,
     },
 
     plugins,
