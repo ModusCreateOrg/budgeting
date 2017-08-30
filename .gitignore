@@ -9,3 +9,4 @@ coverage
 *.report.dom.html
 /dll
 .idea
+/.cache-loader

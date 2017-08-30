@@ -111,6 +111,7 @@ module.exports = function(env) {
     cssLoader = ExtractTextPlugin.extract({
       fallback: 'style-loader',
       use: [
+        'cache-loader',
         {
           loader: 'thread-loader',
           options: {
@@ -156,6 +157,7 @@ module.exports = function(env) {
     );
 
     cssLoader = [
+      'cache-loader',
       {
         loader: 'thread-loader',
         options: {
