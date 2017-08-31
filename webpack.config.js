@@ -232,8 +232,9 @@ module.exports = function(env) {
     output: {
       path: buildDirectory,
       publicPath: '/',
-      filename: '[name]-[hash:8].js',
-      chunkFilename: '[name]-[chunkhash:8].js',
+      // Computing hashes is expensive and we don't need them in development
+      filename: isProd ? '[name]-[hash:8].js' : '[name].js',
+      chunkFilename: isProd ? '[name]-[chunkhash:8].js' : '[name].js',
     },
     module: {
       rules: [
@@ -243,7 +244,7 @@ module.exports = function(env) {
           use: {
             loader: 'file-loader',
             options: {
-              name: 'static/[name]-[hash:8].[ext]',
+              name: isProd ? 'static/[name]-[hash:8].[ext]' : 'static/[name].[ext]',
             },
           },
         },
