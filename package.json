@@ -76,6 +76,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "cache-loader": "^1.0.3",
+    "classnames": "^2.2.5",
     "coveralls": "^2.13.1",
     "d3": "4.10.0",
     "prop-types": "^15.5.10",

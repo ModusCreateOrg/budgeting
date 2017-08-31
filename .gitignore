@@ -10,3 +10,4 @@ coverage
 /dll
 .idea
 /.cache-loader
+/.vscode
