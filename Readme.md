@@ -25,6 +25,7 @@ Feel free to use it as a reference app or a starter kit.
 - [x] Automatic common chunk bundling
 - [x] CSS modules
 - [x] Snapshot testing with Jest
+- [x] Flow static typing. Check out this [guide to using Flow in the project](https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/blob/master/docs/flow.md).
 - [x] Performance budgets in Webpack 3
 - [x] React 16 Error Boundaries
 
@@ -112,6 +113,7 @@ The app was built using these aweseome technologies
 - [x] [Babel](https://babeljs.io/)
 - [x] [Prettier](https://github.com/prettier/prettier)
 - [x] [Jest](https://facebook.github.io/jest/)
+- [x] [Flow](https://flow.org/en/)
 - [x] [Yarn](https://yarnpkg.com/en/)
 - [x] [Ducks](https://github.com/erikras/ducks-modular-redux/) 🐣
 - [x] [Sass](http://sass-lang.com/)
@@ -128,7 +130,8 @@ The app was built using these aweseome technologies
 * `yarn run lint:fix` - lint check + autofixes + prettify code with __prettier__
 * `yarn run test` - run test suite
 * `yarn run test:fix` - run test suite watching files for changes
-
+* `yarn run flow` - run flow type checking
+* `yarn run update-types` - update flow library definitions
 
 ## NPM Scripts
 Similar to Yarn, really...
@@ -142,6 +145,8 @@ Similar to Yarn, really...
 * `npm run lint:fix` - lint check + autofixes + prettify code with __prettier__
 * `npm run test` - run test suite
 * `npm run test:fix` - run test suite watching files for changes
+* `npm run flow` - run flow type checking
+* `npm run update-types` - update flow library definitions
 
 ## Honorary Mentions
 
