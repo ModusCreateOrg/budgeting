@@ -1,6 +1,7 @@
 import React, { createElement } from 'react';
 import PropTypes from 'prop-types';
 import isObject from 'utils/isObject';
+import createFormField from 'utils/createFormField';
 
 /**
  * `Field` component.
@@ -11,44 +12,19 @@ import isObject from 'utils/isObject';
  * a string for DOM form fields (`input`, `select`). This is the component that will
  * be rendered.
  */
+@createFormField
 class Field extends React.Component {
   static propTypes = {
     component: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
     name: PropTypes.string.isRequired,
     handleRef: PropTypes.func,
+    formData: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     component: 'input',
     handleRef: null,
   };
-
-  static contextTypes = {
-    formDataBroadcast: PropTypes.object,
-  };
-
-  state = {
-    field: {},
-  };
-
-  componentWillMount() {
-    const { formDataBroadcast } = this.context;
-
-    // set initial data from the form data broadcast
-    const initialFormData = formDataBroadcast.getState();
-    this.updateFieldState(initialFormData);
-  }
-
-  componentDidMount() {
-    const { formDataBroadcast } = this.context;
-
-    // subscribe to the form data broadcast
-    this.unsubscribe = formDataBroadcast.subscribe(this.updateFieldState);
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
 
   /**
    * Return a field value from a SyntheticEvent or a value
@@ -67,18 +43,17 @@ class Field extends React.Component {
     return eventOrValue;
   };
 
-  updateFieldState = formData => {
-    const { name } = this.props;
+  getFieldData = () => {
+    const { name, formData } = this.props;
 
-    const fieldData = formData.fields[name];
-    this.setState({ field: fieldData });
+    return formData.fields[name];
   };
 
   /**
    * Handle change from the underlying component
    */
   handleChange = eventOrValue => {
-    const { field } = this.state;
+    const field = this.getFieldData();
 
     if (field) {
       const value = this.getValue(eventOrValue);
@@ -87,8 +62,8 @@ class Field extends React.Component {
   };
 
   render() {
-    const { component, name, handleRef, ...otherProps } = this.props;
-    const { field } = this.state;
+    const { component, name, handleRef, formData, ...otherProps } = this.props;
+    const field = this.getFieldData();
 
     // form-related props
     let customProps = {
