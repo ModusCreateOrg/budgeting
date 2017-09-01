@@ -23,7 +23,10 @@ class Rect extends React.Component<RectProps> {
     if (this.rectRef) {
       const interpolateHeight = interpolate(1000, this.rectRef.getAttribute('height'));
 
-      rect.transition().duration(animDuration * Math.random()).attrTween('height', () => t => interpolateHeight(t));
+      rect
+        .transition()
+        .duration(animDuration * Math.random())
+        .attrTween('height', () => t => interpolateHeight(t));
     }
   }
 

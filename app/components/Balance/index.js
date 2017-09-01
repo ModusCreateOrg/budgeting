@@ -15,21 +15,17 @@ type BalanceProps = {
 const Balance = ({ title, amount, colorize, prefix }: BalanceProps) => {
   const amountCls = colorize && amount.isNegative ? styles.neg : styles.pos || '';
 
-  const prefixElement =
-    typeof prefix === 'string' &&
+  const prefixElement = typeof prefix === 'string' && (
     <div key="prefix" className={styles.balanceSymbol}>
       {prefix}
-    </div>;
+    </div>
+  );
 
   const balanceElement = (
     <div key="item" className={styles.balanceWrapper}>
       <div className={styles.balanceItem}>
-        <div className={`${styles.balanceAmount} ${amountCls}`}>
-          {amount.text}
-        </div>
-        <div className={styles.balanceTitle}>
-          {title}
-        </div>
+        <div className={`${styles.balanceAmount} ${amountCls}`}>{amount.text}</div>
+        <div className={styles.balanceTitle}>{title}</div>
       </div>
     </div>
   );

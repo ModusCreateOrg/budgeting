@@ -45,7 +45,9 @@ class DonutChart extends React.Component<DonutChartProps> {
 
   getPathArc = () => {
     const { height, innerRatio } = this.props;
-    return arc().innerRadius(height / innerRatio).outerRadius(height / 2);
+    return arc()
+      .innerRadius(height / innerRatio)
+      .outerRadius(height / 2);
   };
 
   chart: any;
@@ -58,7 +60,9 @@ class DonutChart extends React.Component<DonutChartProps> {
   updateChartVariables = () => {
     const { data, dataValue, color, height } = this.props;
 
-    this.chart = pie().value(d => d[dataValue]).sort(null);
+    this.chart = pie()
+      .value(d => d[dataValue])
+      .sort(null);
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
     this.colorFn = color.domain && color.domain([0, data.length]);
@@ -77,9 +81,9 @@ class DonutChart extends React.Component<DonutChartProps> {
           padding={chartPadding}
           transform={`translate(${outerRadius},${outerRadius})`}
         >
-          {this.chart(data).map((datum, index) =>
+          {this.chart(data).map((datum, index) => (
             <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
-          )}
+          ))}
         </Chart>
 
         <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />

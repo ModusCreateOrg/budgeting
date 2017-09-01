@@ -14,11 +14,11 @@ export default function DataSelector(props: DataSelectorProps) {
 
   return (
     <select name={name} value={value} onChange={onChange}>
-      {Object.keys(data).map(id =>
+      {Object.keys(data).map(id => (
         <option key={id} value={id}>
           {data[id]}
         </option>
-      )}
+      ))}
     </select>
   );
 }

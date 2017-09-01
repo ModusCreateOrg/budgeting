@@ -14,7 +14,7 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const ReportsPanel = () =>
+const ReportsPanel = () => (
   <section>
     <ReportsTabbar />
 
@@ -23,6 +23,7 @@ const ReportsPanel = () =>
       <Route path="/reports/spending" component={Spending} />
       <Redirect to="/reports/inflow-outflow" />
     </Switch>
-  </section>;
+  </section>
+);
 
 export default ReportsPanel;

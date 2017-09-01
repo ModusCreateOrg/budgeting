@@ -9,7 +9,7 @@ import Budget from 'routes/Budget';
 import Reports from 'routes/Reports';
 import './style.scss';
 
-const App = () =>
+const App = () => (
   <ErrorBoundary fallbackComponent={AppError}>
     <main>
       <Header />
@@ -20,6 +20,7 @@ const App = () =>
         <Redirect to="/budget" />
       </Switch>
     </main>
-  </ErrorBoundary>;
+  </ErrorBoundary>
+);
 
 export default App;

@@ -7,11 +7,10 @@ type BalanceProps = {
   children: React.Node,
 };
 
-const BalanceRow = ({ children }: BalanceProps) =>
+const BalanceRow = ({ children }: BalanceProps) => (
   <div className={styles.balanceRowContainer}>
-    <div className={styles.balanceRow}>
-      {children}
-    </div>
-  </div>;
+    <div className={styles.balanceRow}>{children}</div>
+  </div>
+);
 
 export default BalanceRow;

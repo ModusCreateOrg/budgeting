@@ -12,10 +12,11 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = () =>
+const BudgetContainer = () => (
   <section>
     <BudgetGrid />
     <Balance />
-  </section>;
+  </section>
+);
 
 export default BudgetContainer;
