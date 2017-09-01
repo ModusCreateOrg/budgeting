@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DataSelector from '../DataSelector';
+import DataSelector from '../';
 
 it('renders correctly', () => {
   const tree = renderer
