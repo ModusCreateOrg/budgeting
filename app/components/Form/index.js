@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Broadcast from 'utils/Broadcast';
+import provideContextBroadcast from 'utils/provideContextBroadcast';
 
 /**
  * Form component
@@ -32,9 +32,11 @@ import Broadcast from 'utils/Broadcast';
  * from the context Broadcast. (check `components/Field`)
  *
  */
+@provideContextBroadcast('formData')
 class Form extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    setBroadcastState: PropTypes.func.isRequired,
     fields: PropTypes.array.isRequired,
     initialValues: PropTypes.object,
     onSubmit: PropTypes.func,
@@ -50,25 +52,14 @@ class Form extends React.Component {
     validate: null,
   };
 
-  static childContextTypes = {
-    formDataBroadcast: PropTypes.object,
-  };
-
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     const { initialValues } = props;
-
-    // Initialize form data broadcast
-    this.formDataBroadcast = new Broadcast();
 
     // Initialize form state
     const initialFormState = this.getInitialFormState(initialValues);
     this.setFormState(initialFormState);
-  }
-
-  getChildContext() {
-    return { formDataBroadcast: this.formDataBroadcast };
   }
 
   /**
@@ -148,12 +139,14 @@ class Form extends React.Component {
   };
 
   setFormState(newFormState) {
+    const { setBroadcastState } = this.props;
+
     // set form state
     this.formState = newFormState;
 
     // get form data and set it in the broadcast
     const formData = this.getFormData();
-    this.formDataBroadcast.setState(formData);
+    setBroadcastState(formData);
 
     // if a handler exists, call it with form data
     if (this.props.onFormDataChange) {

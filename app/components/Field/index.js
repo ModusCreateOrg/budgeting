@@ -1,7 +1,7 @@
 import React, { createElement } from 'react';
 import PropTypes from 'prop-types';
 import isObject from 'utils/isObject';
-import createFormField from 'utils/createFormField';
+import consumeContextBroadcast from 'utils/consumeContextBroadcast';
 
 /**
  * `Field` component.
@@ -12,7 +12,7 @@ import createFormField from 'utils/createFormField';
  * a string for DOM form fields (`input`, `select`). This is the component that will
  * be rendered.
  */
-@createFormField
+@consumeContextBroadcast('formData')
 class Field extends React.Component {
   static propTypes = {
     component: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),

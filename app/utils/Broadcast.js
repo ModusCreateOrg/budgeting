@@ -17,24 +17,22 @@ class Broadcast {
     this.subscriptions = [];
   }
 
-  getState() {
-    return this.currentState;
-  }
+  getState = () => this.currentState;
 
-  setState(newState) {
+  setState = newState => {
     this.currentState = newState;
 
     this.subscriptions.forEach(subscription => subscription(this.currentState));
-  }
+  };
 
-  subscribe(subscription) {
+  subscribe = subscription => {
     this.subscriptions.push(subscription);
 
     // return `unsubscribe` function
     return () => {
       this.subscriptions = this.subscriptions.filter(item => item !== subscription);
     };
-  }
+  };
 }
 
 export default Broadcast;
