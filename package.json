@@ -51,7 +51,7 @@
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
     "firebase-tools": "^3.9.2",
-    "flow-bin": "^0.53.1",
+    "flow-bin": "^0.54.0",
     "flow-typed": "^2.1.5",
     "html-webpack-plugin": "2.30.1",
     "identity-obj-proxy": "^3.0.0",
