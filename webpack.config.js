@@ -7,6 +7,10 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
+const sassThreadLoader = require('thread-loader');
+
+sassThreadLoader.warmup({ workerParallelJobs: 2 }, ['sass-loader', 'css-loader', 'style-loader', 'babel-loader']);
+
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
 const host = process.env.HOST || 'localhost';
@@ -53,9 +57,6 @@ module.exports = function(env) {
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) },
     }),
 
-    // create css bundle
-    new ExtractTextPlugin('style-[contenthash:8].css'),
-
     // create index.html
     new HtmlWebpackPlugin({
       template: htmlTemplate,
@@ -80,7 +81,7 @@ module.exports = function(env) {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
       preload: {
-        test: /^0-|^main-|^style-.*$/,
+        test: /^0|^main|^style-.*$/,
         chunks: 'all',
       },
     }),
@@ -88,6 +89,8 @@ module.exports = function(env) {
 
   if (isProd) {
     plugins.push(
+      // create css bundle
+      new ExtractTextPlugin('style-[contenthash:8].css'),
       // minify remove some of the dead code
       new UglifyJSPlugin({
         compress: {
@@ -108,6 +111,13 @@ module.exports = function(env) {
     cssLoader = ExtractTextPlugin.extract({
       fallback: 'style-loader',
       use: [
+        'cache-loader',
+        {
+          loader: 'thread-loader',
+          options: {
+            workerParallelJobs: 2,
+          },
+        },
         {
           loader: 'css-loader',
           options: {
@@ -134,23 +144,28 @@ module.exports = function(env) {
       new webpack.NamedModulesPlugin(),
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin(),
-
       // load DLL files
       /* eslint-disable global-require */
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/d3-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/react-manifest.json')}),
-      new webpack.DllReferencePlugin({ context: __dirname, manifest: require('./dll/reactContrib-manifest.json')}),
+      new webpack.DllReferencePlugin({
+        context: __dirname,
+        manifest: require('./dll/libs-manifest.json'),
+      }),
       /* eslint-enable global-require */
 
       // make DLL assets available for the app to download
-      new AddAssetHtmlPlugin([
-        { filepath: require.resolve('./dll/d3.dll.js') }, 
-        { filepath: require.resolve('./dll/react.dll.js') }, 
-        { filepath: require.resolve('./dll/reactContrib.dll.js') }, 
-      ])
+      new AddAssetHtmlPlugin([{ filepath: require.resolve('./dll/libs.dll.js') }])
     );
 
     cssLoader = [
+      // cache css output for faster rebuilds
+      'cache-loader',
+      {
+        // build css/sass in threads (faster)
+        loader: 'thread-loader',
+        options: {
+          workerParallelJobs: 2,
+        },
+      },
       {
         loader: 'style-loader',
       },
@@ -209,7 +224,7 @@ module.exports = function(env) {
       ];
 
   return {
-    devtool: isProd ? 'source-map' : 'cheap-module-source-map',
+    devtool: isProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
     context: sourcePath,
     entry: {
       main: entryPoint,
@@ -217,36 +232,46 @@ module.exports = function(env) {
     output: {
       path: buildDirectory,
       publicPath: '/',
-      filename: '[name]-[hash:8].js',
-      chunkFilename: '[name]-[chunkhash:8].js',
+      // Computing hashes is expensive and we don't need them in development
+      filename: isProd ? '[name]-[hash:8].js' : '[name].js',
+      chunkFilename: isProd ? '[name]-[chunkhash:8].js' : '[name].js',
     },
     module: {
       rules: [
         {
           test: /\.(html|svg|jpe?g|png|ttf|woff2?)$/,
-          exclude: /node_modules/,
+          include: sourcePath,
           use: {
             loader: 'file-loader',
             options: {
-              name: 'static/[name]-[hash:8].[ext]',
+              name: isProd ? 'static/[name]-[hash:8].[ext]' : 'static/[name].[ext]',
             },
           },
         },
         {
           test: /\.scss$/,
-          exclude: /node_modules/,
+          include: sourcePath,
           use: cssLoader,
         },
         {
           test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: ['babel-loader'],
+          include: sourcePath,
+          use: [
+            {
+              loader: 'thread-loader',
+              options: {
+                workerParallelJobs: 2,
+              },
+            },
+            'babel-loader',
+          ],
         },
       ],
     },
     resolve: {
-      extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
+      extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.scss'],
       modules: [path.resolve(__dirname, 'node_modules'), sourcePath],
+      symlinks: false,
     },
 
     plugins,

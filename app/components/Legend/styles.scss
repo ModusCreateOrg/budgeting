@@ -5,11 +5,11 @@
   font-weight: bold;
   display: flex;
   flex-direction: column;
+}
 
-  &.reverse {
-    flex-direction: column-reverse;
-    justify-content: flex-end;
-  }
+.reverse {
+  flex-direction: column-reverse;
+  justify-content: flex-end;
 }
 
 .value {

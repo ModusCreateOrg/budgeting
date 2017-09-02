@@ -1,21 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { Route, Link } from 'react-router-dom';
 
-const NavLink = ({ to, label, styles }) =>
+type NavLinkProps = {
+  to: string,
+  label: string,
+  styles: Object,
+};
+
+const NavLink = ({ to, label, styles }: NavLinkProps) => (
   <Route
     to={to}
     exact
-    children={({ location: { pathname } }) =>
+    children={({ location: { pathname } }) => (
       <Link to={to} className={`${styles.navLink} ${pathname.indexOf(to) !== -1 ? styles.selected : ''}`}>
         {label}
-      </Link>}
-  />;
-
-NavLink.propTypes = {
-  to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  styles: PropTypes.object.isRequired,
-};
+      </Link>
+    )}
+  />
+);
 
 export default NavLink;

@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { connect } from 'react-redux';
+import type { TransactionSummary } from 'selectors/transactions';
 
 import { sortTransactions, getOutflowByCategoryName } from 'selectors/transactions';
 
 import DonutChart from 'components/DonutChart';
 
-@connect(state => ({
-  data: sortTransactions(getOutflowByCategoryName(state)),
-}))
-class Spending extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-  };
+type SpendingProps = {
+  data: TransactionSummary[],
+};
 
+class Spending extends React.Component<SpendingProps> {
   render() {
     const { data } = this.props;
 
@@ -21,4 +19,8 @@ class Spending extends Component {
   }
 }
 
-export default Spending;
+const mapStateToProps = state => ({
+  data: sortTransactions(getOutflowByCategoryName(state)),
+});
+
+export default connect(mapStateToProps)(Spending);

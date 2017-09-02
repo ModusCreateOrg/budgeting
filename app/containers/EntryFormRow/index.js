@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getDefaultCategoryId, getCategories } from 'selectors/categories';
 import { actions } from 'modules/transactions';
@@ -8,22 +8,17 @@ import Field from 'components/Field';
 import DataSelector from 'components/DataSelector';
 import styles from './style.scss';
 
-@connect(
-  state => ({
-    defaultCategoryId: getDefaultCategoryId(),
-    categories: getCategories(state),
-  }),
-  {
-    addTransaction: actions.addTransaction,
-  }
-)
-class EntryFormRow extends Component {
-  static propTypes = {
-    defaultCategoryId: PropTypes.string.isRequired,
-    categories: PropTypes.object.isRequired,
-    addTransaction: PropTypes.func.isRequired,
-  };
+type EntryFormRowProps = {
+  defaultCategoryId: string,
+  categories: Object,
+  addTransaction: Function,
+};
 
+type EntryFormRowState = {
+  formData: Object,
+};
+
+class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
   static formFields = ['categoryId', 'description', 'value'];
 
   static validateForm = ({ value }) => {
@@ -58,10 +53,12 @@ class EntryFormRow extends Component {
       });
     }
 
-    this.valueRef.focus();
+    if (this.valueRef) {
+      this.valueRef.focus();
+    }
   };
 
-  handleKeyUp = event => {
+  handleKeyUp = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
     // submit if pressing enter
     const isEnterKey = event.keyCode === 13;
     if (isEnterKey) {
@@ -69,7 +66,9 @@ class EntryFormRow extends Component {
     }
   };
 
-  handleValueRefUpdate = ref => {
+  valueRef: ?HTMLElement;
+
+  handleValueRefUpdate = (ref: ?HTMLElement) => {
     this.valueRef = ref;
   };
 
@@ -124,4 +123,13 @@ class EntryFormRow extends Component {
   }
 }
 
-export default EntryFormRow;
+const mapStateToProps = state => ({
+  defaultCategoryId: getDefaultCategoryId(),
+  categories: getCategories(state),
+});
+
+const mapDispatchToProps = {
+  addTransaction: actions.addTransaction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntryFormRow);

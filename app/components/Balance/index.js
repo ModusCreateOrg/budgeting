@@ -1,42 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+import type { FormattedAmount } from 'utils/formatAmount';
 
 import styles from './style.scss';
 
-const Balance = ({ title, amount, colorize, prefix }) => {
-  const amountCls = colorize && (amount.isNegative ? styles.neg : styles.pos);
+type BalanceProps = {
+  title: string,
+  amount: FormattedAmount,
+  colorize: boolean,
+  prefix: ?string,
+};
 
-  const prefixElement =
-    prefix &&
+const Balance = ({ title, amount, colorize, prefix }: BalanceProps) => {
+  const amountCls = colorize && amount.isNegative ? styles.neg : styles.pos || '';
+
+  const prefixElement = typeof prefix === 'string' && (
     <div key="prefix" className={styles.balanceSymbol}>
       {prefix}
-    </div>;
+    </div>
+  );
 
   const balanceElement = (
     <div key="item" className={styles.balanceWrapper}>
       <div className={styles.balanceItem}>
-        <div className={`${styles.balanceAmount} ${amountCls}`}>
-          {amount.text}
-        </div>
-        <div className={styles.balanceTitle}>
-          {title}
-        </div>
+        <div className={`${styles.balanceAmount} ${amountCls}`}>{amount.text}</div>
+        <div className={styles.balanceTitle}>{title}</div>
       </div>
     </div>
   );
-
   return [prefixElement, balanceElement];
-};
-
-Balance.propTypes = {
-  title: PropTypes.string.isRequired,
-  amount: PropTypes.object.isRequired,
-  colorize: PropTypes.bool,
-  prefix: PropTypes.string,
 };
 
 Balance.defaultProps = {
   colorize: true,
+  prefix: null,
 };
 
 export default Balance;

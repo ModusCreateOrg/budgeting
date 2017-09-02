@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
+// @flow
+import * as React from 'react';
 import { select, interpolate } from 'd3';
 
-class Path extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    fill: PropTypes.string.isRequired,
-    arcFn: PropTypes.func.isRequired,
-    animDuration: PropTypes.number,
-  };
+type PathProps = {
+  data: Object,
+  fill: string,
+  arcFn: any,
+  animDuration: number,
+};
 
+class Path extends React.Component<PathProps> {
   static defaultProps = {
     animDuration: 1000,
   };
@@ -23,10 +22,15 @@ class Path extends Component {
       { startAngle: data.startAngle, endAngle: data.endAngle }
     );
 
-    path.transition().duration(animDuration).attrTween('d', () => t => arcFn(interpolateArc(t)));
+    path
+      .transition()
+      .duration(animDuration)
+      .attrTween('d', () => t => arcFn(interpolateArc(t)));
   }
 
-  handleRefUpdate = ref => {
+  pathRef: ?HTMLElement;
+
+  handleRefUpdate = (ref: ?HTMLElement) => {
     this.pathRef = ref;
   };
 

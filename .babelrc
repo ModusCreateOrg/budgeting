@@ -14,7 +14,8 @@
       "modules": false,
       "loose": true
     }],
-    "react"
+    "react",
+    "flow"
   ],
   "env": {
     "development": {

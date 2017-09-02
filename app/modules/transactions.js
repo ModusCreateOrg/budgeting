@@ -1,3 +1,4 @@
+// @flow
 import { defaultTransactions, inflowCategories } from './defaults';
 
 /**
@@ -6,21 +7,42 @@ import { defaultTransactions, inflowCategories } from './defaults';
 const ADD_TRANSACTION = 'budget/transaction/ADD';
 const DELETE_TRANSACTION = 'budget/transaction/DELETE';
 
+export type Transaction = {
+  +id: number,
+  +categoryId: string,
+  +description: string,
+  +value: number,
+};
+
+type UnindexedTransaction = {
+  categoryId: string,
+  description: string,
+  value: number,
+};
+
+type Action = {
+  type: string,
+  transaction: Transaction,
+  id?: number,
+};
+
 /**
  * Helpers
  */
-function getNextTransactionID(state) {
+function getNextTransactionID(state: Transaction[]): number {
   return state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
 }
 
 // Add a new transaction.
-function normalizeTransaction(state, { categoryId, description, value }) {
-  const categoryNumId = parseInt(categoryId, 10);
-  const realValue = inflowCategories.includes(categoryNumId) ? Math.abs(value) : Math.abs(value) * -1;
+function normalizeTransaction(
+  state: Transaction[],
+  { categoryId, description, value }: UnindexedTransaction
+): Transaction {
+  const realValue = inflowCategories.includes(categoryId) ? Math.abs(value) : Math.abs(value) * -1;
 
   return {
     id: getNextTransactionID(state),
-    categoryId: categoryNumId,
+    categoryId,
     description,
     value: realValue,
   };
@@ -30,13 +52,13 @@ function normalizeTransaction(state, { categoryId, description, value }) {
  * Actions
  */
 export const actions = {
-  addTransaction: transaction => (dispatch, getState) =>
+  addTransaction: (transaction: UnindexedTransaction) => (dispatch: Function, getState: Function) =>
     dispatch({
       type: ADD_TRANSACTION,
       transaction: normalizeTransaction(getState().transactions, transaction),
     }),
 
-  deleteTransaction: id => ({
+  deleteTransaction: (id: $PropertyType<Transaction, 'id'>) => ({
     type: DELETE_TRANSACTION,
     id,
   }),
@@ -45,12 +67,12 @@ export const actions = {
 /**
  * Reducer
  */
-export default function transactionsReducer(state = defaultTransactions, action) {
+export default function transactionsReducer(state: Transaction[] = defaultTransactions, action: Action) {
   let newState;
 
   switch (action.type) {
     case ADD_TRANSACTION:
-      return [...state, ...action.transaction];
+      return [...state, action.transaction];
 
     case DELETE_TRANSACTION:
       newState = state.filter(todo => todo.id !== action.id);

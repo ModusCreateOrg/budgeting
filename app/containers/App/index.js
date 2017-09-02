@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import ErrorBoundary from 'components/ErrorBoundary';
@@ -8,7 +9,7 @@ import Budget from 'routes/Budget';
 import Reports from 'routes/Reports';
 import './style.scss';
 
-const App = () =>
+const App = () => (
   <ErrorBoundary fallbackComponent={AppError}>
     <main>
       <Header />
@@ -19,6 +20,7 @@ const App = () =>
         <Redirect to="/budget" />
       </Switch>
     </main>
-  </ErrorBoundary>;
+  </ErrorBoundary>
+);
 
 export default App;

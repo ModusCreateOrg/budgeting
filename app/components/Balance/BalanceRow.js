@@ -1,17 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 
 import styles from './style.scss';
 
-const BalanceRow = ({ children }) =>
-  <div className={styles.balanceRowContainer}>
-    <div className={styles.balanceRow}>
-      {children}
-    </div>
-  </div>;
-
-BalanceRow.propTypes = {
-  children: PropTypes.node.isRequired,
+type BalanceProps = {
+  children: React.Node,
 };
+
+const BalanceRow = ({ children }: BalanceProps) => (
+  <div className={styles.balanceRowContainer}>
+    <div className={styles.balanceRow}>{children}</div>
+  </div>
+);
 
 export default BalanceRow;
