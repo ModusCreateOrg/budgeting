@@ -8,14 +8,16 @@ type NavLinkProps = {
   styles: Object,
 };
 
-const NavLink = ({ to, label, styles }: NavLinkProps) =>
+const NavLink = ({ to, label, styles }: NavLinkProps) => (
   <Route
     to={to}
     exact
-    children={({ location: { pathname } }) =>
+    children={({ location: { pathname } }) => (
       <Link to={to} className={`${styles.navLink} ${pathname.indexOf(to) !== -1 ? styles.selected : ''}`}>
         {label}
-      </Link>}
-  />;
+      </Link>
+    )}
+  />
+);
 
 export default NavLink;

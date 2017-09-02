@@ -43,7 +43,7 @@ class Bar extends React.Component<BarProps> {
 
     return (
       <g transform={transform}>
-        {data.map((datum, idx) =>
+        {data.map((datum, idx) => (
           <Rect
             key={datum.categoryId}
             y={yPositions[idx]}
@@ -51,7 +51,7 @@ class Bar extends React.Component<BarProps> {
             width={width}
             fill={colorFn(idx)}
           />
-        )}
+        ))}
       </g>
     );
   }

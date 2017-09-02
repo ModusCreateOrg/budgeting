@@ -60,7 +60,9 @@ class StackedChart extends React.Component<StackedChartProps> {
 
     this.dataKeys = Object.keys(data);
 
-    this.xScale = scaleBand().rangeRound([0, width - chartPadding * 2]).paddingInner(barPadding);
+    this.xScale = scaleBand()
+      .rangeRound([0, width - chartPadding * 2])
+      .paddingInner(barPadding);
     this.xScale.domain([0, this.dataKeys.length - 1]);
 
     this.yScale = scaleLinear().rangeRound([height - chartPadding * 2 - bottomPadding, 0]);
@@ -96,7 +98,7 @@ class StackedChart extends React.Component<StackedChartProps> {
           padding={chartPadding}
           transform={`translate(${chartPadding},${chartPadding})`}
         >
-          {dataKeys.map((key, idx) =>
+          {dataKeys.map((key, idx) => (
             <Bar
               key={key}
               data={data[key]}
@@ -105,7 +107,7 @@ class StackedChart extends React.Component<StackedChartProps> {
               width={xScale.bandwidth()}
               transform={`translate(${xScale(idx)}, 0)`}
             />
-          )}
+          ))}
 
           <Xaxis
             transform={`translate(0, ${yScale.range()[0] + chartPadding / 3})`}

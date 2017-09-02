@@ -16,9 +16,9 @@ type XaxisProps = {
   xScale: Function,
 };
 
-const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }: XaxisProps) =>
+const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }: XaxisProps) => (
   <g className={styles.xAxis} transform={transform}>
-    {Object.keys(data).map((key, idx) =>
+    {Object.keys(data).map((key, idx) => (
       <g key={key} transform={`translate(${xScale(idx) + xScale.bandwidth() / 2}, 0)`}>
         <line stroke={labelColor} y2="6" x1="0.5" x2="0.5" />
         <text fill={labelColor} y="9" x="0.5" dy="0.8em">
@@ -28,8 +28,9 @@ const Xaxis = ({ data, totals, transform, labelColor, valueColor, xScale }: Xaxi
           {formatAmount(totals[key]).text}
         </text>
       </g>
-    )}
-  </g>;
+    ))}
+  </g>
+);
 
 Xaxis.defaultProps = {
   labelColor: '#000',

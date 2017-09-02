@@ -22,7 +22,10 @@ class Path extends React.Component<PathProps> {
       { startAngle: data.startAngle, endAngle: data.endAngle }
     );
 
-    path.transition().duration(animDuration).attrTween('d', () => t => arcFn(interpolateArc(t)));
+    path
+      .transition()
+      .duration(animDuration)
+      .attrTween('d', () => t => arcFn(interpolateArc(t)));
   }
 
   pathRef: ?HTMLElement;

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import s from './styles.scss';
 
-const Loading = () =>
+const Loading = () => (
   <div className={s.timelineItem}>
     <ul className={s.animatedBackground}>
       <li className={s.headerTop} />
@@ -17,6 +17,7 @@ const Loading = () =>
       <li className={s.contentThirdLine} />
       <li className={s.contentThirdEnd} />
     </ul>
-  </div>;
+  </div>
+);
 
 export default Loading;
