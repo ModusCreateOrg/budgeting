@@ -81,7 +81,7 @@ module.exports = function(env) {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
       preload: {
-        test: /^0-|^main-|^style-.*$/,
+        test: /^0|^main|^style-.*$/,
         chunks: 'all',
       },
     }),
