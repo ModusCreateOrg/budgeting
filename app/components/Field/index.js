@@ -1,7 +1,15 @@
-import React, { createElement } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import isObject from 'utils/isObject';
 import consumeContextBroadcast from 'utils/consumeContextBroadcast';
+import type { FormData } from 'components/Form';
+
+type FieldProps = {
+  component: React.ElementType,
+  name: string,
+  handleRef: (ref: ?React.ElementRef<any>) => void,
+  formData: FormData,
+};
 
 /**
  * `Field` component.
@@ -12,15 +20,7 @@ import consumeContextBroadcast from 'utils/consumeContextBroadcast';
  * a string for DOM form fields (`input`, `select`). This is the component that will
  * be rendered.
  */
-@consumeContextBroadcast('formData')
-class Field extends React.Component {
-  static propTypes = {
-    component: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    name: PropTypes.string.isRequired,
-    handleRef: PropTypes.func,
-    formData: PropTypes.object.isRequired,
-  };
-
+class Field extends React.Component<FieldProps> {
   static defaultProps = {
     component: 'input',
     handleRef: null,
@@ -29,7 +29,7 @@ class Field extends React.Component {
   /**
    * Return a field value from a SyntheticEvent or a value
    */
-  getValue = eventOrValue => {
+  getValue = (eventOrValue: any) => {
     if (!isObject(eventOrValue)) return eventOrValue;
 
     const target = eventOrValue.target;
@@ -52,7 +52,7 @@ class Field extends React.Component {
   /**
    * Handle change from the underlying component
    */
-  handleChange = eventOrValue => {
+  handleChange = (eventOrValue: SyntheticEvent<HTMLInputElement> | mixed) => {
     const field = this.getFieldData();
 
     if (field) {
@@ -92,10 +92,10 @@ class Field extends React.Component {
     if (typeof component === 'string') {
       // don't pass extra props if component is a string, because
       // it can trigger "unknown prop" warnings
-      return createElement(component, { ...customProps, ...otherProps });
+      return React.createElement(component, { ...customProps, ...otherProps });
     }
-    return createElement(component, { ...customProps, ...extraProps, ...otherProps });
+    return React.createElement(component, { ...customProps, ...extraProps, ...otherProps });
   }
 }
 
-export default Field;
+export default consumeContextBroadcast('formData')(Field);

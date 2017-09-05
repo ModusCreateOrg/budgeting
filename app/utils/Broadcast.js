@@ -1,3 +1,7 @@
+// @flow
+
+type Subscription = (currentState: mixed) => void;
+
 /**
  * Broadcast
  *
@@ -12,20 +16,23 @@
  * to notify components about state changes.
  */
 class Broadcast {
-  constructor(initialState) {
+  currentState: mixed;
+  subscriptions: Subscription[];
+
+  constructor(initialState: mixed): void {
     this.currentState = initialState;
     this.subscriptions = [];
   }
 
-  getState = () => this.currentState;
+  getState = (): mixed => this.currentState;
 
-  setState = newState => {
+  setState = (newState: mixed): void => {
     this.currentState = newState;
 
     this.subscriptions.forEach(subscription => subscription(this.currentState));
   };
 
-  subscribe = subscription => {
+  subscribe = (subscription: Subscription): (() => void) => {
     this.subscriptions.push(subscription);
 
     // return `unsubscribe` function

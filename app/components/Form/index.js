@@ -1,6 +1,46 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import provideContextBroadcast from 'utils/provideContextBroadcast';
+
+type FormError = {
+  _error: string,
+  [fieldName: string]: string,
+};
+
+type FormValues = { [fieldName: string]: mixed };
+
+type FormState = {
+  values: FormValues,
+  blurred: { [fieldName: string]: boolean },
+};
+
+type FormFieldData = {
+  name: string,
+  value: mixed,
+  initialValue: mixed,
+  blurred: boolean,
+  error: string,
+  onBlur: () => void,
+  onChange: (value: mixed) => void,
+};
+
+export type FormData = {
+  fields: { [fieldName: string]: FormFieldData },
+  error: string,
+  valid: boolean,
+  initializeForm: (newValues: FormValues) => void,
+  handleSubmit: () => boolean,
+};
+
+type FormProps = {
+  children: React.Node,
+  setBroadcastState: (newState: mixed) => void,
+  fields: string[],
+  initialValues: FormValues,
+  onSubmit: (values: FormValues) => void,
+  onFormDataChange: (formData: FormData) => void,
+  validate: (values: FormValues, otherProps: Object) => FormError,
+};
 
 /**
  * Form component
@@ -32,20 +72,8 @@ import provideContextBroadcast from 'utils/provideContextBroadcast';
  * from the context Broadcast. (check `components/Field`)
  *
  */
-@provideContextBroadcast('formData')
-class Form extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    setBroadcastState: PropTypes.func.isRequired,
-    fields: PropTypes.array.isRequired,
-    initialValues: PropTypes.object,
-    onSubmit: PropTypes.func,
-    onFormDataChange: PropTypes.func,
-    validate: PropTypes.func,
-  };
-
+class Form extends React.Component<FormProps> {
   static defaultProps = {
-    children: null,
     initialValues: {},
     onSubmit: null,
     onFormDataChange: null,
@@ -66,7 +94,7 @@ class Form extends React.Component {
    * Takes an object with form values and returns an initialized state
    * for the form.
    */
-  getInitialFormState = newValues => {
+  getInitialFormState = (newValues: FormValues): FormState => {
     const { fields } = this.props;
 
     // make default values for every field not defined in `newValues`,
@@ -92,7 +120,7 @@ class Form extends React.Component {
   /**
    * Return all props that are not used by the HOC
    */
-  getOtherProps() {
+  getOtherProps(): { [propName: string]: mixed } {
     const { fields, initialValues, onSubmit, validate, ...otherProps } = this.props;
     return otherProps;
   }
@@ -103,7 +131,7 @@ class Form extends React.Component {
    * It contains form information and handlers sorted by fields.
    * Meant to be used by other components.
    */
-  getFormData = () => {
+  getFormData = (): FormData => {
     const { fields, initialValues } = this.props;
     const { values, blurred } = this.formState;
 
@@ -138,7 +166,7 @@ class Form extends React.Component {
     };
   };
 
-  setFormState(newFormState) {
+  setFormState(newFormState: FormState): void {
     const { setBroadcastState } = this.props;
 
     // set form state
@@ -154,13 +182,15 @@ class Form extends React.Component {
     }
   }
 
+  formState: FormState;
+
   /**
    * Mark every field as blurred.
    *
    * This is called when the user tries to submit the form so that error messages
    * are visible for every field.
    */
-  blurAll() {
+  blurAll(): void {
     const { fields } = this.props;
 
     const allBlurred = fields.reduce((accumulator, field) => {
@@ -179,7 +209,7 @@ class Form extends React.Component {
    *
    * Sets `blurred` to true for the field.
    */
-  handleBlur = fieldName => {
+  handleBlur = (fieldName: string): void => {
     this.setFormState({
       ...this.formState,
       blurred: {
@@ -194,7 +224,7 @@ class Form extends React.Component {
    *
    * Sets the new field value.
    */
-  handleChange = (fieldName, value) => {
+  handleChange = (fieldName: string, value: mixed): void => {
     this.setFormState({
       ...this.formState,
       values: {
@@ -207,7 +237,7 @@ class Form extends React.Component {
   /**
    * Initialize form state with the provided form values
    */
-  initializeForm = newValues => {
+  initializeForm = (newValues: FormValues): void => {
     const initialFormState = this.getInitialFormState(newValues);
     this.setFormState(initialFormState);
   };
@@ -218,7 +248,7 @@ class Form extends React.Component {
    * Checks if the form is valid, and then calls the provided `onSubmit` function.
    * Returns true if the submit was valid.
    */
-  handleSubmit = () => {
+  handleSubmit = (): boolean => {
     const { onSubmit } = this.props;
     const { values } = this.formState;
 
@@ -240,13 +270,13 @@ class Form extends React.Component {
    *
    * Falls back to a default validator which always returns valid.
    *
-   * (values, props) => {ErrorObject}
+   * (values, props) => {FormError}
    * A validator takes the current values and props, and returns an object
    * mapping every failing field to a string describing the error.
    *
    * A special `_error` key represents a generic error in the form.
    */
-  runValidator() {
+  runValidator(): FormError {
     const { validate } = this.props;
     const { values } = this.formState;
 
@@ -261,4 +291,4 @@ class Form extends React.Component {
   }
 }
 
-export default Form;
+export default provideContextBroadcast('formData')(Form);

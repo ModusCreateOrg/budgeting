@@ -1,19 +1,31 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import getDisplayName from 'utils/getDisplayName';
+import type { HigherOrderComponent } from 'types';
+
+type ProvidedProps = {
+  [broadcastName: string]: mixed,
+};
+
+type ConsumeContextBroadcastState = {
+  broadcastState: mixed,
+};
 
 /**
  * Returns a HOC you can use to enable a component to receive data
  * from a form data broadcaster in context.
  */
-const consumeContextBroadcast = broadcastName => WrappedComponent => {
-  class ConsumeContextBroadcast extends React.Component {
+const consumeContextBroadcast = (
+  broadcastName: string
+): HigherOrderComponent<{}, ProvidedProps> => WrappedComponent => {
+  class ConsumeContextBroadcast extends React.Component<{}, ConsumeContextBroadcastState> {
     static contextTypes = {
       [broadcastName]: PropTypes.object,
     };
 
     state = {
-      broadcastState: {},
+      broadcastState: null,
     };
 
     componentWillMount() {
@@ -34,6 +46,8 @@ const consumeContextBroadcast = broadcastName => WrappedComponent => {
     componentWillUnmount() {
       this.unsubscribe();
     }
+
+    unsubscribe: () => void;
 
     updateState = broadcastState => {
       this.setState({ broadcastState: broadcastState });
