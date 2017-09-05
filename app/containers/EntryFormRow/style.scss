@@ -7,6 +7,11 @@
     display: flex;
     flex-wrap: nowrap;
 
+    form {
+      display: flex;
+      width: 100%;
+    };
+
     input, select {
       flex: 1;
       min-width: 50px;
@@ -43,5 +48,19 @@
         background: darkgray;
       }
     }
+  }
+}
+
+.formSection {
+  display: flex;
+  padding: 1px;
+
+  &:nth-child(1), &:nth-child(3) {
+    min-width: 120px;
+    flex: 1;
+  }
+
+  &:nth-child(2) {
+    flex: 3;
   }
 }

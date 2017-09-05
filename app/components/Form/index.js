@@ -29,7 +29,7 @@ export type FormData = {
   error: string,
   valid: boolean,
   initializeForm: (newValues: FormValues) => void,
-  handleSubmit: () => boolean,
+  submitForm: () => boolean,
 };
 
 type FormProps = {
@@ -38,6 +38,8 @@ type FormProps = {
   fields: string[],
   initialValues: FormValues,
   onSubmit: (values: FormValues) => void,
+  onSubmitSuccess: () => void,
+  onSubmitFail: () => void,
   onFormDataChange: (formData: FormData) => void,
   validate: (values: FormValues, otherProps: Object) => FormError,
 };
@@ -45,8 +47,8 @@ type FormProps = {
 /**
  * Form component
  *
- * It handles all the form state, and provides information and actions to
- * the children components using context.
+ * It renders a <form> element, handles all the form state, and provides
+ * information and actions to the children components using context.
  *
  * It takes the following props:
  * - fields (required): Array of field names.
@@ -54,6 +56,8 @@ type FormProps = {
  * - onSubmit:          Function to call on successful form submit.
  *                      If not provided, the submit logic can be handled in the
  *                      component.
+ * - onSubmitSuccess:   Function to call when submit succeeded.
+ * - onSubmitFail:   Function to call when submit failed.
  * - onFormDataChange:  Function to call with the form data when it changes.
  * - validate:          Function to validate the form on every change, if not
  *                      provided the form is always valid.
@@ -64,7 +68,7 @@ type FormProps = {
  * - error:             A generic error for the entire form (from the `_error` field returned
  *                      in the validation function).
  * - valid:             True is the form is valid.
- * - handleSubmit:      When called, the form will be validated and the provided 'onSubmit' function
+ * - submitForm:        When called, the form will be validated and the provided 'onSubmit' function
  *                      will be called.
  * - initializeForm:    Initialize the form with the provided field values.
  *
@@ -76,6 +80,8 @@ class Form extends React.Component<FormProps> {
   static defaultProps = {
     initialValues: {},
     onSubmit: null,
+    onSubmitSuccess: null,
+    onSubmitFail: null,
     onFormDataChange: null,
     validate: null,
   };
@@ -118,10 +124,21 @@ class Form extends React.Component<FormProps> {
   };
 
   /**
-   * Return all props that are not used by the HOC
+   * Return all props that are not used by the component
    */
   getOtherProps(): { [propName: string]: mixed } {
-    const { fields, initialValues, onSubmit, validate, ...otherProps } = this.props;
+    const {
+      fields,
+      validate,
+      children,
+      setBroadcastState,
+      initialValues,
+      onFormDataChange,
+      onSubmit,
+      onSubmitSuccess,
+      onSubmitFail,
+      ...otherProps
+    } = this.props;
     return otherProps;
   }
 
@@ -162,7 +179,7 @@ class Form extends React.Component<FormProps> {
       error: formError,
       valid: isFormValid,
       initializeForm: this.initializeForm,
-      handleSubmit: this.handleSubmit,
+      submitForm: this.submitForm,
     };
   };
 
@@ -243,12 +260,29 @@ class Form extends React.Component<FormProps> {
   };
 
   /**
-   * Handle submitting the form.
-   *
+   * Handle a form submit event.
+   */
+  handleSubmit = (event: SyntheticEvent<HTMLFormElement>): boolean => {
+    const { onSubmitSuccess, onSubmitFail } = this.props;
+
+    event.preventDefault();
+
+    const submitResult = this.submitForm();
+
+    if (submitResult) {
+      if (onSubmitSuccess) {
+        onSubmitSuccess();
+      }
+    } else if (onSubmitFail) {
+      onSubmitFail();
+    }
+  };
+
+  /**
    * Checks if the form is valid, and then calls the provided `onSubmit` function.
    * Returns true if the submit was valid.
    */
-  handleSubmit = (): boolean => {
+  submitForm = (): boolean => {
     const { onSubmit } = this.props;
     const { values } = this.formState;
 
@@ -287,7 +321,11 @@ class Form extends React.Component<FormProps> {
   }
 
   render() {
-    return this.props.children;
+    return (
+      <form onSubmit={this.handleSubmit} {...this.getOtherProps()}>
+        {this.props.children}
+      </form>
+    );
   }
 }
 
