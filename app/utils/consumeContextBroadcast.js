@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import getDisplayName from 'utils/getDisplayName';
 import type { HigherOrderComponent } from 'types';
+import Broadcast from './Broadcast';
 
 type ProvidedProps = {
   [broadcastName: string]: mixed,
@@ -30,6 +31,10 @@ const consumeContextBroadcast = (
 
     componentWillMount() {
       const broadcast = this.context[broadcastName];
+
+      if (!(broadcast instanceof Broadcast)) {
+        throw new Error('consumeContextBroadcast must be rendered in the context of a broadcast with the right name');
+      }
 
       // set initial state from the broadcast
       const initialState = broadcast.getState();

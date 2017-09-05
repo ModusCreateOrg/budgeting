@@ -16,7 +16,7 @@ type EntryFormRowProps = {
 };
 
 type EntryFormRowState = {
-  formData: FormData,
+  formData: ?FormData,
 };
 
 class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
@@ -33,7 +33,7 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
   };
 
   state = {
-    formData: {},
+    formData: null,
   };
 
   addEntry = (values): void => {
@@ -51,9 +51,11 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
     const { formData } = this.state;
 
     // keep the chosen category but clear everything else
-    formData.initializeForm({
-      categoryId: formData.fields.categoryId.value,
-    });
+    if (formData) {
+      formData.initializeForm({
+        categoryId: formData.fields.categoryId.value,
+      });
+    }
 
     this.focusValueField();
   };
@@ -77,7 +79,8 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
   render() {
     const { categories, defaultCategoryId } = this.props;
     const initialValues = { categoryId: defaultCategoryId };
-    const { formData: { valid } } = this.state;
+    const { formData } = this.state;
+    const isValid = formData && formData.valid;
 
     return (
       <tr className={styles.entryFormRow}>
@@ -105,7 +108,7 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                 placeholder="Value"
                 handleRef={this.handleValueRefUpdate}
               />
-              <button type="submit" disabled={!valid}>
+              <button type="submit" disabled={!isValid}>
                 Add
               </button>
             </div>

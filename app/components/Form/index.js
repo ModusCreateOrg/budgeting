@@ -262,7 +262,7 @@ class Form extends React.Component<FormProps> {
   /**
    * Handle a form submit event.
    */
-  handleSubmit = (event: SyntheticEvent<HTMLFormElement>): boolean => {
+  handleSubmit = (event: SyntheticEvent<HTMLFormElement>): void => {
     const { onSubmitSuccess, onSubmitFail } = this.props;
 
     event.preventDefault();
