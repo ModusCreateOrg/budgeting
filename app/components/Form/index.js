@@ -29,7 +29,7 @@ export type FormData = {
   error: string,
   valid: boolean,
   initializeForm: (newValues: FormValues) => void,
-  submitForm: () => boolean,
+  submitForm: () => void,
 };
 
 type FormProps = {
@@ -76,7 +76,7 @@ type FormProps = {
  * from the context Broadcast. (check `components/Field`)
  *
  */
-class Form extends React.Component<FormProps> {
+export class Form extends React.Component<FormProps> {
   static defaultProps = {
     initialValues: {},
     onSubmit: null,
@@ -86,7 +86,7 @@ class Form extends React.Component<FormProps> {
     validate: null,
   };
 
-  constructor(props) {
+  constructor(props: FormProps) {
     super(props);
 
     const { initialValues } = props;
@@ -260,31 +260,17 @@ class Form extends React.Component<FormProps> {
   };
 
   /**
-   * Handle a form submit event.
-   */
-  handleSubmit = (event: SyntheticEvent<HTMLFormElement>): void => {
-    const { onSubmitSuccess, onSubmitFail } = this.props;
-
-    event.preventDefault();
-
-    const submitResult = this.submitForm();
-
-    if (submitResult) {
-      if (onSubmitSuccess) {
-        onSubmitSuccess();
-      }
-    } else if (onSubmitFail) {
-      onSubmitFail();
-    }
-  };
-
-  /**
    * Checks if the form is valid, and then calls the provided `onSubmit` function.
    * Returns true if the submit was valid.
    */
-  submitForm = (): boolean => {
-    const { onSubmit } = this.props;
+  submitForm = (event: ?SyntheticEvent<HTMLFormElement>): void => {
+    const { onSubmit, onSubmitSuccess, onSubmitFail } = this.props;
     const { values } = this.formState;
+
+    // If form submit was triggered by an event, call `preventDefault()`
+    if (event) {
+      event.preventDefault();
+    }
 
     const errors = this.runValidator();
     const isFormValid = Object.keys(errors).length === 0;
@@ -294,9 +280,12 @@ class Form extends React.Component<FormProps> {
 
     if (isFormValid && onSubmit) {
       onSubmit(values);
-      return true;
+      if (onSubmitSuccess) {
+        onSubmitSuccess();
+      }
+    } else if (onSubmitFail) {
+      onSubmitFail();
     }
-    return false;
   };
 
   /**
@@ -322,7 +311,7 @@ class Form extends React.Component<FormProps> {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} {...this.getOtherProps()}>
+      <form onSubmit={this.submitForm} {...this.getOtherProps()}>
         {this.props.children}
       </form>
     );

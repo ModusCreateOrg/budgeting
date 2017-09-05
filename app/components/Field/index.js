@@ -20,7 +20,7 @@ type FieldProps = {
  * a string for DOM form fields (`input`, `select`). This is the component that will
  * be rendered.
  */
-class Field extends React.Component<FieldProps> {
+export class Field extends React.Component<FieldProps> {
   static defaultProps = {
     component: 'input',
     handleRef: null,
