@@ -57,7 +57,7 @@ type FormProps = {
  *                      If not provided, the submit logic can be handled in the
  *                      component.
  * - onSubmitSuccess:   Function to call when submit succeeded.
- * - onSubmitFail:   Function to call when submit failed.
+ * - onSubmitFail:      Function to call when submit failed.
  * - onFormDataChange:  Function to call with the form data when it changes.
  * - validate:          Function to validate the form on every change, if not
  *                      provided the form is always valid.
@@ -261,7 +261,6 @@ export class Form extends React.Component<FormProps> {
 
   /**
    * Checks if the form is valid, and then calls the provided `onSubmit` function.
-   * Returns true if the submit was valid.
    */
   submitForm = (event: ?SyntheticEvent<HTMLFormElement>): void => {
     const { onSubmit, onSubmitSuccess, onSubmitFail } = this.props;
