@@ -66,24 +66,16 @@ export class Field extends React.Component<FieldProps> {
     const field = this.getFieldData();
 
     // form-related props
-    let customProps = {
+    const customProps = {
       name,
-      value: '',
+      value: typeof field.value !== 'undefined' ? field.value : '',
       onChange: this.handleChange,
+      onBlur: field.onBlur,
       ref: handleRef,
     };
 
     // form-related props that might cause an "unknown prop" warnings
-    let extraProps = {};
-
-    customProps = {
-      ...customProps,
-      value: field.value,
-      onBlur: field.onBlur,
-    };
-
-    extraProps = {
-      ...extraProps,
+    const extraProps = {
       blurred: field.blurred,
       error: field.error,
       initialValue: field.initialValue,
@@ -92,9 +84,9 @@ export class Field extends React.Component<FieldProps> {
     if (typeof component === 'string') {
       // don't pass extra props if component is a string, because
       // it can trigger "unknown prop" warnings
-      return React.createElement(component, { ...customProps, ...otherProps });
+      return React.createElement(component, { ...otherProps, ...customProps });
     }
-    return React.createElement(component, { ...customProps, ...extraProps, ...otherProps });
+    return React.createElement(component, { ...otherProps, ...customProps, ...extraProps });
   }
 }
 
