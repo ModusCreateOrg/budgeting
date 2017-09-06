@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<input
+  name="testFieldName"
+  onBlur={[Function]}
+  onChange={[Function]}
+  value={1234}
+/>
+`;
+
+exports[`renders correctly with a custom component 1`] = `
+<input
+  name="testFieldName"
+  type="text"
+  value={1234}
+/>
+`;

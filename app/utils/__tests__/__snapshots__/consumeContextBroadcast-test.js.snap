@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`consumeContextBroadcast should return a HOC that renders correctly if the right broadcast exists in context 1`] = `
+<div>
+  test
+</div>
+`;
+
+exports[`consumeContextBroadcast should return a HOC that sets a Broadcast state in the context 1`] = `
+<div>
+  initialState
+</div>
+`;
