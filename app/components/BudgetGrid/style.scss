@@ -54,14 +54,6 @@
     td {
       vertical-align: top;
       text-overflow: ellipsis;
-
-      &.neg {
-        color: $red;
-      }
-
-      &.pos {
-        color: $green;
-      }
     }
   }
 
@@ -97,6 +89,11 @@
   }
 }
 
+.responsiveCell {
+  display: flex;
+  flex: 1;
+}
+
 .cellLabel {
   display: none;
 
@@ -109,4 +106,12 @@
 
 .cellContent {
   flex: 1;
+}
+
+.neg {
+  color: $red;
+}
+
+.pos {
+  color: $green;
 }
