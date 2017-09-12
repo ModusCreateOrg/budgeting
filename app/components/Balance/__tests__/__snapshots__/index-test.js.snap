@@ -25,26 +25,26 @@ exports[`renders correctly with a prefix 1`] = `
 Array [
   <div
     className="balanceSymbol"
->
+  >
     prefix
-</div>,
+  </div>,
   <div
     className="balanceWrapper"
->
+  >
     <div
-        className="balanceItem"
+      className="balanceItem"
     >
-        <div
-            className="balanceAmount pos"
-        >
-            text
-        </div>
-        <div
-            className="balanceTitle"
-        >
-            title
-        </div>
+      <div
+        className="balanceAmount pos"
+      >
+        text
+      </div>
+      <div
+        className="balanceTitle"
+      >
+        title
+      </div>
     </div>
-</div>,
+  </div>,
 ]
 `;
