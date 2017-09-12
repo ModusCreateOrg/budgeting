@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BudgetGridRow from '../BudgetGridRow';
+import BudgetGridRow from 'components/BudgetGridRow';
 
 it('renders correctly', () => {
   const mockTransaction = {
