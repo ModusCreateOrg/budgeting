@@ -1,28 +1,23 @@
 // @flow
 import * as React from 'react';
+import Column from 'components/Column';
 
-type InputRow = { [attribute: string]: mixed };
+export type InputRow = { +[attribute: string]: any };
 
 type DefaultColumnConfiguration = {
-  Header: React.ComponentType<any> | string,
-  Cell: React.ComponentType<any> | string,
-  Footer: React.ComponentType<any> | string,
+  Cell?: React.ComponentType<any> | string,
+  Header?: React.ComponentType<any> | string,
+  Footer?: React.ComponentType<any> | string,
 };
 
-type ColumnConfiguration = {
-  id: string,
-  accessor: ((inputRow: InputRow) => mixed) | string,
-  Header: React.ComponentType<any> | string,
-  Cell: React.ComponentType<any> | string,
-  Footer: React.ComponentType<any> | string,
+type ColumnConfiguration = DefaultColumnConfiguration & {
+  id?: string,
+  accessor?: ((inputRow: InputRow) => mixed) | string,
 };
 
-type ResolvedColumn = {
+type ResolvedColumn = DefaultColumnConfiguration & {
   id: string,
   accessor: (inputRow: InputRow) => mixed,
-  Header: React.ComponentType<any> | string,
-  Cell: React.ComponentType<any> | string,
-  Footer: React.ComponentType<any> | string,
 };
 
 type ResolvedRow = {
@@ -31,7 +26,7 @@ type ResolvedRow = {
   [columnId: string]: mixed,
 };
 
-type FormData = {
+type TableData = {
   resolvedColumns: ResolvedColumn[],
   resolvedRows: ResolvedRow[],
 };
@@ -43,8 +38,8 @@ type CellData = {
 };
 
 type TableProps = {
+  children: React.ChildrenArray<React.Element<typeof Column>>,
   rows: InputRow[],
-  columns: ColumnConfiguration[],
   defaultColumn: DefaultColumnConfiguration,
   TableComponent: React.ComponentType<any>,
   TheadComponent: React.ComponentType<any>,
@@ -55,20 +50,35 @@ type TableProps = {
   TdComponent: React.ComponentType<any>,
 };
 
-const normalizeComponent = (
-  StringOrComponent: React.ComponentType<any> | string,
-  props: Object = {},
-  fallback: mixed
-) => {
-  if (StringOrComponent) {
-    if (typeof StringOrComponent === 'string') {
-      return StringOrComponent;
-    }
-    return <StringOrComponent {...props} />;
-  }
-  return fallback;
-};
-
+/**
+ * Table component.
+ *
+ * It renders a <table> element. Here's a simple example:
+ *
+ * <Table rows={rows}>
+ *   <Column Header="Name" accessor="name" />
+ *   <Column Header="Age" id="age" accessor={row => row.getAge()} />
+ * </Table>
+ *
+ * Simply pass the `rows` prop with an array of objects, and configure the columns. The table will update as you
+ * change any props.
+ *
+ * Columns can be configured in two ways:
+ * 1) Passing the 'defaultColumn` prop with a DefaultColumnConfiguration object, to configure every column in the table.
+ * 2) Passing a 'Column' children with ColumnConfiguration props, to configure a specific column in the table.
+ *
+ * Here are the properties you can use to configure columns:
+ * - Cell:     Component or string. Used to render a cell, defaults to the accessed value.
+ * - Header:   Component or string. Used to render the header of a column.
+ * - Footer:   Component or string. Used to render the footer of a column.
+ * - accessor: Function that takes a row object and return the value to be populated for the column.
+ *             If a sting is provided, a default accessor will be used, and it will try to get the value from
+ *             row[accessor]
+ * - id:       A unique ID is required if the accessor is not a string.
+ *
+ * Besides Cell, Header and Footer, you can also pass props to override the components responsible for rendering the
+ * DOM table elements. (TableComponent, TheadComponent, ...)
+ */
 class Table extends React.Component<TableProps> {
   static defaultProps = {
     defaultColumn: {},
@@ -81,10 +91,31 @@ class Table extends React.Component<TableProps> {
     TdComponent: ({ children, ...otherProps }) => <td {...otherProps}>{children}</td>,
   };
 
+  /**
+   * Utility function used to render a string or a component as a leaf element in the table.
+   * It has a fallback value.
+   */
+  static normalizeComponent = (
+    StringOrComponent: React.ComponentType<any> | string,
+    props: Object = {},
+    fallback: mixed
+  ) => {
+    if (StringOrComponent) {
+      if (typeof StringOrComponent === 'string') {
+        return StringOrComponent;
+      }
+      return <StringOrComponent {...props} />;
+    }
+    return fallback;
+  };
+
+  /**
+   * Return all props that are not used by the component
+   */
   getOtherProps(): { [propName: string]: mixed } {
     const {
+      children,
       rows,
-      columns,
       defaultColumn,
       TableComponent,
       TheadComponent,
@@ -98,32 +129,64 @@ class Table extends React.Component<TableProps> {
     return otherProps;
   }
 
-  getFormData(): FormData {
-    const { columns, rows, defaultColumn } = this.props;
+  /**
+   * Get the properties passed to every Column children.
+   */
+  getColumnProperties(): ColumnConfiguration[] {
+    const { children } = this.props;
+    const columnProperties = [];
 
-    const resolvedColumns = columns.map(column => {
-      const resolvedColumn = { ...defaultColumn, ...column };
+    React.Children.forEach(children, child => {
+      // Check if children is of type column
+      if (!child.type || child.type.displayName !== Column.displayName) {
+        throw new Error('"Table" children should be of type "Column".');
+      }
 
-      // Handle accessor being a string
-      if (typeof resolvedColumn.accessor === 'string') {
-        resolvedColumn.id = resolvedColumn.id || resolvedColumn.accessor;
-        const accessorString = resolvedColumn.accessor;
-        resolvedColumn.accessor = row => row[accessorString];
+      // get its properties
+      columnProperties.push(child.props);
+    });
+
+    return columnProperties;
+  }
+
+  /**
+   * Return a TableData object from the Table props and children.
+   */
+  getTableData(): TableData {
+    const { rows, defaultColumn } = this.props;
+    const columnProperties = this.getColumnProperties();
+
+    // resolves the accessor and id of every column.
+    const resolvedColumns = columnProperties.map(column => {
+      // mix column properties with the default column properties
+      column = { ...defaultColumn, ...column };
+
+      let { accessor, id, ...resolvedColumn } = column;
+
+      // handle accessor being a string
+      if (typeof accessor === 'string') {
+        if (id === undefined) {
+          id = accessor;
+        }
+        const accessorString = accessor;
+        accessor = row => row[accessorString];
       } else {
-        // Handle accessor being a function (but require an ID)
-        if (!resolvedColumn.id) {
+        // handle accessor being a function (but require an ID)
+        if (id === undefined) {
           throw new Error('A column id is required if using a non-string accessor for the column.');
         }
 
-        // Fallback to an undefined accessor
-        if (!resolvedColumn.accessor) {
-          resolvedColumn.accessor = () => undefined;
+        // fallback to an undefined accessor
+        if (accessor === undefined) {
+          accessor = () => undefined;
         }
       }
 
+      resolvedColumn = { ...resolvedColumn, accessor, id };
       return resolvedColumn;
     });
 
+    // add a columnId property to every row, mapping to the resolved value for the column.
     const resolvedRows = rows.map((row, index) => {
       const resolvedRow = {
         original: row,
@@ -141,7 +204,7 @@ class Table extends React.Component<TableProps> {
   }
 
   render() {
-    const { resolvedColumns, resolvedRows } = this.getFormData();
+    const { resolvedColumns, resolvedRows } = this.getTableData();
     const {
       TableComponent,
       TheadComponent,
@@ -152,16 +215,18 @@ class Table extends React.Component<TableProps> {
       TdComponent,
     } = this.props;
 
-    const renderHeader = (column: ResolvedColumn): React.ElementType => (
+    // render the th element for a column
+    const renderHeader = (column: ResolvedColumn): React.Element<typeof ThComponent> => (
       <ThComponent key={column.id}>
-        {normalizeComponent(column.Header, {
+        {Table.normalizeComponent(column.Header, {
           column: column,
           rows: resolvedRows,
         })}
       </ThComponent>
     );
 
-    const renderRow = (row: ResolvedRow): React.ElementType => (
+    // render the tr element for a row
+    const renderRow = (row: ResolvedRow): React.Element<typeof TrComponent> => (
       <TrComponent key={row.index}>
         {resolvedColumns.map(column => {
           const cellData: CellData = {
@@ -170,20 +235,25 @@ class Table extends React.Component<TableProps> {
             value: row[column.id],
           };
 
-          return <TdComponent key={column.id}>{normalizeComponent(column.Cell, cellData, cellData.value)}</TdComponent>;
+          // render the td element for a cell
+          return (
+            <TdComponent key={column.id}>{Table.normalizeComponent(column.Cell, cellData, cellData.value)}</TdComponent>
+          );
         })}
       </TrComponent>
     );
 
-    const renderFooter = (column: ResolvedColumn): React.ElementType => (
-      <ThComponent>
-        {normalizeComponent(column.Footer, {
+    // render the tr element for a column's footer
+    const renderFooter = (column: ResolvedColumn): React.Element<typeof TrComponent> => (
+      <TrComponent>
+        {Table.normalizeComponent(column.Footer, {
           column: column,
           rows: resolvedRows,
         })}
-      </ThComponent>
+      </TrComponent>
     );
 
+    // only render footer if a custom Footer value is defined
     const shouldRenderFooter = resolvedColumns.some(column => column.Footer);
 
     return (

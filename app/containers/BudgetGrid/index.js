@@ -6,6 +6,7 @@ import { getCategories } from 'selectors/categories';
 import formatAmount from 'utils/formatAmount';
 import EntryFormRow from 'containers/EntryFormRow';
 import Table from 'components/Table';
+import Column from 'components/Column';
 import type { Transaction } from 'modules/transactions';
 import styles from './style.scss';
 
@@ -29,6 +30,8 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
   render() {
     const { transactions, categories } = this.props;
 
+    // Custom Cell component for every column in <Table>.
+    // Used to show the column name within the cell in small resolutions, making the table responsive.
     const ResponsiveCell = ({ columnName, value, className }: ResponsiveCellProps) => (
       <div className={`${styles.responsiveCell} ${className || ''}`}>
         <div className={styles.cellLabel}>{columnName}</div>
@@ -36,6 +39,22 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
       </div>
     );
 
+    const defaultColumn = {
+      Cell: ({ column, value }) => <ResponsiveCell columnName={column.Header} value={value} />,
+    };
+
+    // Custom Cell component for the 'amount' column in <Table>
+    // Used to customize the style
+    const AmountCellComponent = ({ column, row }) => {
+      const transaction = row.original;
+      const amount = formatAmount(transaction.value);
+      const amountCls = amount.isNegative ? styles.neg : styles.pos;
+
+      return <ResponsiveCell columnName={column.Header} value={amount.text} className={amountCls} />;
+    };
+
+    // Custom TableComponent component passed to <Table>.
+    // Used to render a custom form footer.
     const TableComponent = ({ children, ...otherProps }) => (
       <table {...otherProps}>
         {children}
@@ -45,43 +64,17 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
       </table>
     );
 
-    const rows = transactions;
-
-    const defaultColumn = {
-      Cell: ({ column, value }) => <ResponsiveCell columnName={column.Header} value={value} />,
-    };
-
-    const columns = [
-      {
-        Header: 'Category',
-        id: 'category',
-        accessor: transaction => categories[transaction.categoryId],
-      },
-      {
-        Header: 'Description',
-        accessor: 'description',
-      },
-      {
-        Header: 'Amount',
-        id: 'amount',
-        Cell: ({ column, row }) => {
-          const transaction = row.original;
-          const amount = formatAmount(transaction.value);
-          const amountCls = amount.isNegative ? styles.neg : styles.pos;
-
-          return <ResponsiveCell columnName={column.Header} value={amount.text} className={amountCls} />;
-        },
-      },
-    ];
-
     return (
       <Table
         className={styles.budgetGrid}
-        rows={rows}
-        columns={columns}
+        rows={transactions}
         defaultColumn={defaultColumn}
         TableComponent={TableComponent}
-      />
+      >
+        <Column Header="Category" id="category" accessor={transaction => categories[transaction.categoryId]} />
+        <Column Header="Description" accessor="description" />
+        <Column Header="Amount" id="amount" Cell={AmountCellComponent} />
+      </Table>
     );
   }
 }
