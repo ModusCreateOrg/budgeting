@@ -9,7 +9,12 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const sassThreadLoader = require('thread-loader');
 
-sassThreadLoader.warmup({ workerParallelJobs: 2 }, ['sass-loader', 'css-loader', 'style-loader', 'babel-loader']);
+sassThreadLoader.warmup({ workerParallelJobs: 2, poolTimeout: Infinity }, [
+  'sass-loader',
+  'css-loader',
+  'style-loader',
+  'babel-loader',
+]);
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -116,6 +121,7 @@ module.exports = function(env) {
           loader: 'thread-loader',
           options: {
             workerParallelJobs: 2,
+            poolTimeout: Infinity,
           },
         },
         {
@@ -164,6 +170,7 @@ module.exports = function(env) {
         loader: 'thread-loader',
         options: {
           workerParallelJobs: 2,
+          poolTimeout: Infinity,
         },
       },
       {
@@ -261,6 +268,7 @@ module.exports = function(env) {
               loader: 'thread-loader',
               options: {
                 workerParallelJobs: 2,
+                poolTimeout: Infinity,
               },
             },
             'babel-loader',
