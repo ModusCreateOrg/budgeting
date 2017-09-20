@@ -86,6 +86,7 @@ module.exports = function(env) {
     // make sure script tags are async to avoid blocking html render
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
+      sync: /^libs.dll.*$/,
       preload: {
         test: /^0|^main|^style-.*$/,
         chunks: 'all',
