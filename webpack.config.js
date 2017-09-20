@@ -9,7 +9,13 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const sassThreadLoader = require('thread-loader');
 
-sassThreadLoader.warmup({ workerParallelJobs: 2 }, ['sass-loader', 'css-loader', 'style-loader', 'babel-loader']);
+sassThreadLoader.warmup({ workerParallelJobs: 2 }, [
+  'sass-loader',
+  'postcss-loader',
+  'css-loader',
+  'style-loader',
+  'babel-loader',
+]);
 
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
@@ -123,7 +129,14 @@ module.exports = function(env) {
           options: {
             module: true, // css-loader 0.14.5 compatible
             modules: true,
+            importLoaders: 1,
             localIdentName: '[hash:base64:5]',
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
           },
         },
         {
@@ -173,7 +186,14 @@ module.exports = function(env) {
         loader: 'css-loader',
         options: {
           module: true,
+          importLoaders: 1,
           localIdentName: '[path][name]-[local]',
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
         },
       },
       {
