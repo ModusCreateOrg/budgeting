@@ -7,16 +7,6 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-const sassThreadLoader = require('thread-loader');
-
-sassThreadLoader.warmup({ workerParallelJobs: 2 }, [
-  'sass-loader',
-  'postcss-loader',
-  'css-loader',
-  'style-loader',
-  'babel-loader',
-]);
-
 // replace localhost with 0.0.0.0 if you want to access
 // your app from wifi or a virtual machine
 const host = process.env.HOST || 'localhost';
@@ -120,7 +110,6 @@ module.exports = function(env) {
       use: [
         'cache-loader',
         {
-          loader: 'thread-loader',
           options: {
             workerParallelJobs: 2,
           },
@@ -173,13 +162,6 @@ module.exports = function(env) {
     cssLoader = [
       // cache css output for faster rebuilds
       'cache-loader',
-      {
-        // build css/sass in threads (faster)
-        loader: 'thread-loader',
-        options: {
-          workerParallelJobs: 2,
-        },
-      },
       {
         loader: 'style-loader',
       },
@@ -278,12 +260,6 @@ module.exports = function(env) {
           test: /\.(js|jsx)$/,
           include: sourcePath,
           use: [
-            {
-              loader: 'thread-loader',
-              options: {
-                workerParallelJobs: 2,
-              },
-            },
             'babel-loader',
           ],
         },
