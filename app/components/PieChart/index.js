@@ -1,14 +1,14 @@
 // @flow
 
 import * as React from 'react';
+import CircleChart from 'components/CircleChart';
 import type { TransactionSummary } from 'selectors/transactions';
 import { scaleOrdinal, schemeCategory20 } from 'd3';
-import CircleChart from 'components/CircleChart';
 import { shuffle } from 'utils/array';
 
 const randomScheme = shuffle(schemeCategory20);
 
-type DonutChartProps = {
+type PieChartProps = {
   data: TransactionSummary[],
   dataLabel: string,
   dataKey: string,
@@ -18,7 +18,7 @@ type DonutChartProps = {
   innerRatio: number,
 };
 
-class DonutChart extends React.Component<DonutChartProps> {
+class PieChart extends React.Component<PieChartProps> {
   static defaultProps = {
     color: scaleOrdinal(randomScheme),
     height: 300,
@@ -33,4 +33,4 @@ class DonutChart extends React.Component<DonutChartProps> {
   }
 }
 
-export default DonutChart;
+export default PieChart;
