@@ -13,23 +13,28 @@ type PieChartProps = {
   dataLabel: string,
   dataKey: string,
   dataValue: string,
-  color: Function,
   height: number,
-  innerRatio: number,
 };
 
 class PieChart extends React.Component<PieChartProps> {
   static defaultProps = {
-    color: scaleOrdinal(randomScheme),
     height: 300,
-    innerRatio: 4,
     dataValue: 'value',
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey } = this.props;
+    const { height, data, dataLabel, dataValue, dataKey } = this.props;
 
-    return <CircleChart data={data} dataLabel={dataLabel} dataValue={dataValue} dataKey={dataKey} />;
+    return (
+      <CircleChart
+        height={height}
+        innerRatio={height}
+        data={data}
+        dataLabel={dataLabel}
+        dataValue={dataValue}
+        dataKey={dataKey}
+      />
+    );
   }
 }
 
