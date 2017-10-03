@@ -1,0 +1,35 @@
+@import 'theme/variables';
+
+.contributionTitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  color: $black;
+}
+
+.contributionSubtitle {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.contributionSign {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 24px;
+  color: $white;
+  margin: 0 6px 0 0;
+}
+
+.neg {
+  background: $red;
+}
+
+.pos {
+  background: $green;
+}

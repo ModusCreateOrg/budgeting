@@ -11,7 +11,7 @@ import styles from './styles.scss';
 
 const randomScheme = shuffle(schemeCategory20);
 
-type DonutChartProps = {
+type PieChartProps = {
   data: TransactionSummary[],
   dataLabel: string,
   dataKey: string,
@@ -19,21 +19,23 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  donut: boolean,
 };
 
-class DonutChart extends React.Component<DonutChartProps> {
+class PieChart extends React.Component<PieChartProps> {
   static defaultProps = {
     color: scaleOrdinal(randomScheme),
     height: 300,
     innerRatio: 4,
     dataValue: 'value',
+    donut: false,
   };
 
   componentWillMount() {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps(nextProps: DonutChartProps) {
+  componentWillReceiveProps(nextProps: PieChartProps) {
     const { data, color, height } = nextProps;
 
     const old = this.props;
@@ -44,9 +46,9 @@ class DonutChart extends React.Component<DonutChartProps> {
   }
 
   getPathArc = () => {
-    const { height, innerRatio } = this.props;
+    const { height, innerRatio, donut } = this.props;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(donut ? height / innerRatio : 0)
       .outerRadius(height / 2);
   };
 
@@ -74,7 +76,7 @@ class DonutChart extends React.Component<DonutChartProps> {
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
     return (
-      <div className={styles.donutChart}>
+      <div className={styles.pieChart}>
         <Chart
           width={boxLength}
           height={boxLength}
@@ -92,4 +94,4 @@ class DonutChart extends React.Component<DonutChartProps> {
   }
 }
 
-export default DonutChart;
+export default PieChart;

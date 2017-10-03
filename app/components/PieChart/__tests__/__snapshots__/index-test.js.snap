@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="donutChart"
+  className="pieChart"
 >
   <div
     height={316}
