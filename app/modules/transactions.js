@@ -6,6 +6,7 @@ import { defaultTransactions, inflowCategories } from './defaults';
  */
 const ADD_TRANSACTION = 'budget/transaction/ADD';
 const DELETE_TRANSACTION = 'budget/transaction/DELETE';
+const GET_TRANSACTION = 'budget/transaction/GET';
 
 export type Transaction = {
   +id: number,
@@ -62,6 +63,12 @@ export const actions = {
     type: DELETE_TRANSACTION,
     id,
   }),
+  
+  getTransaction: (id: $PropertyType<Transaction, 'id'>) => (dispatch: Function) => 
+    dispatch({
+      type: GET_TRANSACTION,
+      id,
+    })
 };
 
 /**
@@ -75,7 +82,11 @@ export default function transactionsReducer(state: Transaction[] = defaultTransa
       return [...state, action.transaction];
 
     case DELETE_TRANSACTION:
-      newState = state.filter(todo => todo.id !== action.id);
+      newState = state.filter(transaction => transaction.id !== action.id);
+      return newState;
+    
+    case GET_TRANSACTION:
+      newState = state.filter(transaction => transaction.id == action.id);
       return newState;
 
     default:

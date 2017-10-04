@@ -33,15 +33,16 @@ class Chunk extends React.Component<ChunkProps, ChunkState> {
     props.load().then(mod => {
       this.setState({
         // handle both es imports and cjs
-        LoadedComponent: mod.default ? mod.default : mod,
+        LoadedComponent: mod.default ? mod.default : mod
       });
     });
   }
 
   render() {
     const { LoadedComponent } = this.state;
-
+    const id = location.pathname.split('/').pop();
     const otherProps = Object.assign({}, this.props);
+    otherProps['id'] = id;
     delete otherProps.load;
 
     return LoadedComponent ? <LoadedComponent {...otherProps} /> : <Loading />;
