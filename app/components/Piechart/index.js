@@ -7,11 +7,9 @@ class Piechart extends Component {
   constructor() {
     super();
     this.pie = d3.pie().value((d) => d.value);
-    this.colors = d3.scaleOrdinal(d3.schemeCategory10);
   }
 
   setVariables() {
-    console.log("propss", this.props);
     this.width = width;
     this.height = height;
     this.innerRadius = innerRadius;
@@ -25,7 +23,7 @@ class Piechart extends Component {
         data={d}
         innerRadius={this.props.innerRadius}
         outerRadius={this.props.outerRadius}
-        color={this.colors(i)} />
+        color={d.data.color} />
   );
 }
 
