@@ -5,7 +5,7 @@ import Chunk from 'components/Chunk';
 const loadTransactionContainer = () => import('containers/Transaction' /* webpackChunkName: "transaction" */);
 
 class Transaction extends Component<{}> {
-  constructor({match, history}){
+  constructor({ match, history }) {
     super();
     this.match = match;
     this.history = history;

@@ -5,7 +5,7 @@ exports[`renders correctly the percentToHightlight(5) and size(100) 1`] = `
   className="pie"
   style={
     Object {
-      "animationDelay": "-0s",
+      "animationDelay": "-5s",
       "minHeight": "400px",
       "minWidth": "400px",
     }
@@ -18,7 +18,7 @@ exports[`renders correctly the percentToHightlight(5) passed in the props as the
   className="pie"
   style={
     Object {
-      "animationDelay": "-0s",
+      "animationDelay": "-5s",
       "minHeight": "100px",
       "minWidth": "100px",
     }
@@ -31,7 +31,7 @@ exports[`renders correctly the size(100) passed in the props as width and height
   className="pie"
   style={
     Object {
-      "animationDelay": "-0s",
+      "animationDelay": "-undefineds",
       "minHeight": "100px",
       "minWidth": "100px",
     }
@@ -44,7 +44,7 @@ exports[`renders correctly with the default props if no props are specified 1`] 
   className="pie"
   style={
     Object {
-      "animationDelay": "-0s",
+      "animationDelay": "-undefineds",
       "minHeight": "200px",
       "minWidth": "200px",
     }

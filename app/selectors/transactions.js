@@ -49,12 +49,13 @@ const getOutflowTransactions = createSelector([getTransactions], transactions =>
 
 const getBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
 
-const getAbs = (transactions: Transaction[]) => transactions.map(item => {
-  const absItem = {};
-  Object.assign(absItem, item);
-  absItem.value = Math.abs(item.value);
-  return absItem;
-});
+const getAbs = (transactions: Transaction[]) =>
+  transactions.map(item => {
+    const absItem = {};
+    Object.assign(absItem, item);
+    absItem.value = Math.abs(item.value);
+    return absItem;
+  });
 
 export const getTotalBudget = createSelector([getTransactions], transactions =>
   totalTransactions(getAbs(transactions))

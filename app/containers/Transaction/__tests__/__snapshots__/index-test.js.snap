@@ -5,7 +5,8 @@ exports[`renders correctly with a null id 1`] = `
   className="transaction"
 >
   <h3>
-    
+    Transaction 
+    <br />
   </h3>
   <div>
     <button
@@ -25,7 +26,9 @@ exports[`renders correctly with an existing id 21 with a total budget 1`] = `
   className="transaction"
 >
   <h3>
-    Transaction Trader Joe's food
+    Transaction 
+    <br />
+    Trader Joe's food
   </h3>
   <div>
     <button
@@ -45,7 +48,7 @@ exports[`renders correctly with an existing id 21 with a total budget 1`] = `
           <span
             className="neg"
           >
-            -84.67%
+            -84.66799999999999%
           </span>
         </li>
       </ul>
@@ -57,7 +60,7 @@ exports[`renders correctly with an existing id 21 with a total budget 1`] = `
         className="pie"
         style={
           Object {
-            "animationDelay": "-0s",
+            "animationDelay": "-84.66799999999999s",
             "minHeight": "200px",
             "minWidth": "200px",
           }
@@ -73,7 +76,9 @@ exports[`renders correctly with an existing id 21 without total balance 1`] = `
   className="transaction"
 >
   <h3>
-    Transaction Trader Joe's food
+    Transaction 
+    <br />
+    Trader Joe's food
   </h3>
   <div>
     <button
@@ -105,7 +110,7 @@ exports[`renders correctly with an existing id 21 without total balance 1`] = `
         className="pie"
         style={
           Object {
-            "animationDelay": "-0s",
+            "animationDelay": "-NaNs",
             "minHeight": "200px",
             "minWidth": "200px",
           }
@@ -121,7 +126,8 @@ exports[`renders correctly with number id 1`] = `
   className="transaction"
 >
   <h3>
-    
+    Transaction 
+    <br />
   </h3>
   <div>
     <button
@@ -141,7 +147,8 @@ exports[`renders correctly with string id 1`] = `
   className="transaction"
 >
   <h3>
-    
+    Transaction 
+    <br />
   </h3>
   <div>
     <button
@@ -161,7 +168,8 @@ exports[`renders correctly without an id 1`] = `
   className="transaction"
 >
   <h3>
-    
+    Transaction 
+    <br />
   </h3>
   <div>
     <button

@@ -24,7 +24,7 @@ exports[`renders correctly with a transaction 1`] = `
       className="pie"
       style={
         Object {
-          "animationDelay": "-0s",
+          "animationDelay": "-NaNs",
           "minHeight": "200px",
           "minWidth": "200px",
         }

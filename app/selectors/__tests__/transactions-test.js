@@ -8,7 +8,7 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
-  getTotalBudget
+  getTotalBudget,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -388,5 +388,5 @@ describe('getInflowByCategoryName', () => {
       const state1 = {};
       expect(getTotalBudget(state1)).toEqual(0);
     });
-  })
+  });
 });
