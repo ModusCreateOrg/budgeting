@@ -10,11 +10,16 @@ import styles from './styles.scss';
 
 class PieChart extends React.Component<PieChartProps> {
   static defaultProps = {
-    percentToHighlight: 20
+    percentToHighlight: 0,
+    size: 200
   };
 
   render(props) {
-    const {percentToHightlight, size} = this.props;
+    let percentToHightlight = null;
+    const {size} = Object.assign(PieChart.defaultProps, this.props);
+    if(!percentToHightlight || !Number.isInteger(parseInt(percentToHightlight))) {
+      percentToHightlight = PieChart.defaultProps.percentToHighlight;
+    }
     return (
       <div className={styles.pie} style={{
         minWidth: `${size}px`,

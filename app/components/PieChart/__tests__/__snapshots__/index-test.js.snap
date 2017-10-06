@@ -1,13 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`renders correctly the percentToHightlight(5) and size(100) 1`] = `
 <div
   className="pie"
   style={
     Object {
-      "animationDelay": "-undefineds",
-      "minHeight": "undefinedpx",
-      "minWidth": "undefinedpx",
+      "animationDelay": "-0s",
+      "minHeight": "400px",
+      "minWidth": "400px",
+    }
+  }
+/>
+`;
+
+exports[`renders correctly the percentToHightlight(5) passed in the props as the negative animation delay 1`] = `
+<div
+  className="pie"
+  style={
+    Object {
+      "animationDelay": "-0s",
+      "minHeight": "100px",
+      "minWidth": "100px",
+    }
+  }
+/>
+`;
+
+exports[`renders correctly the size(100) passed in the props as width and height px values 1`] = `
+<div
+  className="pie"
+  style={
+    Object {
+      "animationDelay": "-0s",
+      "minHeight": "100px",
+      "minWidth": "100px",
+    }
+  }
+/>
+`;
+
+exports[`renders correctly with the default props if no props are specified 1`] = `
+<div
+  className="pie"
+  style={
+    Object {
+      "animationDelay": "-0s",
+      "minHeight": "200px",
+      "minWidth": "200px",
     }
   }
 />

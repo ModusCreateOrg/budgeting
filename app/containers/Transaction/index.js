@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import transactionReducer from 'modules/transactions';
-import { getTransactions, getTotalBalance } from 'selectors/transactions';
+import { getTransactions, getTotalBudget } from 'selectors/transactions';
 import type {Transaction} from 'modules/transactions';
 import TransactionDetail from 'components/TransactionDetail';
 import { injectAsyncReducers } from 'store';
@@ -14,7 +14,7 @@ injectAsyncReducers({
 
 type TransactionProps = {
   transactions: Transaction[],
-  totalBalance: number
+  totalBudget: number
 };
 
 export class TransactionContainer extends React.Component<TransactionProps> {
@@ -31,7 +31,10 @@ export class TransactionContainer extends React.Component<TransactionProps> {
   }
 
   render() {
-    const {history, match, transactions, totalBalance} = this.props;
+    const {history, match, transactions, totalBudget} = this.props;
+    if(typeof(history) === 'undefined' || typeof(history.goBack) !== 'function') {
+      throw Error('needs the history object to go back to the previous page');
+    }
     const id = match.params.id;
     const notFoundMessage = `Transaction id ${id} not found`;
     let transaction;
@@ -58,7 +61,7 @@ export class TransactionContainer extends React.Component<TransactionProps> {
 
         :
 
-        <TransactionDetail transaction={transaction} totalBalance={totalBalance}/>
+        <TransactionDetail transaction={transaction} totalBudget={totalBudget}/>
       }
       </div>
     );
@@ -67,7 +70,7 @@ export class TransactionContainer extends React.Component<TransactionProps> {
 
 const mapStateToProps = state => ({
   transactions: getTransactions(state),
-  totalBalance: getTotalBalance(state)
+  totalBudget: getTotalBudget(state)
 });
 
 export default connect(mapStateToProps)(TransactionContainer);

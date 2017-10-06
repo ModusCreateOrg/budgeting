@@ -56,7 +56,7 @@ const getAbs = (transactions: Transaction[]) => transactions.map(item => {
   return absItem;
 });
 
-export const getTotalBalance = createSelector([getTransactions], transactions =>
+export const getTotalBudget = createSelector([getTransactions], transactions =>
   totalTransactions(getAbs(transactions))
 );
 

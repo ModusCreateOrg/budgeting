@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`renders correctly with a transaction 1`] = `
 <div
   className="transactionDetails"
 >
@@ -24,7 +24,7 @@ exports[`renders correctly 1`] = `
       className="pie"
       style={
         Object {
-          "animationDelay": "-NaNs",
+          "animationDelay": "-0s",
           "minHeight": "200px",
           "minWidth": "200px",
         }

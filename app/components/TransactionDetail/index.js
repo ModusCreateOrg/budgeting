@@ -1,20 +1,22 @@
 // @flow
 import * as React from 'react';
-import type { Transaction } from 'modules/Transaction';
+import type { Transaction } from 'modules/transaction';
 import NavLink from 'components/NavLink';
 import PieChart from 'components/PieChart';
 import styles from './style.scss';
 
 type TransactionDetailProps = {
   transaction: Transaction,
-  totalBalance: number
+  totalBudget: number
 };
 
-const TransactionDetail = ({ transaction, totalBalance }: TransactionDetailProps) => {
+const TransactionDetail = ({ transaction, totalBudget }: TransactionDetailProps) => {
+  if(!transaction) throw Error('a transaction is required');
+  if(!transaction.value) throw Error('a transaction value is required');
   const isNegativeAmount = transaction.value < 0;
   const amountCls = isNegativeAmount ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
-  const percentContribution = parseFloat(( Math.abs(transaction.value) / totalBalance ) * 100).toFixed(2);
+  const percentContribution = parseFloat(( Math.abs(transaction.value) / totalBudget ) * 100).toFixed(2);
 
   return (
     <div className={styles.transactionDetails}>
