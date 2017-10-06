@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <h4>
+    Transaction id null not found
+  </h4>
+</div>
+`;

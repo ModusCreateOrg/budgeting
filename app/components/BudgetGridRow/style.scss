@@ -1,5 +1,12 @@
 @import 'theme/variables';
 
+.row {
+  &:hover {
+    cursor: pointer;
+    background: whitesmoke;
+  }
+}
+
 .cellLabel {
   display: none;
 

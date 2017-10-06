@@ -1,0 +1,43 @@
+@import 'theme/variables';
+
+.transactionDetails {
+  display: flex;
+  h2 {
+    margin: 1px;
+  }
+  ul {
+    padding: 2px;
+    min-width: 300px;
+    li {
+      white-space: nowrap;
+      padding: 2px;
+      display: flex;
+    }
+  }
+  flex-direction: column;
+  justify-content: space-evenly;
+  @media only screen and (min-width: $screen-large) {
+    flex-direction: row;
+    ul li {
+      justify-content: center;
+    }
+  }
+}
+.transactionChart {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  flex: 3;
+}
+.transactionText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.neg {
+  color: $red;
+}
+
+.pos {
+  color: $green;
+}

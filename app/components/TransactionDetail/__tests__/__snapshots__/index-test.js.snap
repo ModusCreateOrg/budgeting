@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="transactionDetails"
+>
+  <div
+    className="transactionText"
+  >
+    <ul>
+      <li>
+        <span
+          className="neg"
+        >
+          -NaN%
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="transactionChart"
+  >
+    <div
+      className="pie"
+      style={
+        Object {
+          "animationDelay": "-NaNs",
+          "minHeight": "200px",
+          "minWidth": "200px",
+        }
+      }
+    />
+  </div>
+</div>
+`;
