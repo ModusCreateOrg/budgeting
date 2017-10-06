@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
+import { Switch, Route } from 'react-router-dom';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
@@ -17,20 +18,32 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const category = categories[categoryId];
 
   return (
-    <tr key={id}>
-      <td>
-        <div className={styles.cellLabel}>Category</div>
-        <div className={styles.cellContent}>{category}</div>
-      </td>
-      <td>
-        <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
-      </td>
-      <td className={amountCls}>
-        <div className={styles.cellLabel}>Amount</div>
-        <div className={styles.cellContent}>{amount.text}</div>
-      </td>
-    </tr>
+    <Switch>
+      <Route
+        component={({ history }) => (
+          <tr
+            key={id}
+            className={styles.row}
+            onClick={() => {
+              history.push(`/transaction/${id}`);
+            }}
+          >
+            <td>
+              <div className={styles.cellLabel}>Category</div>
+              <div className={styles.cellContent}>{category}</div>
+            </td>
+            <td>
+              <div className={styles.cellLabel}>Description</div>
+              <div className={styles.cellContent}>{description}</div>
+            </td>
+            <td className={amountCls}>
+              <div className={styles.cellLabel}>Amount</div>
+              <div className={styles.cellContent}>{amount.text}</div>
+            </td>
+          </tr>
+        )}
+      />
+    </Switch>
   );
 };
 

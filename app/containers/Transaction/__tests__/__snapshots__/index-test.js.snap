@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with a null id 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    Transaction 
+    <br />
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <h4>
+    Transaction id null not found
+  </h4>
+</div>
+`;
+
+exports[`renders correctly with an existing id 21 with a total budget 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    Transaction 
+    <br />
+    Trader Joe's food
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <div
+    className="transactionDetails"
+  >
+    <div
+      className="transactionText"
+    >
+      <ul>
+        <li>
+          <span
+            className="neg"
+          >
+            -84.66799999999999%
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="transactionChart"
+    >
+      <div
+        className="pie"
+        style={
+          Object {
+            "animationDelay": "-84.66799999999999s",
+            "minHeight": "200px",
+            "minWidth": "200px",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with an existing id 21 without total balance 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    Transaction 
+    <br />
+    Trader Joe's food
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <div
+    className="transactionDetails"
+  >
+    <div
+      className="transactionText"
+    >
+      <ul>
+        <li>
+          <span
+            className="neg"
+          >
+            -NaN%
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="transactionChart"
+    >
+      <div
+        className="pie"
+        style={
+          Object {
+            "animationDelay": "-NaNs",
+            "minHeight": "200px",
+            "minWidth": "200px",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with number id 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    Transaction 
+    <br />
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <h4>
+    Transaction id 1 not found
+  </h4>
+</div>
+`;
+
+exports[`renders correctly with string id 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    Transaction 
+    <br />
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <h4>
+    Transaction id 1 not found
+  </h4>
+</div>
+`;
+
+exports[`renders correctly without an id 1`] = `
+<div
+  className="transaction"
+>
+  <h3>
+    Transaction 
+    <br />
+  </h3>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Back
+    </button>
+  </div>
+  <h4>
+    Transaction id undefined not found
+  </h4>
+</div>
+`;

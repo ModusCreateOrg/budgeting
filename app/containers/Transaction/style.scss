@@ -1,0 +1,12 @@
+@import 'theme/variables';
+
+.transaction {
+  display: flex;
+  flex-direction: column;
+  button {
+    box-shadow: 1px 1px 2px 1px black;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}

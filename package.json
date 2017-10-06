@@ -58,6 +58,7 @@
     "html-webpack-plugin": "2.30.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.0.2",
+    "jest-cli": "^21.2.1",
     "lighthouse": "^2.4.0",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",

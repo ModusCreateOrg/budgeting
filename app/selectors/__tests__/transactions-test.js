@@ -8,6 +8,7 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTotalBudget,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -370,5 +371,22 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(1);
     expect(getInflowByCategoryName(state3)).toEqual(expectedSelection2);
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
+  });
+  describe('getTotalBudget', () => {
+    it('should return an sum of the individual absolute transaction values', () => {
+      const state1 = { transactions: [{ value: 10 }, { value: -50 }, { value: 70 }] };
+      expect(getTotalBudget(state1)).toEqual(10 + 50 + 70);
+
+      const state2 = { transactions: [{ value: -10 }, { value: -10 }, { value: 10 }] };
+      expect(getTotalBudget(state2)).toEqual(10 + 10 + 10);
+    });
+    it('should return zero if there are no transactions', () => {
+      const state1 = { transactions: [] };
+      expect(getTotalBudget(state1)).toEqual(0);
+    });
+    it('should return zero if there are no transactions in the state', () => {
+      const state1 = {};
+      expect(getTotalBudget(state1)).toEqual(0);
+    });
   });
 });
