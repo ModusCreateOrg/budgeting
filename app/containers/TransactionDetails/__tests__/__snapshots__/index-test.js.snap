@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div>
+    <h1>
+       (
+      <small>
+        $100.00
+      </small>
+      )
+    </h1>
+    <h5
+      style={
+        Object {
+          "margin": 0,
+        }
+      }
+    >
+      Category:
+    </h5>
+    <p
+      style={
+        Object {
+          "marginTop": 5,
+        }
+      }
+    >
+      Misc
+    </p>
+    <h5
+      style={
+        Object {
+          "margin": 0,
+        }
+      }
+    >
+      Percentage:
+    </h5>
+    <p
+      style={
+        Object {
+          "marginTop": 5,
+        }
+      }
+    >
+      <span
+        className="pos"
+      >
+        +50.00%
+      </span>
+       of 
+      Inflow
+    </p>
+  </div>
+  <div
+    className="chartContainer"
+  />
+</div>
+`;

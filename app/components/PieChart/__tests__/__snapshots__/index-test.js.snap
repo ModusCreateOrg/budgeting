@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  height={460}
+  padding={80}
+  transform="translate(150,150)"
+  width={460}
+>
+  <div
+    arcFn={[Function]}
+    data={
+      Object {
+        "data": Object {
+          "fill": "red",
+          "label": "Label1",
+          "value": 50,
+        },
+        "endAngle": 2.0943951023931953,
+        "index": 0,
+        "padAngle": 0,
+        "startAngle": 0,
+        "value": 50,
+      }
+    }
+    fill="red"
+    index={0}
+  />
+  <div
+    arcFn={[Function]}
+    data={
+      Object {
+        "data": Object {
+          "fill": "blue",
+          "label": "Label2",
+          "value": 100,
+        },
+        "endAngle": 6.283185307179586,
+        "index": 1,
+        "padAngle": 0,
+        "startAngle": 2.0943951023931953,
+        "value": 100,
+      }
+    }
+    fill="blue"
+    index={1}
+  />
+  <text
+    style={
+      Object {
+        "textAnchor": "middle",
+      }
+    }
+    transform="translate(162.37976320958225,-93.75)"
+  >
+    Label1
+  </text>
+  <text
+    style={
+      Object {
+        "textAnchor": "middle",
+      }
+    }
+    transform="translate(-162.37976320958222,93.75000000000007)"
+  >
+    Label2
+  </text>
+</div>
+`;

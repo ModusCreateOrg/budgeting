@@ -1,4 +1,4 @@
-import { getCategories, getDefaultCategoryId } from '../categories';
+import { getCategories, getDefaultCategoryId, getCategoryById } from '../categories';
 
 describe('getCategories', () => {
   it('should return all categories in the state', () => {
@@ -27,5 +27,17 @@ describe('getCategories', () => {
 describe('getDefaultCategoryId', () => {
   it('should return default category ID', () => {
     expect(getDefaultCategoryId()).toEqual('16');
+  });
+});
+
+describe('getCategoryById', () => {
+  it('should return catory with id', () => {
+    const state = {
+      categories: {
+        1: 'Groceries',
+      },
+    };
+
+    expect(getCategoryById(1)(state)).toEqual('Groceries');
   });
 });

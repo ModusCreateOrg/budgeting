@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Path from '../Path';
+import Path from '../';
 
 it('renders correctly', () => {
   const tree = renderer
