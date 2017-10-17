@@ -16,11 +16,12 @@ export default class PieChart extends PureComponent {
     dataKey: 'value',
     color: scaleOrdinal(schemeCategory20),
     size: 300,
+    chartPadding: 80,
   };
 
   constructor(props) {
     super();
-    const { data, dataValue, size, color } = props;
+    const { data, dataValue, chartPadding, size, color } = props;
     this.chart = pie()
       .value(d => d[dataValue])
       .sort(null);
@@ -29,7 +30,7 @@ export default class PieChart extends PureComponent {
     this.pathArc = arc()
       .innerRadius(0)
       .outerRadius(this.radius);
-    this.boxLength = size + this.chartPadding * 2;
+    this.boxLength = size + chartPadding * 2;
   }
 
   getTextPosition(datum) {
@@ -39,11 +40,9 @@ export default class PieChart extends PureComponent {
     return pos;
   }
 
-  chartPadding = 80;
-
   render() {
-    const { boxLength, radius, colorFn, pathArc, chartPadding } = this;
-    const { data, dataKey, dataLabel } = this.props;
+    const { boxLength, radius, colorFn, pathArc } = this;
+    const { data, dataKey, dataLabel, chartPadding } = this.props;
 
     return (
       <Chart width={boxLength} height={boxLength} padding={chartPadding} transform={`translate(${radius},${radius})`}>
