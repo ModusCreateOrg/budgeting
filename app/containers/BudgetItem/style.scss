@@ -1,0 +1,17 @@
+@import 'theme/variables';
+
+.budgetItem {
+  .budgetTitle {
+    text-decoration: underline;
+  }
+
+  .budgetSubtitle {
+    .negative {
+      color: $red;
+    }
+    .positive {
+      color: $green;
+    }
+  }
+}
+
