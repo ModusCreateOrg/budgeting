@@ -41,14 +41,15 @@ export const getTransactions = (state: State): Transaction[] => state.transactio
 
 export const getTransaction = (state: State, transactionId): Transaction[] => {
   const transaction = state.transactions.find(item => item.id === transactionId);
-  const amount = formatAmount(transaction.value);
+  if (!transaction) return null;
 
+  const amount = formatAmount(transaction.value);
   transaction.balance = totalTransactions(state.transactions);
-  transaction.isNegative = amount.isNegative ? true : false;
-  transaction.percentage = Math.floor((transaction.value / transaction.balance) * 100);
+  transaction.isNegative = amount.isNegative;
+  transaction.percentage = Math.floor(transaction.value / transaction.balance * 100);
 
   return transaction;
-}
+};
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)

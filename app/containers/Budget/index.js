@@ -13,9 +13,9 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = (props) => {
+const BudgetContainer = props => {
   const { params } = props.match;
-  const budgetId = params.id ? parseInt(params.id) : null;
+  const budgetId = parseFloat(params.id) || null;
 
   if (budgetId) {
     return (

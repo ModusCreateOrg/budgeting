@@ -6,10 +6,10 @@
   }
 
   .budgetSubtitle {
-    .negative {
+    &.negative {
       color: $red;
     }
-    .positive {
+    &.positive {
       color: $green;
     }
   }

@@ -2,50 +2,38 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import NavLink from 'components/NavLink';
-import type { FormattedAmount } from 'utils/formatAmount';
-import { getTransactions } from 'selectors/transactions';
-import {
-  TransactionSummary,
-  getTransaction,
-} from 'selectors/transactions';
-import type { Transaction } from 'modules/transactions';
+import { getTransaction } from 'selectors/transactions';
 import styles from './style.scss';
 
 type BudgetItemProps = {
-  transactions: Transaction[],
-  transaction: TransactionSummary[]
+  onTransaction: Function,
+  id: Integer,
 };
 
 export class BudgetItem extends React.Component<BudgetItemProps> {
   static defaultProps = {
-    transactions: [],
-    getTransaction: () => null
+    onTransaction: () => null,
   };
 
   renderSubtitle() {
-    const { balance, id, getTransaction } = this.props;
-    const transaction = getTransaction(id);
-    const { value, percentage, isNegative } = transaction;
+    const { id, onTransaction } = this.props;
+    const transaction = onTransaction(id);
+    const { percentage, isNegative } = transaction;
 
     return (
-      <h4 className={styles.budgetSubtitle}>
-        <span className={`${isNegative ? styles.negative : styles.positive}`}>
-          {isNegative ? '-' : '+'}
-        </span>
-        &nbsp;
+      <h4 className={`${styles.budgetSubtitle} ${isNegative ? styles.negative : styles.positive}`}>
+        {isNegative ? '-' : '+'}
         {Math.abs(percentage)}%
       </h4>
     );
-  };
+  }
 
   render() {
-    const { getTransaction, id } = this.props;
-    const transaction = getTransaction(id);
+    const { onTransaction, id } = this.props;
+    const transaction = onTransaction(id);
 
     if (!transaction) {
-      return (
-        <div>No details for this transaction</div>
-      );
+      return <div>No details for this transaction</div>;
     }
 
     return (
@@ -53,14 +41,14 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
         <h1 className={styles.budgetTitle}>{transaction.description}</h1>
         {this.renderSubtitle()}
         <hr />
-        <NavLink to='/budget' styles={{navLink: ''}} label={'Back to Budget'} />
+        <NavLink to="/budget" styles={{ navLink: '' }} label={'Back to Budget'} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  getTransaction: (id) => getTransaction(state, id)
+  onTransaction: id => getTransaction(state, id),
 });
 
 export default connect(mapStateToProps)(BudgetItem);
