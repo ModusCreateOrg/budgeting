@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with Transaction information 1`] = `
+<div
+  className="budgetItem"
+>
+  <h1
+    className="budgetTitle"
+  >
+    Trader Joe's food
+  </h1>
+  <h4
+    className="budgetSubtitle negative"
+  >
+    -
+    20
+    %
+  </h4>
+  <hr />
+  <button
+    onClick={[Function]}
+  >
+    ‹ Back to Budget
+  </button>
+</div>
+`;

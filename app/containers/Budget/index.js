@@ -20,14 +20,14 @@ const BudgetContainer = props => {
   if (budgetId) {
     return (
       <section>
-        <BudgetItem id={budgetId} />
+        <BudgetItem id={budgetId} history={props.history} />
       </section>
     );
   }
 
   return (
     <section>
-      <BudgetGrid />
+      <BudgetGrid history={props.history} />
       <Balance />
     </section>
   );

@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import NavLink from 'components/NavLink';
 import { getTransaction } from 'selectors/transactions';
 import styles from './style.scss';
 
@@ -14,6 +13,12 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
   static defaultProps = {
     onTransaction: () => null,
   };
+
+  handleBack() {
+    const { history } = this.props;
+
+    return history ? history.goBack() : false;
+  }
 
   renderSubtitle() {
     const { id, onTransaction } = this.props;
@@ -41,7 +46,7 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
         <h1 className={styles.budgetTitle}>{transaction.description}</h1>
         {this.renderSubtitle()}
         <hr />
-        <NavLink to="/budget" styles={{ navLink: '' }} label={'Back to Budget'} />
+        <button onClick={() => this.handleBack()}>&lsaquo; Back to Budget</button>
       </div>
     );
   }

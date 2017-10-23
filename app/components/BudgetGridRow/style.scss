@@ -1,5 +1,12 @@
 @import 'theme/variables';
 
+.rowContainer {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .cellLabel {
   display: none;
 
@@ -20,8 +27,4 @@
 
 .pos {
   color: $green;
-}
-
-.cellLink {
-  color: inherit;
 }

@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import NavLink from 'components/NavLink';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -9,25 +8,25 @@ import styles from './style.scss';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
+  onClick: Function,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
+  const navProps = onClick ? { className: styles.rowContainer, onClick: onClick } : {};
 
   return (
-    <tr key={id}>
+    <tr key={id} {...navProps}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
       </td>
       <td>
         <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>
-          <NavLink styles={{ navLink: styles.cellLink }} to={`/budget/${id}`} label={description} />
-        </div>
+        <div className={styles.cellContent}>{description}</div>
       </td>
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>
