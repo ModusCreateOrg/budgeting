@@ -9,6 +9,10 @@ const onTransaction = () => ({
   value: -423.34,
   percentage: 20,
   isNegative: true,
+  chartData: [
+    { transaction: "Trader Joe's food", transactionId: 1, value: 20 },
+    { transaction: 'Total', transactionId: 'total', value: 100 - 20 },
+  ],
 });
 
 it('renders correctly with Transaction information', () => {
