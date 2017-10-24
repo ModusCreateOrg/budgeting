@@ -9,7 +9,6 @@ import styles from './styles.scss';
 
 type DonutChartProps = {
   data: TransactionSummary[],
-  dataLabel: string,
   dataKey: string,
   dataValue: string,
   height: number,
@@ -51,7 +50,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   chartPadding = 8;
 
   updateChartVariables = () => {
-    const { data, dataValue, height } = this.props;
+    const { dataValue, height } = this.props;
 
     this.chart = pie()
       .value(d => d[dataValue])
@@ -62,7 +61,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey, colors } = this.props;
+    const { data, dataKey } = this.props;
     const { outerRadius, pathArc, boxLength, chartPadding } = this;
 
     return (
@@ -74,7 +73,13 @@ class DonutChart extends React.Component<DonutChartProps> {
           transform={`translate(${outerRadius},${outerRadius})`}
         >
           {this.chart(data).map((datum, index) => (
-            <Path data={datum} index={index} fill={datum.data.color || '#9E9E9E'} arcFn={pathArc} key={datum.data[dataKey]} />
+            <Path
+              data={datum}
+              index={index}
+              fill={datum.data.color || '#9E9E9E'}
+              arcFn={pathArc}
+              key={datum.data[dataKey]}
+            />
           ))}
         </Chart>
       </div>

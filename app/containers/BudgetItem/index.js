@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransaction } from 'selectors/transactions';
-import DonutChart from 'components/DonutChart';
 import PieChart from 'components/PieChart';
 import styles from './style.scss';
 
@@ -48,12 +47,7 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
         <h1 className={styles.budgetTitle}>{transaction.description}</h1>
         {this.renderSubtitle()}
         <hr />
-        <PieChart
-          data={transaction.chartData || []}
-          dataLabel="budgetItem"
-          dataKey="transactionId"
-          innerRatio={700}
-        />
+        <PieChart data={transaction.chartData || []} dataKey="transactionId" innerRatio={700} />
         <hr />
         <button onClick={() => this.handleBack()}>&lsaquo; Back to Budget</button>
       </div>
