@@ -12,14 +12,8 @@ type BudgetItemProps = {
 
 export class BudgetItem extends React.Component<BudgetItemProps> {
   static defaultProps = {
-    onTransaction: () => null,
+    onTransaction: () => {},
   };
-
-  handleBack() {
-    const { history } = this.props;
-
-    return history ? history.goBack() : false;
-  }
 
   renderSubtitle() {
     const { id, onTransaction } = this.props;
@@ -35,12 +29,10 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
   }
 
   render() {
-    const { onTransaction, id } = this.props;
+    const { onTransaction, id, history } = this.props;
     const transaction = onTransaction(id);
 
-    if (!transaction) {
-      return <div>No details for this transaction</div>;
-    }
+    if (!transaction) return <div>No details for this transaction</div>;
 
     return (
       <div className={styles.budgetItem}>
@@ -49,7 +41,7 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
         <hr />
         <PieChart data={transaction.chartData || []} dataKey="transactionId" innerRatio={700} />
         <hr />
-        <button onClick={() => this.handleBack()}>&lsaquo; Back to Budget</button>
+        <button onClick={() => history.goBack()}>&lsaquo; Back to Budget</button>
       </div>
     );
   }

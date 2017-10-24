@@ -7,7 +7,7 @@ import { arc, pie } from 'd3';
 import Path from 'components/DonutChart/Path';
 import styles from './styles.scss';
 
-type DonutChartProps = {
+type PieChartProps = {
   data: TransactionSummary[],
   dataKey: string,
   dataValue: string,
@@ -15,7 +15,7 @@ type DonutChartProps = {
   innerRatio: number,
 };
 
-class DonutChart extends React.Component<DonutChartProps> {
+class DonutChart extends React.Component<PieChartProps> {
   static defaultProps = {
     height: 300,
     innerRatio: 4,
@@ -26,12 +26,8 @@ class DonutChart extends React.Component<DonutChartProps> {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps(nextProps: DonutChartProps) {
-    const { data, height } = nextProps;
-
-    const old = this.props;
-
-    if (old.data !== data || old.height !== height) {
+  componentWillReceiveProps(nextProps: PieChartProps) {
+    if (this.props.data !== nextProps.data || this.props.height !== nextProps.height) {
       this.updateChartVariables();
     }
   }
