@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransaction } from 'selectors/transactions';
 import DonutChart from 'components/DonutChart';
+import PieChart from 'components/PieChart';
 import styles from './style.scss';
 
 type BudgetItemProps = {
@@ -47,11 +48,10 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
         <h1 className={styles.budgetTitle}>{transaction.description}</h1>
         {this.renderSubtitle()}
         <hr />
-        <DonutChart
+        <PieChart
           data={transaction.chartData || []}
-          dataLabel="budget"
+          dataLabel="budgetItem"
           dataKey="transactionId"
-          legend={false}
           innerRatio={700}
         />
         <hr />

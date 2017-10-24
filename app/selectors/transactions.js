@@ -48,8 +48,8 @@ export const getTransaction = (state: State, transactionId): Transaction[] => {
   transaction.isNegative = amount.isNegative;
   transaction.percentage = Math.floor(transaction.value / transaction.balance * 100);
   transaction.chartData = [
-    { transaction: transaction.description, transactionId: transactionId, value: Math.abs(transaction.percentage) },
-    { transaction: 'Total', transactionId: 'total', value: 100 - Math.abs(transaction.percentage) },
+    { transaction: transaction.description, transactionId: transactionId, value: Math.abs(transaction.percentage), color: '#CDDC39' },
+    { transaction: 'Total', transactionId: 'total', value: 100 - Math.abs(transaction.percentage), color: '#9E9E9E' },
   ];
 
   return transaction;
