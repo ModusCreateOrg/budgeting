@@ -7,8 +7,8 @@ import type { Transaction } from 'modules/transactions';
 // inject reducers.
 
 export type State = {
-  +categories?: Categories,
-  +transactions?: Transaction[],
+  categories?: Categories,
+  transactions?: Transaction[],
 };
 
 /**

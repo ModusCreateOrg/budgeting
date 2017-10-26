@@ -1,5 +1,16 @@
 @import 'theme/variables';
 
+.row {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .cellLabel {
   display: none;
 
