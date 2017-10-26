@@ -1,0 +1,13 @@
+@import 'theme/variables';
+
+.chartContainer {
+  display: flex;
+}
+
+.negative {
+  color: $red;
+}
+
+.positive {
+  color: $green;
+}
