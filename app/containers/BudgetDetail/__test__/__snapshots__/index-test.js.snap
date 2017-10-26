@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div>
+    <h1>(<small>$100.00</small>)</h1>
+    <h4>Category:</h4>
+    <p>Misc</p>
+    <h4>Percentage:</h4>
+    <p>
+      <span className="positive">+50.00%</span>
+      of Inflow
+    </p>
+  </div>
+  <div className="chartContent"/>
+</div>
+`;

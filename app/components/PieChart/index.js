@@ -1,39 +1,39 @@
 // @flow
-
 import * as React from 'react';
+import { arc, pie } from 'd3';
+
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
+import Path from 'components/DonutChart/Path';
+
 import type { TransactionSummary } from 'selectors/transactions';
-import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
-import { shuffle } from 'utils/array';
-import Path from './Path';
 import styles from './styles.scss';
 
-const randomScheme = shuffle(schemeCategory20);
-
-type DonutChartProps = {
+// pie chart types
+type PieChartProps = {
   data: TransactionSummary[],
   dataLabel: string,
   dataKey: string,
   dataValue: string,
-  color: Function,
   height: number,
   innerRatio: number,
 };
 
-class DonutChart extends React.Component<DonutChartProps> {
+// class piechart to export
+class PieChart extends React.Component<PieChartProps> {
   static defaultProps = {
-    color: scaleOrdinal(randomScheme),
     height: 300,
-    innerRatio: 150,
+    innerRatio: 300 / 2,
     dataValue: 'value',
   };
 
+  // this event update chart variables
   componentWillMount() {
     this.updateChartVariables();
   }
 
-  componentWillReceiveProps(nextProps: DonutChartProps) {
+  // this funct update new props
+  componentWillReceiveProps(nextProps: PieChartProps) {
     const { data, color, height } = nextProps;
 
     const old = this.props;
@@ -43,6 +43,7 @@ class DonutChart extends React.Component<DonutChartProps> {
     }
   }
 
+  // funct to calc inner radius and outer raduis
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc()
@@ -52,29 +53,28 @@ class DonutChart extends React.Component<DonutChartProps> {
 
   chart: any;
   pathArc: any;
-  colorFn: any;
   outerRadius: number;
   boxLength: number;
   chartPadding = 8;
 
+  // funct to update varibales by props
   updateChartVariables = () => {
-    const { data, dataValue, color, height } = this.props;
+    const { data, dataValue, height } = this.props;
 
     this.chart = pie()
       .value(d => d[dataValue])
       .sort(null);
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
-    this.colorFn = color.domain && color.domain([0, data.length]);
     this.boxLength = height + this.chartPadding * 2;
   };
 
   render() {
     const { data, dataLabel, dataValue, dataKey } = this.props;
-    const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
+    const { outerRadius, pathArc, boxLength, chartPadding } = this;
 
     return (
-      <div className={styles.donutChart}>
+      <div className={styles.pieChart}>
         <Chart
           width={boxLength}
           height={boxLength}
@@ -82,14 +82,13 @@ class DonutChart extends React.Component<DonutChartProps> {
           transform={`translate(${outerRadius},${outerRadius})`}
         >
           {this.chart(data).map((datum, index) => (
-            <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
+            <Path data={datum} index={index} fill={datum.data.color} arcFn={pathArc} key={datum.data[dataKey]} />
           ))}
         </Chart>
 
-        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }
 }
 
-export default DonutChart;
+export default PieChart;
