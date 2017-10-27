@@ -78,3 +78,6 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+export const getTransactionById = id =>
+  createSelector(getTransactions, transactions => transactions.find(transaction => transaction.id === id));

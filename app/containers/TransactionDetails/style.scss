@@ -1,0 +1,16 @@
+@import "theme/variables";
+.green {
+    color: $green;
+}
+
+.green:before {
+    content: "+ ";
+}
+
+.red {
+    color: $red;
+}
+
+.red:before {
+    content: "- ";
+}
