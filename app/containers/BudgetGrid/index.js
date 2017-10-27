@@ -12,6 +12,7 @@ import styles from './style.scss';
 type BudgetGridProps = {
   transactions: Transaction[],
   categories: Object,
+  history: Object,
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
@@ -20,7 +21,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
     categories: {},
   };
 
-  onRowClick = transaction => {
+  onRowClick = (transaction: Transaction) => {
     this.props.history.push(`/budget/${transaction.id}`);
   };
 
@@ -61,4 +62,5 @@ const mapStateToProps = state => ({
   categories: getCategories(state),
 });
 
+// withRouter is used to pass on the history prop, so that route can be changed programatically
 export default withRouter(connect(mapStateToProps)(BudgetGrid));

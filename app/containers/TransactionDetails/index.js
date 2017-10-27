@@ -12,7 +12,7 @@ type TransactionDetailsProps = {
   totalOutflow: number,
 };
 
-class TransactionDetails extends React.Component<TransactionDetailsProps> {
+export class TransactionDetails extends React.Component<TransactionDetailsProps> {
   render() {
     const { value, description } = this.props.transaction;
     const total = value > 0 ? this.props.totalInflow : this.props.totalOutflow;
