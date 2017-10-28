@@ -23,6 +23,7 @@ class Item extends Component<{}> {
     outflowBalance: 0,
   };
 
+  // returns the color of the percentage
   getPercentageClass() {
     let balance = 0;
     if (this.props.transactions[this.props.match.params.id - 1]) {
@@ -30,25 +31,32 @@ class Item extends Component<{}> {
     }
 
     if (balance >= 0) {
+      // this is green
       return styles.green;
     }
 
+    // this is red
     return styles.red;
   }
 
+  // returns the percentage
   getPercentage() {
+    // get the balance first
     let balance = 0;
     if (this.props.transactions[this.props.match.params.id - 1]) {
       balance = Math.abs(this.props.transactions[this.props.match.params.id - 1].value);
     }
 
     if (balance >= 0) {
+      // if it is inflow
       return (balance / this.props.inflowBalance * 100).toFixed(2);
     }
 
+    // if it is outflow
     return (balance / this.props.outflowBalance * 100).toFixed(2);
   }
 
+  // gets / returns data for the pie chart
   getData() {
     let name = '';
     let balance = 0;
@@ -65,6 +73,7 @@ class Item extends Component<{}> {
     ];
   }
 
+  // gets the browser back using it's history
   goBack() {
     window.history.back();
   }
@@ -91,6 +100,7 @@ class Item extends Component<{}> {
   }
 }
 
+// map state to props
 const mapStateToProps = state => ({
   transactions: getTransactions(state),
   categories: getCategories(state),
