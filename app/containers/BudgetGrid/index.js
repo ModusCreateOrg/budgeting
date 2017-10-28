@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
-import { Transaction } from 'modules/transactions';
+import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from 'components/BudgetGridRow';
 import styles from './style.scss';
 
