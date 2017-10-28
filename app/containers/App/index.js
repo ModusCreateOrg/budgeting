@@ -17,6 +17,9 @@ const App = () => (
       <Switch>
         <Route path="/budget" component={Budget} />
         <Route path="/reports" component={Reports} />
+        <Route path="/item/">
+          <h1>Hello</h1>
+        </Route>
         <Redirect to="/budget" />
       </Switch>
     </main>
