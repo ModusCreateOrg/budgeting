@@ -12,7 +12,7 @@ import styles from './style.scss';
 type BudgetGridProps = {
   transactions: Transaction[],
   categories: Object,
-  history: Object
+  history: Object,
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {

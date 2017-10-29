@@ -8,7 +8,7 @@ import styles from './style.scss';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
-  changeUrl: Function
+  changeUrl: Function,
 };
 
 const BudgetGridRow = ({ transaction, categories, changeUrl }: BudgetGridRowProps) => {
