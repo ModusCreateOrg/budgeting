@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import categoriesReducer from 'modules/categories';
@@ -11,48 +10,52 @@ import styles from './style.scss';
 import { injectAsyncReducers } from 'store';
 import formatAmount from 'utils/formatAmount';
 
-import PieChart from 'components/DonutChart';
+import PieChart from 'components/PieChart';
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({
   categories: categoriesReducer,
-  transactions: transactionsReducer
+  transactions: transactionsReducer,
 });
 
-class BudgetDetail extends React.Component {
-  static propTypes = {
-    categories: PropTypes.object.isRequired,
-    transactions: PropTypes.array.isRequired
-  }
+type BudgetDetailProps = {
+  categories: Object,
+  transactions: Object,
+  history: Object,
+  match: Object
+}
 
+class BudgetDetail extends React.Component<BudgetDetailProps> {
   handleBackButton = () => {
-    this.props.history.goBack();
-  }
+    const { history } = this.props;
+    history.goBack();
+  };
 
-  renderFound = (item) => {
+  renderFound = item => {
     const amount = formatAmount(item.value);
     const amountCls = amount.isNegative ? styles.neg : styles.pos;
-    let total = Math.abs(getOutflowBalance(this.props));
-    if (item.value > 0) {
-      total = getInflowBalance(this.props);
-    }
+    let total = Math.abs(getInflowBalance(this.props));
     const data = [
       {
-        label: item.description,
-        key: item.id,
+        category: item.description,
+        categoryId: item.id,
         value: Math.abs(item.value),
-      }, {
-        label: 'Others',
-        key: 0,
-        value: total - Math.abs(item.value)
+      },
+      {
+        category: 'Remaining budget',
+        categoryId: '0',
+        value: total - Math.abs(item.value),
       }
     ];
-    const percentage = (Math.abs(item.value) / total) * 100;
+    const percentage = Math.abs(item.value) / total;
     return (
       <section key={1}>
         <h2>{item.description}</h2>
-        <p className={amountCls}>{amount.text} ({percentage.toFixed(2)}%)</p>
-        <PieChart data={data} dataLabel="label" dataKey="key" />;
+        <p className={amountCls}>
+          {!amount.isNegative && <span>+</span>}
+          {amount.text} ({percentage.toFixed(2)}%)
+        </p>
+        <PieChart data={data} dataLabel="category" dataKey="categoryId" />;
       </section>
     )
   }
@@ -76,7 +79,7 @@ class BudgetDetail extends React.Component {
         this.renderFound(item)
       ];
     }
-    return this.renderNotFound(item);
+    return this.renderNotFound();
   }
 }
 

@@ -12,6 +12,7 @@ import styles from './style.scss';
 type BudgetGridProps = {
   transactions: Transaction[],
   categories: Object,
+  history: Object
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
@@ -20,10 +21,10 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
     categories: {},
   };
 
-  changeUrl = (transaction) => {
-    const { id, categoryId, description } = transaction;
-    this.props.history.push(`/budget/${id}`);
-  }
+  changeUrl = (transaction: Transaction) => {
+    const { history } = this.props;
+    history.push(`/budget/${transaction.id}`);
+  };
 
   render() {
     const { transactions, categories } = this.props;
@@ -43,7 +44,8 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
               changeUrl={this.changeUrl}
               key={transaction.id}
               transaction={transaction}
-              categories={categories} />
+              categories={categories}
+            />
           ))}
         </tbody>
         <tfoot>
