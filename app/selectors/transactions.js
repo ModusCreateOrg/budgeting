@@ -1,6 +1,7 @@
 // @flow
 
 import { createSelector } from 'reselect';
+import type { Match } from 'react-router';
 import formatAmount from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
@@ -38,6 +39,9 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
   });
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
+
+export const getTransaction = (state: State, props: { match: Match }): ?Transaction =>
+  getTransactions(state).find(t => t.id === parseInt(props.match.params.id, 10));
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
@@ -77,4 +81,12 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
+);
+
+export const getRemainingFlowAsTransaction = createSelector(
+  [getTransaction, getInflowBalance, getOutflowBalance],
+  (transaction, inflowBalance, outflowBalance) => ({
+    description: `Remaining ${transaction.value > 0 ? 'Inflow' : 'Outflow'} Balance`,
+    value: Math.abs(transaction.value > 0 ? inflowBalance : outflowBalance) - Math.abs(transaction.value),
+  })
 );
