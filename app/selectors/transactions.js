@@ -39,11 +39,25 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
-const getInflowTransactions = createSelector([getTransactions], transactions =>
+export const getTransactionById = (state: State, transactionId: number): Transaction => {
+  const defaultTransaction: Transaction = {
+    categoryId: "N/A",
+    description: "N/A",
+    id: transactionId,
+    value: 0
+  };
+  if (Array.isArray(state.transactions)) {
+    return state.transactions.find((transaction: Transaction) =>
+      transaction.id == transactionId) || defaultTransaction;
+  }
+  else { return defaultTransaction; }
+}
+
+export const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
 
-const getOutflowTransactions = createSelector([getTransactions], transactions =>
+export const getOutflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value < 0)
 );
 

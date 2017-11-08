@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <span
+    className="back"
+    onClick={[Function]}
+  >
+    &lt;
+     Back
+  </span>
+  <h1>
+    Test
+     : $
+    500
+  </h1>
+  <h2>
+    <span
+      className="negative"
+    >
+      -
+    </span>
+    50
+    %
+  </h2>
+  <div
+    className="donutChart"
+  >
+    <svg
+      className="mainSvg"
+      height={316}
+      viewBox="-8 -8 316 316"
+      width={316}
+    >
+      <g
+        transform="translate(150,150)"
+      >
+        <path
+          d="M9.184850993605149e-15,-150A150,150,0,1,1,-5.742853048390424e-14,150L0,0Z"
+          fill="#1f77b4"
+        />
+        <path
+          d="M-5.742853048390424e-14,150A150,150,0,1,1,1.0567220997420333e-13,-150L0,0Z"
+          fill="#ff7f0e"
+        />
+      </g>
+    </svg>
+    <ul
+      className="legend"
+    >
+      <li
+        style={
+          Object {
+            "color": "#1f77b4",
+          }
+        }
+      >
+        <span>
+          Test
+        </span>
+        <span
+          className="value"
+        >
+           
+          50%
+           
+        </span>
+      </li>
+      <li
+        style={
+          Object {
+            "color": "#ff7f0e",
+          }
+        }
+      >
+        <span>
+          Others
+        </span>
+        <span
+          className="value"
+        >
+           
+          50%
+           
+        </span>
+      </li>
+    </ul>
+  </div>
+</section>
+`;

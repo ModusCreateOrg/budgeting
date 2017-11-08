@@ -11,7 +11,7 @@ import store from 'store';
 const renderApp = (Component: React.ComponentType<any>) => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router>
+      <Router>  
         <AppContainer>
           <Component />
         </AppContainer>

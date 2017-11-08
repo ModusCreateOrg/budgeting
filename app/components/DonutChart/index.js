@@ -9,9 +9,8 @@ import { shuffle } from 'utils/array';
 import Path from './Path';
 import styles from './styles.scss';
 
-const randomScheme = shuffle(schemeCategory20);
 
-type DonutChartProps = {
+export type DonutChartProps = {
   data: TransactionSummary[],
   dataLabel: string,
   dataKey: string,
@@ -19,14 +18,16 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  isPercentage?: boolean
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
   static defaultProps = {
-    color: scaleOrdinal(randomScheme),
+    color: scaleOrdinal(schemeCategory20),
     height: 300,
-    innerRatio: 4,
+    innerRatio: 10,
     dataValue: 'value',
+    isPercentage: false
   };
 
   componentWillMount() {
@@ -46,7 +47,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(0)
       .outerRadius(height / 2);
   };
 
@@ -70,7 +71,8 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey } = this.props;
+
+    const { data, dataLabel, dataValue, dataKey, isPercentage } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
     return (
@@ -86,7 +88,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           ))}
         </Chart>
 
-        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
+        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} isPercentage={isPercentage} />
       </div>
     );
   }
