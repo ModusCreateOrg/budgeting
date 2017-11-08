@@ -48,7 +48,9 @@ export const getTransactionById = (state: State, transactionId: number): Transac
   };
   if (Array.isArray(state.transactions)) {
     return (
-      state.transactions.find((transaction: Transaction) => parseInt(transaction.id) === parseInt(transactionId)) || defaultTransaction
+      state.transactions.find(
+        (transaction: Transaction) => parseInt(transaction.id, 10) === parseInt(transactionId, 10)
+      ) || defaultTransaction
     );
   }
   return defaultTransaction;
