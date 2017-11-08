@@ -83,10 +83,27 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
 export const getBudgetItem = (state: State, props: { match: Match }): ?Transaction =>
   getTransactions(state).find(t => t.id === parseInt(props.match.params.id, 10));
 
-export const getRemainingFlowAsTransaction = createSelector(
+export const getFlowAsTransaction = createSelector(
   [getBudgetItem, getInflowBalance, getOutflowBalance],
-  (transaction, inflowBalance, outflowBalance) => ({
-    description: `Remaining ${transaction.value > 0 ? 'Inflow' : 'Outflow'} Balance`,
-    value: Math.abs(transaction.value > 0 ? inflowBalance : outflowBalance) - Math.abs(transaction.value),
-  })
+  (transaction, inflowBalance, outflowBalance) => {
+    console.log(transaction, inflowBalance, outflowBalance);
+    const getDescription = () => {
+      if (transaction) {
+        return `${transaction.value > 0 ? 'Inflow' : 'Outflow'} Balance`;
+      }
+      return '';
+    };
+
+    const getValue = () => {
+      if (transaction) {
+        return Math.abs(transaction.value > 0 ? inflowBalance : outflowBalance) - Math.abs(transaction.value);
+      }
+      return 0;
+    };
+
+    return {
+      description: getDescription(),
+      value: getValue(),
+    };
+  }
 );
