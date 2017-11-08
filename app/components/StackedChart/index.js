@@ -26,7 +26,7 @@ type StackedChartProps = {
     inflow: number,
     outflow: number,
   },
-  isPercentage?: boolean
+  isPercentage?: boolean,
 };
 
 class StackedChart extends React.Component<StackedChartProps> {
@@ -34,7 +34,7 @@ class StackedChart extends React.Component<StackedChartProps> {
     width: 300,
     height: 500,
     dataValue: 'value',
-    isPercentage: false
+    isPercentage: false,
   };
 
   componentWillMount() {
@@ -119,7 +119,13 @@ class StackedChart extends React.Component<StackedChartProps> {
           />
         </Chart>
 
-        <Legend color={colorFn.outflow} reverse data={data.outflow} {...{ dataValue, dataLabel, dataKey }} isPercentage={isPercentage} />
+        <Legend
+          color={colorFn.outflow}
+          reverse
+          data={data.outflow}
+          {...{ dataValue, dataLabel, dataKey }}
+          isPercentage={isPercentage}
+        />
       </div>
     );
   }

@@ -16,6 +16,12 @@ it('renders correctly', () => {
     2: 'School',
   };
 
-  const tree = renderer.create(<MemoryRouter><BudgetGridRow transaction={mockTransaction} categories={mockCategories} /></MemoryRouter>).toJSON();
+  const tree = renderer
+    .create(
+      <MemoryRouter>
+        <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
+      </MemoryRouter>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

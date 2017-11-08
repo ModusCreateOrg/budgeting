@@ -5,6 +5,7 @@ exports[`renders correctly 1`] = `
   <span
     className="back"
     onClick={[Function]}
+    role="presentation"
   >
     &lt;
      Back
