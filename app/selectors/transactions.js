@@ -86,7 +86,6 @@ export const getBudgetItem = (state: State, props: { match: Match }): ?Transacti
 export const getFlowAsTransaction = createSelector(
   [getBudgetItem, getInflowBalance, getOutflowBalance],
   (transaction, inflowBalance, outflowBalance) => {
-    console.log(transaction, inflowBalance, outflowBalance);
     const getDescription = () => {
       if (transaction) {
         return `${transaction.value > 0 ? 'Inflow' : 'Outflow'} Balance`;
