@@ -3,7 +3,7 @@
 */
 import * as React from 'react';
 import { withRouter } from 'react-router';
-import { compose, type Dispatch } from 'redux';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getBudgetItem, getFlowAsTransaction } from 'selectors/transactions';
