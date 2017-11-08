@@ -1,10 +1,11 @@
 // @flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
-import BudgetGrid from 'containers/BudgetGrid';
-import Balance from 'containers/Balance';
+import { withRouter } from 'react-router-dom';
+import ItemPercentage from 'containers/ItemPercentage';
 
 
 // inject reducers that might not have been originally there
@@ -13,11 +14,10 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = () => (
-    <section>
-      <BudgetGrid />
-      <Balance />
-    </section>
+const ItemContainer = () => (
+  <section>
+    <ItemPercentage />
+  </section>
 );
 
-export default BudgetContainer;
+export default ItemContainer;
