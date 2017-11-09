@@ -37,7 +37,7 @@ export class ItemPercentage extends React.Component<ItemProps> {
     // Grab the item information based on the page you are looking at in case the user refreshes
     const item = this.props.transactions.filter(
       transaction => transaction.id === parseInt(this.props.match.params.id, 10)
-    )[0];    
+    )[0];
 
     if (item === undefined) {
       this.props.history.push('/budget');
