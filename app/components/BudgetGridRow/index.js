@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react';
+import { withRouter } from 'react-router-dom';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
-import { withRouter, Redirect } from 'react-router-dom';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
@@ -20,7 +20,7 @@ export class BudgetGridRow extends React.Component<BudgetGridRowProps> {
     const category = categories[categoryId];
 
     return (
-      <tr key={id} onClick={() => history.push('/item/' + id )}>
+      <tr key={id} onClick={() => history.push(`/item/${id}`)}>
         <td>
           <div className={styles.cellLabel}>Category</div>
           <div className={styles.cellContent}>{category}</div>
@@ -36,6 +36,6 @@ export class BudgetGridRow extends React.Component<BudgetGridRowProps> {
       </tr>
     );
   }
-};
+}
 
 export default withRouter(BudgetGridRow);

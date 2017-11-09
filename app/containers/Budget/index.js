@@ -6,7 +6,6 @@ import { injectAsyncReducers } from 'store';
 import BudgetGrid from 'containers/BudgetGrid';
 import Balance from 'containers/Balance';
 
-
 // inject reducers that might not have been originally there
 injectAsyncReducers({
   transactions: transactionReducer,
@@ -14,10 +13,10 @@ injectAsyncReducers({
 });
 
 const BudgetContainer = () => (
-    <section>
-      <BudgetGrid />
-      <Balance />
-    </section>
+  <section>
+    <BudgetGrid />
+    <Balance />
+  </section>
 );
 
 export default BudgetContainer;
