@@ -1,18 +1,24 @@
 // @flow
 import * as React from 'react';
-import transactionReducer from 'modules/transactions';
 import { injectAsyncReducers } from 'store';
+import { connect } from 'react-redux';
 import BudgetItem from 'components/BudgetItem';
+import type { Transaction } from 'modules/transactions';
+import transactionReducer from 'modules/transactions';
+import { getTransaction, getTransactionContribution } from 'selectors/transactions';
 
-// inject reducers that might not have been originally there
 injectAsyncReducers({
-  transactions: transactionReducer
+  transactions: transactionReducer,
 });
 
-const BudgetItemContainer = () => (
-  <section>
-    <BudgetItem />
-  </section>
-);
+const mapStateToProps = (state, props) => {
+  const transaction: Transaction = getTransaction(state, props.match.params.id);
+  const contribution = getTransactionContribution(state, props.match.params.id);
 
-export default BudgetItemContainer;
+  return {
+    transaction: transaction,
+    contribution: contribution,
+  };
+};
+
+export default connect(mapStateToProps)(BudgetItem);

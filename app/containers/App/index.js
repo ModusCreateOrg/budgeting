@@ -16,7 +16,7 @@ const App = () => (
       <Header />
 
       <Switch>
-        <Route path="/budget" component={Budget} />
+        <Route path="/budget" component={Budget} exact/>
         <Route path="/budget/item/:id" component={BudgetItem} />
         <Route path="/reports" component={Reports} />
         <Redirect to="/budget" />

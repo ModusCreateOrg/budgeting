@@ -2,12 +2,22 @@
 import * as React from 'react';
 
 type BugdetDetailsProps = {
-  transaction: Transaction
+  transaction: Transaction,
+  contribution: Object,
 };
 
-const BudgetItem = ({ transaction }: BugdetDetailsProps) => {
+const BudgetItem = ({ transaction, contribution }: BugdetDetailsProps) => {
   const value = transaction.value;
-  return <span>{value}</span>;
+  const percent = contribution.percent;
+
+  return (
+    <section>
+      <h1>{transaction.description}</h1>
+      <h3>
+        {transaction.value}({contribution.percent}%)
+      </h3>
+    </section>
+  );
 };
 
 export default BudgetItem;
