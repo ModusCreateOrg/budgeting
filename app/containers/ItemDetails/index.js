@@ -16,6 +16,8 @@ type ItemDetailsProps = {
 class ItemDetails extends React.Component<ItemDetailsProps> {
   render() {
     const { data } = this.props;
+
+    // Make chart data to show this item and rest transaction amounts
     const donutData = [
       {
         id: data.id,
