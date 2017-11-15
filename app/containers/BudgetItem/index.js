@@ -1,5 +1,4 @@
 // @flow
-import * as React from 'react';
 import { injectAsyncReducers } from 'store';
 import { connect } from 'react-redux';
 import BudgetItem from 'components/BudgetItem';
