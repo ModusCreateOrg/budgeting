@@ -18,7 +18,12 @@ const BudgetGridRow = ({ transaction, categories, clickHandler }: BudgetGridRowP
   const category = categories[categoryId];
 
   return (
-    <tr key={id} onClick={() => {clickHandler(id)}}>
+    <tr
+      key={id}
+      onClick={() => {
+        clickHandler(id);
+      }}
+    >
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
