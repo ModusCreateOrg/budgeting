@@ -1,22 +1,50 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import type { TransactionSummary } from 'selectors/transactions';
+import { Link } from 'react-router-dom';
+import type { TransactionContribution } from 'selectors/transactions';
+import { getTransactionContribution } from 'selectors/transactions';
 
-import { sortTransactions, getOutflowByCategoryName } from 'selectors/transactions';
+import DonutChart from 'components/DonutChart';
 
-type SpendingProps = {
-  data: TransactionSummary[],
+import styles from './style.scss';
+
+type ItemDetailsProps = {
+  data: TransactionContribution,
 };
 
-class ItemDetails extends React.Component<SpendingProps> {
+class ItemDetails extends React.Component<ItemDetailsProps> {
   render() {
-    return (<div></div>);
+    const { data } = this.props;
+    const donutData = [{
+      id: data.id,
+      value: data.value,
+      description: data.description,
+    }, {
+      id: data.id + 1,
+      value: data.totalTransactionOfFlow - data.value,
+      description: 'Others',
+    }];
+
+    return (
+      <div className={styles.itemDetails}>
+        <Link to="/budget">Go Back</Link>
+        <h2>{data.description}</h2>
+        <h3>
+          {data.value < 0?
+            <span className={styles.red}>-</span>:
+            <span className={styles.green}>+</span>
+          }
+          {data.percentage}%
+        </h3>
+        <DonutChart data={donutData} dataLabel="description" dataKey="id" />
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => ({
-  data: sortTransactions(getOutflowByCategoryName(state)),
+const mapStateToProps = (state, props) => ({
+  data: getTransactionContribution(state, parseInt(props.match.params.itemId)),
 });
 
 export default connect(mapStateToProps)(ItemDetails);
