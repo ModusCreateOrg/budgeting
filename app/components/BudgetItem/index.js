@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import DonutChart from 'components/DonutChart';
 
 type BugdetDetailsProps = {
