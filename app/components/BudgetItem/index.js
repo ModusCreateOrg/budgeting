@@ -12,7 +12,7 @@ const BudgetItem = ({ transaction, contribution }: BugdetDetailsProps) => {
   const chartData = [
     {
       value: parseFloat(contribution.percent),
-      label: transaction.description
+      label: 'This'
     },
     {
       value: 100 - parseFloat(contribution.percent),
@@ -28,7 +28,7 @@ const BudgetItem = ({ transaction, contribution }: BugdetDetailsProps) => {
       <h3>
         {transaction.value}({contribution.percent}%)
       </h3>
-      <DonutChart data={chartData} dataLabel="label" dataKey="label" isPercentage />
+      <DonutChart data={chartData} dataLabel="label" dataKey="label" valueAsPercent="true" />
     </section>
   );
 };
