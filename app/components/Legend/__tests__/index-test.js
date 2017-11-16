@@ -9,7 +9,7 @@ it('renders correctly', () => {
   const mockData = [{ key: 1 }, { key: 2 }];
 
   const tree = renderer
-    .create(<Legend data={mockData} dataValue="test" dataLabel="test" dataKey="key" color={() => {}} />)
+    .create(<Legend data={mockData} dataValue="test" dataLabel="test" dataKey="key" color={() => {}} isPercent="false" />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

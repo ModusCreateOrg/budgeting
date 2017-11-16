@@ -6,7 +6,7 @@ export type FormattedAmount = {
   isPercent: boolean,
 };
 
-export default function formatAmount(amount: number, showSign: boolean = true, showPercent: boolean): FormattedAmount {
+export default function formatAmount(amount: number, showSign: boolean = true, showPercent: boolean = false): FormattedAmount {
   const isNegative = amount < 0;
   let formatValue = Math.abs(amount);
 

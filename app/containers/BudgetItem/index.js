@@ -1,4 +1,5 @@
 // @flow
+import { withRouter } from 'react-router-dom';
 import { injectAsyncReducers } from 'store';
 import { connect } from 'react-redux';
 import BudgetItem from 'components/BudgetItem';
@@ -8,6 +9,10 @@ import { getTransaction, getTransactionContribution } from 'selectors/transactio
 
 injectAsyncReducers({
   transactions: transactionReducer,
+});
+
+const mapDispatchToProps = (dispatch, props) => ({
+  goBackHandler: props.history.goBack,
 });
 
 const mapStateToProps = (state, props) => {
@@ -20,4 +25,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(BudgetItem);
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetItem);

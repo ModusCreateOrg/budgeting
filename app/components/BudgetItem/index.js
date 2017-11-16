@@ -9,9 +9,10 @@ import styles from './style.scss';
 type BugdetDetailsProps = {
   transaction: Transaction,
   contribution: Object,
+  goBackHandler: Function,
 };
 
-const BudgetItem = ({ transaction, contribution }: BugdetDetailsProps) => {
+const BudgetItem = ({ transaction, contribution, goBackHandler }: BugdetDetailsProps) => {
   const chartData = [
     {
       value: parseFloat(contribution.percent),
@@ -24,9 +25,9 @@ const BudgetItem = ({ transaction, contribution }: BugdetDetailsProps) => {
   ];
   return (
     <section>
-      <Route>
-        <Link to="/budget">Back</Link>
-      </Route>
+      <div>
+        <button onClick={goBackHandler}>Back</button>
+      </div>
       <h1>
         {transaction.description}
         &nbsp;({formatAmount(transaction.value).text})
