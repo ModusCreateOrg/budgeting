@@ -11,6 +11,7 @@ injectAsyncReducers({
   transactions: transactionReducer,
 });
 
+//pass the history handler to the component so the button will be able to call it
 const mapDispatchToProps = (dispatch, props) => ({
   goBackHandler: props.history.goBack,
 });
