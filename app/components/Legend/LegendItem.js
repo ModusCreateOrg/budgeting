@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
+import formatPorcentageAmount from 'utils/formatPorcentageAmount';
 import styles from './styles.scss';
 
 type LegendItemProps = {
@@ -9,10 +10,12 @@ type LegendItemProps = {
   label: string,
 };
 
-const LegendItem = ({ color, label, value }: LegendItemProps) => (
+const LegendItem = ({ color, label, value, type }: LegendItemProps) => (
   <li style={{ color }}>
     <span>{label}</span>
-    <span className={styles.value}> {formatAmount(value).text} </span>
+    <span className={styles.value}>
+      {type === 'porcentage' ? formatPorcentageAmount(value, false).text : formatAmount(value).text}{' '}
+    </span>
   </li>
 );
 
