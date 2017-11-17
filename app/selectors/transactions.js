@@ -86,7 +86,7 @@ const getTransactionId = (state, transactionId) => transactionId;
 export const getTransaction = createSelector(
   getTransactions,
   getTransactionId,
-  (transactions, transactionId) => transactions.filter(t => t.id === parseInt(transactionId))[0]
+  (transactions, transactionId) => transactions.filter(t => t.id === parseInt(transactionId, 10))[0]
 );
 
 export const getSummarizeByTransaction = createSelector(
