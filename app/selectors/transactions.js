@@ -4,6 +4,8 @@ import { createSelector } from 'reselect';
 import formatAmount from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
+import formatPorcentageAmount from 'utils/formatPorcentageAmount';
+
 import { getCategories } from './categories';
 
 export type TransactionSummary = {
@@ -106,5 +108,20 @@ export const getSummarizeByTransaction = createSelector(
         categoryId: 0,
       },
     ];
+  }
+);
+
+export const getPorcentagemByTransaction = createSelector(
+  getInflowBalance,
+  getOutflowBalance,
+  getTransaction,
+  (inflow, outflow, transaction) => {
+    if (transaction === undefined) return null;
+    let total = inflow;
+    const isNegative = formatAmount(transaction.value).isNegative;
+    if (isNegative) {
+      total = Math.abs(outflow);
+    }
+    return formatPorcentageAmount(transaction.value * 100 / total, true);
   }
 );
