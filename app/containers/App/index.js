@@ -18,14 +18,12 @@ const App = () => (
   <ErrorBoundary fallbackComponent={AppError}>
     <main>
       <Header />
-      <Router history={history}>
         <Switch>
           <Route path="/budget" component={Budget} />
           <Route path="/reports" component={Reports} />
           <Route path="/detail/:id" component={Detail} />
           <Redirect to="/budget" />
         </Switch>
-      </Router>
     </main>
   </ErrorBoundary>
 );
