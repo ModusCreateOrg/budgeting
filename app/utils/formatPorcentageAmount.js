@@ -8,9 +8,14 @@ export type FormattedPorcentageAmount = {
 export default function formatPorcentageAmount(amount: number, showSign: boolean = true): FormattedPorcentageAmount {
   const isNegative = amount < 0;
   const formatValue = Math.abs(amount).toFixed(2);
-
+  let sign = '+';
+  if (showSign && isNegative) {
+    sign = '-';
+  } else if (!showSign) {
+    sign = '';
+  }
   return {
-    text: `${showSign && isNegative ? '-' : showSign ? '+' : ''}${formatValue}%`,
+    text: `${sign}${formatValue}%`,
     isNegative,
   };
 }
