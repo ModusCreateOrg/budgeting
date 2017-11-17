@@ -10,14 +10,14 @@ type BudgetGridRowProps = {
   categories: Categories,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, props }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
   return (
-    <tr key={id}>
+    <tr key={id} onClick={() => props.history.push(`/detail/${transaction.id}`)}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
