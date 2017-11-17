@@ -86,3 +86,25 @@ export const getTransaction = createSelector(
   getTransactionId,
   (transactions, transactionId) => transactions.filter(t => t.id === parseInt(transactionId))[0]
 );
+
+export const getSummarizeByTransaction = createSelector(
+  getInflowBalance,
+  getOutflowBalance,
+  getTransaction,
+  (inflow, outflow, transaction) => {
+    if (transaction === undefined) return null;
+    const total = inflow + Math.abs(outflow);
+    return [
+      {
+        value: Math.abs(transaction.value) / total * 100,
+        category: transaction.description,
+        categoryId: transaction.id,
+      },
+      {
+        value: (total - Math.abs(transaction.value)) / total * 100,
+        category: 'Others items',
+        categoryId: 0,
+      },
+    ];
+  }
+);
