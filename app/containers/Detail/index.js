@@ -8,6 +8,8 @@ import { getTransaction, getSummarizeByTransaction, getPorcentagemByTransaction 
 
 import { injectAsyncReducers } from 'store';
 import transactionReducer from 'modules/transactions';
+import BackButton from 'components/BackButton';
+import ItemNotFound from 'components/ItemNotFound';
 
 import styles from './style.scss';
 
@@ -15,12 +17,20 @@ injectAsyncReducers({
   transactions: transactionReducer,
 });
 
+type DetailProps = {
+  transaction: Object,
+};
+
 export class DetailContainer extends React.Component<DetailProps> {
   static defaultProps = {
     transaction: null,
   };
 
   render() {
+    const { transaction } = this.props;
+    if (transaction === null) {
+      return [<ItemNotFound />, <BackButton />];
+    }
     return <h1>Detail page</h1>;
   }
 }
