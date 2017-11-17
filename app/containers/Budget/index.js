@@ -14,7 +14,7 @@ injectAsyncReducers({
 
 const BudgetContainer = () => (
   <section>
-    <BudgetGrid />
+    <BudgetGrid {...this.props} />
     <Balance />
   </section>
 );
