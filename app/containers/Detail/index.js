@@ -1,7 +1,7 @@
 /**
  * Created by joaogabriellima on 17/11/17.
  */
-
+// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransaction, getSummarizeByTransaction, getPorcentagemByTransaction } from 'selectors/transactions';
@@ -10,6 +10,7 @@ import { injectAsyncReducers } from 'store';
 import transactionReducer from 'modules/transactions';
 import BackButton from 'components/BackButton';
 import ItemNotFound from 'components/ItemNotFound';
+import PieChart from 'components/PieChart';
 
 import styles from './style.scss';
 
@@ -34,13 +35,20 @@ const DetailTitle = ({ transaction, porcentageByTransaction }: DetailProps) => {
   );
 };
 
+const DetailChart = ({ data }) => (
+  <section>
+    <p>How much of the entire budget this item is contributing:</p>
+    <PieChart data={data} dataLabel="category" dataKey="categoryId" type="porcentage" />
+  </section>
+);
+
 export class DetailContainer extends React.Component<DetailProps> {
   static defaultProps = {
     transaction: null,
   };
 
   render() {
-    const { transaction, porcentageByTransaction } = this.props;
+    const { transaction, data, porcentageByTransaction } = this.props;
     if (transaction === null) {
       return [<ItemNotFound />, <BackButton />];
     }
@@ -48,6 +56,7 @@ export class DetailContainer extends React.Component<DetailProps> {
       <section className={styles.header}>
         <BackButton />
         <DetailTitle transaction={transaction} porcentageByTransaction={porcentageByTransaction} />
+        <DetailChart data={data} />
       </section>
     );
   }
