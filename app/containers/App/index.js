@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Router, Switch, Route, Redirect} from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import ErrorBoundary from 'components/ErrorBoundary';
 import AppError from 'components/AppError';

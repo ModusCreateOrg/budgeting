@@ -6,6 +6,8 @@ import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from 'components/BudgetGridRow';
+import { withRouter } from 'react-router';
+
 import styles from './style.scss';
 
 type BudgetGridProps = {
@@ -49,4 +51,4 @@ const mapStateToProps = state => ({
   categories: getCategories(state),
 });
 
-export default connect(mapStateToProps)(BudgetGrid);
+export default withRouter(connect(mapStateToProps)(BudgetGrid));
