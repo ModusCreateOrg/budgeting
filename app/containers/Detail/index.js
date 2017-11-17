@@ -21,17 +21,35 @@ type DetailProps = {
   transaction: Object,
 };
 
+const DetailTitle = ({ transaction, porcentageByTransaction }: DetailProps) => {
+  const isNegative = transaction.value < 0;
+  const amountCls = isNegative ? styles.neg : styles.pos;
+  return (
+    <header>
+      <h1>{transaction.description}</h1>
+      <h2 className={amountCls}>
+        {porcentageByTransaction.text} of total {isNegative ? 'outflows' : 'inflows'}{' '}
+      </h2>
+    </header>
+  );
+};
+
 export class DetailContainer extends React.Component<DetailProps> {
   static defaultProps = {
     transaction: null,
   };
 
   render() {
-    const { transaction } = this.props;
+    const { transaction, porcentageByTransaction } = this.props;
     if (transaction === null) {
       return [<ItemNotFound />, <BackButton />];
     }
-    return <h1>Detail page</h1>;
+    return (
+      <section className={styles.header}>
+        <BackButton />
+        <DetailTitle transaction={transaction} porcentageByTransaction={porcentageByTransaction} />
+      </section>
+    );
   }
 }
 
