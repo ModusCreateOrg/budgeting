@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { getTransaction, getSummarizeByTransaction, getPorcentagemByTransaction } from 'selectors/transactions';
 
 import { injectAsyncReducers } from 'store';
 import transactionReducer from 'modules/transactions';
@@ -24,4 +25,13 @@ export class DetailContainer extends React.Component<DetailProps> {
   }
 }
 
-export default DetailContainer;
+const mapStateToProps = (state, ownProps) => {
+  const transactionId = ownProps.match.params.id;
+  return {
+    transaction: getTransaction(state, transactionId),
+    data: getSummarizeByTransaction(state, transactionId),
+    porcentageByTransaction: getPorcentagemByTransaction(state, transactionId),
+  };
+};
+
+export default connect(mapStateToProps)(DetailContainer);
