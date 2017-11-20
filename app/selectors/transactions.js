@@ -94,7 +94,7 @@ export const getTransactionContribution = createSelector(
   (transaction, inflowBalance) => {
     let percentage = 0;
     // Total budget should be the amount in hand
-    let totalBudget = inflowBalance;
+    const totalBudget = inflowBalance;
     // Percentage of total budget this item is contributing with
     percentage = parseFloat((100 * transaction.value / totalBudget).toFixed(2));
 

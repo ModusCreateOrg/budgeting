@@ -5,9 +5,9 @@ import Chunk from 'components/Chunk';
 const loadItemDetailsContainer = () => import('containers/ItemDetails' /* webpackChunkName: "itemDetails" */);
 
 class ItemDetails extends Component<{}> {
-    render() {
-        return <Chunk load={loadItemDetailsContainer} />;
-    }
+  render() {
+    return <Chunk load={loadItemDetailsContainer} />;
+  }
 }
 
 export default ItemDetails;

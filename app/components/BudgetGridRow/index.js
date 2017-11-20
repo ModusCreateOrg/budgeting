@@ -3,7 +3,6 @@ import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
-import { Link } from 'react-router-dom';
 import styles from './style.scss';
 
 type BudgetGridRowProps = {
@@ -17,13 +16,14 @@ const BudgetGridRow = ({ transaction, categories, linkToItemDetails }: BudgetGri
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
-  const url = `/reports/item-details/${id}`
 
   return (
-    <tr key={id}
-    onClick={() => {
-      linkToItemDetails(id);
-    }}>
+    <tr
+      key={id}
+      onClick={() => {
+        linkToItemDetails(id);
+      }}
+    >
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
