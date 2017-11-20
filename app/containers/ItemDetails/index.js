@@ -17,16 +17,17 @@ class ItemDetails extends React.Component<ItemDetailsProps> {
   render() {
     const { data } = this.props;
     const isPie = true;
+    const value = Math.abs(data.value);
     const chartData = [
       {
         id: data.id,
-        value: data.value,
+        value: value,
         description: data.description,
       },
       {
         id: data.id + 1,
-        value: data.totalBudget,
-        description: 'Total Budget',
+        value: data.totalBudget - value,
+        description: 'Remaining Budget',
       },
     ];
 
