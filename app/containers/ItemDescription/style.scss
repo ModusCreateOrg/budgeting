@@ -1,0 +1,14 @@
+@import 'theme/variables';
+.item{
+  .item__title{
+    font-size: 36px;
+  }
+  .item__amountContainer{
+    display: flex;
+  }
+  .item__noBorder * {
+    border: none;
+    padding: 0;
+    margin: 0 .5em;
+  }
+}

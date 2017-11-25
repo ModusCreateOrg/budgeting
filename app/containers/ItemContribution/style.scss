@@ -1,0 +1,11 @@
+@import 'theme/variables';
+.itemContribution{
+  width: 50%;
+  height: 50%;
+}
+@media only screen and (min-width: $screen-small){
+  .itemContribution{
+    width: 25%;
+    height: 25%;
+  }
+}
