@@ -4,8 +4,6 @@ exports[`renders correctly 1`] = `
 <div
   className="header"
 >
-  <div />
-  <div />
   <div
     className="gitHubButton"
     type="Star"

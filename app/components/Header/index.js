@@ -14,6 +14,7 @@ export default () => (
         <NavLink to="/budget" label="Back to Budget" styles={styles} />
       </Route>
       <Route
+        path="/"
         render={() => [
           <NavLink key="budget" to="/budget" label="Budget" styles={styles} />,
           <NavLink key="reports" to="/reports" label="Reports" styles={styles} />,
