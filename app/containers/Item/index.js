@@ -8,15 +8,15 @@ import type { Match } from 'react-router';
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({
-  transactions: transactionReducer
+  transactions: transactionReducer,
 });
 type ItemContainerProps = {
-  match: Match
+  match: Match,
 };
 
-const ItemContainer = ({match:{ params: {itemId} }}: ItemContainerProps) => (
+const ItemContainer = ({ match: { params: { itemId } } }: ItemContainerProps) => (
   <section>
-    <ItemDescription  itemId={itemId} />
+    <ItemDescription itemId={itemId} />
     <ItemContribution itemId={itemId} />
   </section>
 );

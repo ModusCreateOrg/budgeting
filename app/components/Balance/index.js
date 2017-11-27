@@ -15,7 +15,7 @@ type BalanceProps = {
 
 const Balance = ({ title, amount, colorize, prefix, extraClasses }: BalanceProps) => {
   const amountCls = colorize && amount.isNegative ? styles.neg : styles.pos || '';
-  const addedClasses = typeof extraClasses === 'string' && extraClasses  || '';
+  const addedClasses = (typeof extraClasses === 'string' && extraClasses) || '';
   const prefixElement = typeof prefix === 'string' && (
     <div key="prefix" className={`${styles.balanceSymbol} ${addedClasses}`}>
       {prefix}

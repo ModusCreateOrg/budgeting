@@ -15,7 +15,7 @@ export type TransactionSummary = {
 export type TransactionFormatted = {
   amount: FormattedAmount,
   description: string,
-  id: number
+  id: number,
 };
 
 function totalTransactions(transactions: Transaction[]): number {
@@ -45,12 +45,15 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
-export const getTransaction = createSelector([getTransactions, (state, itemId) => itemId], (transactions, itemId): ?Transaction => transactions.find((t: Transaction) => t.id.toString() === itemId));
+export const getTransaction = createSelector(
+  [getTransactions, (state, itemId) => itemId],
+  (transactions, itemId): ?Transaction => transactions.find((t: Transaction) => t.id.toString() === itemId)
+);
 
 export const getFormattedTransaction = createSelector([getTransaction], (transaction): TransactionFormatted => ({
   id: transaction.id,
   description: transaction.description,
-  amount: formatAmount(transaction.value, false)
+  amount: formatAmount(transaction.value, false),
 }));
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
@@ -80,11 +83,13 @@ export const getFormattedOutflowBalance = createSelector([getOutflowBalance], am
 const getTotalByTransactionTypeData = createStructuredSelector({
   transaction: getTransaction,
   inflow: getInflowBalance,
-  outflow: getOutflowBalance
+  outflow: getOutflowBalance,
 });
 
-export const getTotalByTransactionType = createSelector([getTotalByTransactionTypeData],
-  ({transaction, inflow, outflow}): number => ((transaction.value < 0 ? outflow : inflow)));
+export const getTotalByTransactionType = createSelector(
+  [getTotalByTransactionTypeData],
+  ({ transaction, inflow, outflow }): number => (transaction.value < 0 ? outflow : inflow)
+);
 
 const getOutflowByCategory = createSelector([getOutflowTransactions], transactions =>
   summarizeTransactions(transactions)

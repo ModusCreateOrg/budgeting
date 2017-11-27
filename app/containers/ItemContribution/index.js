@@ -14,7 +14,7 @@ type ItemContributionProps = {
 export class ItemDescription extends React.Component<ItemContributionProps> {
   static defaultProps = {
     transaction: {},
-    total: 0
+    total: 0,
   };
 
   render() {
@@ -27,9 +27,9 @@ export class ItemDescription extends React.Component<ItemContributionProps> {
   }
 }
 
-const mapStateToProps = (state, {itemId}) => ({
+const mapStateToProps = (state, { itemId }) => ({
   transaction: getTransaction(state, itemId),
-  total: getTotalByTransactionType(state, itemId)
+  total: getTotalByTransactionType(state, itemId),
 });
 
 export default connect(mapStateToProps)(ItemDescription);

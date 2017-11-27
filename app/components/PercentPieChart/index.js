@@ -1,17 +1,18 @@
+// @flow
 import * as React from 'react';
 import PieChart from 'react-simple-pie-chart';
 import { getRandomHex } from 'utils/random';
 
 type PercentPieChartProps = {
   values: number[],
-  total: number
-}
+  total: number,
+};
 
-class PercentPieChart extends React.Component<PercentPieChartProps>{
+class PercentPieChart extends React.Component<PercentPieChartProps> {
   getSlices = (values, total) => {
-    const slices = values.map((value) => ({
+    const slices = values.map(value => ({
       color: getRandomHex(),
-      value: this.getPercentage(value, total)
+      value: this.getPercentage(value, total),
     }));
     const missingSlice = this.getMissingSlice(values, total);
     if (missingSlice) {
@@ -25,19 +26,17 @@ class PercentPieChart extends React.Component<PercentPieChartProps>{
     if (missingAmount) {
       return {
         color: 'transparent',
-        value: this.getPercentage(missingAmount, total)
+        value: this.getPercentage(missingAmount, total),
       };
     }
     return null;
   };
 
-  getPercentage = (value, total) => {
-    return value / total;
-  };
+  getPercentage = (value, total) => value / total;
 
   render() {
     const { values, total } = this.props;
-    const slices = this.getSlices(values, total)
+    const slices = this.getSlices(values, total);
     if (!slices.length) {
       return null;
     }
