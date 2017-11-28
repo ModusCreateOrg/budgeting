@@ -1,46 +1,46 @@
 // @flow
 import * as React from 'react';
 import PieChart from 'react-simple-pie-chart';
+import LegendItem from 'components/Legend/LegendItem';
 import { getRandomHex } from 'utils/random';
 
+export interface PercentPieSlice {
+  name: string,
+  value: number,
+  color?: string,
+}
+
 type PercentPieChartProps = {
-  values: number[],
-  total: number,
+  slices: PercentPieSlice[],
 };
 
 class PercentPieChart extends React.Component<PercentPieChartProps> {
-  getSlices = (values, total) => {
-    const slices = values.map(value => ({
-      color: getRandomHex(),
-      value: this.getPercentage(value, total),
-    }));
-    const missingSlice = this.getMissingSlice(values, total);
-    if (missingSlice) {
-      slices.push(missingSlice);
-    }
-    return slices;
-  };
-
-  getMissingSlice = (values, total) => {
-    const missingAmount = values.reduce((acc, x) => acc - x, total);
-    if (missingAmount) {
-      return {
-        color: 'transparent',
-        value: this.getPercentage(missingAmount, total),
-      };
-    }
-    return null;
-  };
-
-  getPercentage = (value, total) => value / total;
+  checkColors = slices =>
+    slices.map(slice => {
+      const el = { ...slice };
+      if (!el.color) {
+        el.color = getRandomHex();
+      }
+      return el;
+    });
 
   render() {
-    const { values, total } = this.props;
-    const slices = this.getSlices(values, total);
+    const { slices } = this.props;
     if (!slices.length) {
       return null;
     }
-    return <PieChart slices={slices} />;
+    const pieData = this.checkColors(slices);
+
+    return (
+      <div>
+        <PieChart slices={pieData} />
+        <ul>
+          {pieData.map((data: PercentPieSlice): LegendItem => (
+            <LegendItem key={`${data.name}-${data.color}`} color={data.color} label={data.name} value={data.value} />
+          ))}
+        </ul>
+      </div>
+    );
   }
 }
 
