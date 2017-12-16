@@ -1,0 +1,16 @@
+@import 'theme/variables';
+
+.budgetItemPos::before {
+  color: $green;
+  content: "+";
+}
+
+.budgetItemNeg::before {
+  color: $red;
+  content: "-";
+}
+
+:export {
+  pos: $green;
+  neg: $red;
+}

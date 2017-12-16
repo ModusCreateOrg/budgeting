@@ -21,7 +21,7 @@ class Balance extends React.Component<BalanceProps> {
       <BalanceRow>
         <BalanceItem amount={inflow} title="Total Inflow" />
         <BalanceItem amount={outflow} title="Total Outflow" prefix="-" />
-        <BalanceItem amount={balance} title="Working Balance" colorize={false} prefix="=" />
+        <BalanceItem amount={balance} title="Working Balance" colorize prefix="=" />
       </BalanceRow>
     );
   }

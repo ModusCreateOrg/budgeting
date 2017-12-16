@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { type RouterHistory } from 'react-router';
 import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
@@ -12,9 +13,9 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = () => (
+const BudgetContainer = ({ history }: { history: RouterHistory }) => (
   <section>
-    <BudgetGrid />
+    <BudgetGrid onRowClick={id => history.push(`/budget/${id}`)} />
     <Balance />
   </section>
 );

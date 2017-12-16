@@ -11,3 +11,8 @@ it('renders correctly', () => {
   const tree = renderer.create(<DonutChart dataLabel="test" dataKey="test" data={[]} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('could hide <Legend/>', () => {
+  const tree = renderer.create(<DonutChart dataLabel="test" dataKey="test" data={[]} showLegend={false} />).toJSON();
+  expect(tree).toMatchSnapshot();
+});

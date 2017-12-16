@@ -11,3 +11,4 @@ coverage
 .idea
 /.cache-loader
 /.vscode
+tags

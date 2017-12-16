@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`could hide <Legend/> 1`] = `
+<div
+  className="donutChart"
+>
+  <div
+    height={316}
+    padding={8}
+    transform="translate(150,150)"
+    width={316}
+  />
+</div>
+`;
+
 exports[`renders correctly 1`] = `
 <div
   className="donutChart"
