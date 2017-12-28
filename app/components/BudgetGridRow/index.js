@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { Route, Link } from 'react-router-dom';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -17,20 +18,34 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const category = categories[categoryId];
 
   return (
-    <tr key={id}>
-      <td>
-        <div className={styles.cellLabel}>Category</div>
-        <div className={styles.cellContent}>{category}</div>
-      </td>
-      <td>
-        <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
-      </td>
-      <td className={amountCls}>
-        <div className={styles.cellLabel}>Amount</div>
-        <div className={styles.cellContent}>{amount.text}</div>
-      </td>
-    </tr>
+    <Route
+      to={'item/' + transaction.id}
+      exact
+      children={(
+        <tr key={id}>
+          <td>
+            <Link to={'item/' + transaction.id}>
+              <div className={styles.cellLabel}>Category</div>
+              <div className={styles.cellContent}>{category}</div>
+            </Link>
+          </td>
+          <td>
+            <Link to={'item/' + transaction.id}>
+              <div className={styles.cellLabel}>Description</div>
+              <div className={styles.cellContent}>{description}</div>
+            </Link>
+          </td>
+          <td className={amountCls}>
+            <Link to={'item/' + transaction.id}>
+              <div className={styles.cellLabel}>Amount</div>
+              <div className={styles.cellContent}>
+                {amount.text}
+              </div>
+            </Link>
+          </td>
+        </tr>
+      )}
+    />
   );
 };
 

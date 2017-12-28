@@ -1,0 +1,31 @@
+.item_container {
+  h1 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: italic;
+    color: #b1b1b1;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .back_button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    color: white;
+    background-color: #00c100;
+    cursor: pointer;
+  }
+}
