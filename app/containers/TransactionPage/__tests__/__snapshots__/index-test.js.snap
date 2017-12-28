@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    ← Back to list
+  </a>
+</div>
+`;
+
+exports[`renders with message 'transaction not found' if transaction is 'undefined' 1`] = `
+<div>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    ← Back to list
+  </a>
+  <p
+    className="notFoundMsg"
+  >
+    Transaction could not be found!
+  </p>
+</div>
+`;

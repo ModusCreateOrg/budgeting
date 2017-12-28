@@ -8,6 +8,7 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransactionById,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -370,5 +371,20 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(1);
     expect(getInflowByCategoryName(state3)).toEqual(expectedSelection2);
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
+  });
+});
+
+describe('getTransactionById', () => {
+  it('should return transaction by transaction Id', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const expectedSelection = { id: 1 };
+
+    expect(getTransactionById(1)(state)).toEqual(expectedSelection);
+  });
+
+  it('should return undefined if transaction not found', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+
+    expect(getTransactionById(3)(state)).toEqual(undefined);
   });
 });

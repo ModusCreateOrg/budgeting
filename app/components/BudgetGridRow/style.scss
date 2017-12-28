@@ -1,23 +1,29 @@
-@import 'theme/variables';
+@import "theme/variables";
+.row {
+    cursor: pointer;
+}
+
+.row:hover {
+    background-color: $verylightgray;
+}
 
 .cellLabel {
-  display: none;
-
-  @media only screen and (max-width: $screen-small) {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
+    display: none;
+    @media only screen and (max-width: $screen-small) {
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
 }
 
 .cellContent {
-  flex: 1;
+    flex: 1;
 }
 
 .neg {
-  color: $red;
+    color: $red;
 }
 
 .pos {
-  color: $green;
+    color: $green;
 }

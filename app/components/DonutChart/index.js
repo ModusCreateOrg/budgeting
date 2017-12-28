@@ -6,7 +6,7 @@ import Chart from 'components/Chart';
 import type { TransactionSummary } from 'selectors/transactions';
 import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
 import { shuffle } from 'utils/array';
-import Path from './Path';
+import Path from 'components/Path';
 import styles from './styles.scss';
 
 const randomScheme = shuffle(schemeCategory20);
