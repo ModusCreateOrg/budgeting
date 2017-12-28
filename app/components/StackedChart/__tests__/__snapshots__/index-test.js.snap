@@ -47,6 +47,7 @@ exports[`renders correctly 1`] = `
     dataKey="test"
     dataLabel="test"
     dataValue="value"
+    isPercentage={false}
     reverse={true}
   />
 </div>

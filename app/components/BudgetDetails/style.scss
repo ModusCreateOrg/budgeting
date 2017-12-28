@@ -1,0 +1,11 @@
+@import 'theme/variables';
+
+.negative{
+  color: $red
+}
+
+.back{
+  text-decoration: underline;
+  color: $blue;
+  cursor:pointer
+}
