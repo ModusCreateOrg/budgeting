@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders not found 1`] = `
+<div>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    ← Back
+  </a>
+  <div>
+    <h1>
+      Transaction Not Found
+    </h1>
+    <p>
+      Transaction with ID "5" not found.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders with transaction 1`] = `
+<div>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    ← Back
+  </a>
+</div>
+`;

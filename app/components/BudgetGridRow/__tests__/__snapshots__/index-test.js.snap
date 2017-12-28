@@ -3,42 +3,60 @@
 exports[`renders correctly 1`] = `
 <tr>
   <td>
-    <div
-      className="cellLabel"
+    <a
+      className="cellLink"
+      href="/transactions/1"
+      onClick={[Function]}
     >
-      Category
-    </div>
-    <div
-      className="cellContent"
-    >
-      Groceries
-    </div>
+      <div
+        className="cellLabel"
+      >
+        Category
+      </div>
+      <div
+        className="cellContent"
+      >
+        Groceries
+      </div>
+    </a>
   </td>
   <td>
-    <div
-      className="cellLabel"
+    <a
+      className="cellLink"
+      href="/transactions/1"
+      onClick={[Function]}
     >
-      Description
-    </div>
-    <div
-      className="cellContent"
-    >
-      Trader Joe's food
-    </div>
+      <div
+        className="cellLabel"
+      >
+        Description
+      </div>
+      <div
+        className="cellContent"
+      >
+        Trader Joe's food
+      </div>
+    </a>
   </td>
   <td
     className="neg"
   >
-    <div
-      className="cellLabel"
+    <a
+      className="cellLink"
+      href="/transactions/1"
+      onClick={[Function]}
     >
-      Amount
-    </div>
-    <div
-      className="cellContent"
-    >
-      -$423.34
-    </div>
+      <div
+        className="cellLabel"
+      >
+        Amount
+      </div>
+      <div
+        className="cellContent"
+      >
+        -$423.34
+      </div>
+    </a>
   </td>
 </tr>
 `;
