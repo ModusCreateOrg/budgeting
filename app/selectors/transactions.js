@@ -4,6 +4,8 @@ import { createSelector } from 'reselect';
 import formatAmount from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
+import formatPorcentageAmount from 'utils/formatPorcentageAmount';
+
 import { getCategories } from './categories';
 
 export type TransactionSummary = {
@@ -77,4 +79,49 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
+);
+
+const getTransactionId = (state, transactionId) => transactionId;
+
+export const getTransaction = createSelector(
+  getTransactions,
+  getTransactionId,
+  (transactions, transactionId) => transactions.filter(t => t.id === parseInt(transactionId, 10))[0]
+);
+
+export const getSummarizeByTransaction = createSelector(
+  getInflowBalance,
+  getOutflowBalance,
+  getTransaction,
+  (inflow, outflow, transaction) => {
+    if (transaction === undefined) return null;
+    const total = inflow + Math.abs(outflow);
+    return [
+      {
+        value: Math.abs(transaction.value) / total * 100,
+        category: transaction.description,
+        categoryId: transaction.id,
+      },
+      {
+        value: (total - Math.abs(transaction.value)) / total * 100,
+        category: 'Others items',
+        categoryId: 0,
+      },
+    ];
+  }
+);
+
+export const getPorcentagemByTransaction = createSelector(
+  getInflowBalance,
+  getOutflowBalance,
+  getTransaction,
+  (inflow, outflow, transaction) => {
+    if (transaction === undefined) return null;
+    let total = inflow;
+    const isNegative = formatAmount(transaction.value).isNegative;
+    if (isNegative) {
+      total = Math.abs(outflow);
+    }
+    return formatPorcentageAmount(transaction.value * 100 / total, true);
+  }
 );
