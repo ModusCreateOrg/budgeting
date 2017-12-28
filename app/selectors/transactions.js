@@ -39,6 +39,10 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransaction = (state: State, id: number) => {
+  return state.transactions.find(t => t.id === Number(id));
+}
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
@@ -55,6 +59,25 @@ export const getInflowBalance = createSelector([getInflowTransactions], transact
 
 export const getOutflowBalance = createSelector([getOutflowTransactions], transactions =>
   totalTransactions(transactions)
+);
+
+export const getTransactionContribution = createSelector([getTransaction, getInflowBalance, getOutflowBalance],
+  (transaction, inflowBalance, outflowBalance) => {
+    let percent = 0;
+
+    // if transaction value is negative, then calulate how much it represents of the negative total
+    percent =
+    transaction.value < 0
+      ? parseFloat((100 * transaction.value / outflowBalance).toFixed(2))
+      : parseFloat((100 * transaction.value / inflowBalance).toFixed(2));
+
+    const flowTotal = transaction.value < 0 ? outflowBalance : inflowBalance;
+
+    return {
+      flowTotal: flowTotal,
+      percent: percent,
+    }
+  }
 );
 
 export const getFormattedBalance = createSelector([getBalance], amount => formatAmount(amount, false));

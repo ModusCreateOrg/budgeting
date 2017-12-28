@@ -3,17 +3,22 @@
 export type FormattedAmount = {
   text: string,
   isNegative: boolean,
+  isPercent: boolean,
 };
 
-export default function formatAmount(amount: number, showSign: boolean = true): FormattedAmount {
+export default function formatAmount(amount: number, showSign: boolean = true, showPercent: boolean = false): FormattedAmount {
   const isNegative = amount < 0;
-  const formatValue = Math.abs(amount).toLocaleString('en-us', {
-    style: 'currency',
-    currency: 'USD',
-  });
+  let formatValue = Math.abs(amount);
+
+  if(!showPercent) {
+    formatValue = formatValue.toLocaleString('en-us', {
+      style: 'currency',
+      currency: 'USD',
+    });
+  }
 
   return {
-    text: `${isNegative && showSign ? '-' : ''}${formatValue}`,
+    text: `${isNegative && showSign ? '-' : ''}${formatValue}${showPercent ? '%' : ''}`,
     isNegative,
   };
 }

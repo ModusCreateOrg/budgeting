@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BudgetGridRow from 'components/BudgetGridRow';
+import BudgetItem from 'components/BudgetItem';
 
 it('renders correctly', () => {
   const mockTransaction = {
@@ -10,15 +10,15 @@ it('renders correctly', () => {
     categoryId: 1,
   };
 
-  const mockCategories = {
-    1: 'Groceries',
-    2: 'School',
+  const mockContribution = {
+    flowTotal: 1000,
+    percent: 20,
   };
 
   const mockClick = () => {};
 
   const tree = renderer
-    .create(<BudgetGridRow transaction={mockTransaction} categories={mockCategories} onClick={mockClick} />)
+    .create(<BudgetItem transaction={mockTransaction} contribution={mockContribution} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
