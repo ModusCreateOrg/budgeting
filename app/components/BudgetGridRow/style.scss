@@ -1,5 +1,12 @@
 @import 'theme/variables';
 
+.rowContainer {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .cellLabel {
   display: none;
 

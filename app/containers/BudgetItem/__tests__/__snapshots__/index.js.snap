@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with Transaction information 1`] = `
+<div
+  className="budgetItem"
+>
+  <h1
+    className="budgetTitle"
+  >
+    Trader Joe's food
+  </h1>
+  <h4
+    className="budgetSubtitle negative"
+  >
+    -
+    20
+    %
+  </h4>
+  <hr />
+  <div
+    className="pieChart"
+  >
+    <svg
+      className="mainSvg"
+      height={316}
+      viewBox="-8 -8 316 316"
+      width={316}
+    >
+      <g
+        transform="translate(150,150)"
+      >
+        <path
+          d="M9.184850993605149e-15,-150A150,150,0,0,1,142.65847744427302,-46.35254915624211L0.40759564984078006,-0.1324358547321203A0.42857142857142855,0.42857142857142855,0,0,0,2.6242431410300424e-17,-0.42857142857142855Z"
+          fill="#9E9E9E"
+        />
+        <path
+          d="M142.65847744427302,-46.35254915624211A150,150,0,1,1,-2.7554552980815446e-14,-150L-7.872729423090127e-17,-0.42857142857142855A0.42857142857142855,0.42857142857142855,0,1,0,0.40759564984078006,-0.1324358547321203Z"
+          fill="#9E9E9E"
+        />
+      </g>
+    </svg>
+  </div>
+  <hr />
+  <button
+    onClick={[Function]}
+  >
+    ‹ Back to Budget
+  </button>
+</div>
+`;

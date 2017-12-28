@@ -39,6 +39,27 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransaction = (state: State, transactionId): Transaction[] => {
+  const transaction = state.transactions.find(item => item.id === transactionId);
+  if (!transaction) return null;
+
+  const amount = formatAmount(transaction.value);
+  transaction.balance = totalTransactions(state.transactions);
+  transaction.isNegative = amount.isNegative;
+  transaction.percentage = Math.floor(transaction.value / transaction.balance * 100);
+  transaction.chartData = [
+    {
+      transaction: transaction.description,
+      transactionId: transactionId,
+      value: Math.abs(transaction.percentage),
+      color: '#CDDC39',
+    },
+    { transaction: 'Total', transactionId: 'total', value: 100 - Math.abs(transaction.percentage), color: '#9E9E9E' },
+  ];
+
+  return transaction;
+};
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );

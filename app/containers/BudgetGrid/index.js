@@ -20,7 +20,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
   };
 
   render() {
-    const { transactions, categories } = this.props;
+    const { transactions, categories, history } = this.props;
 
     return (
       <table className={styles.budgetGrid}>
@@ -33,7 +33,12 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         </thead>
         <tbody>
           {transactions.map((transaction: Transaction): React.Element<any> => (
-            <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+            <BudgetGridRow
+              key={transaction.id}
+              transaction={transaction}
+              categories={categories}
+              onClick={() => history.push(`/budget/${transaction.id}`)}
+            />
           ))}
         </tbody>
         <tfoot>
