@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="balanceWrapper"
+  className="balanceWrapper "
 >
   <div
     className="balanceItem"
@@ -24,12 +24,12 @@ exports[`renders correctly 1`] = `
 exports[`renders correctly with a prefix 1`] = `
 Array [
   <div
-    className="balanceSymbol"
+    className="balanceSymbol "
   >
     prefix
   </div>,
   <div
-    className="balanceWrapper"
+    className="balanceWrapper "
   >
     <div
       className="balanceItem"

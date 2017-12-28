@@ -1,15 +1,27 @@
 // @flow
 
-import { createSelector } from 'reselect';
-import formatAmount from 'utils/formatAmount';
+import { createSelector, createStructuredSelector } from 'reselect';
+import formatAmount, { FormattedAmount } from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
+import { inflowCategories } from 'modules/defaults';
 import { getCategories } from './categories';
 
 export type TransactionSummary = {
   categoryId: string,
   value: number,
   category?: string,
+};
+
+export type TransactionContribution = {
+  value: number,
+  name: string,
+};
+
+export type TransactionFormatted = {
+  amount: FormattedAmount,
+  description: string,
+  id: number,
 };
 
 function totalTransactions(transactions: Transaction[]): number {
@@ -39,6 +51,17 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransaction = createSelector(
+  [getTransactions, (state, itemId) => itemId],
+  (transactions, itemId): ?Transaction => transactions.find((t: Transaction) => t.id.toString() === itemId)
+);
+
+export const getFormattedTransaction = createSelector([getTransaction], (transaction): TransactionFormatted => ({
+  id: transaction.id,
+  description: transaction.description,
+  amount: formatAmount(transaction.value, false),
+}));
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
@@ -62,6 +85,25 @@ export const getFormattedBalance = createSelector([getBalance], amount => format
 export const getFormattedInflowBalance = createSelector([getInflowBalance], amount => formatAmount(amount, false));
 
 export const getFormattedOutflowBalance = createSelector([getOutflowBalance], amount => formatAmount(amount, false));
+
+const getTransactionContributionParams = createStructuredSelector({
+  transaction: getTransaction,
+  inflow: getInflowBalance,
+  outflow: getOutflowBalance,
+});
+
+export const getTransactionContributionData = createSelector(
+  [getTransactionContributionParams],
+  ({ transaction, inflow, outflow }): TransactionContribution[] => {
+    const total = { name: 'Remaining Total', value: 0 };
+    if (inflowCategories.includes(transaction.categoryId)) {
+      total.value = inflow - transaction.value;
+    } else {
+      total.value = outflow - transaction.value;
+    }
+    return [{ name: transaction.description, value: transaction.value }, total];
+  }
+);
 
 const getOutflowByCategory = createSelector([getOutflowTransactions], transactions =>
   summarizeTransactions(transactions)
