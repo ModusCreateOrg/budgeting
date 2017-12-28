@@ -37,7 +37,16 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
     return transaction;
   });
 
+const applyBudgetContribution = (transaction: TransactionSummary[], inflowBalance: Number, outflowBalance: Number) => {
+  const balance = transaction.value > 0 ? inflowBalance : outflowBalance;
+  transaction.contribution = transaction.value / balance * 100;
+  return transaction;
+};
+
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
+
+export const getTransaction = (state: State, id: String): Transaction =>
+  state.transactions.find(t => t.id === id) || {};
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
@@ -77,4 +86,11 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
+);
+
+export const getTransactionWithContribution = createSelector(
+  getTransaction,
+  getInflowBalance,
+  getOutflowBalance,
+  (trans, inflowBalance, outflowBalance) => applyBudgetContribution(trans, inflowBalance, outflowBalance)
 );
