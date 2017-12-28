@@ -21,7 +21,6 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
 
   render() {
     const { transactions, categories } = this.props;
-
     return (
       <table className={styles.budgetGrid}>
         <thead>
