@@ -12,9 +12,9 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = () => (
+const BudgetContainer = ({ history }) => (
   <section>
-    <BudgetGrid />
+    <BudgetGrid history={history} />
     <Balance />
   </section>
 );

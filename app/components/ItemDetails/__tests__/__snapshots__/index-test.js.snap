@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <button
+    className="backButton"
+    onClick={[Function]}
+  >
+    Go Back
+  </button>
+  <div
+    className="title"
+  >
+    <h2>
+      The usual weekly run
+    </h2>
+    <h3>
+      <span
+        className="negative"
+      >
+        -
+      </span>
+      23.98
+      %
+    </h3>
+  </div>
+  <div
+    className="detail"
+  >
+    <div
+      data={
+        Array [
+          Object {
+            "categoryId": "0",
+            "key": 0,
+            "label": "Outflow Budget",
+            "value": 3488.0699999999997,
+          },
+          Object {
+            "categoryId": "1",
+            "key": 1,
+            "label": "The usual weekly run",
+            "value": 1100,
+          },
+        ]
+      }
+      dataKey="key"
+      dataLabel="label"
+    />
+  </div>
+</section>
+`;
