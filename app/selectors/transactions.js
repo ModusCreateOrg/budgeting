@@ -12,6 +12,14 @@ export type TransactionSummary = {
   category?: string,
 };
 
+export type TransactionContribution = {
+  id: number,
+  value: number,
+  description: string,
+  percentage: number,
+  totalTransactionOfFlow: number,
+};
+
 function totalTransactions(transactions: Transaction[]): number {
   return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
 }
@@ -38,6 +46,8 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
   });
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
+export const getTransaction = (state: State, id: number): Transaction =>
+  state.transactions.find(iterator => iterator.id === id) || {};
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
@@ -77,4 +87,28 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
+);
+
+export const getTransactionContribution = createSelector(
+  [getTransaction, getInflowBalance, getOutflowBalance],
+  (transaction, inflowBalance, outflowBalance) => {
+    let percentage = 0;
+    let totalTransactionOfFlow = 0;
+
+    if (transaction.value < 0) {
+      percentage = parseFloat((100 * transaction.value / outflowBalance).toFixed(2));
+      totalTransactionOfFlow = outflowBalance;
+    } else {
+      percentage = parseFloat((100 * transaction.value / inflowBalance).toFixed(2));
+      totalTransactionOfFlow = inflowBalance;
+    }
+
+    return {
+      id: transaction.id,
+      value: transaction.value,
+      description: transaction.description,
+      percentage,
+      totalTransactionOfFlow,
+    };
+  }
 );
