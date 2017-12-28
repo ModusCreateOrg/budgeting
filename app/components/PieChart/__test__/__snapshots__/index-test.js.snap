@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="pieChart"
+>
+  <div
+    height={316}
+    padding={8}
+    transform="translate(150,150)"
+    width={316}
+  />
+  <div
+    data={Array []}
+    dataKey="test"
+    dataLabel="test"
+    dataValue="value"
+  />
+</div>
+`;

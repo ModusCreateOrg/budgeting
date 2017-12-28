@@ -1,44 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<tr>
-  <td>
-    <div
-      className="cellLabel"
-    >
-      Category
-    </div>
-    <div
-      className="cellContent"
-    >
-      Groceries
-    </div>
-  </td>
-  <td>
-    <div
-      className="cellLabel"
-    >
-      Description
-    </div>
-    <div
-      className="cellContent"
-    >
-      Trader Joe's food
-    </div>
-  </td>
-  <td
-    className="neg"
+<a
+  className="link"
+  href="/transaction/1"
+  onClick={[Function]}
+>
+  <tr
+    className="row"
   >
-    <div
-      className="cellLabel"
+    <td>
+      <div
+        className="cellLabel"
+      >
+        Category
+      </div>
+      <div
+        className="cellContent"
+      >
+        Groceries
+      </div>
+    </td>
+    <td>
+      <div
+        className="cellLabel"
+      >
+        Description
+      </div>
+      <div
+        className="cellContent"
+      >
+        Trader Joe's food
+      </div>
+    </td>
+    <td
+      className="neg"
     >
-      Amount
-    </div>
-    <div
-      className="cellContent"
-    >
-      -$423.34
-    </div>
-  </td>
-</tr>
+      <div
+        className="cellLabel"
+      >
+        Amount
+      </div>
+      <div
+        className="cellContent"
+      >
+        -$423.34
+      </div>
+    </td>
+  </tr>
+</a>
 `;

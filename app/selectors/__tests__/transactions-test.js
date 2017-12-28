@@ -8,6 +8,8 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransactionById,
+  getPercentageInInflowOutflowByAmount,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -47,6 +49,14 @@ describe('getTransactions', () => {
     const expectedSelection = [];
 
     expect(getTransactions(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getTransactionById', () => {
+  it('returns transaction by id', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const result = getTransactionById(1)(state);
+    expect(result.id).toEqual(1);
   });
 });
 
@@ -370,5 +380,19 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(1);
     expect(getInflowByCategoryName(state3)).toEqual(expectedSelection2);
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
+  });
+});
+
+describe('getPercentageInInflowOutflowByAmount', () => {
+  it('returns percentage of amount of inflow', () => {
+    const state = { transactions: [{ value: 1000 }] };
+    const result = getPercentageInInflowOutflowByAmount(200)(state);
+    expect(result).toEqual(0.2);
+  });
+
+  it('return percentage of amount of outflow', () => {
+    const state = { transactions: [{ value: -1000 }] };
+    const result = getPercentageInInflowOutflowByAmount(-200)(state);
+    expect(result).toEqual(-0.2);
   });
 });

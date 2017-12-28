@@ -78,3 +78,15 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+export const getTransactionById = id =>
+  createSelector(getTransactions, transactions =>
+    transactions.find(transaction => String(transaction.id) === String(id))
+  );
+
+export const getPercentageInInflowOutflowByAmount = amount =>
+  createSelector(
+    getInflowBalance,
+    getOutflowBalance,
+    (inflow, outflow) => (amount > 0 ? amount / inflow : Math.abs(amount) / Math.abs(outflow) * -1)
+  );
