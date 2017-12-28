@@ -1,0 +1,23 @@
+@import 'theme/variables';
+
+.neg {
+  color: $red;
+}
+
+.pos {
+  color: $green;
+}
+
+.income {
+  color: $blue;
+}
+
+.button {
+  text-decoration: none;
+  background-color: $lightgray;
+  color: $black;
+  padding: 8px;
+  border: $btn-border;
+  width: 90px;
+  text-align: $text-center;
+}
