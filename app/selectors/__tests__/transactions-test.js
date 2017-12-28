@@ -8,6 +8,8 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransaction,
+  getRemainingFlowAsTransaction,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -370,5 +372,55 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(1);
     expect(getInflowByCategoryName(state3)).toEqual(expectedSelection2);
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
+  });
+});
+
+describe('getTransaction', () => {
+  it('should return the transaction by the given id', () => {
+    const transactionToMatch = {
+      id: 1,
+      value: 30,
+    };
+
+    const state = {
+      transactions: [
+        transactionToMatch,
+        {
+          id: 2,
+          value: 40,
+        },
+      ],
+    };
+    expect(getTransaction(state, { match: { params: { id: '1' } } })).toEqual(transactionToMatch);
+  });
+
+  it('should return no transaction when given id is not a valid id', () => {
+    const state = {
+      transactions: [
+        {
+          id: 2,
+          value: 40,
+        },
+      ],
+    };
+    expect(getTransaction(state, { match: { params: { id: '1' } } })).toBeUndefined();
+  });
+});
+
+describe('getRemainingFlowAsTransaction', () => {
+  it('should return the remaining flow amount based on a transaction amount sign', () => {
+    const state = {
+      transactions: [{ id: 1, value: -40 }, { id: 2, value: -60 }, { id: 3, value: 10 }, { id: 4, value: 50 }],
+    };
+
+    expect(getRemainingFlowAsTransaction(state, { match: { params: { id: '1' } } })).toEqual({
+      description: 'Remaining Outflow Balance',
+      value: 60,
+    });
+
+    expect(getRemainingFlowAsTransaction(state, { match: { params: { id: '3' } } })).toEqual({
+      description: 'Remaining Inflow Balance',
+      value: 50,
+    });
   });
 });
