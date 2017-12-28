@@ -1,7 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders \`cursor: pointer\` when onClick is provided 1`] = `
+<tr
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <td>
+    <div
+      className="cellLabel"
+    >
+      Category
+    </div>
+    <div
+      className="cellContent"
+    >
+      Groceries
+    </div>
+  </td>
+  <td>
+    <div
+      className="cellLabel"
+    >
+      Description
+    </div>
+    <div
+      className="cellContent"
+    >
+      Trader Joe's food
+    </div>
+  </td>
+  <td
+    className="neg"
+  >
+    <div
+      className="cellLabel"
+    >
+      Amount
+    </div>
+    <div
+      className="cellContent"
+    >
+      -$423.34
+    </div>
+  </td>
+</tr>
+`;
+
 exports[`renders correctly 1`] = `
-<tr>
+<tr
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "inherit",
+    }
+  }
+>
   <td>
     <div
       className="cellLabel"

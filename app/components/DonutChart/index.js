@@ -13,12 +13,13 @@ const randomScheme = shuffle(schemeCategory20);
 
 type DonutChartProps = {
   data: TransactionSummary[],
-  dataLabel: string,
+  dataLabel?: string,
   dataKey: string,
   dataValue: string,
   color: Function,
   height: number,
   innerRatio: number,
+  showLegend: boolean,
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -27,6 +28,8 @@ class DonutChart extends React.Component<DonutChartProps> {
     height: 300,
     innerRatio: 4,
     dataValue: 'value',
+    dataKey: 'categoryId', // this is specified in type declaration
+    showLegend: true,
   };
 
   componentWillMount() {
@@ -46,7 +49,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(innerRatio === 0 ? 0 : height / innerRatio)
       .outerRadius(height / 2);
   };
 
@@ -58,19 +61,19 @@ class DonutChart extends React.Component<DonutChartProps> {
   chartPadding = 8;
 
   updateChartVariables = () => {
-    const { data, dataValue, color, height } = this.props;
+    const { data, dataValue, dataKey, color, height } = this.props;
 
     this.chart = pie()
       .value(d => d[dataValue])
       .sort(null);
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
-    this.colorFn = color.domain && color.domain([0, data.length]);
+    this.colorFn = color.domain && color.domain(data.map(d => d[dataKey]));
     this.boxLength = height + this.chartPadding * 2;
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey } = this.props;
+    const { data, dataLabel, dataValue, dataKey, showLegend } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
     return (
@@ -86,7 +89,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           ))}
         </Chart>
 
-        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
+        {showLegend && <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />}
       </div>
     );
   }

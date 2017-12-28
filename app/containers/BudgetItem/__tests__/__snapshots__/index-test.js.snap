@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inflow transaction 1`] = `
+<section>
+  <div
+    className="RRLink"
+    to=".."
+  >
+    <button>
+      Back
+    </button>
+  </div>
+  <h3>
+    test
+  </h3>
+  <h4>
+    <span
+      className="budgetItemPos"
+    >
+      20
+      %
+    </span>
+  </h4>
+  <DonutChart
+    color={[Function]}
+    data={
+      Array [
+        Object {
+          "categoryId": "0",
+          "value": 100,
+        },
+        Object {
+          "categoryId": "1",
+          "value": 400,
+        },
+      ]
+    }
+    innerRatio={0}
+    showLegend={false}
+  />
+</section>
+`;
+
+exports[`renders non existent transaction 1`] = `
+<section>
+  <div
+    className="RRLink"
+    to=".."
+  >
+    <button>
+      Back
+    </button>
+  </div>
+  <h3>
+    Not Found
+  </h3>
+</section>
+`;
+
+exports[`renders outflow transaction 1`] = `
+<section>
+  <div
+    className="RRLink"
+    to=".."
+  >
+    <button>
+      Back
+    </button>
+  </div>
+  <h3>
+    test
+  </h3>
+  <h4>
+    <span
+      className="budgetItemNeg"
+    >
+      20
+      %
+    </span>
+  </h4>
+  <DonutChart
+    color={[Function]}
+    data={
+      Array [
+        Object {
+          "categoryId": "0",
+          "value": 100,
+        },
+        Object {
+          "categoryId": "1",
+          "value": 400,
+        },
+      ]
+    }
+    innerRatio={0}
+    showLegend={false}
+  />
+</section>
+`;
