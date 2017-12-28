@@ -8,16 +8,21 @@ import styles from './style.scss';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
+  changeUrl: Function,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, changeUrl }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
+  const handleClick = () => {
+    changeUrl(transaction);
+  };
+
   return (
-    <tr key={id}>
+    <tr key={id} onClick={handleClick}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
