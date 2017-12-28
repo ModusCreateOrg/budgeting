@@ -78,3 +78,9 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+function totalAbsTransactions(transactions: Transaction[]): number {
+  return transactions.reduce((total, item) => total + Math.abs(parseFloat(item.value)), 0);
+}
+
+export const getAbsoluteBalance = createSelector([getTransactions], transactions => totalAbsTransactions(transactions));
