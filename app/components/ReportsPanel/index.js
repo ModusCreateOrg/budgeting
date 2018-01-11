@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
+import ItemDetails from 'containers/ItemDetails';
 import InflowOutflow from 'containers/InflowOutflow';
 import Spending from 'containers/Spending';
 import ReportsTabbar from './ReportsTabbar';
@@ -19,6 +20,7 @@ const ReportsPanel = () => (
     <ReportsTabbar />
 
     <Switch>
+      <Route path="/reports/item-details/:itemId" component={ItemDetails} />
       <Route path="/reports/inflow-outflow" component={InflowOutflow} />
       <Route path="/reports/spending" component={Spending} />
       <Redirect to="/reports/inflow-outflow" />

@@ -1,0 +1,17 @@
+.itemDetails {
+  h2, h3 {
+    text-align: center;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
