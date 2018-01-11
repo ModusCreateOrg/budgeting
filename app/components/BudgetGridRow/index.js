@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import NavLink from 'components/NavLink';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -24,7 +25,9 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       </td>
       <td>
         <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
+        <div className={styles.cellContent}>
+          <NavLink label={description} to={`/budget/${id}`} styles={styles} />
+        </div>
       </td>
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>

@@ -19,10 +19,6 @@ it('renders the right component', async () => {
 
   // when the mock function resolves, 'Chunk' should render the obtained component
   await mockLoad();
-
-  // Breaking change introduced in Enzyme 3:
-  // https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md#for-mount-updates-are-sometimes-required-when-they-werent-before
-  wrapper.update();
   expect(wrapper.contains(<LoadedComponent />)).toEqual(true);
 });
 
@@ -31,9 +27,5 @@ it('passes the right props to the loaded component', async () => {
   const wrapper = shallow(<Chunk load={mockLoad} foo="bar" />);
 
   await mockLoad();
-
-  // Breaking change introduced in Enzyme 3:
-  // https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md#for-mount-updates-are-sometimes-required-when-they-werent-before
-  wrapper.update();
   expect(wrapper.contains(<LoadedComponent foo="bar" />)).toEqual(true);
 });

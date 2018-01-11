@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="budgetItem"
+>
+  <div
+    className="header"
+  >
+    <a
+      href="/budget"
+      onClick={[Function]}
+    >
+      <button
+        className="backButton"
+      >
+        Back to Budget page
+      </button>
+    </a>
+  </div>
+  <div
+    className="mainContent"
+  >
+    <div
+      className="innerSection details"
+    >
+      <h2>
+        Item details
+      </h2>
+      <h3>
+        Description: 
+        A description
+      </h3>
+      <h3>
+        Category: 
+        category
+      </h3>
+      <h3>
+        <span>
+          Percentage contribuited to 
+          category
+          : 
+        </span>
+        <div
+          className="budgetItemSubTitle pos"
+        >
+          +
+          15
+          %
+        </div>
+      </h3>
+    </div>
+    <div
+      className="innerSection extraContent"
+    >
+      <h2>
+        Contribution of 
+        A description
+         item to total budget
+      </h2>
+      <DonutChart
+        data={
+          Array [
+            Object {
+              "categoryId": "categoryId",
+              "name": "A description",
+              "value": 1,
+            },
+            Object {
+              "categoryId": "total",
+              "name": "category",
+              "value": 100,
+            },
+          ]
+        }
+        dataKey="categoryId"
+        dataLabel="name"
+        innerRatio={0}
+      />
+    </div>
+  </div>
+</section>
+`;
