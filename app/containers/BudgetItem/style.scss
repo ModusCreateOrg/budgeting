@@ -1,0 +1,89 @@
+@import 'theme/variables';
+
+.budgetItem {
+  font-size: 0.8em;
+
+  h2 {
+    text-transform: uppercase;
+    margin: 0 0 10px 0px;
+  }
+
+  .header {
+    .backButton {
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: .5em 1em;
+      text-decoration: none;
+      border: transparent;
+      transition: background 0.4s ease-in;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $black;
+      }
+    }
+
+  }
+
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    
+    .innerSection {
+      border: solid 1px grey;
+      margin: 10px 0px;
+      padding: 10px;      
+    }
+    
+    .details {
+      h3 {
+        margin: 0px;
+        line-height: 2em;
+      }
+  
+      .budgetItemSubTitle {
+        font-size: 1.8em;
+        text-align: center;
+      }
+    }
+  
+    .extraContent {
+      flex: 1;
+      align-items: center;
+      justify-items: center;
+    }
+  
+  }
+
+  @media (min-width: $screen-small) {
+    .mainContent {
+      flex-direction: row;
+
+      .innerSection {
+        margin:10px;
+
+        &:first-child {
+          margin-left: 0px;
+        }
+  
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+
+      .budgetItemSubTitle {
+        font-size: 2.5em;
+      }
+    }
+  }
+}
+
+// colors
+.neg {
+  color: $red;
+}
+.pos {
+  color: $green;
+}

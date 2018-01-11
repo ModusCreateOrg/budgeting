@@ -23,7 +23,13 @@ exports[`renders correctly 1`] = `
     <div
       className="cellContent"
     >
-      Trader Joe's food
+      <a
+        className="navLink "
+        href="/budget/1"
+        onClick={[Function]}
+      >
+        Trader Joe's food
+      </a>
     </div>
   </td>
   <td
