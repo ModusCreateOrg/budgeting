@@ -1,18 +1,13 @@
 // @flow
 import * as React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import transactionReducer from 'modules/transactions';
-import categoryReducer from 'modules/categories';
-import { injectAsyncReducers } from 'store';
+
+import injectAsyncReducersWithDefaults from 'utils/injectAsyncReducersWithDefaults';
 import InflowOutflow from 'containers/InflowOutflow';
 import Spending from 'containers/Spending';
 import ReportsTabbar from './ReportsTabbar';
 
-// inject reducers that might not have been originally there
-injectAsyncReducers({
-  transactions: transactionReducer,
-  categories: categoryReducer,
-});
+injectAsyncReducersWithDefaults();
 
 const ReportsPanel = () => (
   <section>

@@ -1,0 +1,37 @@
+$inflowColor1: #58b141;
+$inflowColor2: #398026;
+$outflowColor1: #EA3324;
+$outflowColor2: #981E13;
+
+.heading {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.percentage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 20px 0;
+  font-size: 1.2em;
+}
+
+.inflow, .outflow {
+  margin-right: 2px;
+  font-size: 1.3em;
+}
+
+.inflow {
+  color: #58b141;
+}
+
+.outflow {
+  color: #D84433;
+}
+
+:export {
+  inflowColor1: $inflowColor1;
+  inflowColor2: $inflowColor2;
+  outflowColor1: $outflowColor1;
+  outflowColor2: $outflowColor2;
+}
