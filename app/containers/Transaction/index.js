@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { getInflowBalance, getOutflowBalance, getTransactions } from 'selectors/transactions';
 import transactionReducer from 'modules/transactions';
 import { injectAsyncReducers } from 'store';
+import styles from './styles.scss';
 
 injectAsyncReducers({
   transactions: transactionReducer,
@@ -22,7 +23,12 @@ class Transaction extends React.Component {
     return (
       <div>
         <h1>{transaction.description}</h1>
-        <h2 className={classNames({ positive: transaction.value >= 0, negative: transaction.value < 0 })}>
+        <h2
+          className={classNames({
+            [styles.positive]: transaction.value >= 0,
+            [styles.negative]: transaction.value < 0,
+          })}
+        >
           {transaction.value < 0 && '-'}
           {`${Number(transaction.value * 100 / balance).toFixed(NUMBER_OF_DECIMALS)}%`}
         </h2>
