@@ -46,7 +46,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(innerRatio <= 0 ? 0 : height / innerRatio)
       .outerRadius(height / 2);
   };
 
@@ -65,7 +65,7 @@ class DonutChart extends React.Component<DonutChartProps> {
       .sort(null);
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
-    this.colorFn = color.domain && color.domain([0, data.length]);
+    this.colorFn = color.domain && color.domain([0, data.length - 1]);
     this.boxLength = height + this.chartPadding * 2;
   };
 

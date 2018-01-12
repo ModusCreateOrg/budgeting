@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemContribution renders correctly 1`] = `
+<div>
+  <GoBackButton
+    onClick={[Function]}
+  />
+  <ContributionCard
+    contribution={
+      Object {
+        "percentage": 100,
+        "total": 1000,
+        "transaction": Object {
+          "categoryId": 1,
+          "description": "Test transaction",
+          "id": 1,
+          "value": 1000,
+        },
+        "type": "inflow",
+        "value": 1000,
+      }
+    }
+  />
+</div>
+`;

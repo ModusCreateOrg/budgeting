@@ -6,10 +6,23 @@ import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
 import { getCategories } from './categories';
 
+export const TRANSACTION_TYPE_INFLOW = 'inflow';
+export const TRANSACTION_TYPE_OUTFLOW = 'outflow';
+
+export type TransactionType = 'inflow' | 'outflow';
+
 export type TransactionSummary = {
   categoryId: string,
   value: number,
   category?: string,
+};
+
+export type TransactionContribution = {
+  transaction: Transaction,
+  value: number,
+  total: number,
+  percentage: number,
+  type: TransactionType,
 };
 
 function totalTransactions(transactions: Transaction[]): number {
@@ -56,6 +69,30 @@ export const getInflowBalance = createSelector([getInflowTransactions], transact
 export const getOutflowBalance = createSelector([getOutflowTransactions], transactions =>
   totalTransactions(transactions)
 );
+
+export const getTransactionById = (state: State, id: number): ?Transaction =>
+  getTransactions(state).find(transaction => transaction.id === id) || null;
+
+export const getTransactionContributionById = (state: State, transactionId: number): ?TransactionContribution => {
+  const transaction = getTransactionById(state, transactionId);
+
+  if (!transaction) {
+    return null;
+  }
+
+  const type = transaction.value < 0 ? TRANSACTION_TYPE_OUTFLOW : TRANSACTION_TYPE_INFLOW;
+  const value = Math.abs(transaction.value);
+  const total = type === TRANSACTION_TYPE_OUTFLOW ? Math.abs(getOutflowBalance(state)) : getInflowBalance(state);
+  const percentage = +(value / total * 100).toFixed(2);
+
+  return {
+    transaction,
+    value,
+    total,
+    percentage,
+    type,
+  };
+};
 
 export const getFormattedBalance = createSelector([getBalance], amount => formatAmount(amount, false));
 

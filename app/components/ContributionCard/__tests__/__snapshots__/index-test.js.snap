@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <h1
+    className="heading"
+  >
+    Test transaction
+  </h1>
+  <h3
+    className="percentage"
+  >
+    <span
+      className="inflow"
+    >
+      +
+    </span>
+    100
+    %
+  </h3>
+  <DonutChart
+    color={[Function]}
+    data={
+      Array [
+        Object {
+          "categoryId": "0",
+          "key": 0,
+          "label": "Current Item",
+          "value": 1000,
+        },
+        Object {
+          "categoryId": "1",
+          "key": 1,
+          "label": "Rest",
+          "value": 0,
+        },
+      ]
+    }
+    dataKey="key"
+    dataLabel="label"
+    innerRatio={0}
+  />
+</div>
+`;

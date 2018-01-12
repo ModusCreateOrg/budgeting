@@ -8,6 +8,9 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransactionById,
+  getTransactionContributionById,
+  TRANSACTION_TYPE_INFLOW,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -47,6 +50,43 @@ describe('getTransactions', () => {
     const expectedSelection = [];
 
     expect(getTransactions(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getTransactionById', () => {
+  it('should return transaction by id', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    expect(getTransactionById(state, 1)).toEqual({ id: 1 });
+  });
+
+  it('should return null', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+
+    expect(getTransactionById(state, 3)).toBeNull();
+  });
+});
+
+describe('getTransactionContributionById', () => {
+  it('should return transaction contribution by id', () => {
+    const transaction1 = { id: 1, value: 1000 };
+    const transaction2 = { id: 2, value: 2000 };
+    const total = transaction1.value + transaction2.value;
+    const percentage = +(transaction1.value / total * 100).toFixed(2);
+    const state = { transactions: [transaction1, transaction2] };
+
+    expect(getTransactionContributionById(state, 1)).toEqual({
+      transaction: transaction1,
+      value: transaction1.value,
+      total,
+      percentage,
+      type: TRANSACTION_TYPE_INFLOW,
+    });
+  });
+
+  it('should return null', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+
+    expect(getTransactionContributionById(state, 3)).toBeNull();
   });
 });
 

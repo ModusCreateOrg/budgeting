@@ -1,0 +1,22 @@
+$background: #E8EDF1;
+$border: #D1D2D3;
+
+.button {
+  padding: 8px 14px;
+  background: $background;
+  border: 1px solid $border;
+  border-radius: 3px;
+  color: #000;
+  font-size: 0.7em;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background: darken($background, 2%);
+    border-color: darken($border, 2%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

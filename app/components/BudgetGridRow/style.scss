@@ -1,5 +1,13 @@
 @import 'theme/variables';
 
+.row {
+  cursor: pointer;
+
+  &:hover {
+    background: $highlight;
+  }
+}
+
 .cellLabel {
   display: none;
 
