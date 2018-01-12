@@ -1,24 +1,25 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import {
-  getInflowBalance, getOutflowBalance, getTransactions,
-  getInflowTransactions, getOutflowTransactions,
-} from 'selectors/transactions';
+import { getInflowBalance, getOutflowBalance, getTransactions } from 'selectors/transactions';
 import transactionReducer from 'modules/transactions';
 import { injectAsyncReducers } from 'store';
 import DonutChart from 'components/DonutChart';
-import styles from './styles.scss';
+import Percentage from 'components/Percentage';
+import type { TransactionSummary } from 'selectors/transactions';
 
 injectAsyncReducers({
   transactions: transactionReducer,
 });
 
-const NUMBER_OF_DECIMALS = 2;
+type TransactionProps = {
+  inflowBalance: Number,
+  outflowBalance: Number,
+  transactions: TransactionSummary,
+};
 
-class Transaction extends React.Component {
+class Transaction extends React.Component<TransactionProps> {
   render() {
     const { inflowBalance, outflowBalance, transactions } = this.props;
     const { match: { params: { id } } } = this.props;
@@ -35,15 +36,7 @@ class Transaction extends React.Component {
     return (
       <div>
         <h1>{transaction.description}</h1>
-        <h2
-          className={classNames({
-            [styles.positive]: transaction.value >= 0,
-            [styles.negative]: transaction.value < 0,
-          })}
-        >
-          {transaction.value < 0 && '-'}
-          {`${Number(transaction.value * 100 / balance).toFixed(NUMBER_OF_DECIMALS)}%`}
-        </h2>
+        <Percentage balance={balance} value={transaction.value} />
         <DonutChart data={reducedTransactions} dataLabel="id" dataKey="id" />
         <Link to="/budget">Back</Link>
       </div>
