@@ -6,7 +6,7 @@ const loadTransactionContainer = () => import('containers/Transaction' /* webpac
 
 class Transaction extends Component<{}> {
   render() {
-    return <Chunk load={loadTransactionContainer} />;
+    return <Chunk load={loadTransactionContainer} {...this.props} />;
   }
 }
 
