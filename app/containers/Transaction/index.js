@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { getInflowBalance, getOutflowBalance, getTransactions } from 'selectors/transactions';
 import transactionReducer from 'modules/transactions';
 import { injectAsyncReducers } from 'store';
@@ -32,6 +33,7 @@ class Transaction extends React.Component {
           {transaction.value < 0 && '-'}
           {`${Number(transaction.value * 100 / balance).toFixed(NUMBER_OF_DECIMALS)}%`}
         </h2>
+        <Link to="/budget">Back</Link>
       </div>
     );
   }
