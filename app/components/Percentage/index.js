@@ -1,10 +1,16 @@
+// @flow
 import React from 'react';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
 const NUMBER_OF_DECIMALS = 2;
 
-const Percentage = ({ balance, value }) => (
+type PercentageType = {
+  balance: Number,
+  value: Number,
+};
+
+const Percentage = ({ balance, value }: PercentageType) => (
   <h2
     className={classNames({
       [styles.positive]: value >= 0,
