@@ -2,7 +2,6 @@
 import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
-import { Link } from 'react-router-dom';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
 
@@ -24,10 +23,10 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
         <div className={styles.cellContent}>{category}</div>
       </td>
       <td>
-        <Link to={`/transaction/${id}`}>
+        <a href={`/transaction/${id}`}>
           <div className={styles.cellLabel}>Description</div>
           <div className={styles.cellContent}>{description}</div>
-        </Link>
+        </a>
       </td>
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>
