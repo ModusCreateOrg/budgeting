@@ -33,7 +33,12 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         </thead>
         <tbody>
           {transactions.map((transaction: Transaction): React.Element<any> => (
-            <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+            <BudgetGridRow
+              key={transaction.id}
+              transaction={transaction}
+              categories={categories}
+              to={`/transaction/${transaction.id}`}
+            />
           ))}
         </tbody>
         <tfoot>
