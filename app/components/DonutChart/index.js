@@ -72,7 +72,6 @@ class DonutChart extends React.Component<DonutChartProps> {
   render() {
     const { data, dataLabel, dataValue, dataKey } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
-
     return (
       <div className={styles.donutChart}>
         <Chart

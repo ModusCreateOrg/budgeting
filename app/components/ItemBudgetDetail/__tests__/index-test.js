@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ItemBudgetDetail from 'components/ItemBudgetDetail';
 
+jest.mock('components/DonutChart', () => 'div');
+
 it('renders correctly', () => {
   const mockTransaction = {
     id: 1,
