@@ -3,7 +3,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
-import { Link } from 'react-router-dom';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from 'components/BudgetGridRow';
