@@ -1,0 +1,16 @@
+.transactionDetail {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  justify-content: center;
+  border-collapse: collapse;
+  font-size: 0.8em;
+};
+
+.inflow{
+  color: #3c763d;
+};
+
+.outflow{
+  color:#a94442;
+};

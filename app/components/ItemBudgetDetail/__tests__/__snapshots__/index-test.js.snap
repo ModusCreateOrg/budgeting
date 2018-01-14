@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="transactionDetail"
+>
+  <h1>
+     
+    Trader Joe's food
+     
+  </h1>
+  <h2
+    className="outflow"
+  >
+    -
+     
+    16.93
+    %
+  </h2>
+  <div
+    data={
+      Array [
+        Object {
+          "description": "Trader Joe's food (16.93%): ",
+          "id": 1,
+          "value": 423.34,
+        },
+        Object {
+          "description": "Total budget (83.07): ",
+          "id": 2,
+          "value": 2500,
+        },
+      ]
+    }
+    dataKey="id"
+    dataLabel="description"
+  />
+</div>
+`;
