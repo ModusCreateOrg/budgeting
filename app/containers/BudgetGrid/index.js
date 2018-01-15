@@ -20,7 +20,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
   };
 
   onClick = id => {
-    this.props.history.push(`detail/${id}`);
+    this.props.history.push(`/detail/${id}`);
   };
 
   render() {
