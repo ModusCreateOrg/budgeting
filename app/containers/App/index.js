@@ -7,6 +7,8 @@ import AppError from 'components/AppError';
 import Header from 'components/Header';
 import Budget from 'routes/Budget';
 import Reports from 'routes/Reports';
+import Detail from 'routes/Detail';
+
 import './style.scss';
 
 const App = () => (
@@ -17,6 +19,7 @@ const App = () => (
       <Switch>
         <Route path="/budget" component={Budget} />
         <Route path="/reports" component={Reports} />
+        <Route path="/detail/:id" component={Detail} />
         <Redirect to="/budget" />
       </Switch>
     </main>
