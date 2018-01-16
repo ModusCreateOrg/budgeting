@@ -4,20 +4,24 @@ import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
+import { BudgetGrid } from '../../containers/BudgetGrid/index';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
+  onClick: (e: SyntheticEvent<HTMLSelectElement>) => void
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
+  const handleClick = () => onClick(id)
+
   return (
-    <tr key={id}>
+    <tr key={id} onClick={handleClick}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
@@ -33,5 +37,9 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
     </tr>
   );
 };
+
+BudgetGridRow.defaultProps = {
+  onClick: () => { }
+}
 
 export default BudgetGridRow;

@@ -3,11 +3,11 @@
 import * as React from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
-import type { TransactionSummary } from 'selectors/transactions';
 import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
 import { shuffle } from 'utils/array';
 import Path from './Path';
 import styles from './styles.scss';
+import type { TransactionSummary } from '../../selectors/transactions';
 
 const randomScheme = shuffle(schemeCategory20);
 
@@ -18,6 +18,7 @@ type DonutChartProps = {
   dataValue: string,
   color: Function,
   height: number,
+  labelFormatter: (value: number) => string,
   innerRatio: number,
 };
 
@@ -70,9 +71,9 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey } = this.props;
-    const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
+    const { data, dataLabel, dataValue, dataKey, labelFormatter } = this.props;
+    const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
     return (
       <div className={styles.donutChart}>
         <Chart
@@ -86,7 +87,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           ))}
         </Chart>
 
-        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
+        <Legend color={colorFn} formatter={labelFormatter} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }

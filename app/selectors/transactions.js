@@ -26,7 +26,7 @@ function summarizeTransactions(transactions: Transaction[]): TransactionSummary[
   }, []);
 }
 
-export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
+export const sortTransactions = <T: { value: number }> (transactions: T[]): T[] => {
   const unsorted = [...transactions];
   return unsorted.sort((a, b) => b.value - a.value);
 };
@@ -78,3 +78,10 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+// Retrieves a single transaction by id
+
+export function getTransactionDetails(state: State, transactionId: number): TransactionSummary {
+  const categories = getCategories(state);
+  return applyCategoryName(getTransactions(state).filter(trans => trans.id === transactionId), categories).shift() || null
+}

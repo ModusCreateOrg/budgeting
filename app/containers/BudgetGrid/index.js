@@ -6,6 +6,7 @@ import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from 'components/BudgetGridRow';
+import { withRouter } from 'react-router'
 import styles from './style.scss';
 
 type BudgetGridProps = {
@@ -18,6 +19,11 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
     transactions: [],
     categories: {},
   };
+
+
+  onGridItemSelected = (itemId) => {
+    this.props.history.push(`/budget/items/${itemId}`)
+  }
 
   render() {
     const { transactions, categories } = this.props;
@@ -33,7 +39,11 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         </thead>
         <tbody>
           {transactions.map((transaction: Transaction): React.Element<any> => (
-            <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+              <BudgetGridRow
+                key={transaction.id}
+                transaction={transaction}
+                categories={categories}
+                onClick={this.onGridItemSelected} />
           ))}
         </tbody>
         <tfoot>
@@ -49,4 +59,4 @@ const mapStateToProps = state => ({
   categories: getCategories(state),
 });
 
-export default connect(mapStateToProps)(BudgetGrid);
+export default withRouter(connect(mapStateToProps)(BudgetGrid));
