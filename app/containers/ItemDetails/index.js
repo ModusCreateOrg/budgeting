@@ -11,16 +11,15 @@ injectAsyncReducers({
 
 const Details = ({ transaction, history }) => (
   <div>
-    <ItemDetails history={history} transaction={transaction}
-    />
+    <ItemDetails history={history} transaction={transaction} />
   </div>
 );
 
 const stateMapping = (state, { id }) => {
   const item = getTransactions(state, id)
     .filter(t => t.id === Number(id)).shift();
-  const category = getTransactions(state)
-    .filter(t => (item.value > 0 ? t.value > 0 : t.value < 0));
+
+  const category = getTransactions(state).filter(t => (item.value > 0 ? t.value > 0 : t.value < 0));
   const totalBudget = category.reduce((a, b) => ({
     value: Math.abs(a.value) + Math.abs(b.value),
   })).value;

@@ -13,14 +13,14 @@ class Details extends React.Component<{ transaction: Transaction }> {
     {
       key: 0,
       categoryId: '0',
-      value: transaction.totalBudget - transaction.value,
-      label: `${transaction.flow} Budget`,
+      value: this.props.transaction.totalBudget - this.props.transaction.value,
+      label: `${this.props.transaction.flow} Budget`,
     },
     {
       key: 1,
       categoryId: '1',
-      value: transaction.value,
-      label: `${transaction.description}`,
+      value: this.props.transaction.value,
+      label: `${this.props.transaction.description}`,
     },
   ];
 
@@ -42,10 +42,7 @@ class Details extends React.Component<{ transaction: Transaction }> {
           </h3>
         </div>
         <div className={styles.detail}>
-          <DonutChart
-            dataLabel="label"
-            dataKey="key"
-            data={this.donutData}
+          <DonutChart dataLabel="label" dataKey="key" data={this.donutData}
           />
         </div>
       </section>
