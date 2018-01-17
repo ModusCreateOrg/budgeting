@@ -6,7 +6,7 @@ const loadBudgetContainer = () => import('containers/Budget' /* webpackChunkName
 
 class Budget extends Component<{}> {
   render() {
-    return <Chunk load={loadBudgetContainer} />;
+    return <Chunk load={loadBudgetContainer} history={this.props.history} />;
   }
 }
 

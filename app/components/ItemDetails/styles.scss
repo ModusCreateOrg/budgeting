@@ -1,0 +1,26 @@
+@import 'theme/variables';
+
+.backButton {
+  padding: 10px;
+  border: 1px solid $lightgray;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.title {
+  text-align: center;
+  h2 {
+    text-decoration: underline;
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+}
+
+.positive {
+  color: $green;
+}
+
+.negative {
+  color: $red;
+}
