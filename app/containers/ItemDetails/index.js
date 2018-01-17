@@ -17,7 +17,8 @@ const Details = ({ transaction, history }) => (
 
 const stateMapping = (state, { id }) => {
   const item = getTransactions(state, id)
-    .filter(t => t.id === Number(id)).shift();
+    .filter(t => t.id === Number(id))
+    .shift();
 
   const category = getTransactions(state).filter(t => (item.value > 0 ? t.value > 0 : t.value < 0));
   const totalBudget = category.reduce((a, b) => ({

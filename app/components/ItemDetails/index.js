@@ -42,8 +42,7 @@ class Details extends React.Component<{ transaction: Transaction }> {
           </h3>
         </div>
         <div className={styles.detail}>
-          <DonutChart dataLabel="label" dataKey="key" data={this.donutData}
-          />
+          <DonutChart dataLabel="label" dataKey="key" data={this.donutData} />
         </div>
       </section>
     );
