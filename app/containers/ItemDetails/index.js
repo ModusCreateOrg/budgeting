@@ -3,24 +3,24 @@ import transactionReducer from 'modules/transactions';
 import { injectAsyncReducers } from 'store';
 import ItemDetails from 'components/ItemDetails';
 import { connect } from 'react-redux';
-import { getTransactions, getTransactionById } from 'selectors/transactions';
+import { getTransactions } from 'selectors/transactions';
 
 injectAsyncReducers({
   transactions: transactionReducer,
 });
 
-const Details = ({ id, transaction, history }) => (
+const Details = ({ transaction, history }) => (
   <div>
-    <ItemDetails
-      history={history}
-      transaction={transaction}
+    <ItemDetails history={history} transaction={transaction}
     />
   </div>
 );
 
 const stateMapping = (state, { id }) => {
-  const item = getTransactions(state, id).filter(t => t.id === Number(id)).shift();
-  const category = getTransactions(state).filter(t => (item.value > 0 ? t.value > 0 : t.value < 0));
+  const item = getTransactions(state, id)
+    .filter(t => t.id === Number(id)).shift();
+  const category = getTransactions(state)
+    .filter(t => (item.value > 0 ? t.value > 0 : t.value < 0));
   const totalBudget = category.reduce((a, b) => ({
     value: Math.abs(a.value) + Math.abs(b.value),
   })).value;
@@ -36,7 +36,7 @@ const stateMapping = (state, { id }) => {
       itemOperator,
       totalBudget,
       percent,
-      flow
+      flow,
     },
   };
 };

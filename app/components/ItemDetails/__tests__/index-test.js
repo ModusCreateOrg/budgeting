@@ -12,8 +12,18 @@ it('renders correctly', () => {
   const mockDataLabel = 'label';
   const mockDataKey = 'key';
   const mockData = [
-    { key: 0, categoryId: '0', value: mockTransaction.totalBudget - mockTransaction.value, label: `${mockTransaction.flow} Budget` },
-    { key: 1, categoryId: '1', value: mockTransaction.value, label: `${mockTransaction.description}` },
+    {
+      key: 0,
+      categoryId: '0',
+      value: mockTransaction.totalBudget - mockTransaction.value,
+      label: `${mockTransaction.flow} Budget`,
+    },
+    {
+      key: 1,
+      categoryId: '1',
+      value: mockTransaction.value,
+      label: `${mockTransaction.description}`,
+    },
   ];
 
   const tree = renderer.create(<DonutChart dataLabel={mockDataLabel} dataKey={mockDataKey} data={mockData} />).toJSON();

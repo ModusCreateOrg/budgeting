@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import DonutChart from 'components/DonutChart';
 import type { Transaction } from 'modules/transactions';
@@ -7,6 +8,21 @@ class Details extends React.Component<{ transaction: Transaction }> {
   goBack = () => {
     this.props.history.goBack();
   };
+
+  donutData = [
+    {
+      key: 0,
+      categoryId: '0',
+      value: transaction.totalBudget - transaction.value,
+      label: `${transaction.flow} Budget`,
+    },
+    {
+      key: 1,
+      categoryId: '1',
+      value: transaction.value,
+      label: `${transaction.description}`,
+    },
+  ];
 
   render() {
     const { transaction } = this.props;
@@ -19,7 +35,9 @@ class Details extends React.Component<{ transaction: Transaction }> {
         <div className={styles.title}>
           <h2>{transaction.description}</h2>
           <h3>
-            <span className={transaction.itemOperator === '+' ? styles.positive : styles.negative}>{transaction.itemOperator}</span>
+            <span className={transaction.itemOperator === '+' ? styles.positive : styles.negative}>
+              {transaction.itemOperator}
+            </span>
             {transaction.percent}%
           </h3>
         </div>
@@ -27,10 +45,7 @@ class Details extends React.Component<{ transaction: Transaction }> {
           <DonutChart
             dataLabel="label"
             dataKey="key"
-            data={[
-              { key: 0, categoryId: '0', value: transaction.totalBudget - transaction.value, label: `${transaction.flow} Budget` },
-              { key: 1, categoryId: '1', value: transaction.value, label: `${transaction.description}` },
-            ]}
+            data={this.donutData}
           />
         </div>
       </section>

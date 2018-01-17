@@ -41,7 +41,8 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
               key={transaction.id}
               transaction={transaction}
               categories={categories}
-              onClick={() => this.getRowDetails(transaction.id)} />
+              onClick={() => this.getRowDetails(transaction.id)}
+            />
           ))}
         </tbody>
         <tfoot>
