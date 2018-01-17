@@ -11,7 +11,3 @@ coverage
 .idea
 /.cache-loader
 /.vscode
-
-
-# avoid test failure when donut chart change automatic colors
-/app/components/ItemDetails/__tests__/__snapshots__/index-test.js.snap

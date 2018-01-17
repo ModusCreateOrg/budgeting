@@ -1,31 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DonutChart from 'components/DonutChart';
+import ItemDetails from 'components/ItemDetails';
+
+jest.mock('components/DonutChart', () => 'div');
 
 it('renders correctly', () => {
   const mockTransaction = {
-    totalBudget: 4588.07,
-    value: 1100,
-    flow: 'Outflow',
+    id: 1,
     description: 'The usual weekly run',
+    itemOperator: '-',
+    percent: 23.98,
+    value: 1100,
+    categoryId: 1,
+    totalBudget: 4588.07,
+    flow: 'Outflow',
   };
-  const mockDataLabel = 'label';
-  const mockDataKey = 'key';
-  const mockData = [
-    {
-      key: 0,
-      categoryId: '0',
-      value: mockTransaction.totalBudget - mockTransaction.value,
-      label: `${mockTransaction.flow} Budget`,
-    },
-    {
-      key: 1,
-      categoryId: '1',
-      value: mockTransaction.value,
-      label: `${mockTransaction.description}`,
-    },
-  ];
 
-  const tree = renderer.create(<DonutChart dataLabel={mockDataLabel} dataKey={mockDataKey} data={mockData} />).toJSON();
+  const tree = renderer.create(<ItemDetails transaction={mockTransaction} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
