@@ -3,7 +3,7 @@ import React from 'react';
 import DonutChart from 'components/DonutChart';
 
 type PieChartProps = {
-  data: {}, // unsealed
+  data: {},
   dataLabel: string,
   dataKey: string,
   dataValue: string,

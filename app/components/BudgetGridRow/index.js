@@ -4,7 +4,6 @@ import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
-import { BudgetGrid } from '../../containers/BudgetGrid/index';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
@@ -18,7 +17,7 @@ const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps)
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
-  const handleClick = e => onClick(id);
+  const handleClick = () => onClick(id);
 
   return (
     <tr key={id} onClick={handleClick}>

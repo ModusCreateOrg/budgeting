@@ -3,7 +3,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import LegendItem from './LegendItem';
 import styles from './styles.scss';
-import type { TransactionSummary } from '../../selectors/transactions';
 
 type LegendType = {
   data: Transaction[],

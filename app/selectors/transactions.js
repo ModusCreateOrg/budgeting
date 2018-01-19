@@ -26,7 +26,7 @@ function summarizeTransactions(transactions: Transaction[]): TransactionSummary[
   }, []);
 }
 
-export const sortTransactions = <T: { value: number }> (transactions: T[]): T[] => {
+export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
   const unsorted = [...transactions];
   return unsorted.sort((a, b) => b.value - a.value);
 };

@@ -8,6 +8,7 @@ import { getTransaction, getInflowBalance, getOutflowBalance } from 'selectors/t
 import PieChart from 'components/PieChart';
 import BudgetItemHeader from 'components/BudgetItemHeader';
 import type { Transaction } from 'modules/transactions';
+import { scaleOrdinal } from 'd3';
 import styles from './style.scss';
 
 injectAsyncReducers({
@@ -20,47 +21,55 @@ type BudgetItemSummaryProps = {
   goBack: void => void,
 };
 
+const colorSchema = {
+  inflow: ['#65c799', '#ad4535'],
+  outflow: ['#cc2323', '#bcc42a'],
+};
+
+/**
+ * Generates color schema for info and outflow transaction
+ * @param {string} flow 
+ */
+const selectColorScheme = (flow: 'inflow' | 'outflow') =>
+  scaleOrdinal()
+    .domain([0, 2])
+    .range(colorSchema[flow]);
+
 /**
  * Generates transaction data in format to be consumed by PieChart
  * 
  * @param {TransactionSummary} transaction 
  * @param {number} totalBalance 
  * @returns {Transaction[]} 
- * @memberof BudgetItemSummary
  */
 const getBudgetChartData = (transaction: TransactionSummary, totalBalance: number): Transaction[] => {
-  const trans = { ...transaction };
-  trans.value = Math.abs(trans.value);
-  return [trans].concat([
+  const remainingBalance = Math.abs(totalBalance) - Math.abs(transaction.value);
+  return [
+    { id: 0, description: 'Selected Item', value: Math.abs(transaction.value) },
     {
-      description: totalBalance > 0 ? 'Other Income' : 'Other Expenses',
-      id: Math.ceil(Math.random() * 255) + 255,
-      value: Math.abs(totalBalance) - Math.abs(transaction.value),
+      id: 1,
+      description: totalBalance >= 0 ? 'Remaining Income' : 'Other Expenses',
+      value: remainingBalance,
     },
-  ]);
+  ];
 };
 
 /**
- * BudgetItemSummary Renders details of an individual transaction.
- * It includes the percentage that the transaction contributes in relation
- * to the aggregate of there transactions in that currency flow {inflow | outflow}
- * 
- * @class BudgetItemSummary
- * @extends {React.Component<BudgetItemSummaryProps>}
- */
-class BudgetItemSummary extends React.Component<BudgetItemSummaryProps> {
-  render() {
-    const { balance, transaction, goBack } = this.props;
-    const data = getBudgetChartData(transaction, balance);
-    return (
-      <section className={styles.budgetItemSummary}>
-        <button onClick={goBack}>Back</button>
-        <BudgetItemHeader transaction={transaction} balance={balance} />
-        <PieChart data={data} dataLabel="description" dataKey="id" />;
-      </section>
-    );
-  }
-}
+   * BudgetItemSummary Renders details of an individual transaction.
+   * It includes the percentage that the transaction contributes in relation
+   * to the aggregate of there transactions in that currency flow {inflow | outflow}  
+   */
+const BudgetItemSummary = ({ balance, transaction, goBack }: BudgetItemSummaryProps) => {
+  const data = getBudgetChartData(transaction, balance);
+  const flow = transaction.value >= 0 ? 'inflow' : 'outflow';
+  return (
+    <section className={styles.budgetItemSummary}>
+      <button onClick={goBack}>Back</button>
+      <BudgetItemHeader transaction={transaction} balance={balance} />
+      <PieChart data={data} dataLabel="description" dataKey="id" color={selectColorScheme(flow)} />;
+    </section>
+  );
+};
 
 const mapStateToProps = (state, { match, history }) => {
   const transactionId = Number(match.params.id);

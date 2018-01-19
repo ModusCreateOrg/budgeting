@@ -7,7 +7,6 @@ import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from 'components/BudgetGridRow';
 import { withRouter } from 'react-router';
-import type { RouterHistory } from 'react-router';
 import styles from './style.scss';
 
 type BudgetGridProps = {

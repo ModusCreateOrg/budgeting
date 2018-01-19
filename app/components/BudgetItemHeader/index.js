@@ -16,8 +16,8 @@ const BudgetItemHeader = ({ transaction, balance }: BudgetItemHeaderProps) => {
   const flow = `${transaction.value > 0 ? 'in' : 'out'}-flow`;
   return (
     <div className={styles.budgetItemDetails}>
-      <RowItem label="Item Description">{transaction.description}</RowItem>
-      <RowItem label="Contribution">
+      <RowItem>{transaction.description}</RowItem>
+      <RowItem>
         <div className={styles[flow]}>{roundedPercentage}</div>
       </RowItem>
     </div>

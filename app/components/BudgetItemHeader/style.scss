@@ -1,45 +1,55 @@
     @import 'theme/variables';
     .budgetItemDetails {
-        background-color: $verylightgray;
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        justify-content: center;
+        padding: 0.8em;
+        margin-bottom: 0.8em;
+        word-wrap: break-word;
+        font-size: 1.6em;
+        border-radius: 3px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+        @media only screen and (max-width: $screen-small) {
+            margin-top:1em;
+            padding: 1em;
+        }
+
+        
         .rowItem {
-            display: flex;
-            flex-wrap: nowrap;
-            border: $border;
-            .label {
-                padding: 10px;
-                background-color: $gray;
-                min-width: 140px;
-            }
-            .content {
-                align-self: center;
-                width: 100%;
-                margin-left: 10px;
-                word-wrap: break-word;
-            }
-            %flow {
-                font-size: 20px;
-                font-weight: 500;
+            padding: 0.3em;
+        }
+        
 
-                &:after{
-                    content: '%';
-                }
+        
+    }
 
-            }
-            .in-flow {
-                @extend %flow;
-                color: $green;
-                
-                &:before{
-                    content: '+ ';
-                }
-            }
-            .out-flow {
-                @extend %flow;
-                color: $red;
+    %flow {
+        font-size: 22px;
+        font-weight: 500;
+        &:after {
+            content: '%';
+        }
+    }
 
-                &:before{
-                    content: '- ';
-                }
-            }
+    .in-flow {
+        @extend %flow;
+        color: $green;
+        &:before {
+            font-size: 18px;
+            content: '+ ';
+      
+        }
+    }
+
+    .out-flow {
+        @extend %flow;
+        color: $red;
+        &:before {
+            font-size: 18px;
+            content: '- ';
+           
         }
     }

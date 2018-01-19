@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import Default, { BudgetItemSummary } from '../';
+import { BudgetItemSummary } from '../';
 
 jest.mock('components/BudgetItemHeader', () => () => <div>BudgetItemHeader</div>);
 jest.mock('components/PieChart', () => () => <div>PieChart</div>);
