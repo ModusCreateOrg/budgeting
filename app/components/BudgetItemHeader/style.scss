@@ -1,0 +1,45 @@
+    @import 'theme/variables';
+    .budgetItemDetails {
+        background-color: $verylightgray;
+        .rowItem {
+            display: flex;
+            flex-wrap: nowrap;
+            border: $border;
+            .label {
+                padding: 10px;
+                background-color: $gray;
+                min-width: 140px;
+            }
+            .content {
+                align-self: center;
+                width: 100%;
+                margin-left: 10px;
+                word-wrap: break-word;
+            }
+            %flow {
+                font-size: 20px;
+                font-weight: 500;
+
+                &:after{
+                    content: '%';
+                }
+
+            }
+            .in-flow {
+                @extend %flow;
+                color: $green;
+                
+                &:before{
+                    content: '+ ';
+                }
+            }
+            .out-flow {
+                @extend %flow;
+                color: $red;
+
+                &:before{
+                    content: '- ';
+                }
+            }
+        }
+    }

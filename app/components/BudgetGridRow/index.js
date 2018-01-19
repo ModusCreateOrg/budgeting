@@ -9,7 +9,7 @@ import { BudgetGrid } from '../../containers/BudgetGrid/index';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
-  onClick: (e: SyntheticEvent<HTMLSelectElement>) => void
+  onClick: (id: number) => void,
 };
 
 const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps) => {
@@ -18,7 +18,7 @@ const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps)
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
-  const handleClick = () => onClick(id)
+  const handleClick = e => onClick(id);
 
   return (
     <tr key={id} onClick={handleClick}>
@@ -39,7 +39,7 @@ const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps)
 };
 
 BudgetGridRow.defaultProps = {
-  onClick: () => { }
-}
+  onClick: () => {},
+};
 
 export default BudgetGridRow;

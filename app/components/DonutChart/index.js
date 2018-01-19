@@ -12,13 +12,12 @@ import type { TransactionSummary } from '../../selectors/transactions';
 const randomScheme = shuffle(schemeCategory20);
 
 type DonutChartProps = {
-  data: TransactionSummary[],
+  data: {}, // unsealed
   dataLabel: string,
   dataKey: string,
   dataValue: string,
   color: Function,
   height: number,
-  labelFormatter: (value: number) => string,
   innerRatio: number,
 };
 
@@ -71,8 +70,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   render() {
-
-    const { data, dataLabel, dataValue, dataKey, labelFormatter } = this.props;
+    const { data, dataLabel, dataValue, dataKey } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
     return (
       <div className={styles.donutChart}>
@@ -87,7 +85,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           ))}
         </Chart>
 
-        <Legend color={colorFn} formatter={labelFormatter} {...{ data, dataValue, dataLabel, dataKey }} />
+        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }

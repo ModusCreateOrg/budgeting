@@ -81,7 +81,6 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
 
 // Retrieves a single transaction by id
 
-export function getTransactionDetails(state: State, transactionId: number): TransactionSummary {
-  const categories = getCategories(state);
-  return applyCategoryName(getTransactions(state).filter(trans => trans.id === transactionId), categories).shift() || null
+export function getTransaction(state: State, transactionId: number): Transaction {
+  return getTransactions(state).find(trans => trans.id === transactionId) || null;
 }

@@ -1,8 +1,8 @@
+// @flow
 /**
- * Returns an unsigned version of number
- * @param {number} value 
+ * Rounds up a value up to the specified decimal places
  */
-export const unsign = (value: number): number => value > 0 ? value : -value
+export const roundUp = (value: number, places: number) =>
+  value !== 0 ? parseFloat(Math.round(value * 10 ** places) / 10 ** places).toFixed(places) : 0;
 
-export const roundUp = (value: number, places: number): number => parseFloat(Math.round(value * (10 ** places)) / (10 ** places)).toFixed(places)
-
+export default { roundUp };
