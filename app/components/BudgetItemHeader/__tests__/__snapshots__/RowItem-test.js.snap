@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render component correctly 1`] = `
+<div
+  className="rowItem"
+>
+  <div
+    className="label"
+  >
+    Description
+     
+  </div>
+  <div
+    className="content"
+  >
+     
+    New pair of shoes
+     
+  </div>
+</div>
+`;

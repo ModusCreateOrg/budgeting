@@ -1,0 +1,55 @@
+    @import 'theme/variables';
+    .budgetItemDetails {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        justify-content: center;
+        padding: 0.8em;
+        margin-bottom: 0.8em;
+        word-wrap: break-word;
+        font-size: 1.6em;
+        border-radius: 3px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+        @media only screen and (max-width: $screen-small) {
+            margin-top:1em;
+            padding: 1em;
+        }
+
+        
+        .rowItem {
+            padding: 0.3em;
+        }
+        
+
+        
+    }
+
+    %flow {
+        font-size: 22px;
+        font-weight: 500;
+        &:after {
+            content: '%';
+        }
+    }
+
+    .in-flow {
+        @extend %flow;
+        color: $green;
+        &:before {
+            font-size: 18px;
+            content: '+ ';
+      
+        }
+    }
+
+    .out-flow {
+        @extend %flow;
+        color: $red;
+        &:before {
+            font-size: 18px;
+            content: '- ';
+           
+        }
+    }

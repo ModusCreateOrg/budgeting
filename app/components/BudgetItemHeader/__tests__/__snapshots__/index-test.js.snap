@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component renders acceptably for inflow 1`] = `
+<div
+  className="budgetItemDetails"
+>
+  <div
+    className="rowItem"
+  >
+    <div
+      className="label"
+    >
+       
+    </div>
+    <div
+      className="content"
+    >
+      Paycheck
+       
+    </div>
+  </div>
+  <div
+    className="rowItem"
+  >
+    <div
+      className="label"
+    >
+       
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="in-flow"
+      >
+        76.92
+      </div>
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component renders acceptably for outflow 1`] = `
+<div
+  className="budgetItemDetails"
+>
+  <div
+    className="rowItem"
+  >
+    <div
+      className="label"
+    >
+       
+    </div>
+    <div
+      className="content"
+    >
+      Paycheck
+       
+    </div>
+  </div>
+  <div
+    className="rowItem"
+  >
+    <div
+      className="label"
+    >
+       
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="out-flow"
+      >
+        21.09
+      </div>
+       
+    </div>
+  </div>
+</div>
+`;

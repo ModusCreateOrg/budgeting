@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders children correctly for inflow transaction 1`] = `
+<section
+  className="budgetItemSummary"
+>
+  <button
+    onClick={undefined}
+  >
+    Back
+  </button>
+  <div>
+    BudgetItemHeader
+  </div>
+  <div>
+    PieChart
+  </div>
+  ;
+</section>
+`;
+
+exports[`renders children correctly for outflow transaction 1`] = `
+<section
+  className="budgetItemSummary"
+>
+  <button
+    onClick={undefined}
+  >
+    Back
+  </button>
+  <div>
+    BudgetItemHeader
+  </div>
+  <div>
+    PieChart
+  </div>
+  ;
+</section>
+`;

@@ -8,16 +8,19 @@ import styles from './style.scss';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
+  onClick: (id: number) => void,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, onClick }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
+  const handleClick = () => onClick(id);
+
   return (
-    <tr key={id}>
+    <tr key={id} onClick={handleClick}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
@@ -32,6 +35,10 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       </td>
     </tr>
   );
+};
+
+BudgetGridRow.defaultProps = {
+  onClick: () => {},
 };
 
 export default BudgetGridRow;
