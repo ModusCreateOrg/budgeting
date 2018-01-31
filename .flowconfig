@@ -3,7 +3,8 @@
 <PROJECT_ROOT>/test
 <PROJECT_ROOT>/node_modules/devtools-timeline-model
 <PROJECT_ROOT>/node_modules/chrome-devtools-frontend
-<PROJECT_ROOT>/node_modules/protobufjs
+.*/node_modules/protobufjs/.*
+.*/node_modules/fbjs/.*
 
 [include]
 

@@ -117,6 +117,7 @@ The app was built using these aweseome technologies
 - [x] [Yarn](https://yarnpkg.com/en/)
 - [x] [Ducks](https://github.com/erikras/ducks-modular-redux/) 🐣
 - [x] [Sass](http://sass-lang.com/)
+- [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
 - [x] [D3](https://d3js.org/)
 
 ## Yarn Scripts
