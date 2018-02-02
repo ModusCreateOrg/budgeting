@@ -1,0 +1,29 @@
+@import 'theme/variables';
+
+.budgetItem {
+
+	.budgetItemTitle {
+  
+	}
+
+  .budgetItemSubTitle > span {
+    margin-right: 10px;
+  }
+
+	.inflowItem {
+		color: green;
+	}
+
+	.outflowItem {
+		color: red;
+	}
+
+	ul {
+
+		li:last-child {
+			display: none;
+		}
+		
+	}
+
+}

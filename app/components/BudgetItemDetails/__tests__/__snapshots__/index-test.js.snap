@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="budgetItem"
+>
+  <a
+    href="/budget/"
+  >
+    Back
+  </a>
+  <h2
+    className="budgetItemTitle"
+  >
+    Trader Joe's food
+  </h2>
+  <h4
+    className="budgetItemSubTitle"
+  >
+    <span
+      className="outflowItem"
+    >
+      -
+      6.22
+      %
+    </span>
+    Budget Contribution
+  </h4>
+</div>
+`;
