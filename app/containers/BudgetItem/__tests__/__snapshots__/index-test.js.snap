@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="budgetItem"
+>
+  <a
+    href="/budget/"
+  >
+    Back
+  </a>
+  <h2
+    className="budgetItemTitle"
+  >
+    Trader Joe's food
+  </h2>
+  <h4
+    className="budgetItemSubTitle"
+  >
+    <span
+      className="outflowItem"
+    >
+      -
+      6.22
+      %
+    </span>
+    Budget Contribution
+  </h4>
+  <div
+    className="donutChart"
+  >
+    <div
+      height={316}
+      padding={8}
+      transform="translate(150,150)"
+      width={316}
+    />
+    <div
+      color={[Function]}
+      data={
+        Array [
+          Object {
+            "description": "Trader Joe's food",
+            "key": "key-1",
+            "value": 423.34,
+          },
+          Object {
+            "description": "Remaining Budget",
+            "key": "key-total",
+            "value": 6378.66,
+          },
+        ]
+      }
+      dataKey="key"
+      dataLabel="description"
+      dataValue="value"
+    />
+  </div>
+</div>
+`;
