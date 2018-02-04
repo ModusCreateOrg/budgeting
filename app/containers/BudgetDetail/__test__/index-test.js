@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { MemoryRouter as Router, withRouter } from 'react-router'
+import { MemoryRouter as Router, withRouter } from 'react-router';
 import { BudgetDetail } from '../index';
 
 // mock nested component
