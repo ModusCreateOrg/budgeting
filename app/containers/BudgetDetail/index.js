@@ -31,11 +31,12 @@ class BudgetDetail extends React.Component<BudgetDetailProps> {
   render() {
     const { id, match, item, inflow, history } = this.props;
 
-    if(!item || item.id === null){
-      history.push("/budget");
-    };
+    if (!item || item.id === null) {
+      history.push('/budget');
+      return null;
+    }
 
-    let budget = parseFloat(inflow.text.replace(/[^0-9\.-]+/g,""));
+    let budget = parseFloat(inflow.text.replace(/[^0-9\.-]+/g, ''));
 
     let value = percentage(item.value, budget, true);
     let itemValue = Math.abs(item.value);
@@ -66,7 +67,7 @@ class BudgetDetail extends React.Component<BudgetDetailProps> {
             <h4 className={value.isNegative ? styles.red : styles.green}>{value.text}</h4>
           </div>
         </header>
-        <div  className={styles.marginSmall}>
+        <div className={styles.marginSmall}>
           <PieChart dataKey="key" data={data} dataLabel="description" />
         </div>
       </div>
