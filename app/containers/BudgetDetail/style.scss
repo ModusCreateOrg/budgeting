@@ -1,0 +1,45 @@
+@import 'theme/variables';
+
+.budgetContainer {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  font-size: 0.8em;
+
+
+  @media only screen and (max-device-width: 480px) {
+
+  }
+}
+
+.red{
+  color: $red;
+}
+
+.green{
+  color: $green;
+}
+
+.header{
+  display: flex;
+  padding: 0 1em;
+  border: 1px solid $gray;
+  border-radius: 6px;
+  background-color: $lightgray;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.button{
+  padding: 1px 10px 1px 10px;
+  margin-right: 50px;
+  border: 1px solid $gray;
+  border-radius: 2px;
+  background-color: "transparent";
+  font-weight: bold;
+}
+
+.titleContainer{
+  align-content: center;
+  align-self: center;
+}

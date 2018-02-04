@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getTransactions } from 'selectors/transactions';
+import { getTransactions, getItemById } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
@@ -10,7 +10,9 @@ import styles from './style.scss';
 
 type BudgetGridProps = {
   transactions: Transaction[],
+  item: Transaction[],
   categories: Object,
+  history: Object,
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
@@ -20,7 +22,8 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
   };
 
   render() {
-    const { transactions, categories } = this.props;
+    const { transactions, categories, history, item } = this.props;
+    console.log(item);
 
     return (
       <table className={styles.budgetGrid}>
@@ -47,6 +50,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
 const mapStateToProps = state => ({
   transactions: getTransactions(state),
   categories: getCategories(state),
+  item: getItemById(state),
 });
 
 export default connect(mapStateToProps)(BudgetGrid);

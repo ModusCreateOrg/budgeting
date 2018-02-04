@@ -12,6 +12,12 @@ export type TransactionSummary = {
   category?: string,
 };
 
+export type BudgetItem = {
+  id: number,
+  percentage: number,
+  description?: string,
+};
+
 function totalTransactions(transactions: Transaction[]): number {
   return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
 }
@@ -47,6 +53,8 @@ const getOutflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value < 0)
 );
 
+console.log(getOutflowTransactions);
+
 const getBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
 
 export const getInflowBalance = createSelector([getInflowTransactions], transactions =>
@@ -77,4 +85,8 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
+);
+
+export const getItemById = createSelector([getTransactions, (state, itemId) => itemId], (transactions, itemId) =>
+  transactions.find(obj => obj.id === itemId)
 );

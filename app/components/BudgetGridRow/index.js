@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { withRouter } from 'react-router';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -8,16 +9,19 @@ import styles from './style.scss';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
+  match: Object,
+  location: Object,
+  history: Object,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, history }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
   return (
-    <tr key={id}>
+    <tr key={id} className={styles.rowItem} onClick={() => history.push(`/budget/${id}`)}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
@@ -34,4 +38,4 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   );
 };
 
-export default BudgetGridRow;
+export default withRouter(BudgetGridRow);
