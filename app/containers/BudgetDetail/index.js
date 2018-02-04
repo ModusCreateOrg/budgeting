@@ -2,44 +2,33 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import formatAmount from 'utils/formatAmount';
 import percentage from 'utils/percentage';
 import type { Transaction } from 'modules/transactions';
-import {
-  getFormattedBalance,
-  getFormattedInflowBalance,
-  getFormattedOutflowBalance,
-  getItemById,
-  sortTransactions,
-  getOutflowByCategoryName,
-} from 'selectors/transactions';
+import { getFormattedInflowBalance, getItemById } from 'selectors/transactions';
 
 import PieChart from 'components/PieChart';
 
 import styles from './style.scss';
 
 type BudgetDetailProps = {
-  item: Transaction[],
-  id: 3,
+  item: Transaction,
   match: Object,
   history: Object,
   inflow: number,
-  outflow: number,
 };
 
 class BudgetDetail extends React.Component<BudgetDetailProps> {
   render() {
-    const { id, match, item, inflow, history } = this.props;
+    const { item, inflow, history } = this.props;
 
     if (!item || item.id === null) {
       history.push('/budget');
       return null;
     }
 
-    let budget = parseFloat(inflow.text.replace(/[^0-9\.-]+/g, ''));
-
-    let value = percentage(item.value, budget, true);
-    let itemValue = Math.abs(item.value);
+    const budget = parseFloat(inflow.text.replace(/[^0-9.-]+/g, ''));
+    const value = percentage(item.value, budget, true);
+    const itemValue = Math.abs(item.value);
 
     const main = {
       key: `key-${item.id}`,
@@ -47,7 +36,7 @@ class BudgetDetail extends React.Component<BudgetDetailProps> {
       value: itemValue,
     };
 
-    let data = [
+    const data = [
       main,
       {
         key: 'key-last',
@@ -77,7 +66,7 @@ class BudgetDetail extends React.Component<BudgetDetailProps> {
 
 const mapStateToProps = (state, props) => ({
   inflow: getFormattedInflowBalance(state),
-  item: getItemById(state, parseInt(props.match.params.id)),
+  item: getItemById(state, parseInt(props.match.params.id, 10)),
 });
 
 export default withRouter(connect(mapStateToProps)(BudgetDetail));

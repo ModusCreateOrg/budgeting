@@ -9,8 +9,6 @@ import styles from './style.scss';
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
-  match: Object,
-  location: Object,
   history: Object,
 };
 

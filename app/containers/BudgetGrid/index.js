@@ -12,7 +12,6 @@ type BudgetGridProps = {
   transactions: Transaction[],
   item: Transaction[],
   categories: Object,
-  history: Object,
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
@@ -22,7 +21,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
   };
 
   render() {
-    const { transactions, categories, history, item } = this.props;
+    const { transactions, categories, item } = this.props;
     console.log(item);
 
     return (
