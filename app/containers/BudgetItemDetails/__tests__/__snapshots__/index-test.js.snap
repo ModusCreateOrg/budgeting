@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="budgetItemDetails"
+>
+  <div
+    className="goBackButton goBackButton"
+    onClick={[Function]}
+    role="button"
+    tabIndex="0"
+  >
+    Back
+  </div>
+  <div>
+    <h1>
+      Trader Joe's food
+    </h1>
+    <h2>
+      Amount 
+      spent
+      : 
+       
+      <span
+        className="textRed"
+      >
+        -$423.34
+      </span>
+    </h2>
+    <h3>
+      which is 
+      18.0%
+       of total 
+      outflow
+       
+       
+      <span
+        className="textRed"
+      >
+        -$2,346.00
+      </span>
+    </h3>
+  </div>
+</div>
+`;

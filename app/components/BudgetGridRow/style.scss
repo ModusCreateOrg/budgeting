@@ -1,5 +1,13 @@
 @import 'theme/variables';
 
+.budgetGridRow {
+  cursor: pointer;
+
+  &:hover {
+    background: $verylightgray;
+  }
+}
+
 .cellLabel {
   display: none;
 
