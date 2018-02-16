@@ -33,21 +33,29 @@ export const BudgetItemDetails = ({
   inflowBalance,
   outflowBalance,
 }: BudgetItemDetailsProps) => {
-  const getItem = itemIdToGet => ({ id }) => id === Number(itemIdToGet);
+  // retrieve item ID from props.match (router url match object)
   const { itemId } = match.params;
+
+  // retrieve inflow/outflow item from state
+  const getItem = itemIdToGet => ({ id }) => id === Number(itemIdToGet);
   const item = transactions.filter(getItem(itemId))[0];
 
+  // determine if item is inflow or outflow
   const isInflow = item.value > 0;
+
+  // calculate what percentage the value is of the total inflow/outflow
   const percentageOfTotal = formatPercentage(item.value / (isInflow ? inflowBalance : outflowBalance) * 100, {
     decimals: 1,
   });
 
+  // shorten description (with ellipsis) for chart legend
   const MAX_DESC_LENGTH = 25;
   const shortenedDescriptionForChart =
     item.description.length > MAX_DESC_LENGTH + 3
       ? `${item.description.substr(0, MAX_DESC_LENGTH)}...`
       : item.description;
 
+  // return render
   return (
     <div className={styles.budgetItemDetails}>
       <div className={`goBackButton ${styles.goBackButton}`} onClick={history.goBack} role="button" tabIndex="0">
@@ -80,6 +88,9 @@ export const BudgetItemDetails = ({
             label: shortenedDescriptionForChart,
           },
           {
+            // show remaining amount in chart, to illustrate how large the spending is of the total inflow/outflow
+            // e.g. 100 spent on item, and 1000 is total outflow: so, draw a pie chart
+            //      with 100 slice -> (item value) AND 900 slice -> (total 1000 minus 100)
             key: 'remaining',
             value: Math.abs(isInflow ? inflowBalance : outflowBalance) - Math.abs(item.value),
             label: `Rest of ${isInflow ? ' inflows' : 'outflows'}`,

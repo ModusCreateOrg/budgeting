@@ -19,6 +19,7 @@ const BudgetGridRow = ({ transaction, categories, history }: BudgetGridRowProps)
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
+  // change url to item detail page (using react-router history object)
   const onOpenItemDetail = () => {
     history.push(`/item/${id}`);
   };
