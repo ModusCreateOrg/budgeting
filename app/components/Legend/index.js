@@ -1,12 +1,11 @@
 // @flow
 import * as React from 'react';
 import cx from 'classnames';
-import type { TransactionSummary } from 'selectors/transactions';
 import LegendItem from './LegendItem';
 import styles from './styles.scss';
 
 type LegendType = {
-  data: TransactionSummary[],
+  data: any,
   dataValue: string,
   dataLabel: string,
   dataKey: string,
