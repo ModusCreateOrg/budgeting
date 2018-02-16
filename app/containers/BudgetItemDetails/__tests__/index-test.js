@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { BudgetItemDetails } from 'containers/BudgetItemDetails';
 
+jest.mock('components/DonutChart/Path');
+jest.mock('components/Legend', () => 'div');
+
 it('renders correctly', () => {
   const mockTransactions = [
     {
@@ -10,6 +13,12 @@ it('renders correctly', () => {
       description: "Trader Joe's food",
       value: -423.34,
       categoryId: 1,
+    },
+    {
+      id: 2,
+      description: 'More books :) And some long text to see if elipsis works',
+      value: -623.34,
+      categoryId: 2,
     },
   ];
 

@@ -20,6 +20,21 @@
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
       opacity: 1;
     }
+
+    @media screen and (max-height: 50em) {
+      margin-top:3rem;
+    }
+  }
+
+  .mainText {
+    max-width: 500px;
+    width:calc(100% - 2rem);
+    margin: {
+      top:0;
+      left: auto;
+      right: auto;
+      bottom: 3rem;
+    }
   }
 
   .textGreen {

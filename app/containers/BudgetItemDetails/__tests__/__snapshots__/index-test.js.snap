@@ -12,14 +12,16 @@ exports[`renders correctly 1`] = `
   >
     Back
   </div>
-  <div>
+  <div
+    className="mainText"
+  >
     <h1>
       Trader Joe's food
     </h1>
     <h2>
       Amount 
       spent
-      : 
+      :
        
       <span
         className="textRed"
@@ -33,13 +35,46 @@ exports[`renders correctly 1`] = `
        of total 
       outflow
        
-       
       <span
         className="textRed"
       >
         -$2,346.00
       </span>
     </h3>
+  </div>
+  <div
+    className="pieChart"
+  >
+    <svg
+      className="mainSvg"
+      height={316}
+      viewBox="-8 -8 316 316"
+      width={316}
+    >
+      <g
+        transform="translate(150,150)"
+      />
+    </svg>
+    <div
+      color={[Function]}
+      data={
+        Array [
+          Object {
+            "key": "value",
+            "label": "Trader Joe's food",
+            "value": 423.34,
+          },
+          Object {
+            "key": "remaining",
+            "label": "Rest of outflows",
+            "value": 1922.66,
+          },
+        ]
+      }
+      dataKey="key"
+      dataLabel="label"
+      dataValue="value"
+    />
   </div>
 </div>
 `;

@@ -8,6 +8,7 @@ import type { Match, RouterHistory } from 'react-router-dom';
 import { getTransactions, getInflowBalance, getOutflowBalance } from '../../selectors/transactions';
 import transactionReducer from '../../modules/transactions';
 import type { Transaction } from '../../modules/transactions';
+import PieChart from '../../components/PieChart';
 import formatPercentage from '../../utils/formatPercentage';
 import formatAmount from '../../utils/formatAmount';
 import styles from './style.scss';
@@ -41,12 +42,18 @@ export const BudgetItemDetails = ({
     decimals: 1,
   });
 
+  const MAX_DESC_LENGTH = 25;
+  const shortenedDescriptionForChart =
+    item.description.length > MAX_DESC_LENGTH + 3
+      ? `${item.description.substr(0, MAX_DESC_LENGTH)}...`
+      : item.description;
+
   return (
     <div className={styles.budgetItemDetails}>
       <div className={`goBackButton ${styles.goBackButton}`} onClick={history.goBack} role="button" tabIndex="0">
         Back
       </div>
-      <div>
+      <div className={styles.mainText}>
         <h1>{item.description}</h1>
         <h2>
           Amount {isInflow ? 'in' : 'spent'}:{' '}
@@ -65,6 +72,22 @@ export const BudgetItemDetails = ({
           )}
         </h3>
       </div>
+      <PieChart
+        data={[
+          {
+            key: 'value',
+            value: Math.abs(item.value),
+            label: shortenedDescriptionForChart,
+          },
+          {
+            key: 'remaining',
+            value: Math.abs(isInflow ? inflowBalance : outflowBalance) - Math.abs(item.value),
+            label: `Rest of ${isInflow ? ' inflows' : 'outflows'}`,
+          },
+        ]}
+        dataLabel="label"
+        dataKey="key"
+      />
     </div>
   );
 };
