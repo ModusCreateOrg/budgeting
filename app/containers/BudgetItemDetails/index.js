@@ -49,7 +49,7 @@ export const BudgetItemDetails = ({
       <div>
         <h1>{item.description}</h1>
         <h2>
-          Amount {isInflow ? 'in' : 'spent'}: {' '}
+          Amount {isInflow ? 'in' : 'spent'}:{' '}
           {isInflow ? (
             <span className={styles.textGreen}>{formatAmount(item.value).text}</span>
           ) : (
@@ -57,7 +57,7 @@ export const BudgetItemDetails = ({
           )}
         </h2>
         <h3>
-          which is {percentageOfTotal} of total {isInflow ? 'inflow' : 'outflow'} {' '}
+          which is {percentageOfTotal} of total {isInflow ? 'inflow' : 'outflow'}{' '}
           {isInflow ? (
             <span className={styles.textGreen}>{formatAmount(inflowBalance).text}</span>
           ) : (
