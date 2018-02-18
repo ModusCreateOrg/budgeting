@@ -11,7 +11,7 @@ import {
   getTransaction,
   getFlowShareForTransaction,
   getFlowShareForTransactionFormatted,
-  getFlowShareForTransactionMapped
+  getFlowShareForTransactionMapped,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -377,20 +377,16 @@ describe('getInflowByCategoryName', () => {
   });
 });
 
-describe("getTransaction", () => {
+describe('getTransaction', () => {
   it('should return transaction by match params', () => {
     getTransaction.resetRecomputations();
 
     const state1 = {
-      transactions: [
-        { value: 10, id: 1 },
-        { value: -70, id: 2 },
-      ],
+      transactions: [{ value: 10, id: 1 }, { value: -70, id: 2 }],
     };
-    const state2 = { transactions: state1.transactions };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
     const expectedSelection1 = { value: 10, id: 1 };
 
@@ -401,15 +397,11 @@ describe("getTransaction", () => {
     getTransaction.resetRecomputations();
 
     const state1 = {
-      transactions: [
-        { value: 10, id: 1 },
-        { value: -70, id: 2 },
-      ],
+      transactions: [{ value: 10, id: 1 }, { value: -70, id: 2 }],
     };
-    const state2 = { transactions: state1.transactions };
     const props = {
-      transaction: { id: 1, value: 10 }
-    }
+      transaction: { id: 1, value: 10 },
+    };
 
     const expectedSelection1 = { value: 10, id: 1 };
 
@@ -420,21 +412,16 @@ describe("getTransaction", () => {
     getTransaction.resetRecomputations();
 
     const state1 = {
-      transactions: [
-        { value: 10, id: 1 },
-        { value: -70, id: 2 },
-      ],
+      transactions: [{ value: 10, id: 1 }, { value: -70, id: 2 }],
     };
     const state2 = { transactions: state1.transactions };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
     const state3 = {
-      transactions: [
-        { value: 20, id: 1 }
-      ]
-    }
+      transactions: [{ value: 20, id: 1 }],
+    };
 
     const expectedSelection1 = { value: 10, id: 1 };
     const expectedSelection2 = { value: 20, id: 1 };
@@ -446,10 +433,9 @@ describe("getTransaction", () => {
     expect(getTransaction(state3, props)).toEqual(expectedSelection2);
     expect(getTransaction.recomputations()).toEqual(2);
   });
-})
+});
 
-
-describe("getFlowShareForTransaction", () => {
+describe('getFlowShareForTransaction', () => {
   it('should return percentage of transaction outflow', () => {
     getFlowShareForTransaction.resetRecomputations();
 
@@ -463,8 +449,8 @@ describe("getFlowShareForTransaction", () => {
       ],
     };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
     const expectedSelection1 = { flowTotal: -40, percent: 0.25 };
 
@@ -485,8 +471,8 @@ describe("getFlowShareForTransaction", () => {
       ],
     };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
     const expectedSelection1 = { flowTotal: 40, percent: 0.25 };
 
@@ -507,12 +493,12 @@ describe("getFlowShareForTransaction", () => {
       ],
     };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
     const state2 = {
-      transactions: state1.transactions
-    }
+      transactions: state1.transactions,
+    };
 
     const state3 = {
       transactions: [
@@ -520,8 +506,8 @@ describe("getFlowShareForTransaction", () => {
         { value: 20, id: 2, categoryId: 15 },
         { value: 20, id: 3, categoryId: 15 },
         { value: 20, id: 4, categoryId: 15 },
-      ]
-    }
+      ],
+    };
 
     const expectedSelection1 = { flowTotal: 40, percent: 0.25 };
     const expectedSelection2 = { flowTotal: 80, percent: 0.25 };
@@ -533,9 +519,9 @@ describe("getFlowShareForTransaction", () => {
     expect(getFlowShareForTransaction(state3, props)).toEqual(expectedSelection2);
     expect(getFlowShareForTransaction.recomputations()).toEqual(2);
   });
-})
+});
 
-describe("getFlowShareForTransactionFormatted", () => {
+describe('getFlowShareForTransactionFormatted', () => {
   it('should return formatted value', () => {
     const state1 = {
       transactions: [
@@ -547,21 +533,20 @@ describe("getFlowShareForTransactionFormatted", () => {
       ],
     };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
-    const expectedSelection1 = "25.00%";
+    const expectedSelection1 = '25.00%';
 
     expect(getFlowShareForTransactionFormatted(state1, props)).toEqual(expectedSelection1);
   });
-})
+});
 
-
-describe("getFlowShareForTransactionFormatted", () => {
+describe('getFlowShareForTransactionFormatted', () => {
   it('should return mapped value', () => {
     const state1 = {
       transactions: [
-        { value: -10, id: 1, description: "desc", categoryId: 1 },
+        { value: -10, id: 1, description: 'desc', categoryId: 1 },
         { value: -10, id: 2, categoryId: 1 },
         { value: -10, id: 3, categoryId: 1 },
         { value: -10, id: 4, categoryId: 1 },
@@ -569,21 +554,22 @@ describe("getFlowShareForTransactionFormatted", () => {
       ],
     };
     const props = {
-      match: { params: { id: 1 } }
-    }
+      match: { params: { id: 1 } },
+    };
 
     const expectedSelection1 = [
       {
         key: 0,
-        label: "desc",
+        label: 'desc',
         value: -10,
-      }, {
+      },
+      {
         key: 1,
-        label: "Rest",
-        value: -30
-      }
-    ]
+        label: 'Rest',
+        value: -30,
+      },
+    ];
 
     expect(getFlowShareForTransactionMapped(state1, props)).toEqual(expectedSelection1);
   });
-})
+});

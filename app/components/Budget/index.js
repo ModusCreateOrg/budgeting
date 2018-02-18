@@ -6,20 +6,17 @@ import { injectAsyncReducers } from 'store';
 import transactionReducer from 'modules/transactions';
 import BudgetItemDetails from 'components/BudgetItemDetails';
 
-
 // inject reducers that might not have been originally there
 injectAsyncReducers({
-    transactions: transactionReducer,
+  transactions: transactionReducer,
 });
 
-
 export const Budget = ({ match }) => (
-    <Switch>
-        <Route path={`${match.url}/item-details/:id`} component={BudgetItemDetails} />
-        <Route exact path={`${match.url}/`} component={BudgetOverview} />
-        <Redirect to={`${match.url}/`} />
-    </Switch>
-)
-
+  <Switch>
+    <Route path={`${match.url}/item-details/:id`} component={BudgetItemDetails} />
+    <Route exact path={`${match.url}/`} component={BudgetOverview} />
+    <Redirect to={`${match.url}/`} />
+  </Switch>
+);
 
 export default withRouter(Budget);

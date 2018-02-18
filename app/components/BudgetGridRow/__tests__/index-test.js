@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { BudgetGridRow } from 'components/BudgetGridRow';
-import { withRouter, MemoryRouter, location } from 'react-router';
 import { mount } from 'enzyme';
 
 const mockTransaction = {
@@ -16,39 +15,40 @@ const mockCategories = {
   2: 'School',
 };
 
-const mockContribution = "20.00%"
+const mockContribution = '20.00%';
 
 it('renders correctly', () => {
-  const tree = renderer.create(
-    <table>
-      <tbody>
-        <BudgetGridRow transaction={mockTransaction} categories={mockCategories} share={mockContribution} />
-      </tbody>
-    </table>
-  ).toJSON();
+  const tree = renderer
+    .create(
+      <table>
+        <tbody>
+          <BudgetGridRow transaction={mockTransaction} categories={mockCategories} share={mockContribution} />
+        </tbody>
+      </table>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-
-it('navigates without crashing', (done) => {
-
+it('navigates without crashing', done => {
   const mockupHistory = {
-    push: (url) => {
-      expect(url).toEqual("/budget/item-details/" + mockTransaction.id);
+    push: url => {
+      expect(url).toEqual(`/budget/item-details/${mockTransaction.id}`);
       done();
-    }
-  }
+    },
+  };
 
   const component = mount(
     <table>
       <tbody>
-        < BudgetGridRow
+        <BudgetGridRow
           transaction={mockTransaction}
           categories={mockCategories}
           share={mockContribution}
-          history={mockupHistory} />
+          history={mockupHistory}
+        />
       </tbody>
     </table>
   );
-  component.find("tr").simulate("click");
+  component.find('tr').simulate('click');
 });

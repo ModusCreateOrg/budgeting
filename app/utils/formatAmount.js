@@ -24,5 +24,5 @@ export const formatPercent = (percent, precision = 2): String => {
     minimumFractionDigits: precision,
     maximumFractionDigits: precision,
   });
-  return formatValue
-}
+  return formatValue;
+};

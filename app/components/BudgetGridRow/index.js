@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import formatAmount, { formatPercent } from 'utils/formatAmount';
-import type { Transaction } from 'modules/transactions';
-import type { Categories } from 'modules/categories';
-import styles from './style.scss';
 import { connect } from 'react-redux';
-import { getFlowShareForTransactionFormatted } from 'selectors/transactions'
 import { withRouter } from 'react-router-dom';
 import type { History } from 'react-router-dom';
+import formatAmount from 'utils/formatAmount';
+import type { Transaction } from 'modules/transactions';
+import type { Categories } from 'modules/categories';
+import { getFlowShareForTransactionFormatted } from 'selectors/transactions';
+import styles from './style.scss';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
@@ -24,7 +24,7 @@ export const BudgetGridRow = ({ transaction, categories, share, history }: Budge
 
   const onClick = () => {
     history.push(`/budget/item-details/${id}`);
-  }
+  };
 
   return (
     <tr key={id} onClick={onClick}>
@@ -53,5 +53,3 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default withRouter(connect(mapStateToProps)(BudgetGridRow));
-
-
