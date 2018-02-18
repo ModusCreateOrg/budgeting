@@ -17,3 +17,12 @@ export default function formatAmount(amount: number, showSign: boolean = true): 
     isNegative,
   };
 }
+
+export const formatPercent = (percent, precision = 2): String => {
+  const formatValue = percent.toLocaleString('en-us', {
+    style: 'percent',
+    minimumFractionDigits: precision,
+    maximumFractionDigits: precision,
+  });
+  return formatValue;
+};

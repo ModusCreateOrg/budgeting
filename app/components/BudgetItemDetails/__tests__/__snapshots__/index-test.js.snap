@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <h1>
+    Trader Joe's food
+  </h1>
+  <h4
+    className="contribution"
+  >
+    Contribution: 
+    <span
+      className="neg"
+    >
+       - 
+    </span>
+     
+    20%
+  </h4>
+  <div
+    data={
+      Array [
+        Object {
+          "key": 0,
+          "label": "Trader Joe's food",
+          "value": -423.34,
+        },
+        Object {
+          "key": 1,
+          "label": "rest",
+          "value": -500,
+        },
+      ]
+    }
+    dataKey="key"
+    dataLabel="label"
+  />
+</section>
+`;

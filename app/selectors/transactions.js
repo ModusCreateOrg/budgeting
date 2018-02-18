@@ -1,7 +1,7 @@
 // @flow
 
 import { createSelector } from 'reselect';
-import formatAmount from 'utils/formatAmount';
+import formatAmount, { formatPercent } from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
 import { getCategories } from './categories';
@@ -10,6 +10,12 @@ export type TransactionSummary = {
   categoryId: string,
   value: number,
   category?: string,
+};
+
+export type ContributionMapping = {
+  key: Number,
+  value: Number,
+  label: String,
 };
 
 function totalTransactions(transactions: Transaction[]): number {
@@ -77,4 +83,46 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
+);
+
+const getSingleTransaction = (state, props: { transaction: ?Transaction, match: ?Match }): Transaction => {
+  const search = props.transaction ? props.transaction.id : props.match.params.id;
+  return getTransactions(state).find(t => t.id === parseInt(search, 10));
+};
+
+export const getTransaction = createSelector(getSingleTransaction, trans => trans);
+
+export const getFlowShareForTransaction = createSelector(
+  getTransaction,
+  getInflowBalance,
+  getOutflowBalance,
+  (trans, inflow, outflow) => {
+    const total = trans.value > 0 ? inflow : outflow;
+    const percent = Math.abs(trans.value / total);
+    return {
+      flowTotal: total,
+      percent: percent,
+    };
+  }
+);
+
+export const getFlowShareForTransactionFormatted = createSelector(getFlowShareForTransaction, share =>
+  formatPercent(share.percent)
+);
+
+export const getFlowShareForTransactionMapped = createSelector(
+  getTransaction,
+  getFlowShareForTransaction,
+  (trans, share) => [
+    {
+      key: 0,
+      label: trans.description,
+      value: trans.value,
+    },
+    {
+      key: 1,
+      label: 'Rest',
+      value: share.flowTotal - trans.value,
+    },
+  ]
 );

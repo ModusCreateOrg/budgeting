@@ -1,8 +1,7 @@
-// @flow
 import * as React from 'react';
+import { injectAsyncReducers } from 'store';
 import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
-import { injectAsyncReducers } from 'store';
 import BudgetGrid from 'containers/BudgetGrid';
 import Balance from 'containers/Balance';
 
@@ -12,11 +11,11 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = () => (
+const BudgetOverview = () => (
   <section>
     <BudgetGrid />
     <Balance />
   </section>
 );
 
-export default BudgetContainer;
+export default BudgetOverview;
