@@ -26,7 +26,7 @@ function summarizeTransactions(transactions: Transaction[]): TransactionSummary[
   }, []);
 }
 
-export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
+export const sortTransactions = <T: { value: number }> (transactions: T[]): T[] => {
   const unsorted = [...transactions];
   return unsorted.sort((a, b) => b.value - a.value);
 };
@@ -78,3 +78,20 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+const singleTransaction = (state, props) => {
+  const transaction = props.transaction;
+  return getTransactions(state).find(t => t.id === parseInt(transaction.id, 10));
+}
+
+export const getFlowShareByTransaction = createSelector(singleTransaction, getInflowBalance, getOutflowBalance, (trans, inflow, outflow) => {
+  const total = trans.value > 0 ? inflow : outflow;
+  const percent = Math.abs((trans.value) / total);
+  return {
+    flowTotal: total,
+    percent: percent,
+  };
+})
+
+
+

@@ -28,6 +28,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
           <tr>
             <th>Category</th>
             <th>Description</th>
+            <th>Contribution</th>
             <th>Amount</th>
           </tr>
         </thead>

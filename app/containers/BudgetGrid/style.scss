@@ -24,7 +24,7 @@
       text-align: right;
     }
 
-    &:nth-child(1), &:nth-child(3) {
+    &:nth-child(1), &:nth-child(3), &:nth-child(4) {
       flex: 1;
       min-width: 120px;
     }
@@ -40,6 +40,7 @@
 
   thead {
     border-bottom: 1px solid $gray;
+    padding-right: 20px;
   }
 
   tbody {
@@ -49,6 +50,11 @@
 
     tr {
       border-bottom: 1px solid $lightgray;
+      cursor: pointer;
+
+      &:hover{
+        background-color:#eee;
+      }
     }
 
     td {

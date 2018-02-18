@@ -1,22 +1,28 @@
 // @flow
 import * as React from 'react';
-import transactionReducer from 'modules/transactions';
-import categoryReducer from 'modules/categories';
+import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
+import BudgetOverview from 'containers/BudgetOverview';
 import { injectAsyncReducers } from 'store';
-import BudgetGrid from 'containers/BudgetGrid';
-import Balance from 'containers/Balance';
+import transactionReducer from 'modules/transactions';
+
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({
   transactions: transactionReducer,
-  categories: categoryReducer,
 });
 
-const BudgetContainer = () => (
-  <section>
-    <BudgetGrid />
-    <Balance />
-  </section>
-);
 
-export default BudgetContainer;
+const BudgetContainer = ({ match }) => {
+  return (
+    <section>
+      <Switch>
+        <Route path={`${match.url}/item-details/:id`} />
+        <Route exact path={`${match.url}/overview/`} component={BudgetOverview} />
+        <Redirect to={`${match.url}/overview/`} />
+      </Switch>
+
+    </section>
+  )
+};
+
+export default withRouter(BudgetContainer);

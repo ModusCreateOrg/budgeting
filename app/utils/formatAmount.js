@@ -17,3 +17,9 @@ export default function formatAmount(amount: number, showSign: boolean = true): 
     isNegative,
   };
 }
+
+export const formatPercent = (percent, precision = 2): String => {
+  console.log(percent);
+  const p = Math.round(percent * 100 * precision) / precision;
+  return `${p}%`
+}
