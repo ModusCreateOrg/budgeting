@@ -79,12 +79,12 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
   applyCategoryName(trans, cat)
 );
 
-const singleTransaction = (state, props) => {
-  const transaction = props.transaction;
-  return getTransactions(state).find(t => t.id === parseInt(transaction.id, 10));
+export const getTransaction = (state, props: { transaction: ?Transaction, match: ?Match }): Transaction => {
+  const search = props.transaction ? props.transaction.id : props.match.params.id;
+  return getTransactions(state).find(t => t.id === parseInt(search, 10));
 }
 
-export const getFlowShareByTransaction = createSelector(singleTransaction, getInflowBalance, getOutflowBalance, (trans, inflow, outflow) => {
+export const getFlowShareByTransaction = createSelector(getTransaction, getInflowBalance, getOutflowBalance, (trans, inflow, outflow) => {
   const total = trans.value > 0 ? inflow : outflow;
   const percent = Math.abs((trans.value) / total);
   return {
@@ -94,4 +94,7 @@ export const getFlowShareByTransaction = createSelector(singleTransaction, getIn
 })
 
 
+// export const getTransactionByUrl = createSelector(singleTransaction, (trans) => {
+//   return trans;
+// })
 
