@@ -19,7 +19,10 @@ export default function formatAmount(amount: number, showSign: boolean = true): 
 }
 
 export const formatPercent = (percent, precision = 2): String => {
-  console.log(percent);
-  const p = Math.round(percent * 100 * precision) / precision;
-  return `${p}%`
+  const formatValue = percent.toLocaleString('en-us', {
+    style: 'percent',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  return formatValue
 }
