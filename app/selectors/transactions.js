@@ -1,7 +1,7 @@
 // @flow
 
 import { createSelector } from 'reselect';
-import formatAmount from 'utils/formatAmount';
+import formatAmount, { formatPercent } from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
 import { getCategories } from './categories';
@@ -11,6 +11,13 @@ export type TransactionSummary = {
   value: number,
   category?: string,
 };
+
+export type ContributionMapping = {
+  key: Number,
+  value: Number,
+  label: String,
+}
+
 
 function totalTransactions(transactions: Transaction[]): number {
   return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
@@ -79,12 +86,14 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
   applyCategoryName(trans, cat)
 );
 
-export const getTransaction = (state, props: { transaction: ?Transaction, match: ?Match }): Transaction => {
+const getSingleTransaction = (state, props: { transaction: ?Transaction, match: ?Match }): Transaction => {
   const search = props.transaction ? props.transaction.id : props.match.params.id;
   return getTransactions(state).find(t => t.id === parseInt(search, 10));
 }
 
-export const getFlowShareByTransaction = createSelector(getTransaction, getInflowBalance, getOutflowBalance, (trans, inflow, outflow) => {
+export const getTransaction = createSelector(getSingleTransaction, trans => trans);
+
+export const getFlowShareForTransaction = createSelector(getTransaction, getInflowBalance, getOutflowBalance, (trans, inflow, outflow) => {
   const total = trans.value > 0 ? inflow : outflow;
   const percent = Math.abs((trans.value) / total);
   return {
@@ -93,8 +102,18 @@ export const getFlowShareByTransaction = createSelector(getTransaction, getInflo
   };
 })
 
+export const getFlowShareForTransactionFormatted = createSelector(getFlowShareForTransaction, share => formatPercent(share.percent))
 
-// export const getTransactionByUrl = createSelector(singleTransaction, (trans) => {
-//   return trans;
-// })
-
+export const getFlowShareForTransactionMapped = createSelector(getTransaction, getFlowShareForTransaction, (trans, share) => {
+  return [
+    {
+      key: 0,
+      label: trans.description,
+      value: trans.value,
+    }, {
+      key: 1,
+      label: "Rest",
+      value: share.flowTotal - trans.value
+    }
+  ]
+})

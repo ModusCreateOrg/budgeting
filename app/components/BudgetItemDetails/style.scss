@@ -1,17 +1,7 @@
 @import 'theme/variables';
 
-.cellLabel {
-  display: none;
-
-  @media only screen and (max-width: $screen-small) {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-}
-
-.cellContent {
-  flex: 1;
+.contribution{
+  color:#666;
 }
 
 .neg {

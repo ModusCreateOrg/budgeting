@@ -5,17 +5,14 @@ import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
 import { connect } from 'react-redux';
-import { getFlowShareByTransaction } from 'selectors/transactions'
+import { getFlowShareForTransactionFormatted } from 'selectors/transactions'
 import { withRouter } from 'react-router-dom';
 import type { History, Match } from 'react-router-dom';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
-  share: {
-    flowTotal: Number,
-    percent: Number,
-  },
+  share: String,
   history: History,
   match: Match,
 };
@@ -25,11 +22,8 @@ const BudgetGridRow = ({ transaction, categories, share, history, match }: Budge
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
-  const percent = formatPercent(share.percent);
 
   const onClick = () => {
-    console.log(match);
-    console.log(`/budget/item-details/${id}`);
     history.push(`/budget/item-details/${id}`);
   }
 
@@ -45,7 +39,7 @@ const BudgetGridRow = ({ transaction, categories, share, history, match }: Budge
       </td>
       <td>
         <div className={styles.cellLabel}>Contribution</div>
-        <div className={styles.cellContent}>{percent}</div>
+        <div className={styles.cellContent}>{share}</div>
       </td>
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>
@@ -56,7 +50,7 @@ const BudgetGridRow = ({ transaction, categories, share, history, match }: Budge
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  share: getFlowShareByTransaction(state, ownProps),
+  share: getFlowShareForTransactionFormatted(state, ownProps),
 });
 
 export default withRouter(connect(mapStateToProps)(BudgetGridRow));
