@@ -13,14 +13,13 @@ injectAsyncReducers({
 });
 
 
-const BudgetContainer = ({ match }) => {
-    return (
-        <Switch>
-            <Route path={`${match.url}/item-details/:id`} component={BudgetItemDetails} />
-            <Route exact path={`${match.url}/`} component={BudgetOverview} />
-            <Redirect to={`${match.url}/`} />
-        </Switch>
-    )
-};
+export const Budget = ({ match }) => (
+    <Switch>
+        <Route path={`${match.url}/item-details/:id`} component={BudgetItemDetails} />
+        <Route exact path={`${match.url}/`} component={BudgetOverview} />
+        <Redirect to={`${match.url}/`} />
+    </Switch>
+)
 
-export default withRouter(BudgetContainer);
+
+export default withRouter(Budget);

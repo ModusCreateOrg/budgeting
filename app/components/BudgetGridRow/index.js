@@ -7,17 +7,16 @@ import styles from './style.scss';
 import { connect } from 'react-redux';
 import { getFlowShareForTransactionFormatted } from 'selectors/transactions'
 import { withRouter } from 'react-router-dom';
-import type { History, Match } from 'react-router-dom';
+import type { History } from 'react-router-dom';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
   share: String,
   history: History,
-  match: Match,
 };
 
-const BudgetGridRow = ({ transaction, categories, share, history, match }: BudgetGridRowProps) => {
+export const BudgetGridRow = ({ transaction, categories, share, history }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
@@ -54,3 +53,5 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default withRouter(connect(mapStateToProps)(BudgetGridRow));
+
+

@@ -13,6 +13,9 @@ exports[`renders correctly 1`] = `
         Description
       </th>
       <th>
+        Contribution
+      </th>
+      <th>
         Amount
       </th>
     </tr>

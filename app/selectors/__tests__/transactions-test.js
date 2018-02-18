@@ -8,6 +8,10 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransaction,
+  getFlowShareForTransaction,
+  getFlowShareForTransactionFormatted,
+  getFlowShareForTransactionMapped
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -372,3 +376,214 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
   });
 });
+
+describe("getTransaction", () => {
+  it('should return transaction by match params', () => {
+    getTransaction.resetRecomputations();
+
+    const state1 = {
+      transactions: [
+        { value: 10, id: 1 },
+        { value: -70, id: 2 },
+      ],
+    };
+    const state2 = { transactions: state1.transactions };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const expectedSelection1 = { value: 10, id: 1 };
+
+    expect(getTransaction(state1, props)).toEqual(expectedSelection1);
+  });
+
+  it('should return transaction if by transaction.id', () => {
+    getTransaction.resetRecomputations();
+
+    const state1 = {
+      transactions: [
+        { value: 10, id: 1 },
+        { value: -70, id: 2 },
+      ],
+    };
+    const state2 = { transactions: state1.transactions };
+    const props = {
+      transaction: { id: 1, value: 10 }
+    }
+
+    const expectedSelection1 = { value: 10, id: 1 };
+
+    expect(getTransaction(state1, props)).toEqual(expectedSelection1);
+  });
+
+  it('should not recompute if called twice with the same transactions in state', () => {
+    getTransaction.resetRecomputations();
+
+    const state1 = {
+      transactions: [
+        { value: 10, id: 1 },
+        { value: -70, id: 2 },
+      ],
+    };
+    const state2 = { transactions: state1.transactions };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const state3 = {
+      transactions: [
+        { value: 20, id: 1 }
+      ]
+    }
+
+    const expectedSelection1 = { value: 10, id: 1 };
+    const expectedSelection2 = { value: 20, id: 1 };
+
+    expect(getTransaction(state1, props)).toEqual(expectedSelection1);
+    expect(getTransaction.recomputations()).toEqual(1);
+    expect(getTransaction(state2, props)).toEqual(expectedSelection1);
+    expect(getTransaction.recomputations()).toEqual(1);
+    expect(getTransaction(state3, props)).toEqual(expectedSelection2);
+    expect(getTransaction.recomputations()).toEqual(2);
+  });
+})
+
+
+describe("getFlowShareForTransaction", () => {
+  it('should return percentage of transaction outflow', () => {
+    getFlowShareForTransaction.resetRecomputations();
+
+    const state1 = {
+      transactions: [
+        { value: -10, id: 1, categoryId: 1 },
+        { value: -10, id: 2, categoryId: 1 },
+        { value: -10, id: 3, categoryId: 1 },
+        { value: -10, id: 4, categoryId: 1 },
+        { value: 10, id: 5, categoryId: 15 },
+      ],
+    };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const expectedSelection1 = { flowTotal: -40, percent: 0.25 };
+
+    expect(getFlowShareForTransaction(state1, props)).toEqual(expectedSelection1);
+    expect(getFlowShareForTransaction.recomputations()).toEqual(1);
+  });
+
+  it('should return percentage of transaction inflow', () => {
+    getFlowShareForTransaction.resetRecomputations();
+
+    const state1 = {
+      transactions: [
+        { value: 10, id: 1, categoryId: 15 },
+        { value: 10, id: 2, categoryId: 15 },
+        { value: 10, id: 3, categoryId: 15 },
+        { value: 10, id: 4, categoryId: 15 },
+        { value: -10, id: 5, categoryId: 1 },
+      ],
+    };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const expectedSelection1 = { flowTotal: 40, percent: 0.25 };
+
+    expect(getFlowShareForTransaction(state1, props)).toEqual(expectedSelection1);
+    expect(getFlowShareForTransaction.recomputations()).toEqual(1);
+  });
+
+  it('should not recompute if called twice with the same transactions in state', () => {
+    getFlowShareForTransaction.resetRecomputations();
+
+    const state1 = {
+      transactions: [
+        { value: 10, id: 1, categoryId: 15 },
+        { value: 10, id: 2, categoryId: 15 },
+        { value: 10, id: 3, categoryId: 15 },
+        { value: 10, id: 4, categoryId: 15 },
+        { value: -10, id: 5, categoryId: 1 },
+      ],
+    };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const state2 = {
+      transactions: state1.transactions
+    }
+
+    const state3 = {
+      transactions: [
+        { value: 20, id: 1, categoryId: 15 },
+        { value: 20, id: 2, categoryId: 15 },
+        { value: 20, id: 3, categoryId: 15 },
+        { value: 20, id: 4, categoryId: 15 },
+      ]
+    }
+
+    const expectedSelection1 = { flowTotal: 40, percent: 0.25 };
+    const expectedSelection2 = { flowTotal: 80, percent: 0.25 };
+
+    expect(getFlowShareForTransaction(state1, props)).toEqual(expectedSelection1);
+    expect(getFlowShareForTransaction.recomputations()).toEqual(1);
+    expect(getFlowShareForTransaction(state2, props)).toEqual(expectedSelection1);
+    expect(getFlowShareForTransaction.recomputations()).toEqual(1);
+    expect(getFlowShareForTransaction(state3, props)).toEqual(expectedSelection2);
+    expect(getFlowShareForTransaction.recomputations()).toEqual(2);
+  });
+})
+
+describe("getFlowShareForTransactionFormatted", () => {
+  it('should return formatted value', () => {
+    const state1 = {
+      transactions: [
+        { value: -10, id: 1, categoryId: 1 },
+        { value: -10, id: 2, categoryId: 1 },
+        { value: -10, id: 3, categoryId: 1 },
+        { value: -10, id: 4, categoryId: 1 },
+        { value: 10, id: 5, categoryId: 15 },
+      ],
+    };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const expectedSelection1 = "25.00%";
+
+    expect(getFlowShareForTransactionFormatted(state1, props)).toEqual(expectedSelection1);
+  });
+})
+
+
+describe("getFlowShareForTransactionFormatted", () => {
+  it('should return mapped value', () => {
+    const state1 = {
+      transactions: [
+        { value: -10, id: 1, description: "desc", categoryId: 1 },
+        { value: -10, id: 2, categoryId: 1 },
+        { value: -10, id: 3, categoryId: 1 },
+        { value: -10, id: 4, categoryId: 1 },
+        { value: 10, id: 5, categoryId: 15 },
+      ],
+    };
+    const props = {
+      match: { params: { id: 1 } }
+    }
+
+    const expectedSelection1 = [
+      {
+        key: 0,
+        label: "desc",
+        value: -10,
+      }, {
+        key: 1,
+        label: "Rest",
+        value: -30
+      }
+    ]
+
+    expect(getFlowShareForTransactionMapped(state1, props)).toEqual(expectedSelection1);
+  });
+})

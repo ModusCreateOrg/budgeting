@@ -91,7 +91,8 @@ const getSingleTransaction = (state, props: { transaction: ?Transaction, match: 
   return getTransactions(state).find(t => t.id === parseInt(search, 10));
 }
 
-export const getTransaction = createSelector(getSingleTransaction, trans => trans);
+ export const getTransaction = createSelector(getSingleTransaction, trans => trans);
+
 
 export const getFlowShareForTransaction = createSelector(getTransaction, getInflowBalance, getOutflowBalance, (trans, inflow, outflow) => {
   const total = trans.value > 0 ? inflow : outflow;

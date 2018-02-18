@@ -21,8 +21,8 @@ export default function formatAmount(amount: number, showSign: boolean = true): 
 export const formatPercent = (percent, precision = 2): String => {
   const formatValue = percent.toLocaleString('en-us', {
     style: 'percent',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: precision,
+    maximumFractionDigits: precision,
   });
   return formatValue
 }

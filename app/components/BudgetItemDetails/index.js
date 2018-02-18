@@ -21,7 +21,7 @@ type BudgetItemDetailsProps = {
   contributionMapped: ContributionMapping[]
 }
 
-const BudgetItemDetails = ({ transaction, contribution, contributionMapped }): BudgetItemDetailsProps => {
+export const BudgetItemDetails = ({ transaction, contribution, contributionMapped }): BudgetItemDetailsProps => {
   return (
     <section>
       <h1>{transaction.description}</h1>
