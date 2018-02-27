@@ -1,6 +1,9 @@
 import {
   sortTransactions,
   getTransactions,
+  getTransactionById,
+  getContributionPercentage,
+  getFormattedContributionPercentage,
   getInflowBalance,
   getOutflowBalance,
   getFormattedBalance,
@@ -47,6 +50,55 @@ describe('getTransactions', () => {
     const expectedSelection = [];
 
     expect(getTransactions(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getTransactionById', () => {
+  it('should return a transaction by id from the state', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const expectedSelection = { id: 1 };
+
+    expect(getTransactionById(state, 1)).toEqual(expectedSelection);
+  });
+
+  it('should return empty object if the state has no transactions or the transaction could not be found', () => {
+    const state = {};
+    const expectedSelection = {};
+
+    expect(getTransactionById(state, 1)).toEqual(expectedSelection);
+  });
+});
+
+describe('getContributionPercentage', () => {
+  it('should return a percentage of total budget an item is contributing with', () => {
+    const state = { transactions: [{ value: 10 }, { value: -40 }, { value: 70 }] };
+    const transaction = { value: 10 };
+    const expectedSelection = {
+      contribution: 0.25,
+      value: 10,
+    };
+
+    expect(getContributionPercentage(state, transaction)).toEqual(expectedSelection);
+  });
+});
+
+describe('getFormattedContributionPercentage', () => {
+  it('should return an array with contribution percentage in it', () => {
+    const state = { transactions: [{ value: 10 }, { value: -50 }, { value: 70 }] };
+    const transaction = { value: 10, description: 'test' };
+    const contribution = getContributionPercentage(state, transaction);
+    const expectedSelection = [
+      {
+        value: 1 - contribution.contribution,
+        label: 'Total Budget',
+      },
+      {
+        value: contribution.contribution,
+        label: transaction.description,
+      },
+    ];
+
+    expect(getFormattedContributionPercentage(contribution, transaction)).toEqual(expectedSelection);
   });
 });
 

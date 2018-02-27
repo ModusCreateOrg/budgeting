@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<h2>
+  <span
+    className="pos"
+  >
+    +
+  </span>
+  1,000%
+</h2>
+`;
