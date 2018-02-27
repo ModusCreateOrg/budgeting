@@ -8,6 +8,8 @@ jest.mock('components/Chart', () => 'div');
 jest.mock('components/Legend', () => 'div');
 
 it('renders correctly', () => {
-  const tree = renderer.create(<DonutChart dataLabel="test" dataKey="test" data={[]} />).toJSON();
+  const tree = renderer
+    .create(<DonutChart dataLabel="test" dataKey="test" data={[]} format={value => value} />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -7,13 +7,23 @@ type LegendItemProps = {
   color: string,
   value: number,
   label: string,
+  format: Function,
 };
 
-const LegendItem = ({ color, label, value }: LegendItemProps) => (
-  <li style={{ color }}>
-    <span>{label}</span>
-    <span className={styles.value}> {formatAmount(value).text} </span>
-  </li>
-);
+export default class LegendItem extends React.Component<LegendItemProps> {
+  render() {
+    const { color, label, value, format } = this.props;
 
-export default LegendItem;
+    let formattedValue = formatAmount(value).text;
+    if (format) {
+      formattedValue = format(value);
+    }
+
+    return (
+      <li style={{ color }}>
+        <span>{label}</span>
+        <span className={styles.value}> {formattedValue} </span>
+      </li>
+    );
+  }
+}
