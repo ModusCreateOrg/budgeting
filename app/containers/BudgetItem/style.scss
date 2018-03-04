@@ -1,0 +1,29 @@
+@import 'theme/variables';
+
+.cellLabel {
+  display: none;
+
+  @media only screen and (max-width: $screen-small) {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+}
+
+.cellContent {
+  flex: 1;
+}
+
+.headerContent {
+  font-size: 25px;
+  font-weight: 500;
+  padding: 0px 0px 20px 0px;
+}
+
+.neg {
+  color: $red;
+}
+
+.pos {
+  color: $green;
+}
