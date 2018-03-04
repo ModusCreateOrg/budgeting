@@ -5,7 +5,7 @@ import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
-import BudgetGridRow from 'components/BudgetGridRow';
+import ClickableRow from 'components/ClickableRow';
 import styles from './style.scss';
 
 type BudgetGridProps = {
@@ -33,7 +33,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         </thead>
         <tbody>
           {transactions.map((transaction: Transaction): React.Element<any> => (
-            <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+            <ClickableRow key={transaction.id} transaction={transaction} categories={categories} />
           ))}
         </tbody>
         <tfoot>

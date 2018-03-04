@@ -16,6 +16,7 @@ exports[`renders correctly 1`] = `
     dataKey="test"
     dataLabel="test"
     dataValue="value"
+    valueFormat={undefined}
   />
 </div>
 `;

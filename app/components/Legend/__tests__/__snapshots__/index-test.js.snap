@@ -8,11 +8,13 @@ exports[`renders correctly 1`] = `
     color={undefined}
     label={undefined}
     value={undefined}
+    valueFormat={undefined}
   />
   <div
     color={undefined}
     label={undefined}
     value={undefined}
+    valueFormat={undefined}
   />
 </ul>
 `;

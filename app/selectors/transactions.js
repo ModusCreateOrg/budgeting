@@ -78,3 +78,11 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+//Get transaction of the item
+export const getTransaction = (transactions: T[], itemId): T => {
+  return transactions.filter(transaction => transaction.id === itemId)[0]
+};
+
+//Get working balance of the budget
+export const getWorkingBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
