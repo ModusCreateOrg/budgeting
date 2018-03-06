@@ -78,3 +78,39 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+export const getTransactionsContribution = createSelector(
+  getTransactions,
+  getInflowBalance,
+  getOutflowBalance,
+  (trans, inflow, outflow) =>
+    trans.map(item => {
+      let transArray = [];
+
+      if (item.value < 0) {
+        transArray.push({
+          id: item.id,
+          description: item.description,
+          value: item.value / outflow,
+        });
+        transArray.push({
+          id: `${item.id}oe`,
+          description: 'Other Expenses',
+          value: 1 - item.value / outflow,
+        });
+      } else {
+        transArray.push({
+          id: item.id,
+          description: item.description,
+          value: item.value / inflow,
+        });
+        transArray.push({
+          id: `${item.id}oi`,
+          description: 'Other Income',
+          value: 1 - item.value / inflow,
+        });
+      }
+
+      return transArray;
+    })
+);

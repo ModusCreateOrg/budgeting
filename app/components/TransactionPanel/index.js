@@ -5,24 +5,24 @@ import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
 import InflowOutflow from 'containers/InflowOutflow';
-import Spending from 'containers/Spending';
+import TransactionDetails from 'containers/TransactionDetails';
+import BackTabbar from './BackTabbar';
 
 // inject reducers that might not have been originally there
-  import BackTabbar from './BackTabbar';
 injectAsyncReducers({
   transactions: transactionReducer,
   categories: categoryReducer,
 });
 
-const TransactionDetails = () => (
+const TransactionPanel = () => (
   <section>
-    <BackTabbar/>
+    <BackTabbar />
 
     <Switch>
-      <Route path="/transaction/:id" component={Spending} />
+      <Route path="/transaction/:id" component={TransactionDetails} />
       <Redirect to="/budget" />
     </Switch>
   </section>
 );
 
-export default TransactionDetails;
+export default TransactionPanel;
