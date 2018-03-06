@@ -92,22 +92,26 @@ export const getTransactionsContribution = createSelector(
           id: item.id,
           description: item.description,
           value: item.value / outflow,
+          amount: item.value,
         });
         transArray.push({
           id: `${item.id}oe`,
           description: 'Other Expenses',
           value: 1 - item.value / outflow,
+          amount: outflow - item.value,
         });
       } else {
         transArray.push({
           id: item.id,
           description: item.description,
           value: item.value / inflow,
+          amount: item.value,
         });
         transArray.push({
           id: `${item.id}oi`,
           description: 'Other Income',
           value: 1 - item.value / inflow,
+          amount: inflow - item.value,
         });
       }
 
