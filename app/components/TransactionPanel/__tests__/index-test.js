@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ReportsPanel from '../';
+import TransactionPanel from '../';
 
 // mock nested components
 jest.mock('../BackTabbar', () => 'div');
 jest.mock('react-router-dom');
 
 it('renders correctly', () => {
-  const tree = renderer.create(<ReportsPanel />).toJSON();
+  const tree = renderer.create(<TransactionPanel />).toJSON();
   expect(tree).toMatchSnapshot();
 });

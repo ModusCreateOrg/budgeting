@@ -13,6 +13,4 @@ const BackTabbar = (props, context) => (
   </div>
 );
 
-const BackTabbarWithRouter = withRouter(BackTabbar)
-
-export default BackTabbarWithRouter;
+export default withRouter(BackTabbar);

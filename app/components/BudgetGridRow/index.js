@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import NavLink from 'components/NavLink';
+import { withRouter } from 'react-router'
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
