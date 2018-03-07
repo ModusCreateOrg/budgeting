@@ -1,8 +1,7 @@
 // @flow
 import * as React from 'react';
+// Link component added
 import { Route, Link } from 'react-router-dom';
-import NavLink from 'components/NavLink';
-import { withRouter } from 'react-router'
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -28,6 +27,7 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       <td>
         <div className={styles.cellLabel}>Description</div>
         <div className={styles.cellContent}>
+          {/* Link to transaction details page */}
           <Link to={`/transaction/${id}`}>{description}</Link>
         </div>
       </td>

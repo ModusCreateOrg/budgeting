@@ -13,4 +13,5 @@ const BackTabbar = (props, context) => (
   </div>
 );
 
+// Export with Router, so we can access the history
 export default withRouter(BackTabbar);

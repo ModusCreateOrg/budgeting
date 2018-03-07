@@ -79,6 +79,15 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
   applyCategoryName(trans, cat)
 );
 
+/* 
+  getTransactionsContribution calculates trasaction contribution.
+  In order to do this, trasactions are broken into Inflow and Outflow
+  transactions. Outflow trasactions contribution are calculated
+  dividing transaction value by total of outflow transactions.
+  Inflow trasaction contributions are calculated dividing transaction
+  value by total of inflow transactions.
+  An object is added at the end representing Other Expenses/Other Income.
+ */
 export const getTransactionsContribution = createSelector(
   getTransactions,
   getInflowBalance,

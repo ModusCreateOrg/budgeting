@@ -6,13 +6,13 @@ exports[`renders correctly 1`] = `
 >
   <div
     color={undefined}
-    formatStyle={undefined}
+    formatStyle="currency"
     label={undefined}
     value={undefined}
   />
   <div
     color={undefined}
-    formatStyle={undefined}
+    formatStyle="currency"
     label={undefined}
     value={undefined}
   />

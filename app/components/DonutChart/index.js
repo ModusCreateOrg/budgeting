@@ -19,6 +19,7 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  // Currency or Percent styling for Legend component 
   formatStyle: string,
 };
 
