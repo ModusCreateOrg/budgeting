@@ -78,3 +78,52 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+/* 
+  getTransactionsContribution calculates trasaction contribution.
+  In order to do this, trasactions are broken into Inflow and Outflow
+  transactions. Outflow trasactions contribution are calculated
+  dividing transaction value by total of outflow transactions.
+  Inflow trasaction contributions are calculated dividing transaction
+  value by total of inflow transactions.
+  An object is added at the end representing Other Expenses/Other Income.
+ */
+export const getTransactionsContribution = createSelector(
+  getTransactions,
+  getInflowBalance,
+  getOutflowBalance,
+  (trans, inflow, outflow) =>
+    trans.map(item => {
+      const transArray = [];
+
+      if (item.value < 0) {
+        transArray.push({
+          id: item.id,
+          description: item.description,
+          value: item.value / outflow,
+          amount: item.value,
+        });
+        transArray.push({
+          id: `${item.id}oe`,
+          description: 'Other Expenses',
+          value: 1 - item.value / outflow,
+          amount: outflow - item.value,
+        });
+      } else {
+        transArray.push({
+          id: item.id,
+          description: item.description,
+          value: item.value / inflow,
+          amount: item.value,
+        });
+        transArray.push({
+          id: `${item.id}oi`,
+          description: 'Other Income',
+          value: 1 - item.value / inflow,
+          amount: inflow - item.value,
+        });
+      }
+
+      return transArray;
+    })
+);
