@@ -1,14 +1,17 @@
 // @flow
 import * as React from 'react';
+import { withRouter } from 'react-router';
 import styles from './style.scss';
-import { withRouter } from 'react-router'
 
-const BackTabbar = (props, context) => (
+const BackTabbar = props => (
   <div className={styles.tabbar}>
-    <button 
-      onClick={(e) => {props.history.goBack();}}
-      className={`${styles.navLink}`}>
-        Back
+    <button
+      onClick={() => {
+        props.history.goBack();
+      }}
+      className={`${styles.navLink}`}
+    >
+      Back
     </button>
   </div>
 );

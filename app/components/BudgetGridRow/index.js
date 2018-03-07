@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 // Link component added
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';

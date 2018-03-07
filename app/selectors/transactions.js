@@ -94,7 +94,7 @@ export const getTransactionsContribution = createSelector(
   getOutflowBalance,
   (trans, inflow, outflow) =>
     trans.map(item => {
-      let transArray = [];
+      const transArray = [];
 
       if (item.value < 0) {
         transArray.push({

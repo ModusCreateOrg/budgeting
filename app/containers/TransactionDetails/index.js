@@ -22,7 +22,10 @@ class TransactionDetails extends React.Component<TransactionDetailsProps> {
     return (
       <div>
         <h1>{flattenedData[0].description}</h1>
-        <small className={amountCls}>{!amount.isNegative ? '+' : ''}{amount.text}</small>
+        <small className={amountCls}>
+          {!amount.isNegative ? '+' : ''}
+          {amount.text}
+        </small>
         <DonutChart data={flattenedData} dataLabel="description" dataKey="id" formatStyle="percent" />
       </div>
     );
