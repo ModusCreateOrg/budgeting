@@ -1,18 +1,30 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { BudgetDetails } from '../';
+import { BudgetDetails, mapStateToProps } from '../';
+import { categoriesById, defaultTransactions } from 'modules/defaults';
 
 // mock nested component
 jest.mock('components/DonutChart');
 
-it('renders correctly', () => {
-  const mockTransaction = {
-    catgeoryId: "6",
-    description: "Gas",
-    id: 2,
-    value: -764.73
+it('mapStateToProps should return empty object if params not found', () => {
+  const mockState = {
+    categories: { ...categoriesById },
+    transactions: defaultTransactions.slice()
   };
-  const mockTransactions = [mockTransaction];
+  const mockProps = {
+    match: {}
+  };
+  const finalProps = {
+    selectedTransaction: '',
+    transactions: defaultTransactions.slice()
+  };
+
+  expect(mapStateToProps(mockState, mockProps)).toEqual(finalProps)
+});
+
+it ('should render', () => {
+  const mockTransactions = defaultTransactions.slice();
+  const mockTransaction = mockTransactions[0]
 
   const tree = renderer.create(
     <BudgetDetails
@@ -20,5 +32,7 @@ it('renders correctly', () => {
       selectedTransaction={mockTransaction}
     />
   ).toJSON();
+
   expect(tree).toMatchSnapshot();
+
 });

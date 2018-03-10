@@ -110,7 +110,7 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const transactions = getTransactions(state);
   let transactionId = '';
   let selectedTransaction = '';
