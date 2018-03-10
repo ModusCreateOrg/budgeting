@@ -18,7 +18,7 @@ type DonutChartProps = {
   dataValue: string,
   color: Function,
   height: number,
-  innerRatio: number
+  innerRatio: number,
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -26,7 +26,7 @@ class DonutChart extends React.Component<DonutChartProps> {
     color: scaleOrdinal(randomScheme),
     height: 300,
     innerRatio: 4,
-    dataValue: 'value'
+    dataValue: 'value',
   };
 
   componentWillMount() {
@@ -86,10 +86,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           ))}
         </Chart>
 
-        <Legend
-          color={colorFn}
-          {...{ data, dataValue, dataLabel, dataKey }}
-        />
+        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }

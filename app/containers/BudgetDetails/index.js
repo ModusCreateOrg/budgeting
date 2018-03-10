@@ -40,25 +40,29 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
     let absTotal = selectedTransaction.value;
     const isNegative = Boolean(selectedTransaction.value < 0)
 
+    // to be consumed by DonutChart & Legend - must conform to schema
+    const otherTransactionSchema = {
+      id: Math.random(),
+      isNegative,
+      description: isNegative ? 'Other Expenses' : 'Other Income',
+      value: 0
+    }
+
     const otherTransactions = transactions
-      .filter(_ => _.id !== selectedTransaction.id)
-      .filter(_ => isNegative
+      .filter(_ => _.id !== selectedTransaction.id)   // remove selected transaction
+      .filter(_ => isNegative   // only want Expense or Income transactions
         ? _.value < 0
         : _.value >= 0
       )
       .reduce((prev, next) => {
-        absTotal += next.value;
+        absTotal += next.value;   // sum the rest of the Expenses or Incomes into a single value
         return {
           ...prev,
-          value: prev.value + Math.abs(next.value)
+          value: prev.value + Math.abs(next.value)    // sum the rest of the Expenses or Incomes into a single value
         }
-      }, {
-        id: Math.random(),
-        isNegative,
-        description: isNegative ? 'Other Expenses' : 'Other Income',
-        value: 0
-      })
+      }, otherTransactionSchema)
 
+    // update existing transaction, add extra flags for Legend display
     const serializedSelectedTransaction = {
       ...selectedTransaction,
       isNegative,
