@@ -16,6 +16,14 @@
     padding: 8px;
   }
 
+  tbody tr {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #E4F6F8;
+    }
+  }
+
   th, td {
     text-align: left;
     overflow: hidden;
