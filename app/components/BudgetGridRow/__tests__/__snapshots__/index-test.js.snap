@@ -23,7 +23,11 @@ exports[`renders correctly 1`] = `
     <div
       className="cellContent"
     >
-      Trader Joe's food
+      <a
+        href="/transaction/1"
+      >
+        Trader Joe's food
+      </a>
     </div>
   </td>
   <td

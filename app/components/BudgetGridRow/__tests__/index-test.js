@@ -2,6 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
 
+// mock nested component
+jest.mock('components/NavLink', () => ({ to, label }) => <a href={to}>{label}</a>);
+
 it('renders correctly', () => {
   const mockTransaction = {
     id: 1,
