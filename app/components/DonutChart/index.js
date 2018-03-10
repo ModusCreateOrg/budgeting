@@ -19,6 +19,7 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  showOne: Boolean
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -27,6 +28,7 @@ class DonutChart extends React.Component<DonutChartProps> {
     height: 300,
     innerRatio: 4,
     dataValue: 'value',
+    showOne: false
   };
 
   componentWillMount() {
@@ -70,7 +72,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey } = this.props;
+    const { data, dataLabel, dataValue, dataKey, showOne } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
     return (
@@ -81,9 +83,12 @@ class DonutChart extends React.Component<DonutChartProps> {
           padding={chartPadding}
           transform={`translate(${outerRadius},${outerRadius})`}
         >
-          {this.chart(data).map((datum, index) => (
-            <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
-          ))}
+          {showOne
+            ? <Path data={this.chart(data)[0]} index={0} fill={colorFn(0)} arcFn={pathArc} />
+            : this.chart(data).map((datum, index) => (
+                <Path data={datum} index={index} fill={colorFn(index)} arcFn={pathArc} key={datum.data[dataKey]} />
+              ))
+          }
         </Chart>
 
         <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />

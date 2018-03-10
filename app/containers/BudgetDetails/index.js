@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
+import DonutChart from 'components/DonutChart';
+
+import styles from 'components/BudgetGridRow/style.scss';
 
 type BudgetDetailsProps = {
   transactions: Transaction[],
@@ -26,21 +29,46 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
     }
   }
 
+  serializeData = () => {
+
+  }
+
   render() {
-    const { selectedTransaction, categories } = this.props;
-    console.log('selectedTransaction: ', selectedTransaction);
-    const category = categories[Object.keys(categories).find(categoryId => categoryId === selectedTransaction.categoryId)];
-    console.log('category: ', category);
+    const { transactions, selectedTransaction, categories } = this.props;
 
     if (Object.keys(selectedTransaction).length === 0) {
       return null;
     }
 
+    const category = categories[Object.keys(categories).find(categoryId => categoryId === selectedTransaction.categoryId)];
+    const percentageTextStyles = selectedTransaction.value < 0 ? styles.neg : styles.pos;
+
+    const absTotal = transactions.reduce((prev, next) => {
+      return prev + Math.abs(next.value);
+    }, 0);
+    const percentageAmount = Math.floor(
+      Math.abs(selectedTransaction.value) / absTotal * 100
+    );
+
+    const newTransactions = [selectedTransaction].concat(
+      transactions.filter(transaction => transaction.id !== selectedTransaction.id)
+    ).map(transaction => ({
+      ...transaction,
+      value: Math.abs(transaction.value)
+    }))
+
     return (
       <div>
         <h1>{selectedTransaction.description}</h1>
 
-        <p>{selectedTransaction.value}</p>
+        <div className={percentageTextStyles}>{percentageAmount}%</div>
+
+        <DonutChart
+          showOne
+          data={newTransactions}
+          dataLabel="category"
+          dataKey="categoryId"
+        />
       </div>
     );
   }
