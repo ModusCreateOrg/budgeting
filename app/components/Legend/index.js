@@ -21,7 +21,7 @@ const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }: LegendT
         color={color(idx)}
         key={`${item[dataKey]}-${Math.random()}`}
         label={item[dataLabel]}
-        value={item[dataValue]}
+        value={item.isNegative || item[dataValue] < 0 ? `-${item[dataValue]}` : item[dataValue]}
       />
     ))}
   </ul>

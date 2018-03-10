@@ -45,10 +45,11 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
         absTotal += next.value;
         return {
           ...prev,
-          value: prev.value + next.value
+          value: prev.value + Math.abs(next.value)
         }
       }, {
         id: Math.random(),
+        isNegative,
         description: isNegative ? 'Other Expenses' : 'Other Income',
         value: 0
       })
@@ -56,6 +57,7 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
     const serializedSelectedTransaction = {
       ...selectedTransaction,
       isNegative,
+      value: Math.abs(selectedTransaction.value),
       percentage: Math.floor(
         selectedTransaction.value / absTotal * 100
       ),
