@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getTransactions } from 'selectors/transactions';
 import { withRouter } from 'react-router-dom';
+import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
@@ -25,6 +25,9 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
 
   render() {
     const { transactions, categories } = this.props;
+
+    console.log('transactions: ', transactions);
+    console.log('categories: ', categories);
 
     return (
       <table className={styles.budgetGrid}>
