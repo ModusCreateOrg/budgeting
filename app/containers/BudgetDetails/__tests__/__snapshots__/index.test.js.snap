@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <h1>
+    Gas
+  </h1>
+  <h2
+    className="neg"
+  >
+    -
+    100
+    %
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    Go Back
+  </button>
+</div>
+`;

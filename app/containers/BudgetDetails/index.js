@@ -19,7 +19,8 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
   };
 
   componentWillMount() {
-    const { transactions, match: { params: { transactionId } } } = this.props;
+    const { transactions, match } = this.props;
+    const transactionId = match && match.params ? match.params.transactionId : '';
 
     // go back to BudgetTable if data not available
     if (!transactionId ||
@@ -31,6 +32,10 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
 
   serializeData = () => {
     const { selectedTransaction, transactions } = this.props;
+
+    if (!transactions && transactions.length) {
+      return [];
+    }
 
     let absTotal = selectedTransaction.value;
     const isNegative = Boolean(selectedTransaction.value < 0)
@@ -66,8 +71,11 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
     return [serializedSelectedTransaction, otherTransactions]
   }
 
-  navigateToBudget = () =>
-    this.props.history.push('/budget')
+  navigateToBudget = () => {
+    if (this.props.history) {
+      this.props.history.push('/budget')
+    }
+  }
 
   render() {
     const selectedTransaction = this.props.selectedTransaction;
@@ -78,15 +86,16 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
 
     // returns array of 2 items, [selected, expenses/income]
     const donutData = this.serializeData();
+    const currentItem = donutData[0];
     // styles to show red or green
-    const percentageTextStyles = donutData[0].isNegative ? styles.neg : styles.pos;
+    const percentageTextStyles = currentItem.isNegative ? styles.neg : styles.pos;
 
     return (
       <div>
-        <h1>{donutData[0].description}</h1>
+        <h1>{currentItem.description}</h1>
 
         <h2 className={percentageTextStyles}>
-          {donutData[0].isNegative ? '-' : '+'} {donutData[0].percentage}%
+          {currentItem.isNegative ? '-' : '+'}{currentItem.percentage}%
         </h2>
 
         <DonutChart
@@ -103,8 +112,12 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
 
 const mapStateToProps = (state, ownProps) => {
   const transactions = getTransactions(state);
-  const transactionId = ownProps.match.params.transactionId;
-  const selectedTransaction = transactions.find(transaction => transaction.id === Number(transactionId));
+  let transactionId = '';
+  let selectedTransaction = '';
+  if (ownProps.match && ownProps.match.params) {
+    transactionId = ownProps.match.params.transactionId;
+    selectedTransaction = transactions.find(transaction => transaction.id === Number(transactionId));
+  }
 
   return {
     selectedTransaction,
