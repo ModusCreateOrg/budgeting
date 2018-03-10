@@ -19,7 +19,7 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
-  showOne: Boolean
+  showOne: boolean
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -91,7 +91,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           }
         </Chart>
 
-        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
+          <Legend color={colorFn} {...{ showOne, data, dataValue, dataLabel, dataKey }} />
       </div>
     );
   }

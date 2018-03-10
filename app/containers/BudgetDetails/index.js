@@ -25,13 +25,16 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
     if (!transactionId ||
       transactionId && !transactions.length
     ) {
-      history.push('/budget');
+      this.navigateToBudget();
     }
   }
 
   serializeData = () => {
 
   }
+
+  navigateToBudget = () =>
+    this.props.history.push('/budget')
 
   render() {
     const { transactions, selectedTransaction, categories } = this.props;
@@ -54,21 +57,28 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
       transactions.filter(transaction => transaction.id !== selectedTransaction.id)
     ).map(transaction => ({
       ...transaction,
-      value: Math.abs(transaction.value)
+      absValue: Math.abs(transaction.value)
     }))
+    console.log('selectedTransaction: ', selectedTransaction);
+    console.log('newTransactions: ', newTransactions);
 
     return (
       <div>
         <h1>{selectedTransaction.description}</h1>
 
-        <div className={percentageTextStyles}>{percentageAmount}%</div>
+        <div className={percentageTextStyles}>
+          {selectedTransaction.value < 0 ? '-' : '+'} {percentageAmount}%
+        </div>
 
         <DonutChart
           showOne
           data={newTransactions}
-          dataLabel="category"
-          dataKey="categoryId"
+          dataLabel="description"
+          dataKey="description"
+          dataValue="absValue"
         />
+
+        <button onClick={this.navigateToBudget}>Go Back</button>
       </div>
     );
   }
