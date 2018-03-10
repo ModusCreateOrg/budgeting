@@ -2,14 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getTransactions } from 'selectors/transactions';
-import { getCategories } from 'selectors/categories';
 import DonutChart from 'components/DonutChart';
 
 import styles from 'components/BudgetGridRow/style.scss';
 
 type BudgetDetailsProps = {
   transactions: Transaction[],
-  categories: Object,
   selectedTransaction: Transaction,
 };
 
@@ -20,7 +18,7 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
   };
 
   componentWillMount() {
-    const { transactions, history, match: { params: { transactionId } } } = this.props;
+    const { transactions, match: { params: { transactionId } } } = this.props;
 
     if (!transactionId ||
       transactionId && !transactions.length
@@ -30,52 +28,63 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
   }
 
   serializeData = () => {
+    const { selectedTransaction, transactions } = this.props;
 
+    const absTotal = transactions.reduce((prev, next) => {
+      return prev + Math.abs(next.value);
+    }, 0);
+
+    const serializedSelectedTransaction = {
+      ...selectedTransaction,
+      isNegative: Boolean(selectedTransaction.value < 0),
+      percentage: Math.floor(
+        Math.abs(selectedTransaction.value) / absTotal * 100
+      ),
+    };
+
+    const restTransactions = transactions
+      .filter(_ => _.id !== selectedTransaction.id)
+      .filter(_ => serializedSelectedTransaction.isNegative
+        ? _.value < 0
+        : _.value >= 0
+      )
+      .reduce((prev, next) => ({
+        ...prev,
+        value: prev.value + next.value
+      }), {
+        id: Math.random(),
+        description: serializedSelectedTransaction.isNegative ? 'Other Expenses' : 'Other Income',
+        value: 0
+      })
+
+    return [serializedSelectedTransaction, restTransactions]
   }
 
   navigateToBudget = () =>
     this.props.history.push('/budget')
 
   render() {
-    const { transactions, selectedTransaction, categories } = this.props;
+    const selectedTransaction = this.props.selectedTransaction;
 
     if (Object.keys(selectedTransaction).length === 0) {
       return null;
     }
 
-    const category = categories[Object.keys(categories).find(categoryId => categoryId === selectedTransaction.categoryId)];
-    const percentageTextStyles = selectedTransaction.value < 0 ? styles.neg : styles.pos;
-
-    const absTotal = transactions.reduce((prev, next) => {
-      return prev + Math.abs(next.value);
-    }, 0);
-    const percentageAmount = Math.floor(
-      Math.abs(selectedTransaction.value) / absTotal * 100
-    );
-
-    const newTransactions = [selectedTransaction].concat(
-      transactions.filter(transaction => transaction.id !== selectedTransaction.id)
-    ).map(transaction => ({
-      ...transaction,
-      absValue: Math.abs(transaction.value)
-    }))
-    console.log('selectedTransaction: ', selectedTransaction);
-    console.log('newTransactions: ', newTransactions);
+    const transactions = this.serializeData();
+    const percentageTextStyles = transactions[0].isNegative ? styles.neg : styles.pos;
 
     return (
       <div>
-        <h1>{selectedTransaction.description}</h1>
+        <h1>{transactions[0].description}</h1>
 
         <div className={percentageTextStyles}>
-          {selectedTransaction.value < 0 ? '-' : '+'} {percentageAmount}%
+          {transactions[0].isNegative ? '-' : '+'} {transactions[0].percentage}%
         </div>
 
         <DonutChart
-          showOne
-          data={newTransactions}
+          data={transactions}
           dataLabel="description"
           dataKey="description"
-          dataValue="absValue"
         />
 
         <button onClick={this.navigateToBudget}>Go Back</button>
@@ -90,7 +99,6 @@ const mapStateToProps = (state, ownProps) => {
   const selectedTransaction = transactions.find(transaction => transaction.id === Number(transactionId));
 
   return {
-    categories: getCategories(state),
     selectedTransaction,
     transactions,
   };
