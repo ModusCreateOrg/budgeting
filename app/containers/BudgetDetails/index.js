@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { getTransactions } from 'selectors/transactions';
 import DonutChart from 'components/DonutChart';
 
+// reuse styles from grid row
 import styles from 'components/BudgetGridRow/style.scss';
 
 type BudgetDetailsProps = {
@@ -20,6 +21,7 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
   componentWillMount() {
     const { transactions, match: { params: { transactionId } } } = this.props;
 
+    // go back to BudgetTable if data not available
     if (!transactionId ||
       transactionId && !transactions.length
     ) {
@@ -30,34 +32,36 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
   serializeData = () => {
     const { selectedTransaction, transactions } = this.props;
 
-    const absTotal = transactions.reduce((prev, next) => {
-      return prev + Math.abs(next.value);
-    }, 0);
+    let absTotal = selectedTransaction.value;
+    const isNegative = Boolean(selectedTransaction.value < 0)
 
-    const serializedSelectedTransaction = {
-      ...selectedTransaction,
-      isNegative: Boolean(selectedTransaction.value < 0),
-      percentage: Math.floor(
-        Math.abs(selectedTransaction.value) / absTotal * 100
-      ),
-    };
-
-    const restTransactions = transactions
+    const otherTransactions = transactions
       .filter(_ => _.id !== selectedTransaction.id)
-      .filter(_ => serializedSelectedTransaction.isNegative
+      .filter(_ => isNegative
         ? _.value < 0
         : _.value >= 0
       )
-      .reduce((prev, next) => ({
-        ...prev,
-        value: prev.value + next.value
-      }), {
+      .reduce((prev, next) => {
+        absTotal += next.value;
+        return {
+          ...prev,
+          value: prev.value + next.value
+        }
+      }, {
         id: Math.random(),
-        description: serializedSelectedTransaction.isNegative ? 'Other Expenses' : 'Other Income',
+        description: isNegative ? 'Other Expenses' : 'Other Income',
         value: 0
       })
 
-    return [serializedSelectedTransaction, restTransactions]
+    const serializedSelectedTransaction = {
+      ...selectedTransaction,
+      isNegative,
+      percentage: Math.floor(
+        selectedTransaction.value / absTotal * 100
+      ),
+    };
+
+    return [serializedSelectedTransaction, otherTransactions]
   }
 
   navigateToBudget = () =>
@@ -70,19 +74,21 @@ export class BudgetDetails extends React.Component<BudgetDetailsProps> {
       return null;
     }
 
-    const transactions = this.serializeData();
-    const percentageTextStyles = transactions[0].isNegative ? styles.neg : styles.pos;
+    // returns array of 2 items, [selected, expenses/income]
+    const donutData = this.serializeData();
+    // styles to show red or green
+    const percentageTextStyles = donutData[0].isNegative ? styles.neg : styles.pos;
 
     return (
       <div>
-        <h1>{transactions[0].description}</h1>
+        <h1>{donutData[0].description}</h1>
 
-        <div className={percentageTextStyles}>
-          {transactions[0].isNegative ? '-' : '+'} {transactions[0].percentage}%
-        </div>
+        <h2 className={percentageTextStyles}>
+          {donutData[0].isNegative ? '-' : '+'} {donutData[0].percentage}%
+        </h2>
 
         <DonutChart
-          data={transactions}
+          data={donutData}
           dataLabel="description"
           dataKey="description"
         />
