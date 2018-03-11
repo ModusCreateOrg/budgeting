@@ -4,6 +4,7 @@ import {
   getTransaction,
   getInflowBalance,
   getOutflowBalance,
+  getTransactionBalance,
   getFormattedBalance,
   getFormattedInflowBalance,
   getFormattedOutflowBalance,
@@ -130,6 +131,41 @@ describe('getOutflowBalance', () => {
     expect(getOutflowBalance.recomputations()).toEqual(1);
     expect(getOutflowBalance(state3)).toEqual(expectedSelection2);
     expect(getOutflowBalance.recomputations()).toEqual(2);
+  });
+});
+
+describe('getTransactionBalance', () => {
+  it('should return the sum of values of every transaction of the same type as the specified transaction', () => {
+    const state = { transactions: [{ id: 1, value: -10 }, { id: 2, value: -50 }, { id: 3, value: 70 }] };
+    const expectedSelection1 = -60;
+    const expectedSelection2 = 70;
+
+    expect(getTransactionBalance(state, 1)).toEqual(expectedSelection1);
+    expect(getTransactionBalance(state, 3)).toEqual(expectedSelection2);
+  });
+
+  it('should return null if the transaction doesn’t exists', () => {
+    const state = { transactions: [{ id: 1, value: 50 }] };
+    const expectedSelection = null;
+
+    expect(getTransactionBalance(state, 2)).toEqual(expectedSelection);
+  });
+
+  it('should not recompute if called twice with the same transactions in state', () => {
+    getTransactionBalance.resetRecomputations();
+
+    const state1 = { transactions: [{ id: 1, value: -10 }, { id: 2, value: -50 }, { id: 3, value: 70 }] };
+    const state2 = { transactions: state1.transactions };
+    const expectedSelection1 = -60;
+
+    const state3 = { transactions: [{ id: 1, value: -10 }] };
+    const expectedSelection2 = -10;
+
+    expect(getTransactionBalance(state1, 1)).toEqual(expectedSelection1);
+    expect(getTransactionBalance(state2, 1)).toEqual(expectedSelection1);
+    expect(getTransactionBalance.recomputations()).toEqual(1);
+    expect(getTransactionBalance(state3, 1)).toEqual(expectedSelection2);
+    expect(getTransactionBalance.recomputations()).toEqual(2);
   });
 });
 

@@ -60,6 +60,14 @@ export const getOutflowBalance = createSelector([getOutflowTransactions], transa
   totalTransactions(transactions)
 );
 
+export const getTransactionBalance = createSelector(
+  [getTransaction, getInflowBalance, getOutflowBalance],
+  (transaction, inflowBalance, outflowBalance) => {
+    if (!transaction) return null;
+    return transaction.value > 0 ? inflowBalance : outflowBalance;
+  }
+);
+
 export const getFormattedBalance = createSelector([getBalance], amount => formatAmount(amount, false));
 
 export const getFormattedInflowBalance = createSelector([getInflowBalance], amount => formatAmount(amount, false));
