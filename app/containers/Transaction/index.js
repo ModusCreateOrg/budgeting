@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getTransaction } from 'selectors/transactions';
-import { injectAsyncReducers } from 'store';
 import { Redirect } from 'react-router-dom';
+import { getTransaction, getTransactionBalance } from 'selectors/transactions';
+import { injectAsyncReducers } from 'store';
 import transactionReducer from 'modules/transactions';
 import NavLink from 'components/NavLink';
 import TransactionItem from 'components/Transaction';
@@ -13,15 +13,21 @@ injectAsyncReducers({
   transactions: transactionReducer,
 });
 
-const Transaction = ({ transaction }) => (
-  <section>
-    <NavLink to="/budget" label="← Budget" styles={{}} />
-    {transaction ? <TransactionItem {...transaction} /> : <Redirect to="/budget" />}
-  </section>
-);
+const Transaction = ({ transaction, balance }) => {
+  // If no transaction with a matching ID was found, redirect to budget.
+  if (!transaction) return <Redirect to="/budget" />;
 
-const mapStateToProps = (state, props) => ({
-  transaction: getTransaction(state, props.id),
+  return (
+    <section>
+      <NavLink to="/budget" label="← Budget" styles={{}} />
+      <TransactionItem balance={balance} {...transaction} />
+    </section>
+  );
+};
+
+const mapStateToProps = (state, { id }) => ({
+  transaction: getTransaction(state, id),
+  balance: Math.abs(getTransactionBalance(state, id)),
 });
 
 export default connect(mapStateToProps)(Transaction);
