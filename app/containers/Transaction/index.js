@@ -4,16 +4,23 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { getTransaction, getTransactionBalance } from 'selectors/transactions';
 import { injectAsyncReducers } from 'store';
+import type { Transaction as TransactionProps } from 'modules/transactions';
 import transactionReducer from 'modules/transactions';
 import NavLink from 'components/NavLink';
 import TransactionItem from 'components/Transaction';
+
+type TransactionContainerProps = {
+  id: number,
+  balance: number,
+  transaction: TransactionProps,
+};
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({
   transactions: transactionReducer,
 });
 
-export const Transaction = ({ transaction, balance }) => {
+export const Transaction = ({ transaction, balance }: TransactionContainerProps) => {
   // If no transaction with a matching ID was found, redirect to budget.
   if (!transaction) return <Redirect to="/budget" />;
 
