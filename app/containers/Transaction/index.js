@@ -13,7 +13,7 @@ injectAsyncReducers({
   transactions: transactionReducer,
 });
 
-const Transaction = ({ transaction, balance }) => {
+export const Transaction = ({ transaction, balance }) => {
   // If no transaction with a matching ID was found, redirect to budget.
   if (!transaction) return <Redirect to="/budget" />;
 
