@@ -18,7 +18,7 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const category = categories[categoryId];
 
   return (
-    <tr key={id}>
+    <tr key={id} className={styles.row}>
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
@@ -26,7 +26,7 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       <td>
         <div className={styles.cellLabel}>Description</div>
         <div className={styles.cellContent}>
-          <NavLink to={`/transaction/${id}`} label={description} styles={{}} />
+          <NavLink to={`/transaction/${id}`} label={description} styles={styles} />
         </div>
       </td>
       <td className={amountCls}>
