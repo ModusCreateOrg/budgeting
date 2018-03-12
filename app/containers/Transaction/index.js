@@ -10,9 +10,9 @@ import NavLink from 'components/NavLink';
 import TransactionItem from 'components/Transaction';
 
 type TransactionContainerProps = {
-  id: number,
-  balance: number,
-  transaction: TransactionProps,
+  +id: number,
+  +balance: number,
+  +transaction: ?TransactionProps,
 };
 
 // inject reducers that might not have been originally there

@@ -8,7 +8,7 @@ import styles from './style.scss';
 
 type TransactionComponentProps = {
   ...TransactionProps,
-  balance: number,
+  +balance: number,
 };
 
 const Transaction = ({ id, description, value, balance }: TransactionComponentProps) => {

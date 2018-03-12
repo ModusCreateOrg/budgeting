@@ -6,7 +6,7 @@ export type HigherOrderComponent<RequiredProps: {}, ProvidedProps: {}> = <Origin
 export type RouteProps = {
   +match: {
     +params: {
-      +id?: number,
+      +id: ?string,
     },
   },
 };
