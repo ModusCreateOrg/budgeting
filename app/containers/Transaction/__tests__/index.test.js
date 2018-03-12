@@ -6,10 +6,10 @@ import { Transaction } from '../index';
 // mock nested component
 jest.mock('components/NavLink', () => ({ to, label }) => <a href={to}>{label}</a>);
 jest.mock('components/Transaction', () => ({ description, value }) => (
-  <section>
+  <article>
     <h1>{description}</h1>
     <h2>{value}</h2>
-  </section>
+  </article>
 ));
 
 it('renders correctly', () => {

@@ -33,7 +33,7 @@ const Transaction = ({ id, description, value, balance }: TransactionComponentPr
   const color = scaleLinear().range(scheme);
 
   return (
-    <React.Fragment>
+    <article>
       <h1 className={styles.title}>{description}</h1>
       <h2 className={`${isNegative ? styles.negative : styles.positive}`}>
         {sign}
@@ -48,7 +48,7 @@ const Transaction = ({ id, description, value, balance }: TransactionComponentPr
         // We use inifnity to achieve the pie chart.
         innerRatio={Infinity}
       />
-    </React.Fragment>
+    </article>
   );
 };
 
