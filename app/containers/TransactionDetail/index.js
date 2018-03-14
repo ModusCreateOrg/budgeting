@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { getTransactions, getInflowBalance, getOutflowBalance } from 'selectors/transactions';
 import DonutChart from 'components/DonutChart';
+import styles from './style.scss';
 
 type TransactionDetailProps = {
   transactions: Transaction[],
@@ -57,24 +58,15 @@ class TransactionDetailContainer extends React.Component<TransactionDetailProps>
       });
     }
 
+    const amountCls = isNegative ? styles.neg : styles.pos || '';
+
     return (
       <section>
-        <h3>{transactionDesc}</h3>
-        <div>
-          Percent:
+        <div className={styles.transactionTitle}>{transactionDesc}</div>
+        <div className={`${styles.transactionAmount} ${amountCls}`}>
           {isNegative ? `-` : `+`}
-          {contributionPercent}
-          %
+          {contributionPercent}% (${Math.abs(transactionValue)})
         </div>
-        <div>
-          Value:
-          {isNegative ? `-` : `+`}
-          $
-          {Math.abs(transactionValue)}
-        </div>
-        <div>Total inflow: {inflow}</div>
-        <div>Total outflow: {outflow}</div>
-        <div>------</div>
         <DonutChart data={chartData} dataLabel="description" dataKey="transactionId" />
       </section>
     );
