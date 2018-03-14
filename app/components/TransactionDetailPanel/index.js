@@ -4,6 +4,7 @@ import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
 import BackButton from 'components/BackButton';
+import TransactionDetailContainer from 'containers/TransactionDetail';
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({
@@ -13,8 +14,8 @@ injectAsyncReducers({
 
 const TransactionDetailPanel = () => (
   <section>
-    <div>Transaction detail page</div>
     <BackButton />
+    <TransactionDetailContainer />
   </section>
 );
 
