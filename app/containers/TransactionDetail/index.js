@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { getTransactions, getInflowBalance, getOutflowBalance } from 'selectors/transactions';
+import TransactionOverview from 'components/TransactionOverview';
 import DonutChart from 'components/DonutChart';
 import styles from './style.scss';
 
@@ -22,7 +23,7 @@ class TransactionDetailContainer extends React.Component<TransactionDetailProps>
     if (transactionData.length === 0) {
       return (
         <section>
-          <div>Transaction #{this.props.match.params.id} does not exist</div>
+          <div className={styles.transactionError}>Transaction #{this.props.match.params.id} does not exist</div>
         </section>
       );
     }
@@ -66,15 +67,13 @@ class TransactionDetailContainer extends React.Component<TransactionDetailProps>
       });
     }
 
-    const amountCls = isNegative ? styles.neg : styles.pos || '';
-
     return (
       <section>
-        <div className={styles.transactionTitle}>{transactionDesc}</div>
-        <div className={`${styles.transactionAmount} ${amountCls}`}>
-          {isNegative ? `-` : `+`}
-          {contributionPercent}% (${Math.abs(transactionValue)})
-        </div>
+        <TransactionOverview
+          transactionDesc={transactionDesc}
+          transactionValue={transactionValue}
+          contributionPercent={contributionPercent}
+        />
         <DonutChart data={chartData} dataLabel="description" dataKey="transactionId" />
       </section>
     );
