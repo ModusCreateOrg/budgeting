@@ -10,6 +10,7 @@ import {
   getOutflowByCategoryName,
 } from 'selectors/transactions';
 import { injectAsyncReducers } from 'store';
+import DonutChart from '../../components/DonutChart';
 
 import styles from './style.scss';
 
@@ -18,33 +19,46 @@ injectAsyncReducers({
 });
 
 class Item extends React.Component<ItemProps> {
-  renderOutflow(transaction) {
-    const { outflows } = this.props;
-    let component = null;
+  renderGraph(isTransactionInflow) {
+    const { transactions } = this.props;
 
-    const outflow = outflows.find(item => item.categoryId === transaction.categoryId);
+    let data = transactions.filter(t => t.value < 0);
 
-    if (outflow) {
-      component = (
-        <div>
-          <span className={styles.minusSign}>-</span>outflow: {outflow.value}
-        </div>
-      );
+    if (isTransactionInflow) {
+      data = transactions.filter(t => t.value > 0);
     }
 
-    return component;
+    const parsed = data.map(transaction => {
+      const t = {
+        ...transaction,
+      };
+
+      t.value = Math.abs(t.value);
+
+      return t;
+    });
+
+    return <DonutChart data={parsed} dataLabel="description" dataKey="id" />;
   }
 
-  renderInflow(transaction) {
-    const { inflows } = this.props;
+  renderInflowOutflow(id, transaction, isTransactionInflow) {
+    const { transactions } = this.props;
+
+    const label = isTransactionInflow ? 'inflow' : 'outflow';
+    const result = transactions.find(item => item.categoryId === transaction.categoryId);
+
     let component = null;
+    let sign = <span className={styles.minusSign}>-</span>;
 
-    const inflow = inflows.find(item => item.categoryId === transaction.categoryId);
+    if (isTransactionInflow) {
+      sign = <span className={styles.plusSign}>+</span>;
+    }
 
-    if (inflow) {
+    if (result) {
       component = (
         <div>
-          <span className={styles.plusSign}>+</span>inflow: {inflow.value}
+          {sign}
+          {label}: {result.value}
         </div>
       );
     }
@@ -53,19 +67,17 @@ class Item extends React.Component<ItemProps> {
   }
 
   render() {
-    const { transactions, location } = this.props;
+    const { transactions } = this.props;
 
     const id = getTransactionIdFromLocation(location.pathname);
     const transaction = getTransactionById(transactions, id);
+    const isTransactionInflow = transaction.value > 0;
 
     return (
       <div>
         <h1>{transaction.description}</h1>
-        <h2>
-          {this.renderInflow(transaction)}
-          {this.renderOutflow(transaction)}
-        </h2>
-        {JSON.stringify(transaction)}
+        <h2>{this.renderInflowOutflow(id, transaction, isTransactionInflow)}</h2>
+        <div>{this.renderGraph(isTransactionInflow)}</div>
       </div>
     );
   }
