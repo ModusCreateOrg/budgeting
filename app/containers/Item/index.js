@@ -67,7 +67,7 @@ class Item extends React.Component<ItemProps> {
   }
 
   render() {
-    const { transactions } = this.props;
+    const { transactions, onClickBack } = this.props;
 
     const id = getTransactionIdFromLocation(location.pathname);
     const transaction = getTransactionById(transactions, id);
@@ -75,6 +75,7 @@ class Item extends React.Component<ItemProps> {
 
     return (
       <div>
+        <button onClick={onClickBack}>Back</button>
         <h1>{transaction.description}</h1>
         <h2>{this.renderInflowOutflow(id, transaction, isTransactionInflow)}</h2>
         <div>{this.renderGraph(isTransactionInflow)}</div>
