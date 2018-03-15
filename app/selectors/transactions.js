@@ -39,6 +39,20 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransactionById = (transactions: Transaction[], id: Number): Transaction =>
+  transactions.filter(transaction => transaction.id === id)[0] || {};
+
+export const getTransactionIdFromLocation = (path: String): Number => {
+  const match = path.match(/[0-9]{1,}$/);
+  let id = null;
+
+  if (match && match[0]) {
+    id = Number(match[0]);
+  }
+
+  return id;
+};
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
