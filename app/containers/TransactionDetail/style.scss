@@ -1,0 +1,8 @@
+@import 'theme/variables';
+
+.transactionError {
+  text-align: left;
+  font-size: 1.2em;
+  padding: 0.5em 0;
+  color: $red;
+}

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="transactionSection"
+>
+  <div
+    className="transactionTitle"
+  >
+    Paycheck
+  </div>
+  <div
+    className="transactionAmount pos"
+  >
+    +
+    45
+    % ($
+    5000
+    )
+  </div>
+</div>
+`;

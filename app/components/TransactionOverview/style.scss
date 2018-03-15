@@ -1,0 +1,25 @@
+@import 'theme/variables';
+
+.transactionSection {
+  margin-bottom: 5em;
+}
+
+.transactionTitle {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 0.5em 0;
+}
+
+.transactionAmount {
+  text-align: center;
+  font-size: 1.2em;
+  padding-top: 0.5em;
+  margin-bottom: 2em;
+
+  &.neg {
+    color: $red;
+  }
+  &.pos {
+    color: $green;
+  }
+}
