@@ -8,6 +8,7 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransactionById,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -370,5 +371,13 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(1);
     expect(getInflowByCategoryName(state3)).toEqual(expectedSelection2);
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
+  });
+
+  describe('getTransactionById', () => {
+    it('returns the transaction with the passed id from the list', () => {
+      const transactions = [{ id: 1 }, { id: 2 }];
+
+      expect(getTransactionById(transactions, 1)).toEqual({ id: 1 });
+    });
   });
 });
