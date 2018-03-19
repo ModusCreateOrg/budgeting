@@ -1,0 +1,20 @@
+@import 'theme/variables';
+
+.title {
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+.subtitle {
+  font-size: 1.3em;
+}
+
+.neg {
+  color: $red;
+  font-size: 1.2em;
+}
+
+.pos {
+  color: $green;
+  font-size: 1.2em;
+}

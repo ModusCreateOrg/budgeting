@@ -61,7 +61,7 @@ class DonutChart extends React.Component<DonutChartProps> {
     const { data, dataValue, color, height } = this.props;
 
     this.chart = pie()
-      .value(d => d[dataValue])
+      .value(d => Math.abs(d[dataValue]))
       .sort(null);
     this.outerRadius = height / 2;
     this.pathArc = this.getPathArc();
