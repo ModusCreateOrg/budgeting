@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
+import NavLink from 'components/NavLink';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
@@ -17,18 +18,18 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const category = categories[categoryId];
 
   return (
-    <tr key={id}>
+    <tr key={id} className={styles.rows}>
       <td>
-        <div className={styles.cellLabel}>Category</div>
-        <div className={styles.cellContent}>{category}</div>
+        <NavLink to={`budgetDetails/${id}`} label="Category" styles={styles} />
+        <NavLink to={`budgetDetails/${id}`} label={category} styles={styles} />
       </td>
       <td>
-        <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
+        <NavLink to={`budgetDetails/${id}`} label="Description" styles={styles} />
+        <NavLink to={`budgetDetails/${id}`} label={description} styles={styles} />
       </td>
       <td className={amountCls}>
-        <div className={styles.cellLabel}>Amount</div>
-        <div className={styles.cellContent}>{amount.text}</div>
+        <NavLink to={`budgetDetails/${id}`} label="Amount" styles={styles} />
+        <NavLink to={`budgetDetails/${id}`} label={amount.text} styles={styles} />
       </td>
     </tr>
   );

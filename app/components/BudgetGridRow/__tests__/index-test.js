@@ -2,6 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
 
+// mock Router component to avoid Invariant Violation
+jest.mock('components/NavLink', () => ({ to, label }) => <a href={to}>{label}</a>);
+
 it('renders correctly', () => {
   const mockTransaction = {
     id: 1,

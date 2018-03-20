@@ -1,23 +1,27 @@
 @import 'theme/variables';
 
-.cellLabel {
-  display: none;
+.navLink {
+    &:first-child {
+        display: none;
+        @media only screen and (max-width: $screen-small) {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+    }
 
-  @media only screen and (max-width: $screen-small) {
     display: flex;
-    align-items: center;
     flex: 1;
-  }
+    text-decoration: none;
+    color: $black;
+    .neg & {
+        color: $red;
+    }
+    .pos & {
+        color: $green;
+    }
 }
 
 .cellContent {
   flex: 1;
-}
-
-.neg {
-  color: $red;
-}
-
-.pos {
-  color: $green;
 }
