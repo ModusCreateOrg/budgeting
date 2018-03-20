@@ -21,7 +21,9 @@ injectAsyncReducers({
 export const BudgetDetailsContainer = ({ transaction, inflow, outflow, history }: BudgetDetailsProps) => (
   <section>
     <div>
-      <button onClick={() => history.push('/')}>Go Back</button>
+      <button className={styles.button} onClick={() => history.push('/')}>
+        Back
+      </button>
     </div>
     {transaction ? (
       <BudgetDetailsChart transaction={transaction} flow={{ inflow, outflow }} />
