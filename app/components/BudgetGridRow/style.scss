@@ -1,5 +1,10 @@
 @import 'theme/variables';
 
+.rows {
+    &:hover {
+        background-color: lightgray;
+    }
+}
 .navLink {
     &:first-child {
         display: none;
@@ -20,8 +25,4 @@
     .pos & {
         color: $green;
     }
-}
-
-.cellContent {
-  flex: 1;
 }
