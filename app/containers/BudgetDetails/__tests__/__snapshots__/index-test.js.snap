@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an error message if an invalid ID is passed 1`] = `
+<section>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Go Back
+    </button>
+  </div>
+  <div
+    className="notFound"
+  >
+    Budget ID not found
+  </div>
+</section>
+`;

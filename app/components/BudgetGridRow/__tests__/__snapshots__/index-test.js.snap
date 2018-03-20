@@ -1,44 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<tr>
+<tr
+  className="rows"
+>
   <td>
-    <div
-      className="cellLabel"
+    <a
+      href="budgetDetails/1"
     >
       Category
-    </div>
-    <div
-      className="cellContent"
+    </a>
+    <a
+      href="budgetDetails/1"
     >
       Groceries
-    </div>
+    </a>
   </td>
   <td>
-    <div
-      className="cellLabel"
+    <a
+      href="budgetDetails/1"
     >
       Description
-    </div>
-    <div
-      className="cellContent"
+    </a>
+    <a
+      href="budgetDetails/1"
     >
       Trader Joe's food
-    </div>
+    </a>
   </td>
   <td
     className="neg"
   >
-    <div
-      className="cellLabel"
+    <a
+      href="budgetDetails/1"
     >
       Amount
-    </div>
-    <div
-      className="cellContent"
+    </a>
+    <a
+      href="budgetDetails/1"
     >
       -$423.34
-    </div>
+    </a>
   </td>
 </tr>
 `;
