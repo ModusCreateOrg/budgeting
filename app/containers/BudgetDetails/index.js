@@ -3,13 +3,20 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTransaction, getInflowBalance, getOutflowBalance } from 'selectors/transactions';
 import type { Transaction } from 'modules/transactions';
+import transactionReducer from 'modules/transactions';
 import { withRouter } from 'react-router-dom';
+import { injectAsyncReducers } from 'store';
 import BudgetDetailsChart from 'components/BudgetDetailsChart';
 import styles from './style.scss';
 
 type BudgetDetailsProps = {
   transaction: Transaction,
 };
+
+// inject reducers that might not have been originally there
+injectAsyncReducers({
+  transactions: transactionReducer,
+});
 
 export const BudgetDetailsContainer = ({ transaction, inflow, outflow, history }: BudgetDetailsProps) => (
   <section>
