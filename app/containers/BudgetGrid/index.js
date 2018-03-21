@@ -19,9 +19,13 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
     categories: {},
   };
 
+  handleClick = (): void => {
+    console.log('open new page');
+  };
+
   render() {
     const { transactions, categories } = this.props;
-
+    // console.log(this.props);
     return (
       <table className={styles.budgetGrid}>
         <thead>
@@ -29,6 +33,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
             <th>Category</th>
             <th>Description</th>
             <th>Amount</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

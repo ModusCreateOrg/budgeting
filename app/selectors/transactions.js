@@ -37,6 +37,12 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
     return transaction;
   });
 
+const applyPercentage = (transactions: Transaction[], total: number) =>
+  transactions.map((transaction, index) => {
+    transaction.percentage = Math.abs(Math.round((transaction.value * 100)/Math.abs(total)));
+    return transaction;
+  });
+
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
@@ -78,3 +84,20 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+export const getTransactionById = (state: State, id: number): Transaction => {
+  const t = getTransactions(state).find(trx => trx.id === id) || {};
+  return t;
+};
+
+export const getInflowPercentage = createSelector([getInflowTransactions], transactions => {
+  const total = totalTransactions(transactions);
+  applyPercentage(transactions,total);
+  return transactions;
+});
+
+export const getOutflowPercentage = createSelector([getOutflowTransactions], transactions => {
+  const total = totalTransactions(transactions);
+  applyPercentage(transactions,total);
+  return transactions;
+});
