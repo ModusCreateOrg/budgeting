@@ -23,6 +23,9 @@ export class ItemDetail extends React.Component<BudgetGridProps> {
     const { trx, data } = this.props;
     return (
       <section>
+        <button onClick={this.props.history.goBack}>
+          Back
+        </button>
         <ItemTitle transaction={trx} />
         <DonutChart data={data} dataLabel="transaction" dataKey="percentage" />
       </section>
