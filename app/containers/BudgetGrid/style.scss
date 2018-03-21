@@ -13,7 +13,6 @@
     display: flex;
     align-items: stretch;
     height: inherit;
-    padding: 8px;
   }
 
   th, td {
@@ -22,6 +21,9 @@
 
     &:last-child {
       text-align: right;
+      a {
+        justify-content: flex-end;
+      }
     }
 
     &:nth-child(1), &:nth-child(3) {
@@ -40,6 +42,7 @@
 
   thead {
     border-bottom: 1px solid $gray;
+    padding: 8px;
   }
 
   tbody {
@@ -49,11 +52,13 @@
 
     tr {
       border-bottom: 1px solid $lightgray;
+      padding: 0 8px;
     }
 
     td {
       vertical-align: top;
       text-overflow: ellipsis;
+      line-height: 30px;
     }
   }
 
@@ -83,6 +88,9 @@
         &:last-child {
           text-align: left;
           margin-bottom: 0;
+          a {
+            justify-content: flex-start;
+          }
         }
       }
     }

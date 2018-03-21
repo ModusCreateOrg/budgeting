@@ -1,23 +1,28 @@
 @import 'theme/variables';
 
-.cellLabel {
-  display: none;
+.rows {
+    &:hover {
+        background-color: $verylightgray;
+    }
+}
+.navLink {
+    &:first-child {
+        display: none;
+        @media only screen and (max-width: $screen-small) {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+    }
 
-  @media only screen and (max-width: $screen-small) {
     display: flex;
-    align-items: center;
     flex: 1;
-  }
-}
-
-.cellContent {
-  flex: 1;
-}
-
-.neg {
-  color: $red;
-}
-
-.pos {
-  color: $green;
+    text-decoration: none;
+    color: $black;
+    .neg & {
+        color: $red;
+    }
+    .pos & {
+        color: $green;
+    }
 }

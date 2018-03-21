@@ -1,0 +1,10 @@
+.button {
+    text-transform: uppercase;
+    font-weight: bold;
+    &:before { content:"\25C0"; }
+}
+.notFound {
+    align-self: center;
+    font-size: 2em;
+    font-weight: bold;
+}

@@ -1,0 +1,31 @@
+@import 'theme/variables';
+
+.chartContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1, h2 {
+        margin: 0;
+    }
+    > div > svg {
+        @media only screen and (max-width: $screen-small) {
+            flex: none;
+            min-height: 200px;
+            height: calc(100% - 100px);
+            width: 100%;
+        }
+    }
+}
+
+.title {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.neg {
+    color: $red;
+}
+.pos {
+    color: $green;
+}
