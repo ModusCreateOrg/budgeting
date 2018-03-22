@@ -21,7 +21,7 @@ const ItemDetails = ({ transaction, amount, balance, history }) => {
         Back
       </div>
       <h3 className={styles.title}>{transaction.description}</h3>
-      <span className={amount.isNegative ? styles.neg : styles.pos}>{amount.text}</span>
+      <span className={amount.isNegative ? styles.neg : styles.pos}>{amount.percentage}%</span>
       <DonutChart data={DonutData} dataLabel="description" dataKey="id" />
     </section>
   );

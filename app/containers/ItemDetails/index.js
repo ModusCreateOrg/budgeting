@@ -34,8 +34,12 @@ class ItemDetailsContainer extends React.Component<{}> {
       id: 0,
     };
 
+    const amount = { ...this.props.amount };
+
     if (this.props.amount.isNegative) {
       transaction.value *= -1;
+
+      amount.percentage = (transaction.value / (this.props.balance.outflow * -1) * 100).toFixed(2);
 
       balance = {
         ...balance,
@@ -43,6 +47,7 @@ class ItemDetailsContainer extends React.Component<{}> {
         value: this.props.balance.outflow * -1 - transaction.value,
       };
     } else {
+      amount.percentage = (transaction.value / this.props.balance.inflow * 100).toFixed(2);
       balance = {
         ...balance,
         description: 'Inflow Difference',
@@ -50,14 +55,7 @@ class ItemDetailsContainer extends React.Component<{}> {
       };
     }
 
-    return (
-      <ItemDetails
-        transaction={transaction}
-        amount={this.props.amount}
-        balance={balance}
-        history={this.props.history}
-      />
-    );
+    return <ItemDetails transaction={transaction} amount={amount} balance={balance} history={this.props.history} />;
   }
 }
 
