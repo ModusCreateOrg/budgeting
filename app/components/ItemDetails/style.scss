@@ -1,0 +1,21 @@
+@import 'theme/variables';
+
+.title {
+  margin: 0;
+  color: $black;
+}
+.neg {
+  color: $red;
+}
+.pos {
+  color: $green;
+}
+.backBtn {
+  align-self: flex-end;
+  padding: 5px;
+  border-radius: 6px;
+  font-size: 16px;
+  color: $gray;
+  border: 1px solid $lightgray;
+  text-decoration: none;
+}
