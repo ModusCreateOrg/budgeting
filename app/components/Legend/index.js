@@ -17,7 +17,7 @@ type LegendType = {
 const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }: LegendType) => (
   <ul className={cx(styles.legend, { [styles.reverse]: reverse })}>
     {data.map((item, idx) => (
-      <LegendItem color={color(idx)} key={item[dataKey]} label={item[dataLabel]} value={item[dataValue]} />
+      <LegendItem color={color(idx)} key={item[dataKey]} label={item[dataLabel]} value={item[dataValue]} options={item.options || {}} />
     ))}
   </ul>
 );
