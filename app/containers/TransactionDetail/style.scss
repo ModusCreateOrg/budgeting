@@ -1,0 +1,22 @@
+@import 'theme/variables';
+
+.negative {
+  color: $red;
+}
+
+.positive {
+  color: $green;
+}
+
+.buttonBack {
+  background: none;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 3px;
+  font-size: 16px;
+  color: #b1b1b1;
+}
+
+:export {
+  negativeColor: $red;
+  positiveColor: $green;
+}
