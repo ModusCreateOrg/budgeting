@@ -51,8 +51,6 @@ class ItemDetails extends React.Component<ItemDetailsProps> {
         ? this.getPercentage(transaction.value, outflows)
         : this.getPercentage(transaction.value, inflows);
 
-      const color = isNegative ? ['rgb(43, 153, 64)', 'rgb(125, 200, 115)'] : ['rgb(201, 39, 54)', 'rgb(236, 86, 82)'];
-
       const donusData = this.fillDonusData(transaction, percentage, isNegative);
       const description = `It's ${percentage} % of the ${isNegative ? 'Outflows' : 'Inflows'}`;
 
