@@ -1,5 +1,7 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -29,6 +31,14 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>
         <div className={styles.cellContent}>{amount.text}</div>
+      </td>
+      <td>
+        <div className={styles.cellLabel}>Details</div>
+        <div className={styles.cellContent}>
+          <Link to={`budget/${id}`} styles={styles.detailLink}>
+            Details
+          </Link>
+        </div>
       </td>
     </tr>
   );

@@ -1,0 +1,15 @@
+@import 'theme/variables';
+
+%description {
+  margin-top: 10px;
+}
+
+.inflowDescription {
+  @extend %description;
+  color:$green;
+}
+
+.outflowDescription {
+  @extend %description;
+  color:$red;
+}

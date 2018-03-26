@@ -15,7 +15,7 @@ exports[`renders correctly 1`] = `
     className="value"
   >
      
-    $3.00
+    3
      
   </span>
 </li>
