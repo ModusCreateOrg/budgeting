@@ -1,0 +1,19 @@
+@import 'theme/variables';
+
+.header {
+  display: inline;
+}
+
+.navLink {
+  padding: 0;
+  margin: 0 10px 0 0;
+  border-radius: 6px;
+  font-size: 20px;
+  color: $gray;
+  text-decoration: none;
+  display: inline;
+  &:before{
+    content: '←';
+  }
+}
+

@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BudgetDetailCard should renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <BudgetDetailChart
+    amount={20}
+    description="test"
+    totalInflow={100}
+    totalOutflow={-200}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "color": [Function],
+      "data": Array [
+        Object {
+          "description": "test",
+          "key": 0,
+          "value": 20,
+        },
+        Object {
+          "description": "Other Inflows",
+          "key": 1,
+          "value": 80,
+        },
+      ],
+      "dataKey": "key",
+      "dataLabel": "description",
+      "dataValue": "value",
+      "formatLabel": false,
+      "height": 300,
+      "innerRatio": 4,
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "color": [Function],
+        "data": Array [
+          Object {
+            "description": "test",
+            "key": 0,
+            "value": 20,
+          },
+          Object {
+            "description": "Other Inflows",
+            "key": 1,
+            "value": 80,
+          },
+        ],
+        "dataKey": "key",
+        "dataLabel": "description",
+        "dataValue": "value",
+        "formatLabel": false,
+        "height": 300,
+        "innerRatio": 4,
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

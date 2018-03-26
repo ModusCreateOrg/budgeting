@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <a
+    className="navLink"
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+  <h1
+    className="header"
+  >
+    Trader Joe's food
+  </h1>
+  <div
+    className="outflowDescription"
+  >
+    -$423.34
+     (
+    -Infinity
+    % of total 
+    outflows
+    )
+  </div>
+  <div
+    className="donutChart"
+  >
+    <svg
+      className="mainSvg"
+      height={316}
+      viewBox="-8 -8 316 316"
+      width={316}
+    >
+      <g
+        transform="translate(150,150)"
+      >
+        <path
+          d="M9.184850993605149e-15,-150L4.592425496802574e-15,-75Z"
+          fill="#edc"
+        />
+        <path
+          d="M9.184850993605149e-15,-150LNaN,NaNZ"
+          fill="#ccc"
+        />
+      </g>
+    </svg>
+    <ul
+      className="legend"
+    >
+      <li
+        style={
+          Object {
+            "color": "#edc",
+          }
+        }
+      >
+        <span>
+          Trader Joe's food
+        </span>
+        <span
+          className="value"
+        >
+           
+          -Infinity
+           
+        </span>
+      </li>
+      <li
+        style={
+          Object {
+            "color": "#ccc",
+          }
+        }
+      >
+        <span>
+          Other Outflows
+        </span>
+        <span
+          className="value"
+        >
+           
+          Infinity
+           
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
