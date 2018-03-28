@@ -46,25 +46,28 @@ class TransactionDetails extends React.Component<TransactionDetailsProps> {
 
   render() {
     const { transaction, balance, categories } = this.props;
-    const remainingBalance = balance - Math.abs(transaction.value);
+    const { id, description, value } = transaction;
+    const remainingBalance = balance - Math.abs(value);
     const remainingPercentage = formatAmountPercentageContribution(remainingBalance, balance, 2, false).text;
     const data = [
       {
-        description: `${transaction.description}: `,
-        value: Math.abs(transaction.value),
-        id: transaction.id,
+        description: `${description}: `,
+        value: Math.abs(value),
+        id: id,
       },
       {
-        description: `${transaction.value < 0 ? 'Remainig Outflow' : 'Remaining Inflow'} (${remainingPercentage}): `,
+        description: `${value < 0 ? 'Remainig Outflow' : 'Remaining Inflow'} (${remainingPercentage}): `,
         value: remainingBalance,
-        id: transaction.id + 1,
+        id: id + 1,
       },
     ];
 
     return (
       <section>
         <TransactionDetail transaction={transaction} balance={balance} categories={categories} />
-        <PieChart data={data} dataLabel="description" dataKey="id" color={this.getColorScheme(transaction)} />;
+        {description && (
+          <PieChart data={data} dataLabel="description" dataKey="id" color={this.getColorScheme(transaction)} />
+        )}
       </section>
     );
   }
@@ -72,8 +75,8 @@ class TransactionDetails extends React.Component<TransactionDetailsProps> {
 
 const mapStateToProps = (state, { match }) => {
   const transactionId = parseInt(match.params.id, 10);
-  const transaction = getTransactionById(state, transactionId);
-  const balance = Math.abs(transaction.value > 0 ? getInflowBalance(state) : getOutflowBalance(state));
+  const transaction = getTransactionById(state, transactionId) || {};
+  const balance = Math.abs((transaction.value || 0) < 0 ? getOutflowBalance(state) : getInflowBalance(state));
   return {
     transaction,
     balance,

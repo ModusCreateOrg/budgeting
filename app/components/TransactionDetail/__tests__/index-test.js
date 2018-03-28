@@ -52,3 +52,23 @@ it('component renders correctly for outflow', () => {
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('component renders correctly for error when no transaction selected', () => {
+  const mockTransaction = {};
+
+  const mockBalance = 0;
+
+  const mockCategories = {
+    1: 'Groceries',
+  };
+
+  const context = {};
+  const tree = renderer
+    .create(
+      <StaticRouter context={context}>
+        <TransactionDetail transaction={mockTransaction} balance={mockBalance} categories={mockCategories} />
+      </StaticRouter>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

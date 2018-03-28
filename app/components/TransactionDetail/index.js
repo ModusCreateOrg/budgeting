@@ -20,11 +20,18 @@ const TransactionDetail = ({ transaction, balance, categories }: TransactionDeta
   return (
     <div className={styles.transactionDetailContainer}>
       <NavLink to="/budget" label="<" styles={styles} />
-      <div className={styles.transactionDetail}>
-        <div className={styles.transactionDetailTitle}>{description}</div>
-        <div className={styles.transactionDetailCategory}>{category}</div>
-        <div className={`${styles.transactionDetailAmount} ${amountCls}`}>{amount.text}</div>
-      </div>
+      {description && (
+        <div className={styles.transactionDetail}>
+          <div className={styles.transactionDetailTitle}>{description}</div>
+          <div className={styles.transactionDetailCategory}>{category}</div>
+          <div className={`${styles.transactionDetailAmount} ${amountCls}`}>{amount.text}</div>
+        </div>
+      )}
+      {!description && (
+        <div className={`${styles.transactionDetail} ${styles.transactionError}`}>
+          {`The transaction doesn't exist. Please go back to Budget and select a transaction to view it's details.`}
+        </div>
+      )}
     </div>
   );
 };

@@ -27,12 +27,16 @@
     font-style: italic; 
   }
 }
+.transactionError {
+  color: $red;
+}
 
 .navLink {
   height: 90px;
   line-height: 90px;
   padding: 0 .5em;
   font-size: 2em;
+  color: initial;
   text-decoration: none;
   background: $verylightgray;
   border: 1px solid $gray;

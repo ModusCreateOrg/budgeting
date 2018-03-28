@@ -49,4 +49,18 @@ describe('formatAmountPercentageContribution', () => {
       isNegative: false,
     });
   });
+
+  it('should not divide by zero when total equals 0', () => {
+    expect(formatAmountPercentageContribution(50, 0)).toEqual({
+      text: '+100.00%',
+      isNegative: false,
+    });
+  });
+
+  it('should not divide by zero when amount and total equals 0', () => {
+    expect(formatAmountPercentageContribution(0, 0)).toEqual({
+      text: '+0.00%',
+      isNegative: false,
+    });
+  });
 });

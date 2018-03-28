@@ -65,3 +65,22 @@ exports[`component renders correctly for outflow 1`] = `
   </div>
 </div>
 `;
+
+exports[`component renders correctly for error when no transaction selected 1`] = `
+<div
+  className="transactionDetailContainer"
+>
+  <a
+    className="navLink "
+    href="/budget"
+    onClick={[Function]}
+  >
+    &lt;
+  </a>
+  <div
+    className="transactionDetail transactionError"
+  >
+    The transaction doesn't exist. Please go back to Budget and select a transaction to view it's details.
+  </div>
+</div>
+`;

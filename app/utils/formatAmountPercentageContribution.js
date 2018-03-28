@@ -9,7 +9,7 @@ export default function formatAmountPercentageContribution(
   showSign: boolean = true,
   showPlusSign: boolean = true
 ): FormattedValueSign {
-  total = total || 1;
+  total = total || amount || 1;
   const contributionPercentage = Math.abs(amount / total) * 100;
   const precisionMagnitude = 10 ** precision;
   const formattedValue = `${parseFloat(
