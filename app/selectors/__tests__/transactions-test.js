@@ -1,6 +1,7 @@
 import {
   sortTransactions,
   getTransactions,
+  getTransactionById,
   getInflowBalance,
   getOutflowBalance,
   getFormattedBalance,
@@ -47,6 +48,24 @@ describe('getTransactions', () => {
     const expectedSelection = [];
 
     expect(getTransactions(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getTransactionById', () => {
+  it('should return transaction by provided id', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const transactionId = 1;
+    const expectedSelection = { id: 1 };
+
+    expect(getTransactionById(state, transactionId)).toEqual(expectedSelection);
+  });
+
+  it('should return null if the transactionId is not found in transactions', () => {
+    const state = {};
+    const transactionId = 1;
+    const expectedSelection = null;
+
+    expect(getTransactionById(state, transactionId)).toEqual(expectedSelection);
   });
 });
 

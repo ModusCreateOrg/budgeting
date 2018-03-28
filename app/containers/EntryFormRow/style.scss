@@ -1,3 +1,11 @@
+@import 'theme/variables';
+
+@mixin flex-wrap-screen-small {
+  @media only screen and (max-width: $screen-small) {
+    flex-wrap: wrap;
+  }
+}
+
 .entryFormRow {
   & {
     padding: 2px !important;
@@ -6,10 +14,12 @@
   td {
     display: flex;
     flex-wrap: nowrap;
+    @include flex-wrap-screen-small;
 
     form {
       display: flex;
       width: 100%;
+      @include flex-wrap-screen-small;
     };
 
     input, select {

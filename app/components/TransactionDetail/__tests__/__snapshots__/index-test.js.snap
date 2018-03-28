@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component renders correctly for inflow 1`] = `
+<div
+  className="transactionDetailContainer"
+>
+  <a
+    className="navLink "
+    href="/budget"
+    onClick={[Function]}
+  >
+    &lt;
+  </a>
+  <div
+    className="transactionDetail"
+  >
+    <div
+      className="transactionDetailTitle"
+    >
+      Ebay sale - guitar
+    </div>
+    <div
+      className="transactionDetailCategory"
+    >
+      Income
+    </div>
+    <div
+      className="transactionDetailAmount pos"
+    >
+      +16.20%
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component renders correctly for outflow 1`] = `
+<div
+  className="transactionDetailContainer"
+>
+  <a
+    className="navLink "
+    href="/budget"
+    onClick={[Function]}
+  >
+    &lt;
+  </a>
+  <div
+    className="transactionDetail"
+  >
+    <div
+      className="transactionDetailTitle"
+    >
+      Trader Joe's food
+    </div>
+    <div
+      className="transactionDetailCategory"
+    >
+      Groceries
+    </div>
+    <div
+      className="transactionDetailAmount neg"
+    >
+      -9.23%
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component renders correctly for error when no transaction selected 1`] = `
+<div
+  className="transactionDetailContainer"
+>
+  <a
+    className="navLink "
+    href="/budget"
+    onClick={[Function]}
+  >
+    &lt;
+  </a>
+  <div
+    className="transactionDetail transactionError"
+  >
+    The transaction doesn't exist. Please go back to Budget and select a transaction to view it's details.
+  </div>
+</div>
+`;
