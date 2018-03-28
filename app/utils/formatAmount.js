@@ -1,19 +1,15 @@
 // @flow
+import formatValueSign from 'utils/formatValueSign';
+import type { FormattedValueSign } from 'utils/formatValueSign';
 
-export type FormattedAmount = {
-  text: string,
-  isNegative: boolean,
-};
-
-export default function formatAmount(amount: number, showSign: boolean = true): FormattedAmount {
-  const isNegative = amount < 0;
-  const formatValue = Math.abs(amount).toLocaleString('en-us', {
+export default function formatAmount(
+  amount: number,
+  showSign: boolean = true,
+  showPlusSign: boolean = false
+): FormattedValueSign {
+  const formattedValue = Math.abs(amount).toLocaleString('en-us', {
     style: 'currency',
     currency: 'USD',
   });
-
-  return {
-    text: `${isNegative && showSign ? '-' : ''}${formatValue}`,
-    isNegative,
-  };
+  return formatValueSign(amount, formattedValue, showSign, showPlusSign);
 }

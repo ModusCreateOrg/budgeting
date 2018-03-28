@@ -1,5 +1,19 @@
 @import 'theme/variables';
 
+tr {
+  cursor: pointer;
+
+  &:hover {
+    background: $verylightgray;
+  }
+}
+
+.navLink {
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
 .cellLabel {
   display: none;
 
