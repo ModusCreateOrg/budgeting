@@ -7,7 +7,7 @@ type GoBackProps = {
   text: string,
 };
 
-const GoBack = (props : GoBackProps) => (
+const GoBack = (props: GoBackProps) => (
   <div className={styles.containerGoBack} onClick={props.goBack} role="button" tabIndex="0">
     <span>{props.text}</span>
   </div>
