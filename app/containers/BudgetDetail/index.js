@@ -3,7 +3,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'modules/transactions'
-import { getTransactions } from "selectors/transactions";
+import {
+  getTransactions,
+  getInflowBalance,
+  getOutflowBalance
+} from "selectors/transactions";
 import type { Transaction } from "modules/transactions";
 import transactionReducer from "modules/transactions";
 import { injectAsyncReducers } from "store";
@@ -22,19 +26,35 @@ type Props = {
       id: number
     }
   },
-  transactions: Transaction[]
+  transactions: Transaction[],
+  inflowBalnce: number,
+  outFlowBalance: number
 };
 
 class BudgetDetail extends React.Component <Props > {
+  totalbalance = () => {
+    const inflow = this.props.inflowBalance
+    const outflow = this.props.outFlowBalance
+    console.log(inflow, (-outflow))
+    return inflow + (-outflow)
+  }
   getTranscation = (): React.Element<any> => {
     const id = this.props.match.params.id;
+    const total = this.totalbalance()
     const transaction = this.props.transactions.filter(transaction => {
      return transaction.id == id;
     }
     )
     console.log(transaction)
     return transaction.map((item: Transaction )=> (
-      <TransactionDetail value={item.value} key={item.id} title={item.description} />
+      <TransactionDetail 
+        value={item.value} 
+        key={item.id} 
+        title={item.description} 
+        total={total}
+        inflow={this.props.inflowBalance}
+        outflow={this.props.outFlowBalance}
+      />
     ))
   }
   render() {
@@ -43,7 +63,9 @@ class BudgetDetail extends React.Component <Props > {
 }
 
 const mapStateToProps = state => ({
-  transactions: getTransactions(state)
+  transactions: getTransactions(state),
+  inflowBalance: getInflowBalance(state),
+  outFlowBalance: getOutflowBalance(state)
 });
 export default connect(mapStateToProps)(BudgetDetail);
 
