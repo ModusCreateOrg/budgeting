@@ -1,7 +1,19 @@
 import React from 'react';
+import { ItemDetails } from 'modules/items';
+import ValueRatioChart from './ValueRatioChart';
+import ItemDetailsHeader from './Header';
+import BackButton from './BackButton';
 
-const ItemDetails = ({id}) => {
-    return (<h1>Item details for item {id}</h1>);
+const ItemDetailsComponent = (props: ItemDetails) => {
+    const { transaction, history} = props;
+
+    return (
+        <section>
+            <BackButton history={history}/>
+            <ItemDetailsHeader {...props} />
+            <ValueRatioChart {...props} />
+        </section>
+    );
 }
 
-export default ItemDetails;
+export default ItemDetailsComponent;
