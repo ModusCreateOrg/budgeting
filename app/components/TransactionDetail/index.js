@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { pie, arc, scaleOrdinal} from "d3";
 import Chart from "components/Chart";
 import Path from "components/DonutChart/Path";
 import Legend from "components/Legend";
+
 
 
 type  Props = {
@@ -37,11 +38,12 @@ const getPercentage = (total, percentageValue) => {
   return Number((percentageValue/ total) * 100).toFixed(2)
 }
 
-export default (props: Props) => {
+const TransactionDetail = (props: Props) => {
   const itemValue =props.value < 1 ? props.value * -1: props.value; // check if budget detail is less than 1
   const data = [{name: "total", value: props.total}, {name: props.title, value: itemValue}]
   const width = 250;
   const height = 250;
+  const dataKey = "value"
   return <div>
       <h1 className="heading">{props.title}</h1>
       <h5>Total Budget: ${props.total}</h5>
@@ -68,12 +70,14 @@ export default (props: Props) => {
             />
           ))}
         </Chart>
-        <Legend color={color} {...{ data, dataValue}} />
+        <Legend color={color} {...{ data, dataValue, dataKey}} />
       </div>
-      <Link to="/budget" style={{ textDecoration: "none" }}>
-        <button style={{ backgroundColor: "blue", width: 100, height: 30, borderRadius: 5, color: "white", fontWeight: "bold" }}>
+        <button 
+          style={{ backgroundColor: "blue", width: 100, height: 30, borderRadius: 5, color: "white", fontWeight: "bold" }}
+          onClick={() => {props.history.push("/budget")}}
+        >
           Back
         </button>
-      </Link>
     </div>;
 };
+export default withRouter(TransactionDetail);
