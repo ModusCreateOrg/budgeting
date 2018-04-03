@@ -2,7 +2,7 @@
   "name": "webpack2-react-redux-budget-app-sample",
   "version": "2.0.0",
   "private": true,
-  "description": "Budgeting App Sample - React, Redux, Webpack 2",
+  "description": "Budgeting App Sample - React, Redux, Webpack 3",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
