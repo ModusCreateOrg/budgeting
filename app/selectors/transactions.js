@@ -39,6 +39,9 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransactionById = (state: State, id: number): Transaction =>
+  getTransactions(state).filter(transaction => transaction.id === id)[0] || null;
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
