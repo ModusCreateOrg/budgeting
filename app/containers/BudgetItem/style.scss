@@ -1,0 +1,20 @@
+@import 'theme/variables';
+
+.budgetItem {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  border-collapse: collapse;
+  font-size: 0.8em;
+}
+
+.backButton {
+  width: 3em;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 6px;
+  font-size: 1.5em;
+  color: $gray;
+  border: 1px solid $gray;
+  text-decoration: none;
+}
