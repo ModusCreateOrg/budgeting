@@ -13,15 +13,18 @@ type BudgetItemDetailProps = {
 const BudgetItemDetail = ({ transaction, balance }: BudgetItemDetailProps) => {
   const { value, description } = transaction;
 
+  // Calculate the values considering positive and negative values.
   const contribPercentage = value / balance * 100;
   const remainingBalance = Math.abs(balance) - Math.abs(value);
   const remainingPercentage = 100 - contribPercentage;
 
+  // This flag will be handy to switch styles and signs.
   let isIncome = true;
   if (value < 0) {
     isIncome = false;
   }
 
+  // Create data that Pie Chart needs to render, this could be moved to a helper.
   const data = [
     {
       categoryId: 'item',
