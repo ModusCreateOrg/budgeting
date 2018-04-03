@@ -1,0 +1,13 @@
+@import 'theme/variables';
+
+.isPositive {
+  h3 {
+    color: $green;
+  }
+}
+
+.isNegative {
+  h3 {
+    color: $red;
+  }
+}
