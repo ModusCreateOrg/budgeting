@@ -1,0 +1,13 @@
+@import 'theme/variables';
+
+.transaction__details {
+  text-align: left;
+}
+
+.neg {
+  color: $red;
+}
+
+.pos {
+  color: $green;
+}

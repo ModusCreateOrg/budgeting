@@ -1,0 +1,21 @@
+@import 'theme/main';
+
+.transaction__nav {
+  border: 1px solid $lightgray;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  max-height: 3em;
+  margin-bottom: 2em;
+
+  a {
+    float: left;
+    padding: 1em 2em;
+    white-space: nowrap;
+    font-size: 0.9em;
+    outline: none;
+    color: $black;
+    text-decoration: none;
+    background-color: $verylightgray;
+  }
+}

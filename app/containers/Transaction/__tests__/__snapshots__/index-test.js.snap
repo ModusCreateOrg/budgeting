@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders error 1`] = `
+<section>
+  <div
+    className="transaction__nav"
+  >
+    <a
+      href="/budget"
+      onClick={[Function]}
+    >
+      Go back
+    </a>
+  </div>
+  Ooops, transaction not found!
+</section>
+`;
