@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="budgetItemDetail"
+>
+  <h1>
+    Mock testing description
+  </h1>
+  <h2>
+    <span
+      className="income"
+    >
+      +
+    </span>
+    33.33
+    %
+  </h2>
+  <MockPieChart
+    data={
+      Array [
+        Object {
+          "category": "33.33% - Mock testing description",
+          "categoryId": "item",
+          "value": 33.33,
+        },
+        Object {
+          "category": "66.67% - Other incomes",
+          "categoryId": "total",
+          "value": 66.67,
+        },
+      ]
+    }
+    dataKey="categoryId"
+    dataLabel="category"
+  />
+</div>
+`;
