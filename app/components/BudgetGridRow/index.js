@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
@@ -15,20 +16,27 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
+  const budgetDetailUrl = `/budget/${id}`;
 
   return (
-    <tr key={id}>
+    <tr key={id} className={styles.row}>
       <td>
-        <div className={styles.cellLabel}>Category</div>
-        <div className={styles.cellContent}>{category}</div>
+        <Link to={budgetDetailUrl} className={styles.navLink}>
+          <div className={styles.cellLabel}>Category</div>
+          <div className={styles.cellContent}>{category}</div>
+        </Link>
       </td>
       <td>
-        <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
+        <Link to={budgetDetailUrl} className={styles.navLink}>
+          <div className={styles.cellLabel}>Description</div>
+          <div className={styles.cellContent}>{description}</div>
+        </Link>
       </td>
       <td className={amountCls}>
-        <div className={styles.cellLabel}>Amount</div>
-        <div className={styles.cellContent}>{amount.text}</div>
+        <Link to={budgetDetailUrl} className={styles.navLink}>
+          <div className={styles.cellLabel}>Amount</div>
+          <div className={styles.cellContent}>{amount.text}</div>
+        </Link>
       </td>
     </tr>
   );
