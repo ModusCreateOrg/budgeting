@@ -66,7 +66,7 @@ describe('getTransactionById', () => {
     expect(getTransactionById(state, 2)).toEqual(expectedSelection);
   });
 
-  it('should return undefined if transaction does not exist', () => {
+  it('should return null if transaction does not exist', () => {
     expect(getTransactionById(state, 4)).toEqual(null);
   });
 });
