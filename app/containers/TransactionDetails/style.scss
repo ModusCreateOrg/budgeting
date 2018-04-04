@@ -1,6 +1,7 @@
 @import 'theme/variables';
 
 .transactionDetails {
+  margin-top: 50px;
   @media only screen and (max-width: $screen-small) {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly - inflow 1`] = `
+<div
+  className="transactionDetails"
+>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+  <div
+    className="isPositive"
+  >
+    <h1>
+      Ebay sale - guitar
+    </h1>
+    <h2>
+      Groceries
+    </h2>
+    <h3>
+      + 16.20 %
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`renders correctly - invalid 1`] = `
+<div
+  className="transactionDetails"
+>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+  <p>
+    No transaction found.
+  </p>
+</div>
+`;
+
+exports[`renders correctly - outflow 1`] = `
+<div
+  className="transactionDetails"
+>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+  <div
+    className="isNegative"
+  >
+    <h1>
+      Trader Joe's food
+    </h1>
+    <h2>
+      Groceries
+    </h2>
+    <h3>
+      - 9.23 %
+    </h3>
+  </div>
+</div>
+`;

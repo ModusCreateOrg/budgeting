@@ -14,8 +14,9 @@ import styles from './style.scss';
 
 type TransactionDetailProps = {
   transaction: Transaction,
-  balance: number,
+  totalBalance: number,
   categories: Object,
+  isPositive: boolean,
 };
 
 // inject reducers that might not have been originally there
@@ -42,8 +43,8 @@ export class TransactionDetails extends React.Component<TransactionDetailProps> 
 
     /* Set innerRatio to height and create pie chart */
     const settings = {
-      height: 400,
-      innerRatio: 400,
+      height: 250,
+      innerRatio: 250,
       color: scaleOrdinal(colorRange).domain([0, 1]),
     };
 
