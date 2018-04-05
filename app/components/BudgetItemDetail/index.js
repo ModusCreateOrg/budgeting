@@ -19,10 +19,7 @@ const BudgetItemDetail = ({ transaction, balance }: BudgetItemDetailProps) => {
   const remainingPercentage = 100 - contribPercentage;
 
   // This flag will be handy to switch styles and signs.
-  let isIncome = true;
-  if (value < 0) {
-    isIncome = false;
-  }
+  const isIncome = value >= 0;
 
   // Create data that Pie Chart needs to render, this could be moved to a helper.
   const data = [
