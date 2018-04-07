@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <h1
+    className="h1"
+  >
+    Trader Joe's food
+     (
+    Groceries
+    )
+  </h1>
+  <h4
+    className="neg"
+  >
+    -$423.34
+     (
+    --9.41%
+    )
+  </h4>
+  <div
+    className="buttonWrapper"
+  />
+</section>
+`;

@@ -1,90 +1,96 @@
 @import 'theme/variables';
 
 .budgetGrid {
-  display: flex;
-  flex-flow: column;
-  flex: 1;
-  border: 1px solid $gray;
-  border-collapse: collapse;
-  font-size: 0.8em;
+	display: flex;
+	flex-flow: column;
+	flex: 1;
+	border: 1px solid $gray;
+	border-collapse: collapse;
+	font-size: 0.8em;
 
-  tr {
-    width: 100%;
-    display: flex;
-    align-items: stretch;
-    height: inherit;
-    padding: 8px;
-  }
+	tr {
+		width: 100%;
+		display: flex;
+		align-items: stretch;
+		height: inherit;
+		padding: 8px;
+	}
 
-  th, td {
-    text-align: left;
-    overflow: hidden;
+	th,
+	td {
+		text-align: left;
+		overflow: hidden;
 
-    &:last-child {
-      text-align: right;
-    }
+		&:last-child {
+			text-align: right;
+		}
 
-    &:nth-child(1), &:nth-child(3) {
-      flex: 1;
-      min-width: 120px;
-    }
+		&:nth-child(1),
+		&:nth-child(3) {
+			flex: 1;
+			min-width: 120px;
+		}
 
-    &:nth-child(2) {
-      flex: 3;
-    }
-  }
+		&:nth-child(2) {
+			flex: 3;
+		}
+	}
 
-  thead, tfoot {
-    background-color: $verylightgray;
-  }
+	thead,
+	tfoot {
+		background-color: $verylightgray;
+	}
 
-  thead {
-    border-bottom: 1px solid $gray;
-  }
+	thead {
+		border-bottom: 1px solid $gray;
+	}
 
-  tbody {
-    overflow-y: scroll;
-    display: block;
-    flex: 1;
+	tbody {
+		overflow-y: scroll;
+		display: block;
+		flex: 1;
 
-    tr {
-      border-bottom: 1px solid $lightgray;
-    }
+		tr {
+			border-bottom: 1px solid $lightgray;
+		}
 
-    td {
-      vertical-align: top;
-      text-overflow: ellipsis;
-    }
-  }
+		td {
+			vertical-align: top;
+			text-overflow: ellipsis;
+		}
+	}
 
-  tfoot {
-    height: 40px;
-    border-top: 1px solid $gray;
-  }
+	tfoot {
+		height: 40px;
+		border-top: 1px solid $gray;
+	}
 
-  @media only screen and (max-width: $screen-small) {
-    table, thead, tbody, tbody tr {
-      display: block;
-    }
+	@media only screen and (max-width: $screen-small) {
+		table,
+		thead,
+		tbody,
+		tbody tr {
+			display: block;
+		}
 
-    thead {
-      display: none;
-    }
+		thead {
+			display: none;
+		}
 
-    tbody {
-      tr {
-        padding: 12px 8px;
-      }
+		tbody {
+			tr {
+				padding: 12px 8px;
+			}
 
-      td {
-        display: flex;
-        margin-bottom: 12px;
+			td {
+				display: flex;
+				margin-bottom: 12px;
 
-        &:last-child {
-          text-align: left;
-          margin-bottom: 0;
-        }
-      }
-    }
-  }
+				&:last-child {
+					text-align: left;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
 }

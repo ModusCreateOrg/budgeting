@@ -2,6 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
 
+// mock nested components
+jest.mock('react-router-dom');
+
 it('renders correctly', () => {
   const mockTransaction = {
     id: 1,

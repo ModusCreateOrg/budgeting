@@ -20,11 +20,6 @@ exports[`renders correctly 1`] = `
     >
       Description
     </div>
-    <div
-      className="cellContent"
-    >
-      Trader Joe's food
-    </div>
   </td>
   <td
     className="neg"

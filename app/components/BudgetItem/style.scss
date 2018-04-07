@@ -1,0 +1,33 @@
+@import 'theme/main';
+
+h1,
+h4 {
+	text-align: center;
+}
+.neg {
+	color: $red;
+}
+.pos {
+	color: $green;
+}
+
+.navLink {
+	text-decoration: none;
+	font-size: 1.2em;
+	color: $white;
+	padding: 10px;
+	display: inline-block;
+	background-color: $darkgreen;
+	border-radius: 10px;
+
+	&:link,
+	&:visited {
+		color: $white;
+	}
+}
+
+.buttonWrapper {
+	text-align: center;
+	margin: 30px auto;
+	padding: 10px;
+}
