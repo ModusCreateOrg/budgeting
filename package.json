@@ -80,11 +80,13 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "cache-loader": "^1.0.3",
+    "chart.js": "1.1.1",
     "classnames": "^2.2.5",
     "coveralls": "^2.13.1",
     "d3": "4.10.2",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
+    "react-chartjs": "^1.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-redux": "5.0.6",
