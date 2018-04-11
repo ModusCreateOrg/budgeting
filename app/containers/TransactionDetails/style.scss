@@ -1,0 +1,36 @@
+@import 'theme/variables';
+
+.transactionDetails {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  border: 1px solid $gray;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  padding-left: 10px;
+
+  button {
+    margin-top: 10px;
+    font-size: 1.2em;
+    width: 10%;
+  }
+
+  h1 {
+    margin-bottom: 0px;
+  }
+
+  .neg {
+    color: $red;
+  }
+  .pos {
+    color: $green;
+  }
+
+  @media only screen and (max-width: $screen-small) {
+    button {
+      margin-top: 10px;
+      font-size: 1em;
+      width: 20%;
+    }
+  }
+}
