@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { StaticRouter as Router } from 'react-router-dom';
 import BudgetGridRow from 'components/BudgetGridRow';
 
 it('renders correctly', () => {
@@ -14,7 +15,11 @@ it('renders correctly', () => {
     1: 'Groceries',
     2: 'School',
   };
-
-  const tree = renderer.create(<BudgetGridRow transaction={mockTransaction} categories={mockCategories} />).toJSON();
+  // Router necessary because of the presence of Links
+  const tree = renderer.create(
+    <Router context={{}}>
+      <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
+    </Router>
+  ).toJSON();
   expect(tree).toMatchSnapshot();
 });

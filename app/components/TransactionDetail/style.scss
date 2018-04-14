@@ -1,0 +1,11 @@
+@import 'theme/variables';
+
+.detail {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  @media only screen and (max-width: $screen-small) {
+    align-items: center;
+    text-align: center;
+  }
+}
