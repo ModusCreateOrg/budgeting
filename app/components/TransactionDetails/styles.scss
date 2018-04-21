@@ -17,7 +17,15 @@ h1 h2 {
   color: green;
 }
 
-button {
+.button {
   flex: 1;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  padding: 3px;
+  background-color: red;
+  border: solid 2px #c2185b;
+  border-radius: 5px;
+  color: #fff;
+  width: 120px;
 }

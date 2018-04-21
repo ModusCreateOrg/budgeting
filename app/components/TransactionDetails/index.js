@@ -19,7 +19,7 @@ const TransactionDetails = ({isNegative, percent, transaction, data, history }) 
       <h2 className={isNegative ? styles.negative : styles.positive}>
         {isNegative ? '-' : ''}{percent + ' %'}
       </h2>
-      <button onClick={history.goBack}>Go back</button>
+      <a className={styles.button} onClick={history.goBack}>Go back</a>
       <DonutChart data={data} dataLabel="description" dataKey="id"/>
     </div>
   </section>

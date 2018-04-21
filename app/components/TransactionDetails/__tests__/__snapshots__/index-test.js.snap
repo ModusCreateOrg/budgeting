@@ -16,11 +16,12 @@ exports[`renders correctly 1`] = `
       -
       9.23 %
     </h2>
-    <button
+    <a
+      className="button"
       onClick={undefined}
     >
       Go back
-    </button>
+    </a>
     <div
       className="donutChart"
     >
@@ -35,11 +36,11 @@ exports[`renders correctly 1`] = `
         >
           <path
             d="M9.184850993605149e-15,-150A150,150,0,0,1,82.17194942404177,-125.49012203298201L41.085974712020885,-62.74506101649101A75,75,0,0,0,4.592425496802574e-15,-75Z"
-            fill="#8c564b"
+            fill="#f7b6d2"
           />
           <path
             d="M82.17194942404177,-125.49012203298201A150,150,0,1,1,-1.6078131593583422e-13,-150L-8.039065796791711e-14,-75A75,75,0,1,0,41.085974712020885,-62.74506101649101Z"
-            fill="#ffbb78"
+            fill="#e377c2"
           />
         </g>
       </svg>
@@ -49,7 +50,7 @@ exports[`renders correctly 1`] = `
         <li
           style={
             Object {
-              "color": "#8c564b",
+              "color": "#f7b6d2",
             }
           }
         >
@@ -67,7 +68,7 @@ exports[`renders correctly 1`] = `
         <li
           style={
             Object {
-              "color": "#ffbb78",
+              "color": "#e377c2",
             }
           }
         >

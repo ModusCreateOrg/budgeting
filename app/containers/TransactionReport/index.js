@@ -29,7 +29,6 @@ class TransactionReport extends React.Component<TransactionReportProps> {
         {id: transaction.id, value: Math.abs(transaction.value), description: transaction.description},
         {id: -1 ,value: Math.abs(remainder), description: "Other"}
       ]
-    debugger; 
     return (
       <TransactionDetails transaction={transaction} percent={percent} data={data} isNegative={isNegative} history={this.props.history}/>
     )
