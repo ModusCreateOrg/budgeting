@@ -14,6 +14,7 @@ type TransactionReportProps = {
 class TransactionReport extends React.Component<TransactionReportProps> {
   render() {
     const {transaction, inflow, outflow}  = this.props;
+    //In the event an invalid id is used
     if(!transaction) {
       return (
         <section>
@@ -25,10 +26,13 @@ class TransactionReport extends React.Component<TransactionReportProps> {
     const balance = isNegative ? outflow : inflow;
     const remainder = balance - transaction.value;
     const percent = (transaction.value * 100 / balance).toFixed(2)
+
+    //Value has to be positive in order to be charted by DonutChart
     const data = [
         {id: transaction.id, value: Math.abs(transaction.value), description: transaction.description},
         {id: -1 ,value: Math.abs(remainder), description: "Other"}
       ]
+
     return (
       <TransactionDetails transaction={transaction} percent={percent} data={data} isNegative={isNegative} history={this.props.history}/>
     )
