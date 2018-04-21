@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <div
+    className="title"
+  >
+    <h1
+      className="negative"
+    >
+      Trader Joe's food
+    </h1>
+    <h2
+      className="negative"
+    >
+      -
+      9.23 %
+    </h2>
+    <button
+      onClick={undefined}
+    >
+      Go back
+    </button>
+    <div
+      className="donutChart"
+    >
+      <svg
+        className="mainSvg"
+        height={316}
+        viewBox="-8 -8 316 316"
+        width={316}
+      >
+        <g
+          transform="translate(150,150)"
+        >
+          <path
+            d="M9.184850993605149e-15,-150A150,150,0,0,1,82.17194942404177,-125.49012203298201L41.085974712020885,-62.74506101649101A75,75,0,0,0,4.592425496802574e-15,-75Z"
+            fill="#8c564b"
+          />
+          <path
+            d="M82.17194942404177,-125.49012203298201A150,150,0,1,1,-1.6078131593583422e-13,-150L-8.039065796791711e-14,-75A75,75,0,1,0,41.085974712020885,-62.74506101649101Z"
+            fill="#ffbb78"
+          />
+        </g>
+      </svg>
+      <ul
+        className="legend"
+      >
+        <li
+          style={
+            Object {
+              "color": "#8c564b",
+            }
+          }
+        >
+          <span>
+            Trader Joe's food
+          </span>
+          <span
+            className="value"
+          >
+             
+            $423.34
+             
+          </span>
+        </li>
+        <li
+          style={
+            Object {
+              "color": "#ffbb78",
+            }
+          }
+        >
+          <span>
+            Other
+          </span>
+          <span
+            className="value"
+          >
+             
+            $4,164.73
+             
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+`;
