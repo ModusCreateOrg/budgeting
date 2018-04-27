@@ -14,9 +14,10 @@ exports[`renders correctly 1`] = `
   <span
     className="value"
   >
-     
-    $3.00
-     
+    <i>
+      $
+    </i>
+    3
   </span>
 </li>
 `;

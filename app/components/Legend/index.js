@@ -10,14 +10,15 @@ type LegendType = {
   dataValue: string,
   dataLabel: string,
   dataKey: string,
+  dataPrefix: string,
   color: Function,
   reverse: boolean,
 };
 
-const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }: LegendType) => (
+const Legend = ({ data, color, dataValue, dataLabel, dataKey, dataPrefix, reverse }: LegendType) => (
   <ul className={cx(styles.legend, { [styles.reverse]: reverse })}>
     {data.map((item, idx) => (
-      <LegendItem color={color(idx)} key={item[dataKey]} label={item[dataLabel]} value={item[dataValue]} />
+      <LegendItem color={color(idx)} key={item[dataKey]} label={item[dataLabel]} value={item[dataValue]} prefix={dataPrefix}/>
     ))}
   </ul>
 );

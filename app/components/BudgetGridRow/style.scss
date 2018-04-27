@@ -1,5 +1,8 @@
 @import 'theme/variables';
 
+a {
+  text-decoration-line: none
+}
 .cellLabel {
   display: none;
 
@@ -16,6 +19,10 @@
 
 .neg {
   color: $red;
+}
+
+.neg a {
+  color: $red
 }
 
 .pos {

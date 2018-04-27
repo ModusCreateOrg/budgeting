@@ -15,6 +15,7 @@ exports[`renders correctly 1`] = `
     data={Array []}
     dataKey="test"
     dataLabel="test"
+    dataPrefix="$"
     dataValue="value"
   />
 </div>

@@ -9,10 +9,10 @@ type LegendItemProps = {
   label: string,
 };
 
-const LegendItem = ({ color, label, value }: LegendItemProps) => (
+const LegendItem = ({ color, label, value, prefix = '' }: LegendItemProps) => (
   <li style={{ color }}>
     <span>{label}</span>
-    <span className={styles.value}> {formatAmount(value).text} </span>
+    <span className={styles.value}><i>{prefix}</i>{value}</span>
   </li>
 );
 
