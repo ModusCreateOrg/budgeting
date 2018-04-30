@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="itemHeader"
+>
+  <h1>
+    Trader Joe's food
+  </h1>
+  <div>
+    <div
+      className="metaText"
+    >
+      <span
+        className="green"
+      >
+        + 
+        5.50
+      </span>
+    </div>
+    <div
+      className="metaText"
+    >
+      <span
+        className="red"
+      >
+        - 
+        2.50
+      </span>
+    </div>
+  </div>
+</div>
+`;
