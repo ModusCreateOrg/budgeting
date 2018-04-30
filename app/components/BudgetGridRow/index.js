@@ -3,7 +3,6 @@ import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
-import NavLink from 'components/NavLink';
 import { Link } from 'react-router-dom';
 import styles from './style.scss';
 
