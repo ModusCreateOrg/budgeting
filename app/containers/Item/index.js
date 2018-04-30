@@ -27,7 +27,7 @@ export class ItemContainer extends React.Component {
           </button>
         )}
         {/* Render the header, should pass the values in percentage */}
-        <ItemHeader name={transaction.description} inflow={inflowPercentage} outflow={outflowPercentage} /> 
+        <ItemHeader name={transaction.description} inflow={inflowPercentage} outflow={outflowPercentage} />
         <div className={styles.chart}>
           <PieChart data={data} dataLabel="name" dataKey="value" type="percentage" />
         </div>
