@@ -26,8 +26,9 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       <td>
         <div className={styles.cellLabel}>Description</div>
         <div className={styles.cellContent}>
-          {/* <NavLink to={`/budget/${id}`} label={description} styles={styles} /> */}
-          <Link to={`/budget/${id}`} styles={styles} >{description}</Link>
+          <Link to={`/budget/${id}`} styles={styles} >
+            {description}
+          </Link>
         </div>
       </td>
       <td className={amountCls}>
