@@ -26,7 +26,7 @@ function summarizeTransactions(transactions: Transaction[]): TransactionSummary[
   }, []);
 }
 
-export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
+export const sortTransactions = <T: { value: number }> (transactions: T[]): T[] => {
   const unsorted = [...transactions];
   return unsorted.sort((a, b) => b.value - a.value);
 };
@@ -36,6 +36,13 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
     transaction.category = categories[transaction.categoryId];
     return transaction;
   });
+
+export const getTransaction = (state: State, id: Number): Transaction => {
+  const filtered = (state.transactions || []).filter(t => t.id == id) || [];
+  const categoryNameApplied = applyCategoryName(filtered, state.categories);
+  return categoryNameApplied[0] || {}
+}
+
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
