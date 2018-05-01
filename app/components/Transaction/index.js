@@ -10,12 +10,17 @@ const TransactionComponent = props => (
         {props.transaction.category} - {props.transaction.description}
       </h2>
       <div>{props.subtitle}</div>
+      <div>inflow: {props.inflow}</div>
+      <div>outflow: {props.outflow}</div>
     </div>
   </div>
 );
 TransactionComponent.propTypes = {
   transaction: PropTypes.object.isRequired,
   backToPreviousRoute: PropTypes.func.isRequired,
+  subtitle: PropTypes.element.isRequired,
+  inflow: PropTypes.number.isRequired,
+  outflow: PropTypes.number.isRequired,
 };
 
 TransactionComponent.defaultProps = {
