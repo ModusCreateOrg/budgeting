@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
-import {BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 it('renders correctly', () => {
   const mockTransaction = {
@@ -17,8 +17,10 @@ it('renders correctly', () => {
   };
 
   const tree = renderer.create(
-  <Router>
-   <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
-  </Router> ).toJSON();
+    <Router>
+      <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
+    </Router>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -1,24 +1,15 @@
 // @flow
 
 import * as React from 'react';
+import { injectAsyncReducers } from 'store';
 import { connect } from 'react-redux';
-import { actions } from 'modules/transactions'
-import {
-  getTransactions,
-  getInflowBalance,
-  getOutflowBalance
-} from "selectors/transactions";
-import type { Transaction } from "modules/transactions";
-import transactionReducer from "modules/transactions";
-import { injectAsyncReducers } from "store";
-import TransactionDetail from "components/TransactionDetail"
+import { getTransactions, getInflowBalance, getOutflowBalance } from 'selectors/transactions';
+import type { Transaction }, transactionReducer from 'modules/transactions';
+import TransactionDetail from 'components/TransactionDetail'
 
 
 // inject reducers that might not have been originally there
-injectAsyncReducers({
-  transactions: transactionReducer,
-});
-
+injectAsyncReducers({ transactions: transactionReducer, });
 
 type Props = {
   match: {
@@ -46,27 +37,17 @@ class BudgetDetail extends React.Component <Props > {
     }
     )
     console.log(transaction)
-    return transaction.map((item: Transaction )=> (
-      <TransactionDetail 
-        value={item.value} 
-        key={item.id} 
-        title={item.description} 
-        total={total}
-        inflow={this.props.inflowBalance}
-        outflow={this.props.outFlowBalance}
-      />
-    ))
+    return transaction.map((item: Transaction )=> <TransactionDetail value={item.value}key={item.id} title={item.description} total={total} inflow={this.props.inflowBalance}
+    outflow={this.props.outFlowBalance} />);
   }
   render() {
-    return <div>{this.getTranscation()}</div>;
+  return (<div>{this.getTranscation()}</div>);
   }
 }
 
 const mapStateToProps = state => ({
   transactions: getTransactions(state),
   inflowBalance: getInflowBalance(state),
-  outFlowBalance: getOutflowBalance(state)
+  outFlowBalance: getOutflowBalance(state),
 });
 export default connect(mapStateToProps)(BudgetDetail);
-
-

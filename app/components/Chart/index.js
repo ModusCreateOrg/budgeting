@@ -24,4 +24,3 @@ Chart.defaultProps = {
 };
 
 export default Chart;
- 

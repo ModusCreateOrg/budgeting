@@ -61,7 +61,7 @@ export const actions = {
   deleteTransaction: (id: $PropertyType<Transaction, 'id'>) => ({
     type: DELETE_TRANSACTION,
     id,
-  })
+  }),
 };
 
 /**
