@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import formatAmount from 'utils/formatAmount';
 import styles from './styles.scss';
 
 type LegendItemProps = {
@@ -12,7 +11,10 @@ type LegendItemProps = {
 const LegendItem = ({ color, label, value, prefix = '' }: LegendItemProps) => (
   <li style={{ color }}>
     <span>{label}</span>
-    <span className={styles.value}><i>{prefix}</i>{value}</span>
+    <span className={styles.value}>
+      <i>{prefix}</i>
+      {value}
+    </span>
   </li>
 );
 

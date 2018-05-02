@@ -20,16 +20,22 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   return (
     <tr key={id}>
       <td>
-          <div className={styles.cellLabel}>Category</div>
-          <div className={styles.cellContent}><Link to={`/transaction/${id}`}>{category}</Link></div>
+        <div className={styles.cellLabel}>Category</div>
+        <div className={styles.cellContent}>
+          <Link to={`/transaction/${id}`}>{category}</Link>
+        </div>
       </td>
       <td>
-          <div className={styles.cellLabel}>Description</div>
-          <div className={styles.cellContent}><Link to={`/transaction/${id}`}>{description}</Link></div>
+        <div className={styles.cellLabel}>Description</div>
+        <div className={styles.cellContent}>
+          <Link to={`/transaction/${id}`}>{description}</Link>
+        </div>
       </td>
       <td className={amountCls}>
-          <div className={styles.cellLabel}>Amount</div>
-          <div className={styles.cellContent}><Link to={`/transaction/${id}`}>{amount.text}</Link></div>
+        <div className={styles.cellLabel}>Amount</div>
+        <div className={styles.cellContent}>
+          <Link to={`/transaction/${id}`}>{amount.text}</Link>
+        </div>
       </td>
     </tr>
   );

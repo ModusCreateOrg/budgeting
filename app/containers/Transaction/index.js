@@ -25,18 +25,20 @@ injectAsyncReducers({
 class TransactionContainer extends React.Component<TransactionContainerProps> {
   static contextTypes = {
     router: () => true, // replace with PropTypes.object if you use them
-  }
+  };
 
   render() {
     const { match, transactions, balance } = this.props;
-    const transaction = transactions.find(transaction => transaction.id === parseInt(match.params.id));
+    const transaction = transactions.find(item => item.id === parseInt(match.params.id, 10));
 
     return (
-      <section style={{textAlign: 'center'}}>
-        <a style={{cursor: 'pointer'}} onClick={this.context.router.history.goBack}>&#9665; Back</a>
-        <TransactionDetail transaction={transaction} balance={balance}/>
+      <section style={{ textAlign: 'center' }}>
+        <a role="button" tabIndex="0" style={{ cursor: 'pointer' }} onClick={this.context.router.history.goBack}>
+          &#9665; Back
+        </a>
+        <TransactionDetail transaction={transaction} balance={balance} />
       </section>
-    )
+    );
   }
 }
 
@@ -45,7 +47,7 @@ const mapStateToProps = state => ({
   balance: {
     inflow: getInflowBalance(state),
     outflow: getOutflowBalance(state),
-  }
+  },
 });
 
 export default connect(mapStateToProps)(TransactionContainer);

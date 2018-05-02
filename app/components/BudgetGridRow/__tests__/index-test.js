@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
+
 jest.mock('react-router-dom');
 
 it('renders correctly', () => {
