@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as selectors from 'selectors/transactions';
+import {
+  getTransaction,
+  getInflowPercentage,
+  getOutflowPercentage,
+  getInflowBalance,
+  getOutflowBalance,
+} from 'selectors/transactions';
 import TransactionComponent from '../../components/Transaction';
 
 const TransactionContainer = props => {
@@ -38,11 +44,11 @@ TransactionContainer.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  transaction: selectors.getTransaction(state, ownProps.match.params.id),
-  inflowPercentage: selectors.getInflowPercentage(state, ownProps.match.params.id),
-  outflowPercentage: selectors.getOutflowPercentage(state, ownProps.match.params.id),
-  inflow: selectors.getInflowBalance(state),
-  outflow: selectors.getOutflowBalance(state),
+  transaction: getTransaction(state, ownProps.match.params.id),
+  inflowPercentage: getInflowPercentage(state, ownProps.match.params.id),
+  outflowPercentage: getOutflowPercentage(state, ownProps.match.params.id),
+  inflow: getInflowBalance(state),
+  outflow: getOutflowBalance(state),
 });
 
 export default connect(mapStateToProps)(TransactionContainer);
