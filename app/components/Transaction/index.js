@@ -1,26 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DonutChart from '../DonutChart';
 
-const TransactionComponent = props => (
+import styles from './styles.scss';
+
+const TransactionComponent = ({ transaction, inflowPercentage, outflowPercentage, backToPreviousRoute, data }) => (
   <div>
-    <div>{JSON.stringify(props.transaction)}</div>
-    <button onClick={props.backToPreviousRoute}>Back</button>
+    <button onClick={backToPreviousRoute}>Back</button>
     <div>
       <h2>
-        {props.transaction.category} - {props.transaction.description}
+        {transaction.category} - {transaction.description}
       </h2>
-      <div>{props.subtitle}</div>
-      <div>inflow: {props.inflow}</div>
-      <div>outflow: {props.outflow}</div>
+      <div className={styles.subtitle}>
+        <div className={styles.pos}>+{inflowPercentage}</div>
+        <div className={styles.neg}>-{outflowPercentage}</div>
+      </div>
+      <DonutChart data={data} dataLabel="label" dataKey="id" shouldDisplayPiChart />
     </div>
   </div>
 );
 TransactionComponent.propTypes = {
   transaction: PropTypes.object.isRequired,
   backToPreviousRoute: PropTypes.func.isRequired,
-  subtitle: PropTypes.element.isRequired,
-  inflow: PropTypes.number.isRequired,
-  outflow: PropTypes.number.isRequired,
+  inflowPercentage: PropTypes.number.isRequired,
+  outflowPercentage: PropTypes.number.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 TransactionComponent.defaultProps = {

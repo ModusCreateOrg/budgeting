@@ -1,0 +1,17 @@
+@import 'theme/variables';
+
+.neg {
+  color: $red;
+  margin-left: 10px;
+}
+
+.pos {
+  color: $green;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-content: center;
+}

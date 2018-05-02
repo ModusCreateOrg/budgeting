@@ -26,7 +26,7 @@ function summarizeTransactions(transactions: Transaction[]): TransactionSummary[
   }, []);
 }
 
-export const sortTransactions = <T: { value: number }> (transactions: T[]): T[] => {
+export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
   const unsorted = [...transactions];
   return unsorted.sort((a, b) => b.value - a.value);
 };
@@ -40,9 +40,8 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 export const getTransaction = (state: State, id: Number): Transaction => {
   const filtered = (state.transactions || []).filter(t => t.id == id) || [];
   const categoryNameApplied = applyCategoryName(filtered, state.categories);
-  return categoryNameApplied[0] || {}
-}
-
+  return categoryNameApplied[0] || {};
+};
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
@@ -85,3 +84,27 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+const formatAsPercentage = decimalNumber => `${Number.parseFloat(decimalNumber * 100).toFixed(2)}%`;
+const getPercentage = ({ state, transactionId, selector, valueDeterminer }) => {
+  const { value: transactionValue } = getTransaction(state, transactionId);
+  const flow = selector(state);
+  const value = transactionValue / flow;
+  return formatAsPercentage(valueDeterminer(value));
+};
+
+export const getOutflowPercentage = (state, transactionId) =>
+  getPercentage({
+    state,
+    transactionId,
+    selector: getOutflowBalance,
+    valueDeterminer: value => (value < 0 ? 0 : value),
+  });
+
+export const getInflowPercentage = (state, transactionId) =>
+  getPercentage({
+    state,
+    transactionId,
+    selector: getInflowBalance,
+    valueDeterminer: value => (value > 0 ? value : 0),
+  });
