@@ -7,16 +7,22 @@ import styles from './styles.scss';
 const TransactionComponent = ({ transaction, inflowPercentage, outflowPercentage, backToPreviousRoute, data }) => (
   <div>
     <button onClick={backToPreviousRoute}>Back</button>
-    <div>
-      <h2>
-        {transaction.category} - {transaction.description}
-      </h2>
-      <div className={styles.subtitle}>
-        <div className={styles.pos}>+{inflowPercentage}</div>
-        <div className={styles.neg}>-{outflowPercentage}</div>
+    {transaction.value && (
+      <div>
+        <div className={styles.content}>
+          <div>
+            <h2>
+              {transaction.category} - {transaction.description}
+            </h2>
+          </div>
+          <div className={styles.subtitle}>
+            <div className={styles.pos}>+{inflowPercentage}</div>
+            <div className={styles.neg}>-{outflowPercentage}</div>
+          </div>
+        </div>
+        <DonutChart data={data} dataLabel="label" dataKey="id" shouldDisplayPiChart />
       </div>
-      <DonutChart data={data} dataLabel="label" dataKey="id" shouldDisplayPiChart />
-    </div>
+    )}
   </div>
 );
 TransactionComponent.propTypes = {

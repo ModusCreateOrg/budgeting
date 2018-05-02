@@ -9,9 +9,14 @@
   color: $green;
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .subtitle {
   display: flex;
-  justify-content: flex-start;
   flex-direction: row;
-  align-content: center;
+  margin-bottom: 5%;
 }
