@@ -4,7 +4,7 @@ import * as React from 'react';
 import { injectAsyncReducers } from 'store';
 import { connect } from 'react-redux';
 import { getTransactions, getInflowBalance, getOutflowBalance } from 'selectors/transactions';
-import type { Transaction }, transactionReducer from 'modules/transactions';
+import transactionReducer, {  Transaction  } from 'modules/transactions';
 import TransactionDetail from 'components/TransactionDetail'
 
 
