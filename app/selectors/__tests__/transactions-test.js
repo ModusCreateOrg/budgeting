@@ -8,6 +8,9 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getOutflowPercentage,
+  getInflowPercentage,
+  getTransaction,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -370,5 +373,126 @@ describe('getInflowByCategoryName', () => {
     expect(getInflowByCategoryName.recomputations()).toEqual(1);
     expect(getInflowByCategoryName(state3)).toEqual(expectedSelection2);
     expect(getInflowByCategoryName.recomputations()).toEqual(2);
+  });
+});
+describe('getTransaction', () => {
+  it('When state.transactions is not there, it should return empty object', () => {
+    const transaction = getTransaction({}, 0);
+    expect(transaction).toEqual({});
+  });
+  it('When transaction id == the id you are looking for, it should coerce and return valid transaction', () => {
+    const state = {
+      transactions: [{ id: '0', categoryId: 1 }],
+    };
+    const transaction = getTransaction(state, 0);
+    expect(transaction).toEqual(state.transactions[0]);
+  });
+});
+
+describe('getOutflowPercentage', () => {
+  it('When transactions does not have a corresponding transaction, it should return 0', () => {
+    const state = {
+      transactions: [{ value: 1, id: 1 }],
+    };
+    const value = getOutflowPercentage(state, 2);
+    expect(value).toEqual('0.00%');
+  });
+  it('When transactionValue / outflow is < 0, it should return 0.00%', () => {
+    const state = {
+      transactions: [
+        {
+          value: 100,
+          id: 0,
+        },
+        {
+          value: 200,
+          id: 1,
+        },
+        {
+          value: -400,
+          id: 2,
+        },
+      ],
+    };
+    const outflowPercentage = getOutflowPercentage(state, 1);
+    expect(outflowPercentage).toEqual(`0.00%`);
+  });
+  it('When transactionValue / outflow >= 0, it should return the percentage.', () => {
+    const state = {
+      transactions: [
+        {
+          value: 100,
+          id: 0,
+        },
+        {
+          value: 200,
+          id: 1,
+        },
+        {
+          value: -400,
+          id: 2,
+        },
+        {
+          value: -400,
+          id: 3,
+        },
+      ],
+    };
+    const outflowPercentage = getOutflowPercentage(state, 2);
+    expect(outflowPercentage).toEqual(`50.00%`);
+  });
+});
+
+describe('getInflowPercentage', () => {
+  it('When transactions does not have a corresponding transaction, it should return 0', () => {
+    const state = {
+      transactions: [{ value: 1, id: 1 }],
+    };
+    const value = getInflowPercentage(state, 2);
+    expect(value).toEqual('0.00%');
+  });
+  it('When transactionValue / inflow is > 0, it should return 0.00%', () => {
+    const state = {
+      transactions: [
+        {
+          value: 100,
+          id: 0,
+        },
+        {
+          value: 200,
+          id: 1,
+        },
+        {
+          value: -400,
+          id: 2,
+        },
+      ],
+    };
+    const outflowPercentage = getInflowPercentage(state, 2);
+    expect(outflowPercentage).toEqual(`0.00%`);
+  });
+  it('When transactionValue / outflow <= 0, it should return the percentage.', () => {
+    const state = {
+      transactions: [
+        {
+          value: 100,
+          id: 0,
+        },
+        {
+          value: 200,
+          id: 1,
+        },
+        {
+          value: -400,
+          id: 2,
+        },
+        {
+          value: -400,
+          id: 3,
+        },
+      ],
+    };
+    const outflowPercentage = getInflowPercentage(state, 1);
+    expect(outflowPercentage).toEqual(`66.67%`);
   });
 });

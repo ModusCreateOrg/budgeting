@@ -39,7 +39,7 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransaction = (state: State, id: Number): Transaction => {
   const filtered = (state.transactions || []).filter(t => t.id == id) || [];
-  const categoryNameApplied = applyCategoryName(filtered, state.categories);
+  const categoryNameApplied = applyCategoryName(filtered, getCategories(state));
   return categoryNameApplied[0] || {};
 };
 
@@ -86,11 +86,12 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
 );
 
 const formatAsPercentage = decimalNumber => `${Number.parseFloat(decimalNumber * 100).toFixed(2)}%`;
+
 const getPercentage = ({ state, transactionId, selector, valueDeterminer }) => {
   const { value: transactionValue } = getTransaction(state, transactionId);
   const flow = selector(state);
   const value = transactionValue / flow;
-  return formatAsPercentage(valueDeterminer(value));
+  return formatAsPercentage(valueDeterminer(isNaN(value) ? 0 : value));
 };
 
 export const getOutflowPercentage = (state, transactionId) =>
@@ -101,7 +102,7 @@ export const getOutflowPercentage = (state, transactionId) =>
     valueDeterminer: value => (value < 0 ? 0 : value),
   });
 
-export const getInflowPercentage = (state, transactionId) =>
+export const getInflowPercentage = (state: State, transactionId: Number) =>
   getPercentage({
     state,
     transactionId,
