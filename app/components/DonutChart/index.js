@@ -19,6 +19,7 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  shouldDisplayPiChart: boolean,
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -27,6 +28,7 @@ class DonutChart extends React.Component<DonutChartProps> {
     height: 300,
     innerRatio: 4,
     dataValue: 'value',
+    shouldDisplayPiChart: false,
   };
 
   componentWillMount() {
@@ -44,9 +46,9 @@ class DonutChart extends React.Component<DonutChartProps> {
   }
 
   getPathArc = () => {
-    const { height, innerRatio } = this.props;
+    const { height, innerRatio, shouldDisplayPiChart } = this.props;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(shouldDisplayPiChart ? 1 : height / innerRatio)
       .outerRadius(height / 2);
   };
 

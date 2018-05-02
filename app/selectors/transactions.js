@@ -26,7 +26,7 @@ function summarizeTransactions(transactions: Transaction[]): TransactionSummary[
   }, []);
 }
 
-export const sortTransactions = <T: { value: number }>(transactions: T[]): T[] => {
+export const sortTransactions = <T: { value: number }> (transactions: T[]): T[] => {
   const unsorted = [...transactions];
   return unsorted.sort((a, b) => b.value - a.value);
 };
@@ -36,6 +36,14 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
     transaction.category = categories[transaction.categoryId];
     return transaction;
   });
+
+export const getTransaction = (state: State, id: Number): Transaction => {
+  // use == for coercion
+  // eslint-disable-next-line eqeqeq
+  const filtered = (state.transactions || []).filter(t => t.id == id) || [];
+  const categoryNameApplied = applyCategoryName(filtered, getCategories(state));
+  return categoryNameApplied[0] || {};
+};
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
@@ -78,3 +86,28 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+const formatAsPercentage = (decimalNumber: Number) => `${Number.parseFloat(decimalNumber * 100).toFixed(2)}%`;
+
+const getPercentage = ({ state, transactionId, selector, valueDeterminer }) => {
+  const { value: transactionValue } = getTransaction(state, transactionId);
+  const flow: Number = selector(state);
+  const value: Number = transactionValue / flow;
+  return formatAsPercentage(valueDeterminer(isNaN(value) ? 0 : value));
+};
+
+export const getOutflowPercentage = (state: State, transactionId: Number) =>
+  getPercentage({
+    state,
+    transactionId,
+    selector: getOutflowBalance,
+    valueDeterminer: (value: Number) => (value < 0 ? 0 : value),
+  });
+
+export const getInflowPercentage = (state: State, transactionId: Number) =>
+  getPercentage({
+    state,
+    transactionId,
+    selector: getInflowBalance,
+    valueDeterminer: (value: Number) => (value > 0 ? value : 0),
+  });
