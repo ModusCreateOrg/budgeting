@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router'
+import { MemoryRouter } from 'react-router';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
 
