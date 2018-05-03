@@ -7,7 +7,6 @@ import { getTransactions, getInflowBalance, getOutflowBalance } from 'selectors/
 import transactionReducer, { Transaction } from 'modules/transactions';
 import TransactionDetail from 'components/TransactionDetail';
 
-
 // inject reducers that might not have been originally there
 injectAsyncReducers({ transactions: transactionReducer });
 
@@ -28,7 +27,7 @@ class BudgetDetail extends React.Component<Props> {
     const total = this.totalbalance();
     const transaction = this.props.transactions.filter(tx => tx.id === id);
     console.log(transaction);
-    return transaction.map((item: Transaction ) => (
+    return transaction.map((item:Transaction ) => (
       <TransactionDetail
         value={item.value}
         key={item.id}
@@ -38,13 +37,13 @@ class BudgetDetail extends React.Component<Props> {
         outflow={this.props.outFlowBalance}
       />
     ));
-  }
+  };
   totalbalance = () => {
     const inflow = this.props.inflowBalance;
     const outflow = this.props.outFlowBalance;
     console.log(inflow, -outflow);
-    return inflow + (-outflow);
-  }
+    return inflow + -outflow;
+  };
   render() {
     return <div>{this.getTranscation()}</div>;
   }

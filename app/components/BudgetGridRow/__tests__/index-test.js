@@ -15,10 +15,10 @@ it('renders correctly', () => {
     2: 'School',
   };
   const tree = renderer.create(
-    <Router>
-      <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
-    </Router>
-  )
-  .toJSON();
+      <Router>
+        <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
+      </Router>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
