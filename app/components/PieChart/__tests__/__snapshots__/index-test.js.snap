@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<svg
+  viewBox="0 0 110 110"
+>
+  <g
+    transform="translate(5, 5)"
+  >
+    <g>
+      <path
+        d="
+          M50,50
+          L99.5,50
+          A49.5,49.5
+          0 1,1
+          57.74350601949142,1.1094271405406815
+          z
+        "
+        fill="#000"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        stroke="#fff"
+        strokeLinejoin="round"
+        strokeWidth={1}
+      >
+        <title>
+          Other
+        </title>
+      </path>
+      <path
+        d="
+          M50,50
+          L57.74350601949142,1.1094271405406815
+          A49.5,49.5
+          0 0,1
+          99.5,49.999999999999986
+          z
+        "
+        fill="#22964e"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        stroke="#fff"
+        strokeLinejoin="round"
+        strokeWidth={1}
+      >
+        <title>
+          Income - Paycheck - $5,700.00
+        </title>
+      </path>
+    </g>
+  </g>
+</svg>
+`;

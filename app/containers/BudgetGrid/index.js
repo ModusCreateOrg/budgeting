@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
@@ -33,7 +34,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         </thead>
         <tbody>
           {transactions.map((transaction: Transaction): React.Element<any> => (
-            <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+            <Link to={{ pathname: ('/budgetitem/'+transaction.id), state: { id: transaction.id}}} ><BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} /></Link>            
           ))}
         </tbody>
         <tfoot>
