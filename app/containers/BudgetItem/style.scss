@@ -1,0 +1,41 @@
+@import 'theme/variables';
+$background: #E8EDF1;
+$border: #D1D2D3;
+.heading {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.percentage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 20px 0;
+  font-size: 1.2em;
+}
+
+.positive {
+  color: $green;
+}
+
+.negative {
+  color: $red;
+}
+
+.button {
+  padding: 6px 12px;
+  background: $background;
+  border: 1px solid $border;
+  border-radius: 3px;
+  color: #000;
+  font-size: 0.7em;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background: darken($background, 2%);
+    border-color: darken($border, 2%);
+  }
+  &:focus {
+    outline: none;
+  }
+}
