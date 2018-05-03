@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<tr>
+<tr
+  className="row"
+>
   <td>
     <div
       className="cellLabel"
@@ -23,7 +25,12 @@ exports[`renders correctly 1`] = `
     <div
       className="cellContent"
     >
-      Trader Joe's food
+      <a
+        href="/budget/item/1"
+        onClick={[Function]}
+      >
+        Trader Joe's food
+      </a>
     </div>
   </td>
   <td
