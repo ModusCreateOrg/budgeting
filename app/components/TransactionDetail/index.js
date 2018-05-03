@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { pie, arc, scaleOrdinal} from 'd3';
+import { pie, arc, scaleOrdinal } from 'd3';
 import Chart from 'components/Chart';
 import Path from 'components/DonutChart/Path';
 import Legend from 'components/Legend';
