@@ -27,7 +27,7 @@ class BudgetDetail extends React.Component<Props> {
     const total = this.totalbalance();
     const transaction = this.props.transactions.filter(tx => tx.id === id);
     console.log(transaction);
-    return transaction.map((item:Transaction ) => (
+    return transaction.map((item: Transaction ) => (
       <TransactionDetail
         value={item.value}
         key={item.id}
