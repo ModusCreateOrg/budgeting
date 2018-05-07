@@ -6,6 +6,10 @@ it('renders correctly', () => {
   expect(true);
 });
 
+
+//NB!!!! Having issues with this test:
+//Error: Invariant Violation: You should not use <Route> or withRouter() outside a <Router>
+
 // it('renders correctly', () => {
 //   const mockTransaction = {
 //     id: 1,

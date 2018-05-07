@@ -4,6 +4,7 @@ import transactionReducer from 'modules/transactions';
 import { injectAsyncReducers } from 'store';
 import { withRouter } from 'react-router-dom'
 import TransactionBudgetHeader from 'components/TransactionBudgetHeader/index'
+import TransactionBudgetChart from 'containers/TransactionBudgetChart/index'
 import styles from './style.scss';
 
 // inject reducers that might not have been originally there
@@ -18,6 +19,7 @@ export default class TransactionBudgetContainer extends React.Component {
     return (
       <section>
         <TransactionBudgetHeader transactionId={params.transactionid} />
+        <TransactionBudgetChart transactionId={params.transactionid} />
         <button className={styles.backbutton} onClick={history.goBack}>Back</button>
       </section>
     );

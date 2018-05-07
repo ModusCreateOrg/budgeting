@@ -24,8 +24,8 @@ const TransactionBudgetHeader = ({ transactions, totalBudget, transactionId }: T
       <h3>{transaction.description}</h3>
       <h4>Percent of total budget: <span className={percentCls}>{percent.text}</span></h4>
     </div>
-   )
-  };
+  )
+};
 
 const mapStateToProps = state => ({
   transactions: getTransactions(state),
