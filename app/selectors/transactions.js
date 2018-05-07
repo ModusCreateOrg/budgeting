@@ -16,6 +16,10 @@ function totalTransactions(transactions: Transaction[]): number {
   return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
 }
 
+function totalBudget(transactions: Transaction[]): number {
+  return transactions.reduce((total, item) => total + Math.abs(parseFloat(item.value)), 0);
+}
+
 function summarizeTransactions(transactions: Transaction[]): TransactionSummary[] {
   return transactions.reduce((summary, { categoryId, value }) => {
     const sum =
@@ -48,6 +52,8 @@ const getOutflowTransactions = createSelector([getTransactions], transactions =>
 );
 
 const getBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
+
+export const getTotalBudget = createSelector([getTransactions], transactions => totalBudget(transactions));
 
 export const getInflowBalance = createSelector([getInflowTransactions], transactions =>
   totalTransactions(transactions)
