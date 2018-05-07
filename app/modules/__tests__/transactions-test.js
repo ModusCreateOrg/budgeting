@@ -112,6 +112,7 @@ describe('actions', () => {
       expect(actions.deleteTransaction(id)).toEqual(expectedAction);
     });
   });
+
 });
 
 describe('reducers', () => {
