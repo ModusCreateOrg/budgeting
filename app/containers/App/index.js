@@ -6,6 +6,7 @@ import ErrorBoundary from 'components/ErrorBoundary';
 import AppError from 'components/AppError';
 import Header from 'components/Header';
 import Budget from 'routes/Budget';
+import BudgetItemDetails from 'routes/BudgetItemDetails';
 import Reports from 'routes/Reports';
 import './style.scss';
 
@@ -16,6 +17,7 @@ const App = () => (
 
       <Switch>
         <Route path="/budget" component={Budget} />
+        <Route path="/budgetItemDetails/:id" component={BudgetItemDetails} />
         <Route path="/reports" component={Reports} />
         <Redirect to="/budget" />
       </Switch>
