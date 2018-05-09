@@ -19,6 +19,7 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  isPieChart: Boolean,
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -46,7 +47,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   getPathArc = () => {
     const { height, innerRatio } = this.props;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(this.props.isPieChart ? 0 : height / innerRatio)
       .outerRadius(height / 2);
   };
 
