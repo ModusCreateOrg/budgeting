@@ -39,6 +39,12 @@ exports[`renders correctly 1`] = `
     >
       -$423.34
     </div>
+    <a
+      href="/budget/1"
+      onClick={[Function]}
+    >
+      View
+    </a>
   </td>
 </tr>
 `;

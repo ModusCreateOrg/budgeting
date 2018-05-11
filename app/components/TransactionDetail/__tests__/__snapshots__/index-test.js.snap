@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly 1`] = `
+<div>
+  <h1
+    className="heading"
+  >
+    Pay Bills
+  </h1>
+  <h5>
+    Total Budget: $
+    15000
+  </h5>
+  <h5>
+    inflow percentage:
+    <span
+      style={
+        Object {
+          "color": "green",
+          "fontSize": 20,
+        }
+      }
+    >
+      + 
+      NaN
+      %
+    </span>
+  </h5>
+  <h5>
+    outflow percentage:
+    <span
+      style={
+        Object {
+          "color": "red",
+          "fontSize": 20,
+        }
+      }
+    >
+      46.67
+      %
+    </span>
+  </h5>
+  <div>
+    <svg
+      className="mainSvg"
+      height={250}
+      viewBox="-0 -0 250 250"
+      width={250}
+    >
+      <g
+        transform="translate(125 , 125)"
+      >
+        <path
+          d="M7.041719095097281e-15,-115A115,115,0,1,1,-44.00859472198529,-106.24614623879799L0,0Z"
+          fill="#bbdefb"
+        />
+        <path
+          d="M-44.00859472198529,-106.24614623879799A115,115,0,0,1,-2.112515728529184e-14,-115L0,0Z"
+          fill="#64b5f6"
+        />
+      </g>
+    </svg>
+    <ul
+      className="legend"
+    >
+      <li
+        style={
+          Object {
+            "color": "#bbdefb",
+          }
+        }
+      >
+        <span />
+        <span
+          className="value"
+        >
+           
+          $15,000.00
+           
+        </span>
+      </li>
+      <li
+        style={
+          Object {
+            "color": "#64b5f6",
+          }
+        }
+      >
+        <span />
+        <span
+          className="value"
+        >
+           
+          $1,000.00
+           
+        </span>
+      </li>
+    </ul>
+  </div>
+  <button
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "blue",
+        "borderRadius": 5,
+        "color": "white",
+        "fontWeight": "bold",
+        "height": 30,
+        "width": 100,
+      }
+    }
+  >
+    Back
+  </button>
+</div>
+`;

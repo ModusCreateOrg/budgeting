@@ -77,7 +77,6 @@ export default function transactionsReducer(state: Transaction[] = defaultTransa
     case DELETE_TRANSACTION:
       newState = state.filter(todo => todo.id !== action.id);
       return newState;
-
     default:
       return state;
   }
