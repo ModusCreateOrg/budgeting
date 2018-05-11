@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import renderer from 'react-test-renderer';
 import BudgetGridRow from 'components/BudgetGridRow';
 
@@ -15,6 +16,12 @@ it('renders correctly', () => {
     2: 'School',
   };
 
-  const tree = renderer.create(<BudgetGridRow transaction={mockTransaction} categories={mockCategories} />).toJSON();
+  const tree = renderer
+    .create(
+      <MemoryRouter>
+        <BudgetGridRow transaction={mockTransaction} categories={mockCategories} />
+      </MemoryRouter>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
