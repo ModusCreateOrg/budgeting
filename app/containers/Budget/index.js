@@ -12,9 +12,9 @@ injectAsyncReducers({
   categories: categoryReducer,
 });
 
-const BudgetContainer = () => (
+const BudgetContainer = ({ onClickItem }) => (
   <section>
-    <BudgetGrid />
+    <BudgetGrid onClickItem={onClickItem} />
     <Balance />
   </section>
 );

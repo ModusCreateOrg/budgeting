@@ -20,11 +20,12 @@ exports[`renders correctly 1`] = `
     >
       Description
     </div>
-    <div
+    <button
       className="cellContent"
+      onClick={[Function]}
     >
       Trader Joe's food
-    </div>
+    </button>
   </td>
   <td
     className="neg"
