@@ -7,11 +7,13 @@ exports[`renders correctly 1`] = `
   <div
     color={undefined}
     label={undefined}
+    type="amount"
     value={undefined}
   />
   <div
     color={undefined}
     label={undefined}
+    type="amount"
     value={undefined}
   />
 </ul>

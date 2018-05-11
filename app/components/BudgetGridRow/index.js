@@ -3,6 +3,7 @@ import * as React from 'react';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
+import { Link } from 'react-router-dom';
 import styles from './style.scss';
 
 type BudgetGridRowProps = {
@@ -24,7 +25,11 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
       </td>
       <td>
         <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
+        <div className={styles.cellContent}>
+          <Link to={`/budget/${id}`} styles={styles}>
+            {description}
+          </Link>
+        </div>
       </td>
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>

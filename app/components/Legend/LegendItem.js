@@ -9,10 +9,10 @@ type LegendItemProps = {
   label: string,
 };
 
-const LegendItem = ({ color, label, value }: LegendItemProps) => (
+const LegendItem = ({ color, label, value, type }: LegendItemProps) => (
   <li style={{ color }}>
     <span>{label}</span>
-    <span className={styles.value}> {formatAmount(value).text} </span>
+    <span className={styles.value}> {type === 'percentage' ? `${value} %` : formatAmount(value).text} </span>
   </li>
 );
 

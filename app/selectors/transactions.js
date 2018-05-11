@@ -39,6 +39,10 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+// Accepts state and transaction id, returns the index
+export const getTransactionById = (state: State, transactionId: number): Transaction =>
+  state.transactions.find(transaction => transaction.id === transactionId) || null;
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
@@ -47,7 +51,7 @@ const getOutflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value < 0)
 );
 
-const getBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
+export const getBalance = createSelector([getTransactions], transactions => totalTransactions(transactions));
 
 export const getInflowBalance = createSelector([getInflowTransactions], transactions =>
   totalTransactions(transactions)
