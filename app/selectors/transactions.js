@@ -39,6 +39,8 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransactionById = (state : State, id : number) : Transaction => getTransactions(state).find(transaction => transaction.id == id);
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
@@ -78,3 +80,15 @@ export const getOutflowByCategoryName = createSelector(getOutflowByCategory, get
 export const getInflowByCategoryName = createSelector(getInflowByCategory, getCategories, (trans, cat) =>
   applyCategoryName(trans, cat)
 );
+
+export const getValueRatioToOutflow = (state, value) => 
+  computeRatio(value, getOutflowBalance(state)
+);
+
+export const getValueRatioToInflow = (state, value) => 
+  computeRatio(value, getInflowBalance(state)
+);
+
+function computeRatio(antecedent, consequent, precision = 2){
+  return parseFloat(((Math.abs(antecedent) / Math.abs(consequent)) * 100).toFixed(precision), precision);
+}
