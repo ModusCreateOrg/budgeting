@@ -8,6 +8,7 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  getTransactionById
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -49,6 +50,15 @@ describe('getTransactions', () => {
     expect(getTransactions(state)).toEqual(expectedSelection);
   });
 });
+
+describe('getTransactionById', () => {
+  it('should return transaction match by Id' () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const expectedSelection = { id: 1 };
+
+    expect(getTransactionById(state)).toEqual(expectedSelection);
+  })
+})
 
 describe('getInflowBalance', () => {
   it('should return the sum of values of every transactions with positive value', () => {
