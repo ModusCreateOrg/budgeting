@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="negative"
+>
+  <h3>
+    I am a transaction.
+  </h3>
+  <p>
+    is the 22% of the outflows
+  </p>
+</div>
+`;
