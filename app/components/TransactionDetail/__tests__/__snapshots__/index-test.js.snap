@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="detail"
+>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    Go Back
+  </a>
+  <div>
+    <h1>
+      Trader Joe's food
+    </h1>
+    <h2>
+      Groceries
+    </h2>
+    <p
+      style={
+        Object {
+          "color": "#DC363B",
+          "fontWeight": "bold",
+        }
+      }
+    >
+      - 9.23 %
+    </p>
+    <div
+      className="donutChart"
+    >
+      <svg
+        className="mainSvg"
+        height={316}
+        viewBox="-8 -8 316 316"
+        width={316}
+      >
+        <g
+          transform="translate(150,150)"
+        >
+          <path
+            d="M9.184850993605149e-15,-150A150,150,0,0,1,82.17194942404177,-125.49012203298201L0.5478129961602785,-0.8366008135532135A1,1,0,0,0,6.123233995736766e-17,-1Z"
+            fill="#DC363B"
+          />
+          <path
+            d="M82.17194942404177,-125.49012203298201A150,150,0,1,1,-1.6078131593583422e-13,-150L-1.0718754395722282e-15,-1A1,1,0,1,0,0.5478129961602785,-0.8366008135532135Z"
+            fill="#F5979A"
+          />
+        </g>
+      </svg>
+      <ul
+        className="legend"
+      >
+        <li
+          style={
+            Object {
+              "color": "#DC363B",
+            }
+          }
+        >
+          <span>
+            Trader Joe's food
+          </span>
+          <span
+            className="value"
+          >
+             
+            $423.34
+             
+          </span>
+        </li>
+        <li
+          style={
+            Object {
+              "color": "#F5979A",
+            }
+          }
+        >
+          <span>
+            Other
+          </span>
+          <span
+            className="value"
+          >
+             
+            $4,164.73
+             
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
