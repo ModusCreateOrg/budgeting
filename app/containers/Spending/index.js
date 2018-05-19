@@ -15,7 +15,7 @@ class Spending extends React.Component<SpendingProps> {
   render() {
     const { data } = this.props;
 
-    return <DonutChart data={data} dataLabel="category" dataKey="categoryId" />;
+    return <DonutChart data={data} dataLabel="category" dataKey="categoryId" dataPrefix="$" />;
   }
 }
 
