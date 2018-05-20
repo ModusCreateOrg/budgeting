@@ -21,3 +21,16 @@
 .pos {
   color: $green;
 }
+
+.tableRow {
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    background: $verylightgray;
+  }
+}
