@@ -21,3 +21,14 @@
 .pos {
   color: $green;
 }
+
+.row:hover {
+  cursor: pointer;
+  background-color:$verylightgray;
+}
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+}

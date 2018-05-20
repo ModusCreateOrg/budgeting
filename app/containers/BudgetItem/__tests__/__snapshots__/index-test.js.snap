@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="budgetItem"
+>
+  <a
+    className="backButton"
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+  <MockBudgetItemDetail
+    balance={100}
+    transaction={
+      Object {
+        "description": "Mock testing description",
+        "id": 1,
+        "value": 33.33,
+      }
+    }
+  />
+</section>
+`;

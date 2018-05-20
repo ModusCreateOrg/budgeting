@@ -1,0 +1,32 @@
+@import 'theme/variables';
+
+.budgetItemDetail {
+  margin: 5px;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0px;
+  }
+  h2 {
+    font-size: 1.7em;
+    margin-top: 0px;
+  }
+
+
+  @media only screen and (max-width: $screen-small) {
+    h1, h2 {
+      text-align: center;
+    }
+  }
+
+}
+
+.income {
+  color:$green;
+  font-size: 1.1em;
+}
+
+.outcome {
+  color:$red;
+  font-size: 1.1em;
+}
