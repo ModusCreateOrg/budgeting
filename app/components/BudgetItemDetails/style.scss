@@ -1,0 +1,25 @@
+@import 'theme/variables';
+
+.budgetItemDetails {
+
+  .budgetItemDetailsTitle {
+    font-size: 15px;
+    font-family: $font-default;
+  }
+
+  .budgetItemDetailsSubtitle {
+    font-family: $font-default;
+    &.neg {
+      color: $red;
+    }
+
+    &.pos {
+      color: $green;
+    }
+  }
+
+  @media only screen and (max-width: $screen-small) {
+    margin: 0 auto;
+  }
+
+}

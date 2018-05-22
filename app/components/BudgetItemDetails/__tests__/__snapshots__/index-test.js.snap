@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when transaction does not exists 1`] = `
+<span>
+  Could not find the corresponding budget item
+</span>
+`;
+
+exports[`renders correctly when transaction exists with negative value 1`] = `
+<div
+  className="budgetItemDetails"
+>
+  <h1
+    className="budgetItemDetailsTitle"
+  >
+    simple transaction with negative value
+  </h1>
+  <p
+    className="budgetItemDetailsSubtitle neg"
+  >
+    -20.00% of $50.00 (outflow)
+  </p>
+</div>
+`;
+
+exports[`renders correctly when transaction exists with positive value 1`] = `
+<div
+  className="budgetItemDetails"
+>
+  <h1
+    className="budgetItemDetailsTitle"
+  >
+    simple transaction with positive value
+  </h1>
+  <p
+    className="budgetItemDetailsSubtitle pos"
+  >
+    +10.00% of $100.00 (inflow)
+  </p>
+</div>
+`;

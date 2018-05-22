@@ -1,6 +1,7 @@
 import {
   sortTransactions,
   getTransactions,
+  getTransactionById,
   getInflowBalance,
   getOutflowBalance,
   getFormattedBalance,
@@ -47,6 +48,29 @@ describe('getTransactions', () => {
     const expectedSelection = [];
 
     expect(getTransactions(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getTransactionById', () => {
+  it('should return all transactions in the state', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const expectedSelection = { id: 1 };
+
+    expect(getTransactionById(state, 1)).toEqual(expectedSelection);
+  });
+
+  it('should return undefined if the state transaction is not found', () => {
+    const state = { transactions: [{ id: 1 }, { id: 2 }] };
+    const expectedSelection = undefined;
+
+    expect(getTransactionById(state, 3)).toEqual(expectedSelection);
+  });
+
+  it('should return undefined if the state has no transactions', () => {
+    const state = {};
+    const expectedSelection = undefined;
+
+    expect(getTransactionById(state, 1)).toEqual(expectedSelection);
   });
 });
 

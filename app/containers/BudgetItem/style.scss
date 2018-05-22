@@ -1,0 +1,25 @@
+@import 'theme/variables';
+
+.backButton {
+  color: $black;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: $font-default;
+  text-transform: uppercase;
+  background: $darkgray;
+  border-radius: 4px;
+  padding: .7em 1em;
+  text-decoration: none;
+  border: transparent;
+  width: 10%;
+
+  &:hover {
+    background: darkgray;
+  }
+
+  @media only screen and (max-width: $screen-small) {
+    width: 100%;
+  }
+}
+
+
