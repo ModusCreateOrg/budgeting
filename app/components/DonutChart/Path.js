@@ -28,9 +28,9 @@ class Path extends React.Component<PathProps> {
       .attrTween('d', () => t => arcFn(interpolateArc(t)));
   }
 
-  pathRef: ?Element;
+  pathRef: ?React.ElementRef<any>;
 
-  handleRefUpdate = (ref: ?Element) => {
+  handleRefUpdate = (ref: ?React.ElementRef<any>) => {
     this.pathRef = ref;
   };
 

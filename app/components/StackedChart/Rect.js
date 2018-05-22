@@ -30,9 +30,9 @@ class Rect extends React.Component<RectProps> {
     }
   }
 
-  rectRef: ?Element;
+  rectRef: ?React.ElementRef<any>;
 
-  handleRefUpdate = (ref: ?Element) => {
+  handleRefUpdate = (ref: ?React.ElementRef<any>) => {
     this.rectRef = ref;
   };
 
