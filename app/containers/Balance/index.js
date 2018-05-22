@@ -27,7 +27,7 @@ class Balance extends React.Component<BalanceProps> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state): Object => ({
   balance: getFormattedBalance(state),
   inflow: getFormattedInflowBalance(state),
   outflow: getFormattedOutflowBalance(state),

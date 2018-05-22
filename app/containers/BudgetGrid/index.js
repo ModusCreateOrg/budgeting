@@ -44,7 +44,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state): Object => ({
   transactions: getTransactions(state),
   categories: getCategories(state),
 });

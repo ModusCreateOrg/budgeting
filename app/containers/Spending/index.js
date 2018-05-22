@@ -19,7 +19,7 @@ class Spending extends React.Component<SpendingProps> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state): Object => ({
   data: sortTransactions(getOutflowByCategoryName(state)),
 });
 

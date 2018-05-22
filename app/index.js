@@ -17,7 +17,7 @@ const renderApp = (Component: React.ComponentType<any>) => {
         </AppContainer>
       </Router>
     </Provider>,
-    document.getElementById('root')
+    (document.getElementById('root'): any)
   );
 };
 
