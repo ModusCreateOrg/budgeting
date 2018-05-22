@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import BudgetItemDetails from '../';
 
 // mock nested component
-jest.mock('components/PieChart');
+jest.mock('components/DonutChart');
 
 it('renders correctly when transaction exists with negative value', () => {
   const transaction = { value: -10, description: 'simple transaction with negative value', categoryId: 1 };

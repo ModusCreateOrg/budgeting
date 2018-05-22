@@ -12,7 +12,7 @@ import styles from './styles.scss';
 const randomScheme = shuffle(schemeCategory20);
 
 type DonutChartProps = {
-  data: TransactionSummary[],
+  data: TransactionSummary[] | Object[],
   dataLabel: string,
   dataKey: string,
   dataValue: string,
@@ -45,8 +45,9 @@ class DonutChart extends React.Component<DonutChartProps> {
 
   getPathArc = () => {
     const { height, innerRatio } = this.props;
+    const innerRadius = innerRatio === 0 ? 0 : height / innerRatio;
     return arc()
-      .innerRadius(height / innerRatio)
+      .innerRadius(innerRadius)
       .outerRadius(height / 2);
   };
 

@@ -21,7 +21,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
     categories: {},
   };
 
-  handleOnRowClick = (transactionId): void => {
+  handleOnRowClick = (transactionId: number): void => {
     const { history } = this.props;
     history.push(`/budget/${transactionId}`);
   };
