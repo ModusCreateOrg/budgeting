@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<article>
+  <h1
+    className="title"
+  >
+    Trader Joe's food
+  </h1>
+  <h2
+    className="negative"
+  >
+    -
+    100%
+  </h2>
+  <div />
+</article>
+`;

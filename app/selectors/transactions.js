@@ -39,6 +39,9 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
 
+export const getTransaction = (state: State, id: number): Transaction =>
+  getTransactions(state).find(transaction => transaction.id === id) || null;
+
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)
 );
@@ -55,6 +58,14 @@ export const getInflowBalance = createSelector([getInflowTransactions], transact
 
 export const getOutflowBalance = createSelector([getOutflowTransactions], transactions =>
   totalTransactions(transactions)
+);
+
+export const getTransactionBalance = createSelector(
+  [getTransaction, getInflowBalance, getOutflowBalance],
+  (transaction, inflowBalance, outflowBalance) => {
+    if (!transaction) return null;
+    return transaction.value > 0 ? inflowBalance : outflowBalance;
+  }
 );
 
 export const getFormattedBalance = createSelector([getBalance], amount => formatAmount(amount, false));

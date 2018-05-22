@@ -1,5 +1,9 @@
 @import 'theme/variables';
 
+.row {
+  position: relative;
+}
+
 .cellLabel {
   display: none;
 
@@ -12,6 +16,25 @@
 
 .cellContent {
   flex: 1;
+}
+
+.navLink {
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media only screen and (max-width: $screen-small) {
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
 }
 
 .neg {

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <a
+    href="/budget"
+  >
+    ← Budget
+  </a>
+  <article>
+    <h1>
+      Test
+    </h1>
+    <h2>
+      10
+    </h2>
+  </article>
+</section>
+`;
