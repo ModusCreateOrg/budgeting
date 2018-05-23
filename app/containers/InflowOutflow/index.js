@@ -31,7 +31,7 @@ class InflowOutflow extends React.Component<InflowOutflowProps> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state): Object => ({
   data: {
     inflow: sortTransactions(getInflowByCategoryName(state)),
     outflow: sortTransactions(getOutflowByCategoryName(state)),
