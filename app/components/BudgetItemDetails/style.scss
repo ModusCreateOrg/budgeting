@@ -20,7 +20,11 @@
   }
 
   @media only screen and (max-width: $screen-small) {
-    margin: 0 auto;
+    .budgetItemDetailsTitle,
+    .budgetItemDetailsSubtitle {
+      display: flex;
+      justify-content: center;
+    }
   }
 
 }
