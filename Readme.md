@@ -7,7 +7,7 @@
 
 Production-ready React + Webpack architecture implemented on consumer web apps of some of the most successful enterprises in the world. Perceived performance and development experience are key factors in this setup. You can use this code base for learning or to scaffold your mission-critical project.
 
-[See live demo](https://budgeting-a937b.firebaseapp.com/).
+[See live demo](https://budget.modus.app/).
 
 ![React Budgeting App](https://cloud.githubusercontent.com/assets/733074/25340900/6ab1d536-2907-11e7-8083-b78f8ae601b4.png)
 
