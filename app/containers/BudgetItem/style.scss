@@ -14,7 +14,7 @@
   width: 10%;
 
   &:hover {
-    background: darkgray;
+    background: $lightgray;
   }
 
   @media only screen and (max-width: $screen-small) {
