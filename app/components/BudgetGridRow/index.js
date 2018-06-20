@@ -4,7 +4,7 @@ import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
-
+import NavLink from '../NavLink'
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
@@ -19,8 +19,8 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   return (
     <tr key={id}>
       <td>
-        <div className={styles.cellLabel}>Category</div>
-        <div className={styles.cellContent}>{category}</div>
+        <NavLink to={"/details/" + id} label={category} styles={styles}>
+        </NavLink>
       </td>
       <td>
         <div className={styles.cellLabel}>Description</div>

@@ -3,16 +3,13 @@
 exports[`renders correctly 1`] = `
 <tr>
   <td>
-    <div
-      className="cellLabel"
-    >
-      Category
-    </div>
-    <div
-      className="cellContent"
+    <a
+      className="navLink "
+      href="/details/1"
+      onClick={[Function]}
     >
       Groceries
-    </div>
+    </a>
   </td>
   <td>
     <div
