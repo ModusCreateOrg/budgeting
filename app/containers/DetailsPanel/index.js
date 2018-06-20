@@ -36,7 +36,7 @@ export class DetailsPanel extends React.Component<DetailsPanelProps> {
     const { transactions, transaction, categories, inflow } = this.props;
     console.log(this.props)
     return (
-      <div>
+      <div className={styles.responsive}>
       <h1>
         {transaction.description}
       </h1>
