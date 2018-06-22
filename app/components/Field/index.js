@@ -5,9 +5,9 @@ import consumeContextBroadcast from 'utils/consumeContextBroadcast';
 import type { FormData } from 'components/Form';
 
 type FieldProps = {
-  component: React.ElementType,
+  component?: React.ElementType,
   name: string,
-  handleRef: (ref: ?React.ElementRef<any>) => void,
+  handleRef?: (ref: ?React.ElementRef<any>) => void,
   formData: FormData,
 };
 
@@ -32,9 +32,9 @@ export class Field extends React.Component<FieldProps> {
   getValue = (eventOrValue: any) => {
     if (!isObject(eventOrValue)) return eventOrValue;
 
-    const target = eventOrValue.target;
+    const target = { eventOrValue };
     if (target) {
-      const type = target.type;
+      const type = { target };
       if (type === 'checkbox') {
         return target.checked || '';
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Header from '../';
+import Header from '..';
 
 // mock nested components
 jest.mock('components/NavLink', () => () => <div />);

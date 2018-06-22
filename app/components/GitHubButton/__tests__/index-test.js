@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GitHubButton from '../';
+import GitHubButton from '..';
 
 it('renders correctly', () => {
   // Set up a script tag in the document

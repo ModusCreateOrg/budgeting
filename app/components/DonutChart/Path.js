@@ -6,7 +6,7 @@ type PathProps = {
   data: Object,
   fill: string,
   arcFn: any,
-  animDuration: number,
+  animDuration?: number,
 };
 
 class Path extends React.Component<PathProps> {

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Legend from '../';
+import Legend from '..';
 
 // mock nested components
 jest.mock('../LegendItem', () => 'div');

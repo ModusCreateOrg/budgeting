@@ -36,7 +36,7 @@ type FormProps = {
   children: React.Node,
   setBroadcastState: (newState: mixed) => void,
   fields: string[],
-  initialValues: FormValues,
+  initialValues?: FormValues,
   onSubmit: (values: FormValues) => void,
   onSubmitSuccess: () => void,
   onSubmitFail: () => void,
@@ -79,11 +79,6 @@ type FormProps = {
 export class Form extends React.Component<FormProps> {
   static defaultProps = {
     initialValues: {},
-    onSubmit: null,
-    onSubmitSuccess: null,
-    onSubmitFail: null,
-    onFormDataChange: null,
-    validate: null,
   };
 
   constructor(props: FormProps) {

@@ -7,7 +7,7 @@ type RectProps = {
   height: number,
   fill: string,
   y: number,
-  animDuration: number,
+  animDuration?: number,
 };
 
 class Rect extends React.Component<RectProps> {

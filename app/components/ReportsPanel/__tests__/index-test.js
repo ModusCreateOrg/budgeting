@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ReportsPanel from '../';
+import ReportsPanel from '..';
 
 // mock nested components
 jest.mock('../ReportsTabbar', () => 'div');

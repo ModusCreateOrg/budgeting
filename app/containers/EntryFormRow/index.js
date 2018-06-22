@@ -128,4 +128,7 @@ const mapDispatchToProps = {
   addTransaction: actions.addTransaction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EntryFormRow);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EntryFormRow);

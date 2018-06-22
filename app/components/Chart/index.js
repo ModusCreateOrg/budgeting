@@ -7,8 +7,8 @@ import styles from './styles.scss';
 type ChartProps = {
   width: number,
   height: number,
-  padding: number,
-  transform: string,
+  padding?: number,
+  transform?: string,
   children: React.Node,
 };
 

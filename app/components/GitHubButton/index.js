@@ -31,7 +31,7 @@ const getDataIcon = type => (type === 'Fork' ? 'octicon-repo-forked' : 'octicon-
 
 type GitHubButtonProps = {
   type: 'Fork' | 'Star',
-  className: string,
+  className?: string,
 };
 
 export default class GitHubButton extends React.Component<GitHubButtonProps> {

@@ -9,7 +9,7 @@ type FallbackComponentProps = {
 type ErrorBoundaryProps = {
   children: React.Node,
   fallbackComponent: React.ComponentType<FallbackComponentProps>,
-  onError: ?(error: Error, info: Object) => void,
+  onError?: ?(error: Error, info: Object) => void,
 };
 
 type ErrorBoundaryState = {

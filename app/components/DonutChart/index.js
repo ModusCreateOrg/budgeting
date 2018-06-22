@@ -15,10 +15,10 @@ type DonutChartProps = {
   data: TransactionSummary[],
   dataLabel: string,
   dataKey: string,
-  dataValue: string,
-  color: Function,
-  height: number,
-  innerRatio: number,
+  dataValue?: string,
+  color?: Function,
+  height?: number,
+  innerRatio?: number,
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -51,10 +51,15 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   chart: any;
+
   pathArc: any;
+
   colorFn: any;
+
   outerRadius: number;
+
   boxLength: number;
+
   chartPadding = 8;
 
   updateChartVariables = () => {

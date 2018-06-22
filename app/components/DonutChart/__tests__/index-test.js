@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DonutChart from '../';
+import DonutChart from '..';
 
 // mock nested components
 jest.mock('components/DonutChart/Path');

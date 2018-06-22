@@ -13,9 +13,9 @@ const outflowScheme = shuffle([...schemeCategory20.slice(0, 4), ...schemeCategor
 const inflowScheme = ['#2ca02c']; // inflow always green
 
 type StackedChartProps = {
-  width: number,
-  height: number,
-  dataValue: string,
+  width?: number,
+  height?: number,
+  dataValue?: string,
   dataLabel: string,
   dataKey: string,
   data: {
@@ -48,10 +48,15 @@ class StackedChart extends React.Component<StackedChartProps> {
   }
 
   dataKeys: string[];
+
   xScale: Function;
+
   yScale: Function;
+
   colorFn: any;
+
   boxLength: number;
+
   boxHeight: number;
 
   updateChartVariables = () => {
@@ -78,7 +83,9 @@ class StackedChart extends React.Component<StackedChartProps> {
   };
 
   barPadding = 0.15;
+
   bottomPadding = 40;
+
   chartPadding = 10;
 
   color = {

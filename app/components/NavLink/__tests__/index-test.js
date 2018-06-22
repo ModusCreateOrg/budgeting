@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NavLink from '../';
+import NavLink from '..';
 
 // mock nested components
 jest.mock('react-router-dom');
