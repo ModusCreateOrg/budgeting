@@ -82,7 +82,7 @@
     "cache-loader": "^1.0.3",
     "classnames": "^2.2.5",
     "coveralls": "^2.13.1",
-    "d3": "4.10.2",
+    "d3": "^5.5.0",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
