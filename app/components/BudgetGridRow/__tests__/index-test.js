@@ -18,7 +18,7 @@ it('renders correctly', () => {
 
   const tree = renderer.create(
     <Router>
-      <BudgetGridRow url={'#'} transaction={mockTransaction} categories={mockCategories} />
+      <BudgetGridRow url={'/'} transaction={mockTransaction} categories={mockCategories} />
     </Router>
   ).toJSON();
 
