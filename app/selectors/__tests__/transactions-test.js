@@ -8,6 +8,7 @@ import {
   getFormattedOutflowBalance,
   getOutflowByCategoryName,
   getInflowByCategoryName,
+  totalTransactions,
 } from '../transactions';
 
 // Mock 'selectors/categories' dependency
@@ -34,7 +35,19 @@ describe('sortTransactions', () => {
   });
 });
 
-describe('getTransactions', () => {
+describe('totalTransactions', () => {
+  const transactions = [{ value: 10 }, { value: -50 }, { value: 70 }];
+
+  it('should return total value of transactions without using `Math.abs`', () => {
+    expect(totalTransactions(transactions)).toEqual(30);
+  });
+
+  it('should return total value of transactions using `Math.abs`', () => {
+    expect(totalTransactions(transactions, true)).toEqual(130);
+  });
+});
+
+describe('getTotalTransactions', () => {
   it('should return all transactions in the state', () => {
     const state = { transactions: [{ id: 1 }, { id: 2 }] };
     const expectedSelection = [{ id: 1 }, { id: 2 }];

@@ -1,18 +1,21 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import formatAmount from 'utils/formatAmount';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
+import utils from 'theme/_utilities.scss';
 import styles from './style.scss';
 
 type BudgetGridRowProps = {
   transaction: Transaction,
   categories: Categories,
+  url: string,
 };
 
-const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
+const BudgetGridRow = ({ transaction, categories, url }: BudgetGridRowProps) => {
   const amount = formatAmount(transaction.value);
-  const amountCls = amount.isNegative ? styles.neg : styles.pos;
+  const amountCls = amount.isNegative ? utils.neg : utils.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
 
@@ -23,8 +26,10 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
         <div className={styles.cellContent}>{category}</div>
       </td>
       <td>
-        <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
+        <Link to={url}>
+          <div className={styles.cellLabel}>Description</div>
+          <div className={styles.cellContent}>{description}</div>
+        </Link>
       </td>
       <td className={amountCls}>
         <div className={styles.cellLabel}>Amount</div>
