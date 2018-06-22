@@ -1,10 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/build
 <PROJECT_ROOT>/test
-<PROJECT_ROOT>/node_modules/devtools-timeline-model
-<PROJECT_ROOT>/node_modules/chrome-devtools-frontend
-.*/node_modules/protobufjs/.*
-.*/node_modules/fbjs/.*
+<PROJECT_ROOT>/node_modules
 
 [include]
 

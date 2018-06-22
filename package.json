@@ -80,17 +80,18 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "classname": "0.0.0",
     "classnames": "^2.2.5",
-    "d3": "4.10.2",
+    "d3": "4.13.0",
     "prop-types": "^15.5.10",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
     "react-hot-loader": "^3.0.0-beta.7",
-    "react-redux": "5.0.6",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.0",
+    "react-redux": "5.0.7",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
     "redux": "3.7.2",
-    "redux-thunk": "2.2.0",
+    "redux-thunk": "2.3.0",
     "reselect": "^3.0.1"
   }
 }
