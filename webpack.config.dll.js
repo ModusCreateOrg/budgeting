@@ -4,7 +4,7 @@ const path = require('path');
 const outputPath = path.resolve('dll');
 
 module.exports = {
-  devtool: 'cheap-source-map',
+  mode: 'development',
   entry: {
     libs: [
       'react',
