@@ -7,14 +7,10 @@ import DonutChart from 'components/DonutChart';
 import categoryReducer from 'modules/categories';
 import formatAmount from 'utils/formatAmount';
 import getPercentage from 'utils/getPercentage';
+import { getTransactions, getTransactionById, totalTransactions } from 'selectors/transactions';
 import { injectAsyncReducers } from 'store';
 import utils from 'theme/_utilities.scss';
 import styles from './style.scss';
-import {
-  getTransactions,
-  getTransactionById,
-  totalTransactions,
-} from 'selectors/transactions';
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({
@@ -115,7 +111,7 @@ export class BudgetItem extends React.Component<BudgetItemProps> {
               <h3 className={utils.m0}>
                 <span>{`${transaction.description} - `}</span>
                 <span className={amountClass}>
-                  {amount.text.replace(/(\-)/g, '')}
+                  {amount.text.replace(/-/g, '')}
                 </span>
               </h3>
 

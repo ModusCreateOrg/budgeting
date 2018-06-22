@@ -53,7 +53,8 @@ describe('BudgetItem', () => {
 
     it('should get transaction and chart data on `componentWillMount`', () => {
       const spy = jest.spyOn(BudgetItem.prototype, 'getTransactionAndChartData');
-      const component = shallow(<BudgetItem {...props} />);
+
+      shallow(<BudgetItem {...props} />);
 
       expect(spy).toHaveBeenCalled();
     });
