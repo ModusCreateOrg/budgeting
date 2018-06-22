@@ -4,15 +4,7 @@ exports[`renders correctly 1`] = `
 <ul
   className="legend"
 >
-  <div
-    color={undefined}
-    label={undefined}
-    value={undefined}
-  />
-  <div
-    color={undefined}
-    label={undefined}
-    value={undefined}
-  />
+  <div />
+  <div />
 </ul>
 `;
