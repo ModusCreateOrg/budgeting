@@ -111,10 +111,7 @@ module.exports = require('./webpack.config.base')({
     // make sure script tags are async to avoid blocking html render
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
-      preload: {
-        test: /^main.*$/,
-        chunks: 'all',
-      },
+      preload: /main-.*\.(js|css)$/,
     }),
   ],
   module: {

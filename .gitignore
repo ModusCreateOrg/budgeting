@@ -12,3 +12,4 @@ coverage
 /.cache-loader
 /.vscode
 /.babel-cache
+*.report.html
