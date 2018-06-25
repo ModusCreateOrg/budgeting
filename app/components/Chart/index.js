@@ -17,7 +17,7 @@ const Chart = ({ width, height, padding, transform, children }: ChartProps) => (
     className={styles.mainSvg}
     width={width}
     height={height}
-    viewBox={`-${~~Number(padding)} -${Number(padding)} ${width} ${height}`}
+    viewBox={`-${Number(padding)} -${Number(padding)} ${width} ${height}`}
   >
     <g transform={transform}>{children}</g>
   </svg>
