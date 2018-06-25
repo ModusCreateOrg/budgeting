@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 const sourceDir = path.join(__dirname, './app');
 
@@ -71,7 +73,7 @@ module.exports = require('./webpack.config.base')({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: 'static/[name].[hash:4].css',
-      chunkFilename: '[id].css',
+      chunkFilename: 'static/[id].[hash:4].css',
     }),
 
     new SWPrecacheWebpackPlugin({
@@ -92,7 +94,7 @@ module.exports = require('./webpack.config.base')({
       template: 'index.prod.ejs',
       inject: true,
       production: true,
-      preload: ['*.css'],
+      inlineSource: '.*main.*(css)$',
       root: '/',
       minify: {
         removeComments: true,
@@ -111,7 +113,16 @@ module.exports = require('./webpack.config.base')({
     // make sure script tags are async to avoid blocking html render
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
-      preload: /main-.*\.(js|css)$/,
+    }),
+
+    // inline entrypoint css
+    new HtmlWebpackInlineSourcePlugin(),
+
+    // preload JS and CSS
+    // ScriptExtHtmlWebpackPlugin doesn't preload CSS well ATM
+    new PreloadWebpackPlugin({
+      include: 'initial',
+      fileWhitelist: [/(css|js)/],
     }),
   ],
   module: {
