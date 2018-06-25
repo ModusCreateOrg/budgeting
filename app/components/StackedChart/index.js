@@ -66,11 +66,11 @@ class StackedChart extends React.Component<StackedChartProps> {
     this.dataKeys = Object.keys(data);
 
     this.xScale = scaleBand()
-      .rangeRound([0, width - chartPadding * 2])
+      .rangeRound([0, Number(width) - chartPadding * 2])
       .paddingInner(barPadding);
     this.xScale.domain([0, this.dataKeys.length - 1]);
 
-    this.yScale = scaleLinear().rangeRound([height - chartPadding * 2 - bottomPadding, 0]);
+    this.yScale = scaleLinear().rangeRound([Number(height) - chartPadding * 2 - bottomPadding, 0]);
     this.yScale.domain([max([totals.inflow, totals.outflow]), 0]);
 
     this.colorFn = this.dataKeys.reduce((colorFn, key) => {

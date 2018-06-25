@@ -1,7 +1,10 @@
 [ignore]
 <PROJECT_ROOT>/build
 <PROJECT_ROOT>/test
-<PROJECT_ROOT>/node_modules
+<PROJECT_ROOT>/node_modules/@webassemblyjs
+<PROJECT_ROOT>/node_modules/eslint-plugin-jsx-a11y
+<PROJECT_ROOT>/node_modules/devtools-timeline-model
+<PROJECT_ROOT>/node_modules/chrome-devtools-frontend
 
 [include]
 
@@ -9,6 +12,8 @@
 all=warn
 
 [options]
+emoji=true
+
 module.system=haste
 
 esproposal.class_static_fields=enable

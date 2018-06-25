@@ -14,8 +14,12 @@ class Path extends React.Component<PathProps> {
     animDuration: 1000,
   };
 
+  pathRef: ?Element;
+
   componentDidMount() {
     const { data, arcFn, animDuration } = this.props;
+    if (!this.pathRef) return;
+
     const path = select(this.pathRef);
     const interpolateArc = interpolate(
       { startAngle: 0, endAngle: 0 },
@@ -28,9 +32,7 @@ class Path extends React.Component<PathProps> {
       .attrTween('d', () => t => arcFn(interpolateArc(t)));
   }
 
-  pathRef: ?HTMLElement;
-
-  handleRefUpdate = (ref: ?HTMLElement) => {
+  handleRefUpdate = (ref: ?Element) => {
     this.pathRef = ref;
   };
 

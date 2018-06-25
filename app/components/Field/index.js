@@ -29,10 +29,10 @@ export class Field extends React.Component<FieldProps> {
   /**
    * Return a field value from a SyntheticEvent or a value
    */
-  getValue = (eventOrValue: any) => {
+  getValue = (eventOrValue: SyntheticEvent<HTMLInputElement>) => {
     if (!isObject(eventOrValue)) return eventOrValue;
 
-    const target = { eventOrValue };
+    const target = eventOrValue.currentTarget;
     if (target) {
       const type = { target };
       if (type === 'checkbox') {
@@ -56,6 +56,7 @@ export class Field extends React.Component<FieldProps> {
     const field = this.getFieldData();
 
     if (field) {
+      // $FlowFixMe
       const value = this.getValue(eventOrValue);
       field.onChange(value);
     }
@@ -86,7 +87,12 @@ export class Field extends React.Component<FieldProps> {
       // it can trigger "unknown prop" warnings
       return React.createElement(component, { ...otherProps, ...customProps });
     }
-    return React.createElement(component, { ...otherProps, ...customProps, ...extraProps });
+
+    if (component) {
+      return React.createElement(component, { ...otherProps, ...customProps, ...extraProps });
+    }
+
+    return null;
   }
 }
 

@@ -87,8 +87,10 @@ export class Form extends React.Component<FormProps> {
     const { initialValues } = props;
 
     // Initialize form state
-    const initialFormState = this.getInitialFormState(initialValues);
-    this.setFormState(initialFormState);
+    if (initialValues) {
+      const initialFormState = this.getInitialFormState(initialValues);
+      this.setFormState(initialFormState);
+    }
   }
 
   /**
@@ -156,7 +158,7 @@ export class Form extends React.Component<FormProps> {
       accumulator[field] = {
         name: field,
         value: values[field],
-        initialValue: initialValues[field],
+        initialValue: initialValues ? initialValues[field] : undefined,
         blurred: blurred[field],
         error: errors[field] || '',
         onBlur: () => {

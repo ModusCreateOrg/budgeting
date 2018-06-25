@@ -9,6 +9,9 @@ import App from 'containers/App';
 import store from 'store';
 
 const renderApp = (Component: React.ComponentType<any>) => {
+  const target = document.getElementById('root');
+  if (!target) return;
+
   ReactDOM.render(
     <Provider store={store}>
       <Router>
@@ -17,13 +20,13 @@ const renderApp = (Component: React.ComponentType<any>) => {
         </AppContainer>
       </Router>
     </Provider>,
-    document.getElementById('root')
+    target
   );
 };
 
 renderApp(App);
 
 // Hot Module Replacement API
-if (module.hot) {
+if (module && module.hot && module.hot.accept) {
   module.hot.accept('containers/App', () => renderApp(App));
 }
