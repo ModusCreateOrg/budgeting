@@ -20,7 +20,7 @@ Feel free to use it as a reference app or a starter kit.
 
 ## Key concepts:
 
-- [x] [Webpack 3 Tree shaking](http://moduscreate.com/webpack-2-tree-shaking-configuration/)
+- [x] [Webpack 4 Tree shaking](http://moduscreate.com/webpack-2-tree-shaking-configuration/)
 - [x] [PRPL pattern](https://www.slideshare.net/grgur/prpl-pattern-with-webpack-and-react) with minimal application core
 - [x] Automatic code splitting with React Router 4 and `import()` statement
 - [x] Automatic common chunk bundling
@@ -106,9 +106,9 @@ chrome.exe --user-data-dir=c:\temp --unsafely-treat-insecure-origin-as-secure=ht
 ## Stack
 The app was built using these aweseome technologies
 
-- [x] [Webpack 3.5](https://webpack.github.io)
+- [x] [Webpack 4](https://webpack.js.org)
 - [x] [React 16.x](https://facebook.github.io/react/)
-- [x] [Redux 3.7](http://redux.js.org/)
+- [x] [Redux 3.x](http://redux.js.org/)
 - [x] [React Router 4](https://reacttraining.com/react-router/)
 - [x] [Reselect](https://github.com/reactjs/reselect/)
 - [x] [Babel](https://babeljs.io/)
@@ -119,7 +119,7 @@ The app was built using these aweseome technologies
 - [x] [Ducks](https://github.com/erikras/ducks-modular-redux/) 🐣
 - [x] [Sass](http://sass-lang.com/)
 - [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
-- [x] [D3](https://d3js.org/)
+- [x] [D3 5.x](https://d3js.org/)
 
 ## Yarn Scripts
 
