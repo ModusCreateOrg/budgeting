@@ -15,16 +15,21 @@ exports[`renders correctly 1`] = `
     </div>
   </td>
   <td>
-    <div
-      className="cellLabel"
+    <a
+      href="/"
+      onClick={[Function]}
     >
-      Description
-    </div>
-    <div
-      className="cellContent"
-    >
-      Trader Joe's food
-    </div>
+      <div
+        className="cellLabel"
+      >
+        Description
+      </div>
+      <div
+        className="cellContent"
+      >
+        Trader Joe's food
+      </div>
+    </a>
   </td>
   <td
     className="neg"

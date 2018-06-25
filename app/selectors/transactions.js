@@ -12,8 +12,12 @@ export type TransactionSummary = {
   category?: string,
 };
 
-function totalTransactions(transactions: Transaction[]): number {
-  return transactions.reduce((total, item) => total + parseFloat(item.value), 0);
+export function totalTransactions(transactions: Transaction[], absolute = false): number {
+  return transactions.reduce((total, item) => {
+    const value = !absolute ? parseFloat(item.value) : Math.abs(parseFloat(item.value));
+
+    return total + value;
+  }, 0);
 }
 
 function summarizeTransactions(transactions: Transaction[]): TransactionSummary[] {
@@ -38,6 +42,9 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
   });
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
+
+export const getTransactionById = (transactions: Transaction[], id: number): Transaction =>
+  transactions.find(item => id === item.id);
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)

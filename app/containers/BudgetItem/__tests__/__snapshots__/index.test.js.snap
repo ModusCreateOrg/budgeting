@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BudgetItem renders nothing 1`] = `null`;
+
+exports[`BudgetItem renders react element 1`] = `
+<section>
+  <div
+    className="detailsWrapper"
+  >
+    <div
+      className="buttonWrapper"
+    >
+      <button
+        className="backBtn"
+        onClick={[Function]}
+        type="button"
+      >
+        Go Back
+      </button>
+    </div>
+    <div
+      className="itemDetails"
+    >
+      <div>
+        <h3
+          className="m0"
+        >
+          <span>
+            toiletries - 
+          </span>
+          <span
+            className="pos"
+          >
+            $20.00
+          </span>
+        </h3>
+        <p
+          className="pos"
+        >
+          + 67%
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+`;
