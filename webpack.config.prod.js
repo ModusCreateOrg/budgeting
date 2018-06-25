@@ -24,6 +24,7 @@ module.exports = require('./webpack.config.base')({
   output: {
     filename: '[name]-[hash:4].js',
     chunkFilename: '[name]-[chunkhash:4].js',
+    publicPath: '/',
   },
 
   optimization: {
@@ -92,6 +93,7 @@ module.exports = require('./webpack.config.base')({
       inject: true,
       production: true,
       preload: ['*.css'],
+      root: '/',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
