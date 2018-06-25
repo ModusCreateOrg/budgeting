@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import LegendItem from '../LegendItem';
 
 it('renders correctly', () => {
-  const tree = renderer.create(<LegendItem color="test" value={3} label="test" />).toJSON();
+  const tree = renderer.create(<LegendItem color="test" value={3} label="test" type="default" />).toJSON();
   expect(tree).toMatchSnapshot();
 
   window.requestAnimationFrame(() => 'wow');

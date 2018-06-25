@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <h3
+    className="neg"
+  >
+    -40%
+  </h3>
+  <div
+    data={
+      Array [
+        Object {
+          "id": 1,
+          "name": "one",
+          "type": "percentage",
+          "value": 40,
+        },
+        Object {
+          "id": 2,
+          "name": "Remaining",
+          "type": "percentage",
+          "value": 60,
+        },
+      ]
+    }
+    dataKey="id"
+    dataLabel="name"
+  />
+</div>
+`;
