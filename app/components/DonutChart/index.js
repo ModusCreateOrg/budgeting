@@ -4,12 +4,12 @@ import * as React from 'react';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
 import type { TransactionSummary } from 'selectors/transactions';
-import { arc, pie, scaleOrdinal, schemeCategory20 } from 'd3';
+import { arc, pie, scaleOrdinal, schemeCategory10 } from 'd3';
 import { shuffle } from 'utils/array';
 import Path from './Path';
 import styles from './styles.scss';
 
-const randomScheme = shuffle(schemeCategory20);
+const randomScheme = shuffle(schemeCategory10);
 
 type DonutChartProps = {
   data: TransactionSummary[],
