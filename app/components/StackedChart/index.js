@@ -3,13 +3,13 @@ import * as React from 'react';
 import type { TransactionSummary } from 'selectors/transactions';
 import Legend from 'components/Legend';
 import Chart from 'components/Chart';
-import { max, scaleBand, scaleLinear, scaleOrdinal, schemeCategory20 } from 'd3';
+import { max, scaleBand, scaleLinear, scaleOrdinal, schemeCategory10 } from 'd3';
 import { shuffle } from 'utils/array';
 import Bar from './Bar';
 import Xaxis from './Xaxis';
 import styles from './styles.scss';
 
-const outflowScheme = shuffle([...schemeCategory20.slice(0, 4), ...schemeCategory20.slice(5)]);
+const outflowScheme = shuffle([...schemeCategory10.slice(0, 2), ...schemeCategory10.slice(3)]);
 const inflowScheme = ['#2ca02c']; // inflow always green
 
 type StackedChartProps = {
