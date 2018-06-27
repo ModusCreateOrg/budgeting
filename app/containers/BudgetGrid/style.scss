@@ -83,6 +83,9 @@
 
         &:nth-child(3), &:last-child {
           text-align: left;
+        }
+
+        &:last-child {
           margin-bottom: 0;
         }
       }

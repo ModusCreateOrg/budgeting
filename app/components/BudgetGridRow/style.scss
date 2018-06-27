@@ -12,7 +12,7 @@
 
 .row:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, .03);
+  background-color: $darkhover;
 }
 
 .cellContent {
