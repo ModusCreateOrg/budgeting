@@ -20,7 +20,7 @@ const BudgetGridRow = ({ transaction, categories, transactions }: BudgetGridRowP
   const category = categories[categoryId];
 
   return (
-    <tr className={styles.row} key={id} title="View detail">
+    <tr className={styles.row} key={id} title="View details">
       <td>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>

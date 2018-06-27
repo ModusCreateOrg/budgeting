@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<tr>
+<tr
+  className="row"
+  title="View details"
+>
   <td>
     <div
       className="cellLabel"
@@ -38,6 +41,20 @@ exports[`renders correctly 1`] = `
       className="cellContent"
     >
       -$423.34
+    </div>
+  </td>
+  <td
+    className="neg"
+  >
+    <div
+      className="cellLabel"
+    >
+      %
+    </div>
+    <div
+      className="cellContent"
+    >
+      100.00%
     </div>
   </td>
 </tr>
