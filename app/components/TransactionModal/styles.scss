@@ -1,0 +1,48 @@
+@import 'theme/variables';
+
+.modal {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  bottom: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  @media only screen and (max-width: $screen-small) {
+    align-items: flex-start;
+    overflow: auto;
+  }
+
+  &:active {
+    outline: 0;
+  }
+}
+
+.transactionModal {
+  background-color: #fff;
+  cursor: default;
+  height: auto;
+  max-width: 750px;
+  padding: 4rem;
+  padding-top: 0;
+  position: relative;
+  width: 95%;
+
+  &:active {
+    outline: 0;
+  }
+}
+
+.close {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

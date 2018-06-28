@@ -2,7 +2,7 @@
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import * as React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import App from 'containers/App';
@@ -13,7 +13,7 @@ const renderApp = (Component: React.ComponentType<any>) => {
     <Provider store={store}>
       <Router>
         <AppContainer>
-          <Component />
+          <Route component={Component} />
         </AppContainer>
       </Router>
     </Provider>,
