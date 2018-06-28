@@ -19,6 +19,7 @@ type DonutChartProps = {
   color: Function,
   height: number,
   innerRatio: number,
+  percentage?: boolean,
 };
 
 class DonutChart extends React.Component<DonutChartProps> {
@@ -70,7 +71,7 @@ class DonutChart extends React.Component<DonutChartProps> {
   };
 
   render() {
-    const { data, dataLabel, dataValue, dataKey } = this.props;
+    const { data, dataLabel, dataValue, dataKey, percentage } = this.props;
     const { outerRadius, pathArc, colorFn, boxLength, chartPadding } = this;
 
     return (
@@ -86,7 +87,7 @@ class DonutChart extends React.Component<DonutChartProps> {
           ))}
         </Chart>
 
-        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey }} />
+        <Legend color={colorFn} {...{ data, dataValue, dataLabel, dataKey, percentage }} />
       </div>
     );
   }

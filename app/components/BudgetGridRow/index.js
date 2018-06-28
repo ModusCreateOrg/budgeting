@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import formatAmount from 'utils/formatAmount';
 import getPercentage from 'utils/getPercentage';
 import type { Transaction } from 'modules/transactions';
@@ -22,20 +23,52 @@ const BudgetGridRow = ({ transaction, categories, transactions }: BudgetGridRowP
   return (
     <tr className={styles.row} key={id} title="View details">
       <td>
-        <div className={styles.cellLabel}>Category</div>
-        <div className={styles.cellContent}>{category}</div>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
+          <div className={styles.cellLabel}>Category</div>
+          <div className={styles.cellContent}>{category}</div>
+        </Link>
       </td>
       <td>
-        <div className={styles.cellLabel}>Description</div>
-        <div className={styles.cellContent}>{description}</div>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
+          <div className={styles.cellLabel}>Description</div>
+          <div className={styles.cellContent}>{description}</div>
+        </Link>
       </td>
       <td className={amountCls}>
-        <div className={styles.cellLabel}>Amount</div>
-        <div className={styles.cellContent}>{amount.text}</div>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
+          <div className={styles.cellLabel}>Amount</div>
+          <div className={styles.cellContent}>{amount.text}</div>
+        </Link>
       </td>
       <td className={amountCls}>
-        <div className={styles.cellLabel}>%</div>
-        <div className={styles.cellContent}>{percentage}</div>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
+          <div className={styles.cellLabel}>%</div>
+          <div className={styles.cellContent}>{percentage}</div>
+        </Link>
       </td>
     </tr>
   );

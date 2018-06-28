@@ -1,5 +1,5 @@
 // @flow
-import { Transaction } from 'modules/transactions';
+import type { Transaction } from 'modules/transactions';
 
 export default function getPercentage(transaction: Transaction, transactions: Transaction[]) {
   const values = transactions.filter(transactio => {
@@ -19,5 +19,5 @@ export default function getPercentage(transaction: Transaction, transactions: Tr
       })).value
     );
 
-  return `${(percentage * 100).toFixed(2)}%`;
+  return `${Number((percentage * 100).toFixed(2))}%`;
 }

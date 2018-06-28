@@ -10,19 +10,28 @@
   }
 }
 
-.row:hover {
+.link {
+  color: $black;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, .03);
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+}
+
+.row:hover {
+  background-color: $darkhover;
 }
 
 .cellContent {
   flex: 1;
 }
 
-.neg {
+.neg div:last-child {
   color: $red;
 }
 
-.pos {
+.pos div:last-child {
   color: $green;
 }
