@@ -59,7 +59,7 @@ module.exports = require('./webpack.config.base')({
     }),
 
     // make DLL assets available for the app to download
-    new AddAssetHtmlPlugin([{ filepath: require.resolve('./dll/libs.dll.js') }]),
+    new AddAssetHtmlPlugin([{ filepath: require.resolve('./dll/libs.dll.js'), includeSourcemap: false }]),
 
     new webpack.HotModuleReplacementPlugin(),
   ],
