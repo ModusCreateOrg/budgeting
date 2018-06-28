@@ -1,5 +1,5 @@
 // @flow
-import { Transaction } from 'modules/transactions';
+import type { Transaction } from 'modules/transactions';
 
 export default function getPercentage(transaction: Transaction, transactions: Transaction[]) {
   const values = transactions.filter(transactio => {

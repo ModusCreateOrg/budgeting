@@ -10,6 +10,11 @@
   }
 }
 
+.link {
+  color: $black;
+  text-decoration: none;
+}
+
 .row:hover {
   cursor: pointer;
   background-color: $darkhover;
