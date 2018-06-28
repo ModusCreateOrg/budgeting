@@ -12,11 +12,12 @@
 
 .link {
   color: $black;
+  cursor: pointer;
+  height: 100%;
   text-decoration: none;
 }
 
 .row:hover {
-  cursor: pointer;
   background-color: $darkhover;
 }
 
@@ -24,10 +25,10 @@
   flex: 1;
 }
 
-.neg {
+.neg div:last-child {
   color: $red;
 }
 
-.pos {
+.pos div:last-child {
   color: $green;
 }

@@ -21,26 +21,56 @@ const BudgetGridRow = ({ transaction, categories, transactions }: BudgetGridRowP
   const category = categories[categoryId];
 
   return (
-    <Link to={`/budget/${id}`} className={styles.link}>
-      <tr className={styles.row} key={id} title="View details">
-        <td>
+    <tr className={styles.row} key={id} title="View details">
+      <td>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
           <div className={styles.cellLabel}>Category</div>
           <div className={styles.cellContent}>{category}</div>
-        </td>
-        <td>
+        </Link>
+      </td>
+      <td>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
           <div className={styles.cellLabel}>Description</div>
           <div className={styles.cellContent}>{description}</div>
-        </td>
-        <td className={amountCls}>
+        </Link>
+      </td>
+      <td className={amountCls}>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
           <div className={styles.cellLabel}>Amount</div>
           <div className={styles.cellContent}>{amount.text}</div>
-        </td>
-        <td className={amountCls}>
+        </Link>
+      </td>
+      <td className={amountCls}>
+        <Link
+          to={{
+            pathname: `/transaction/${id}`,
+            state: { modal: true },
+          }}
+          className={styles.link}
+        >
           <div className={styles.cellLabel}>%</div>
           <div className={styles.cellContent}>{percentage}</div>
-        </td>
-      </tr>
-    </Link>
+        </Link>
+      </td>
+    </tr>
   );
 };
 

@@ -19,5 +19,5 @@ export default function getPercentage(transaction: Transaction, transactions: Tr
       })).value
     );
 
-  return `${(percentage * 100).toFixed(2)}%`;
+  return `${Number((percentage * 100).toFixed(2))}%`;
 }
