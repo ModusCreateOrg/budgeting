@@ -1,0 +1,22 @@
+@import 'theme/variables';
+
+.transaction {
+  position: relative;
+}
+
+.backButton {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: $blue;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.5rem;
+  position: absolute;
+  text-decoration: none;
+
+  & > span {
+    font-size: 3rem;
+    margin-right: 1rem;
+  }
+}

@@ -10,14 +10,28 @@
   }
 }
 
+.link {
+  color: $black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+}
+
+.row:hover {
+  background-color: $darkhover;
+}
+
 .cellContent {
   flex: 1;
 }
 
-.neg {
+.neg div:last-child {
   color: $red;
 }
 
-.pos {
+.pos div:last-child {
   color: $green;
 }

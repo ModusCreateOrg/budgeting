@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="modal"
+  onClick={[Function]}
+  role="button"
+  tabIndex="-1"
+>
+  <div
+    className="transactionModal"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="menu"
+    tabIndex="-1"
+  >
+    <button
+      className="close"
+      onClick={[Function]}
+      title="Close"
+    >
+      X
+    </button>
+    <div
+      id={4}
+    />
+  </div>
+</div>
+`;
