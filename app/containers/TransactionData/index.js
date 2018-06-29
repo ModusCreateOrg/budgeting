@@ -43,7 +43,7 @@ const TransactionData = ({ id, transactions, categories }: TransactionDataProps)
             <span>({percentage})</span>
           </div>
         </header>
-        <article className={styles.chart}>
+        <main className={styles.chart}>
           <DonutChart
             data={[
               {
@@ -61,7 +61,7 @@ const TransactionData = ({ id, transactions, categories }: TransactionDataProps)
             dataKey="key"
             percentage
           />
-        </article>
+        </main>
       </div>
     );
   }

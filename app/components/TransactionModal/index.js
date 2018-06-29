@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import TransactionData from 'containers/TransactionData';
 import styles from './styles.scss';
 
@@ -42,7 +41,7 @@ const TransactionModal = (props: TransactionModalProps) => {
 
   return (
     <div className={styles.modal} onClick={() => push('/budget')} role="button" tabIndex="-1">
-      <main
+      <div
         className={styles.transactionModal}
         onClick={e => e.stopPropagation()}
         onKeyDown={e => {
@@ -57,7 +56,7 @@ const TransactionModal = (props: TransactionModalProps) => {
           X
         </button>
         <TransactionData id={Number(id)} />
-      </main>
+      </div>
     </div>
   );
 };

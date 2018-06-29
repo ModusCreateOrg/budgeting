@@ -40,13 +40,13 @@ const Transaction = (props: TransactionProps) => {
   const { id } = props.match.params;
 
   return (
-    <main className={styles.transaction}>
+    <div className={styles.transaction}>
       <Link className={styles.backButton} to="/budget">
         <span>{'<'}</span>
         Back
       </Link>
       <TransactionData id={Number(id)} />
-    </main>
+    </div>
   );
 };
 
