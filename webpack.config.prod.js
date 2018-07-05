@@ -8,10 +8,11 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const sourceDir = path.join(__dirname, './app');
+const sourceDir = path.join(__dirname, 'app');
 
-const entryPath = path.join(sourceDir, './index.js');
+const entryPath = path.join(sourceDir, 'index.js');
 
 const { NODE_ENV = 'production' } = process.env;
 
@@ -32,8 +33,9 @@ module.exports = require('./webpack.config.base')({
   optimization: {
     namedModules: true,
     splitChunks: {
-      name: 'common',
-      minChunks: 3,
+      // aggressive splitting for h2
+      maxSize: 50000,
+      minSize: 10000,
     },
     noEmitOnErrors: true,
     minimizer: [
@@ -64,6 +66,10 @@ module.exports = require('./webpack.config.base')({
         : null,
 
       new OptimizeCSSAssetsPlugin({}),
+
+      // copt statics
+      new CopyWebpackPlugin([{ from: '**/*', context: path.join(sourceDir, 'static') }]),
+
       // remove null plugins
     ].filter(Boolean),
   },
