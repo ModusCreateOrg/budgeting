@@ -7,6 +7,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "e2e": "cd ./e2e npm test",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "start": "webpack-dev-server",

@@ -5,7 +5,7 @@ Feature: Test budgeting app
     When I select category "Utensils" in "categoriesSelect"
     And I fill in "description" with "Ebay sale - guitar"
     And I fill in "value" with "100"
-    And I click on "add"
+    And I click on "addBtn"
     Then I should see "Utensils" in "addedCategory"
     Then I should see "Ebay sale - guitar" in "addedDescription"
     Then I should see "-$100.00" in "addedValue"
@@ -67,7 +67,7 @@ Feature: Test budgeting app
     Then I should see "$100.00" in "addedValue"
 
     ## This test should be failed ##
-  Scenario: ‘Value’ could not be empty
+  Scenario: This test should be failed - ‘Value’ could not be empty
     Given I am on "http://localhost:3000/"
     When I select category "Utensils" in "categoriesSelect"
     And I fill in "description" with "Ebay sale - guitar"
