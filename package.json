@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "./node_modules/.bin/cucumber-js ./e2e/features/test_e2e_budgeting.feature",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "start": "webpack-dev-server",
@@ -92,6 +92,11 @@
     "react-router-dom": "^4.2.0",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "assert": "^1.4.1",
+    "chromedriver": "^2.41.0",
+    "cucumber": "^1.3.0",
+    "geckodriver": "^1.1.3",
+    "selenium-webdriver": "^3.0.0-beta-3"
   }
 }

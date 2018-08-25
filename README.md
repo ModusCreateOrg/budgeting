@@ -1,168 +1,135 @@
-[![Coverage Status](https://coveralls.io/repos/github/ModusCreateOrg/budgeting-sample-app-webpack2/badge.svg)](https://coveralls.io/github/ModusCreateOrg/budgeting-sample-app-webpack2) [![CircleCI](https://circleci.com/gh/ModusCreateOrg/budgeting.svg?style=svg)](https://circleci.com/gh/ModusCreateOrg/budgeting)
 
-# Budgeting :: A Modern React, Redux, React Router 4, Webpack Sample App
+To start testing run: 
+npm install
+npm start
+npm test 
 
-![React, Redux, Router, Webpack, Sass](https://cloud.githubusercontent.com/assets/733074/25338311/193a1a40-28ff-11e7-8f22-9a5d9dac7b84.png)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FModusCreateOrg%2Fbudgeting-sample-app-webpack2.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FModusCreateOrg%2Fbudgeting-sample-app-webpack2?ref=badge_shield)
+##Positive **Test:**
 
-Production-ready React + Webpack architecture implemented on consumer web apps of some of the most successful enterprises in the world. Perceived performance and development experience are key factors in this setup. You can use this code base for learning or to scaffold your mission-critical project.
+**Test:** Budgeting app could be opened
 
-[See live demo](https://budget.modus.app/).
+   **Steps:** 
+   
+	a.	open your app link and check results
 
-![React Budgeting App](https://cloud.githubusercontent.com/assets/733074/25340900/6ab1d536-2907-11e7-8083-b78f8ae601b4.png)
+  **Expected behavior:** Budgeting app opened and contains two tabs ‘Budget’ and ‘Reports’.
+	Budget tab displayed by default 
 
-## Budgeting Application
-The is a simple budget management application. It tracks inflow and outflow, shows remaining budget, and interesting reports with charts. As such, it offers more features than the usual Todo App. 
+**Test:** You able to add new record to app
 
-Budgeting app is a showcase project that demonstrates important decisions in architecture and development of a modern React application.
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Select category 
+	c.	Add description
+	d.	Add value
+	e.	Press ADD button
 
-Feel free to use it as a reference app or a starter kit.
+  **Expected behavior:** record should be added. Category, description and value should be same as you set.
+	Working Balance should be updated and properly calculated 
 
-## Key concepts:
+**Test:** You able to add new record to app with empty description
 
-- [x] [Webpack 3 Tree shaking](http://moduscreate.com/webpack-2-tree-shaking-configuration/)
-- [x] [PRPL pattern](https://www.slideshare.net/grgur/prpl-pattern-with-webpack-and-react) with minimal application core
-- [x] Automatic code splitting with React Router 4 and `import()` statement
-- [x] Automatic common chunk bundling
-- [x] CSS modules
-- [x] Snapshot testing with Jest
-- [x] Flow static typing. Check out this [guide to using Flow in the project](https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/blob/master/docs/flow.md).
-- [x] Performance budgets in Webpack 3
-- [x] React 16 Error Boundaries
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Select category 
+	c.	Skip description filed
+	d.	Add value
+	e.	Press ADD button
 
-## Performance
-![Budgeting App Performance](https://cloud.githubusercontent.com/assets/733074/25339194/1af94448-2902-11e7-8982-c1a9b647fac0.png)
-_The app loads in 1 second on 3G, cache disabled_
+  **Expected behavior:** record should be added. Category and value should be same as you set.
+	Description should be empty 
+	Working Balance should be updated and properly calculated 
 
-Budgeting app is **blazing fast**, thanks to the smart architecture and Webpack 3 configuration. It takes about 1000ms (1s) to load on 3G (see above).
+**Test:** All Categories, except income, should subtract value from your balance  
 
-![Alex Russel Test](https://cloud.githubusercontent.com/assets/733074/25586449/acf14628-2e9f-11e7-8839-2f7c20809581.png)
-_Emerging Markets 3G Filmstrip_
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	add each category with same value
 
-The [aggressive test](https://www.webpagetest.org/video/compare.php?tests=170501_0S_XQ5-r:2-c:0) above shows the budgeting app loads in under 5 seconds. It's a heavily limited connection that accounts for poor connectivity and limited bandwidth. 
+  **Expected behavior:** all categories subtract value from balance, only income add value, check that total balance calculated properly 
 
-![Waterfall](https://cloud.githubusercontent.com/assets/733074/25586623/676a378a-2ea0-11e7-9342-c040751b6ec6.png)
+**Test:** Report ‘Inflow vs Outflow’ contains total of inflow vs outflow and agenda for outflow sub categories 
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Click on ‘Reports’ tab
 
-All important (aka critical path) assets are loaded as early as possible, while the others (e.g. images or GitHub buttons) will load after the first render.
+  **Expected behavior:** ‘Inflow vs Outflow’ report shown by default. Inflow column contains correct total inflow balance, outflow contains all categories which added to your current budget and correct total balance. Agenda contains only outflow, grouped categories and correct total balance for each category
 
-#### How did we get that performance?
+**Test:** Report ‘Spending by Category’ contains all categories chart with agenda for each category 
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Click on ‘Reports’ tab
+	c.	Click on ‘Spending by Category’ tab
 
-1. **Minimal application core.** We decided to ditch the usual convention of creating a vendor chunk. Instead, it's bundled in the app core. The app core is actually very small, containing just the code needed to bootstrap the app.
-2. **Common code is a chunk.** We let Webpack figure out which bundles we reuse in chunks and create a common chunk that's also asyncronous. 
-3. **Redux module injection**. Each chunk contains respective views _and_ redux modules. Yes, that means reducers, action creators, actions - are all dynamically injected as we navigate through routes. That adds to the _minimal application core_ concept and PRPL pattern. 
-4. **H2 Push.** The app is hosted on Firebase and we use the magic of _HTTP2 Push_ to push some of the scripts before they are requested.
-5. **Pre-caching**. Service Workers pre-cache resources so the browser can access them as soon as the user needs to.
+  **Expected behavior:** ‘Spending by Category’ report shown. Chart contains all categories added to you budget. Agenda contains grouped categories and correct total balance for each category
 
-## Charts
-Charts are developed using the awesome D3 library. The idea behind showing charts is not only to show beautiful content, but also to demonstrate keeping heavy content in a chunk that owns it. In other words - we show how applications can run fast even if they use larger libraries.
+**Test:** All possible reports categories are groped and contain proper total value  
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	add each category with some value
+	c.	Click on ‘Reports’ tab
+	d.	Check chart results
+	e.	Click on ‘Spending by Category’ tab
+	f.	Check chart results
 
-D3 is used in the `/reports` route only. Given that major routes are separate chunks (code splitting FTW!), the entire D3 library is bundled with the code that needs it. That makes the `/reports` route a bit heavier than the initial `/budget` route, but it also makes routes much faster to load.
+  **Expected behavior:** Both charts contain each category(grouped. you have added to budget and each category total balance is properly calculated
 
-## Performance Budgets
-We are looking to maintain the lightest possible application core (_aka entry chunk_). Our target is 300kB for the entrypoint and 300kB for all other assets. This is how we set it in [webpack configuration](https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/blob/master/webpack.config.js):
+##Negative tests: 
 
-```js
-performance: {
-  maxAssetSize: 300000,
-  maxEntrypointSize: 300000,
-  hints: 'warning',
-},
-```
+**Test:** Description should have char limit to be well displayed  
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Select category 
+	c.	Add description with 300 char’s length 
+	d.	Add value
+	e.	Press ADD button
 
-Adding lots of extra code to the entry chunk might cause the build (`yarn run build`) process to show a warning.
+  **Expected behavior:** You should see all chars you have added without cut or error message about too long description added and no record created (in case with error.
 
-![Performance Budgets](https://cloud.githubusercontent.com/assets/733074/25352700/3ade5cfa-292d-11e7-8d2e-fed88c2c4da0.png)
+**Test:** ‘Description’ should accept any values and escape any HTML related tags or special chars   
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Select category 
+	c.	Add description various combination of tags and scripts like 
+	<script>...NEVER PUT UNTRUSTED DATA HERE...</script>
+	Full list here…
+	d.	Add value
+	e.	Press ADD button
 
-_Simulated size warning_
+  **Expected behavior:** You should see all chars you have added all tags should be added as text witch each char you have used, noting should be missed in you record description, no math operation like 1+1 should be performed within description filed
 
-Note that running webpack dev server in production mode (`yarn run prod`) will trigger this warning because of the additional dev server code injected in the app. This code will not show in regular production builds.
+**Test:** ‘Value’ filed should accept only digits and decimal separator like ‘.’ or ‘,’ depend on your regional settings   
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Select category 
+	c.	Add value try to use any non-digit chars or any special chars including ‘+,-’
+	d.	Press ADD button
 
-## Service Workers
-Service workers are enabled only when serving static files, not through webpack-dev-server. Here's how you can test service worker functionality:
-1. Run `yarn run build` (or `npm run build`) to build the app
-2. Run `yarn run serve` (or `npm run serve`) to serve the app on [localhost:3000](http://localhost:3000)
-3. Run a new instance of Chrome with disabled security (because localhost is not on https): 
+  **Expected behavior:** You should not be able to add any non-digits chars. ‘ADD’ button should be disabled, no record added by pressing ‘Enter’ on keyboard
 
-**OS X**
+**Test:** ‘Value’ could not be empty   
+   
+   **Steps:** 
+   
+	a.	open your app link and check results
+	b.	Select category 
+	c.	Add description
+	d.	Skip value filed
+	e.	Press ADD button
 
-```bash
-open -a "Google Chrome" --args --user-data-dir=/tmp/unsafe --unsafely-treat-insecure-origin-as-secure=http://localhost
-```
-
-**Linux**
-
-```bash
-/path/to/chrome --user-data-dir=/tmp/unsafe --unsafely-treat-insecure-origin-as-secure=http://localhost
-```
-
-**Windows**
-
-```bash
-chrome.exe --user-data-dir=c:\temp --unsafely-treat-insecure-origin-as-secure=http://localhost
-```
-
-4. Now you can observe network traffic in the Network tab or SW activity in Application > Service Workers in Developer Tools
-
-## Stack
-The app was built using these aweseome technologies
-
-- [x] [Webpack 3.5](https://webpack.github.io)
-- [x] [React 16.x](https://facebook.github.io/react/)
-- [x] [Redux 3.7](http://redux.js.org/)
-- [x] [React Router 4](https://reacttraining.com/react-router/)
-- [x] [Reselect](https://github.com/reactjs/reselect/)
-- [x] [Babel](https://babeljs.io/)
-- [x] [Prettier](https://github.com/prettier/prettier)
-- [x] [Jest](https://facebook.github.io/jest/)
-- [x] [Flow](https://flow.org/en/)
-- [x] [Yarn](https://yarnpkg.com/en/)
-- [x] [Ducks](https://github.com/erikras/ducks-modular-redux/) 🐣
-- [x] [Sass](http://sass-lang.com/)
-- [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
-- [x] [D3](https://d3js.org/)
-
-## Yarn Scripts
-
-* `yarn` - install dependencies
-* `yarn start` - run development server
-* `yarn run prod` - run production server
-* `yarn run build` - build app for deployment
-* `yarn run serve` - serve previously built app using pushstate server
-* `yarn run lint` - lint check
-* `yarn run lint:fix` - lint check + autofixes + prettify code with __prettier__
-* `yarn run test` - run test suite
-* `yarn run test:fix` - run test suite watching files for changes
-* `yarn run flow` - run flow type checking
-* `yarn run update-types` - update flow library definitions
-
-## NPM Scripts
-Similar to Yarn, really...
-
-* `npm install` - install dependencies
-* `npm start` - run development server
-* `npm run prod` - run production server
-* `npm run build` - build app for deployment
-* `npm run serve` - serve previously built app using pushstate server
-* `npm run lint` - lint check
-* `npm run lint:fix` - lint check + autofixes + prettify code with __prettier__
-* `npm run test` - run test suite
-* `npm run test:fix` - run test suite watching files for changes
-* `npm run flow` - run flow type checking
-* `npm run update-types` - update flow library definitions
-
-## Honorary Mentions
-
-* Thanks to [React experts at Modus Create](https://moduscreate.com), particularly [Tim Eagan](https://twitter.com/TimothyEagan), [Jason Malfatto](https://twitter.com/jmalfatto), [Brice Mason](https://twitter.com/bricemason), and [Esteban Las](https://twitter.com/elas78) for infinite amounts of experience poured into this app
-* Kudos to [Andrea Grisogono](https://twitter.com/scrumolina) who Scrumorganized the team
-* Thanks to community contributors who helped with code and screamed about issues. Yeah, we really do appreciate all the screaming. 
-* [Addy Osmani](https://twitter.com/addyosmani) and [Sam Saccone](https://twitter.com/samccone) who helped with the PRPL pattern
-* [Sean T Larkin](https://twitter.com/thelarkinn) who helped with Webpack wizardry
-
-## Want more?
-This project is maintained by [Modus Create](https://moduscreate.com). Fantastic React apps are in our DNA so give us a buzz if we can help with your awesome project.
-
-## License
-[MIT](License.md)
-
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FModusCreateOrg%2Fbudgeting-sample-app-webpack2.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FModusCreateOrg%2Fbudgeting-sample-app-webpack2?ref=badge_large)
+  **Expected behavior:** You should not be able to add record, ‘ADD’ button should be disabled
