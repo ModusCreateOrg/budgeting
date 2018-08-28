@@ -32,7 +32,17 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 munge_underscores=false
 
-module.system.node.resolve_dirname=app
+# Using name_mapper instead of system.node.resolve_dirname due to https://github.com/facebook/flow/issues/5647
+module.name_mapper='^components/\(.*\)$' -> '<PROJECT_ROOT>/app/components/\1'
+module.name_mapper='^containers/\(.*\)$' -> '<PROJECT_ROOT>/app/containers/\1'
+module.name_mapper='^images/\(.*\)$' -> '<PROJECT_ROOT>/app/images/\1'
+module.name_mapper='^modules/\(.*\)$' -> '<PROJECT_ROOT>/app/modules/\1'
+module.name_mapper='^routes/\(.*\)$' -> '<PROJECT_ROOT>/app/routes/\1'
+module.name_mapper='^selectors/\(.*\)$' -> '<PROJECT_ROOT>/app/selectors/\1'
+module.name_mapper='^theme/\(.*\)$' -> '<PROJECT_ROOT>/app/theme/\1'
+module.name_mapper='^utils/\(.*\)$' -> '<PROJECT_ROOT>/app/utils/\1'
+module.name_mapper='^store$' -> '<PROJECT_ROOT>/app/store'
+module.name_mapper='^types$' -> '<PROJECT_ROOT>/app/types'
 
 module.file_ext=.css
 module.file_ext=.scss
