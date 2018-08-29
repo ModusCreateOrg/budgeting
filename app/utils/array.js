@@ -1,3 +1,5 @@
+// @flow
+
 /* eslint-disable import/prefer-default-export */
 
 /**
@@ -5,7 +7,7 @@
  * Using Durstenfeld shuffle algorithm.
  * From http://stackoverflow.com/a/12646864/857756
  */
-export function shuffle(array) {
+export function shuffle(array: Array<?mixed>): Array<?mixed> {
   const len = array.length;
 
   for (let i = len - 1; i > 0; i -= 1) {
