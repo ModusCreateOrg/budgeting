@@ -51,3 +51,6 @@ module.file_ext=.jsx
 module.file_ext=.json
 
 include_warnings=true
+
+# Avoid SCSS module untyped-import warnings
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow-interfaces/SCSSFlowStub.js'
