@@ -26,7 +26,7 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
     const errors = {};
 
     if (!value) {
-      errors.value = 'You must provide a value';
+      errors._error = 'You must provide a value';
     }
 
     return errors;

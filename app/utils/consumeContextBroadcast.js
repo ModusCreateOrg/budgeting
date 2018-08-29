@@ -20,7 +20,7 @@ type ConsumeContextBroadcastState = {
 const consumeContextBroadcast = (
   broadcastName: string
 ): HigherOrderComponent<{}, ProvidedProps> => WrappedComponent => {
-  class ConsumeContextBroadcast extends React.Component<{}, ConsumeContextBroadcastState> {
+  class ConsumeContextBroadcast extends React.Component<any, ConsumeContextBroadcastState> {
     static contextTypes = {
       [broadcastName]: PropTypes.object,
     };
