@@ -7,19 +7,19 @@ machine:
 
 dependencies:
   override:
-    - yarn
+    - npm install
   cache_directories:
-    - ~/.cache/yarn
+    - ~/.cache/npm
 
 test:
   override:
-    - yarn lint
-    - yarn test:
+    - npm run lint
+    - npm test:
         parallel: true
-    - yarn build:
+    - npm run build:
         parallel: true
   post:
-    - yarn coverage
+    - npm run coverage
     - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deployment:
   github:
