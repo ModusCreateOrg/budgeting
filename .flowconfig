@@ -50,6 +50,7 @@ module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
 
+
 include_warnings=true
 
 # Avoid SCSS module untyped-import warnings
