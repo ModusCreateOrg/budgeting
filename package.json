@@ -54,7 +54,7 @@
     "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.9.1",
     "file-loader": "1.1.11",
-    "flow-bin": "^0.79.1",
+    "flow-bin": "0.75.0",
     "flow-typed": "^2.5.1",
     "gh-pages": "1.2.0",
     "html-webpack-inline-source-plugin": "0.0.10",
