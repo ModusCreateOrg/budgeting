@@ -5,9 +5,9 @@ import formatAmount from 'utils/formatAmount';
 import styles from './styles.scss';
 
 type XaxisProps = {
-  transform: string,
-  labelColor: string,
-  valueColor: string,
+  transform?: string,
+  labelColor?: string,
+  valueColor?: string,
   data: {
     inflow: TransactionSummary[],
     outflow: TransactionSummary[],

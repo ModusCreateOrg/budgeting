@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Chart from '../';
+import Chart from '..';
 
 it('renders correctly', () => {
   const tree = renderer

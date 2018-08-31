@@ -1,5 +1,5 @@
-// flow-typed signature: ec281a88a84a43aa73f8b0ca867a4855
-// flow-typed version: d7a8d069fa/enzyme_v2.3.x/flow_>=v0.53.x
+// flow-typed signature: e50486ad88c5bbfcdfde9fef4fc4c5d1
+// flow-typed version: ab187b275b/enzyme_v3.x.x/flow_>=v0.53.x
 
 import * as React from "react";
 
@@ -20,12 +20,14 @@ declare module "enzyme" {
     findWhere(predicate: PredicateFunction<this>): this,
     filter(selector: EnzymeSelector): this,
     filterWhere(predicate: PredicateFunction<this>): this,
+    hostNodes(): this,
     contains(nodeOrNodes: NodeOrNodes): boolean,
     containsMatchingElement(node: React.Node): boolean,
     containsAllMatchingElements(nodes: NodeOrNodes): boolean,
     containsAnyMatchingElements(nodes: NodeOrNodes): boolean,
     dive(option?: { context?: Object }): this,
     exists(): boolean,
+    isEmptyRender(): boolean,
     matchesElement(node: React.Node): boolean,
     hasClass(className: string): boolean,
     is(selector: EnzymeSelector): boolean,
@@ -41,8 +43,6 @@ declare module "enzyme" {
     text(): string,
     html(): string,
     get(index: number): React.Node,
-    getNode(): React.Node,
-    getNodes(): Array<React.Node>,
     getDOMNode(): HTMLElement | HTMLInputElement,
     at(index: number): this,
     first(): this,
@@ -53,12 +53,13 @@ declare module "enzyme" {
     prop(key: string): any,
     key(): string,
     simulate(event: string, ...args: Array<any>): this,
+    slice(begin?: number, end?: number): this,
     setState(state: {}, callback?: Function): this,
     setProps(props: {}): this,
     setContext(context: Object): this,
     instance(): React.Component<*, *>,
     update(): this,
-    debug(): string,
+    debug(options?: Object): string,
     type(): string | Function | null,
     name(): string,
     forEach(fn: (node: this, index: number) => mixed): this,
@@ -78,23 +79,30 @@ declare module "enzyme" {
     length: number
   }
 
-  declare export class ReactWrapper extends Wrapper {
+  declare class ReactWrapper extends Wrapper {
     constructor(nodes: NodeOrNodes, root: any, options?: ?Object): ReactWrapper,
     mount(): this,
     ref(refName: string): this,
     detach(): void
   }
 
-  declare export class ShallowWrapper extends Wrapper {
+  declare class ShallowWrapper extends Wrapper {
+    constructor(
+      nodes: NodeOrNodes,
+      root: any,
+      options?: ?Object
+    ): ShallowWrapper,
     equals(node: React.Node): boolean,
-    shallow(options?: { context?: Object }): ShallowWrapper
+    shallow(options?: { context?: Object }): ShallowWrapper,
+    getElement(): React.Node,
+    getElements(): Array<React.Node>
   }
 
-  declare export function shallow(
+  declare function shallow(
     node: React.Node,
-    options?: { context?: Object }
+    options?: { context?: Object, disableLifecycleMethods?: boolean }
   ): ShallowWrapper;
-  declare export function mount(
+  declare function mount(
     node: React.Node,
     options?: {
       context?: Object,
@@ -102,8 +110,20 @@ declare module "enzyme" {
       childContextTypes?: Object
     }
   ): ReactWrapper;
-  declare export function render(
+  declare function render(
     node: React.Node,
     options?: { context?: Object }
   ): CheerioWrapper;
+
+  declare module.exports: {
+    configure(options: {
+      Adapter?: any,
+      disableLifecycleMethods?: boolean
+    }): void,
+    render: typeof render,
+    mount: typeof mount,
+    shallow: typeof shallow,
+    ShallowWrapper: typeof ShallowWrapper,
+    ReactWrapper: typeof ReactWrapper
+  };
 }

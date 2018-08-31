@@ -6,6 +6,6 @@ import { BudgetGrid } from '../index';
 jest.mock('containers/EntryFormRow');
 
 it('renders correctly', () => {
-  const tree = renderer.create(<BudgetGrid />).toJSON();
+  const tree = renderer.create(<BudgetGrid transactions={[]} />).toJSON();
   expect(tree).toMatchSnapshot();
 });

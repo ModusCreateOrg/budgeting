@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Loading from 'components/Loading';
-import Chunk from '../';
+import Chunk from '..';
 
 // mock 'load' function that resolves to a component
 const LoadedComponent = () => <div>loaded</div>;

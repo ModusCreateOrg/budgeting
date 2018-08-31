@@ -7,13 +7,15 @@ type RectProps = {
   height: number,
   fill: string,
   y: number,
-  animDuration: number,
+  animDuration?: number,
 };
 
 class Rect extends React.Component<RectProps> {
   static defaultProps = {
     animDuration: 1000,
   };
+
+  rectRef: ?Element;
 
   componentDidMount() {
     const { animDuration } = this.props;
@@ -25,14 +27,12 @@ class Rect extends React.Component<RectProps> {
 
       rect
         .transition()
-        .duration(animDuration * Math.random())
+        .duration(Number(animDuration) * Math.random())
         .attrTween('height', () => t => interpolateHeight(t));
     }
   }
 
-  rectRef: ?HTMLElement;
-
-  handleRefUpdate = (ref: ?HTMLElement) => {
+  handleRefUpdate = (ref: ?Element) => {
     this.rectRef = ref;
   };
 

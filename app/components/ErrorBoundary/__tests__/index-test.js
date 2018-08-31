@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ErrorBoundary from '../';
+import ErrorBoundary from '..';
 
 const FailingComponent = () => {
   throw new Error('I crashed');

@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { Categories } from 'modules/categories';
 
 type DataSelectorProps = {
-  name: string,
+  name?: string,
   value: string,
   data: Categories,
   onChange: (e: SyntheticEvent<HTMLSelectElement>) => void,

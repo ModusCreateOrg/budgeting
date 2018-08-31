@@ -1,11 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NavLink from '../';
-
-// mock nested components
-jest.mock('react-router-dom');
+import { HashRouter as Router } from 'react-router-dom';
+import NavLink from '..';
 
 it('renders correctly', () => {
-  const tree = renderer.create(<NavLink to="test" label="test" styles={{}} />).toJSON();
+  const tree = renderer
+    .create(
+      <Router>
+        <NavLink to="test" label="test" styles={{}} />
+      </Router>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

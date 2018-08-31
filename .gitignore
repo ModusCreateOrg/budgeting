@@ -11,3 +11,5 @@ coverage
 .idea
 /.cache-loader
 /.vscode
+/.babel-cache
+*.report.html

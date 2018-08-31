@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { Form } from '../';
+import { Form } from '..';
 
 it('renders correctly', () => {
   const testFields = ['testField'];

@@ -67,7 +67,7 @@ export const actions = {
 /**
  * Reducer
  */
-export default function transactionsReducer(state: Transaction[] = defaultTransactions, action: Action) {
+export default function transactionsReducer(state: Transaction[] = defaultTransactions, action: Action): Transaction[] {
   let newState;
 
   switch (action.type) {

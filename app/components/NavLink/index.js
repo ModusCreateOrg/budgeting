@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 type NavLinkProps = {
   to: string,
@@ -8,16 +8,10 @@ type NavLinkProps = {
   styles: Object,
 };
 
-const NavLink = ({ to, label, styles }: NavLinkProps) => (
-  <Route
-    to={to}
-    exact
-    children={({ location: { pathname } }) => (
-      <Link to={to} className={`${styles.navLink} ${pathname.indexOf(to) !== -1 ? styles.selected : ''}`}>
-        {label}
-      </Link>
-    )}
-  />
+const StyledNavLink = ({ to, label, styles }: NavLinkProps) => (
+  <NavLink to={to} className={styles.navLink} activeClassName={styles.selected}>
+    {label}
+  </NavLink>
 );
 
-export default NavLink;
+export default StyledNavLink;

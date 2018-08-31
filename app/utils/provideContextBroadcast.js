@@ -17,7 +17,7 @@ type ProvidedProps = {
 const provideContextBroadcast = (
   broadcastName: string
 ): HigherOrderComponent<{}, ProvidedProps> => WrappedComponent => {
-  class ContextBroadcastProvider extends React.Component<{}> {
+  class ContextBroadcastProvider extends React.Component<any> {
     static childContextTypes = {
       [broadcastName]: PropTypes.object,
     };

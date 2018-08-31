@@ -1,20 +1,19 @@
 [ignore]
 <PROJECT_ROOT>/build
 <PROJECT_ROOT>/test
+<PROJECT_ROOT>/node_modules/@webassemblyjs
+<PROJECT_ROOT>/node_modules/eslint-plugin-jsx-a11y
 <PROJECT_ROOT>/node_modules/devtools-timeline-model
 <PROJECT_ROOT>/node_modules/chrome-devtools-frontend
-.*/node_modules/protobufjs/.*
-.*/node_modules/fbjs/.*
 
 [include]
-
-[libs]
-flow-typed
 
 [lints]
 all=warn
 
 [options]
+emoji=true
+
 module.system=haste
 
 esproposal.class_static_fields=enable
@@ -33,8 +32,17 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 munge_underscores=false
 
-unsafe.enable_getters_and_setters=true
-module.system.node.resolve_dirname=app
+# Using name_mapper instead of system.node.resolve_dirname due to https://github.com/facebook/flow/issues/5647
+module.name_mapper='^components/\(.*\)$' -> '<PROJECT_ROOT>/app/components/\1'
+module.name_mapper='^containers/\(.*\)$' -> '<PROJECT_ROOT>/app/containers/\1'
+module.name_mapper='^images/\(.*\)$' -> '<PROJECT_ROOT>/app/images/\1'
+module.name_mapper='^modules/\(.*\)$' -> '<PROJECT_ROOT>/app/modules/\1'
+module.name_mapper='^routes/\(.*\)$' -> '<PROJECT_ROOT>/app/routes/\1'
+module.name_mapper='^selectors/\(.*\)$' -> '<PROJECT_ROOT>/app/selectors/\1'
+module.name_mapper='^theme/\(.*\)$' -> '<PROJECT_ROOT>/app/theme/\1'
+module.name_mapper='^utils/\(.*\)$' -> '<PROJECT_ROOT>/app/utils/\1'
+module.name_mapper='^store$' -> '<PROJECT_ROOT>/app/store'
+module.name_mapper='^types$' -> '<PROJECT_ROOT>/app/types'
 
 module.file_ext=.css
 module.file_ext=.scss
@@ -42,4 +50,8 @@ module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
 
+
 include_warnings=true
+
+# Avoid SCSS module untyped-import warnings
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow-interfaces/SCSSFlowStub.js'

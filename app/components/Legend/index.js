@@ -11,7 +11,7 @@ type LegendType = {
   dataLabel: string,
   dataKey: string,
   color: Function,
-  reverse: boolean,
+  reverse?: boolean,
 };
 
 const Legend = ({ data, color, dataValue, dataLabel, dataKey, reverse }: LegendType) => (

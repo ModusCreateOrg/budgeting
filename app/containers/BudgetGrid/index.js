@@ -14,11 +14,6 @@ type BudgetGridProps = {
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
-  static defaultProps = {
-    transactions: [],
-    categories: {},
-  };
-
   render() {
     const { transactions, categories } = this.props;
 
@@ -32,9 +27,11 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction: Transaction): React.Element<any> => (
-            <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
-          ))}
+          {transactions.map(
+            (transaction: Transaction): React.Element<any> => (
+              <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+            )
+          )}
         </tbody>
         <tfoot>
           <EntryFormRow />

@@ -17,6 +17,7 @@ type Subscription = (currentState: mixed) => void;
  */
 class Broadcast {
   currentState: mixed;
+
   subscriptions: Subscription[];
 
   constructor(initialState: mixed): void {
