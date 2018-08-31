@@ -32,11 +32,6 @@ module.exports = require('./webpack.config.base')({
 
   optimization: {
     namedModules: true,
-    splitChunks: {
-      // aggressive splitting for h2
-      maxSize: 50000,
-      minSize: 10000,
-    },
     noEmitOnErrors: true,
     minimizer: [
       // in some cases we may want to try to run prod build without the uglifyer
