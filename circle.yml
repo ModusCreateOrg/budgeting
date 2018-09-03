@@ -113,7 +113,10 @@ jobs:
       - restore_cache: *restore-dist-cache
       - run:
           name: Deploy to GitHub
-          command: npm run deploy-github
+          commands:
+            - git config --global user.email "$GIT_AUTHOR_EMAIL"
+            - git config --global user.name "$GIT_AUTHOR_NAME"
+            - npm run deploy-github
 
 workflows:
   version: 2
