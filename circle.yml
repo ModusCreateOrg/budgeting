@@ -108,6 +108,7 @@ jobs:
     docker:
       - image: circleci/node:8.10
     steps:
+      - checkout
       - restore_cache: *restore-npm-cache
       - restore_cache: *restore-dist-cache
       - run:
