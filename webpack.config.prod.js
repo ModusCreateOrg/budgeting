@@ -11,6 +11,7 @@ const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const sourceDir = path.join(__dirname, 'app');
+const buildDir = path.join(__dirname, 'build');
 
 const entryPath = path.join(sourceDir, 'index.js');
 
@@ -76,6 +77,11 @@ module.exports = require('./webpack.config.base')({
       filename: 'static/[name].[hash:4].css',
       chunkFilename: 'static/[id].[hash:4].css',
     }),
+
+    new CopyWebpackPlugin([{
+      from: path.join(__dirname, 'public'),
+      to: path.join(buildDir, 'static')
+    }]),
 
     new SWPrecacheWebpackPlugin({
       cacheId: 'budgeting-app',

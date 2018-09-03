@@ -55,7 +55,7 @@ module.exports = require('./webpack.config.base')({
       inject: true,
       chunks: ['front'],
       filename: 'index.html',
-      template: 'index.prod.ejs',
+      template: 'index.dev.ejs',
     }),
 
     // make DLL assets available for the app to download
