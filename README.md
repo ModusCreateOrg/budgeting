@@ -12,7 +12,7 @@ Production-ready React + Webpack architecture implemented on consumer web apps o
 ![React Budgeting App](https://cloud.githubusercontent.com/assets/733074/25340900/6ab1d536-2907-11e7-8083-b78f8ae601b4.png)
 
 ## Budgeting Application
-The is a simple budget management application. It tracks inflow and outflow, shows remaining budget, and interesting reports with charts. As such, it offers more features than the usual Todo App. 
+This is a simple budget management application. It tracks inflow and outflow, shows remaining budget, and interesting reports with charts. As such, it offers more features than the usual Todo App. 
 
 Budgeting app is a showcase project that demonstrates important decisions in architecture and development of a modern React application.
 
