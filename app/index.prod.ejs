@@ -5,12 +5,18 @@
     <meta name="viewport" content="initial-scale=1,width=device-width">
     <title>Budgeting App - Educational React App</title>
     <link rel="preconnect" src="https://buttons.github.io" />
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="shortcut icon" href="/static/icons/icon-48x48.png">
+    <meta name="theme-color" content="#000000"/>
   </head>
   <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
     <div id="root"></div>
      <script>
        (function() {
-          if('serviceWorker' in navigator) {
+          if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js');
           }
         })();
