@@ -21,7 +21,18 @@
     "update-types": "flow-typed install",
     "flow": "flow",
     "dll": "webpack --config webpack.config.dll.js",
-    "postinstall": "rimraf .cache-loader & npm run dll"
+    "postinstall": "rimraf .cache-loader & npm run dll",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run lint:fix",
+      "git add"
+    ],
+    "*.{json,scss,sass,css,less}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -89,6 +100,8 @@
     "@modus/react-idle": "1.0.1",
     "classnames": "2.2.6",
     "d3": "5.5.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
     "prop-types": "15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
