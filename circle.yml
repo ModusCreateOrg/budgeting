@@ -112,8 +112,8 @@ jobs:
       - restore_cache: *restore-npm-cache
       - restore_cache: *restore-dist-cache
       - run:
-          name: Deploy to Firebase
-          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
+          name: Deploy to GitHub
+          command: npm run deploy-github
 
 workflows:
   version: 2
