@@ -111,9 +111,12 @@ jobs:
       - checkout
       - restore_cache: *restore-npm-cache
       - restore_cache: *restore-dist-cache
-      - run: git config --global user.email "$GIT_AUTHOR_EMAIL"
-      - run: git config --global user.name "$GIT_AUTHOR_NAME"
-      - run: npm run deploy-github
+      - run:
+          name: Deploy to GitHub
+          command: |
+            git config --global user.email "contact@moduscreate.com"
+            git config --global user.name "Modus Labs"
+            npm run deploy-github
 
 workflows:
   version: 2
