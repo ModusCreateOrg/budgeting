@@ -6,14 +6,5 @@ exports[`renders correctly 1`] = `
 >
   <div />
   <div />
-  <div
-    className="gitHubButton"
-    type="Star"
-  />
-  <div
-    className="gitHubButton"
-    type="Fork"
-  />
-  <div />
 </div>
 `;

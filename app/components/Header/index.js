@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-
+import OnIdle from '@modus/react-idle';
 import NavLink from 'components/NavLink';
 import GitHubButton from 'components/GitHubButton';
 import Logo from './Logo';
@@ -10,8 +10,10 @@ export default () => (
   <div className={styles.header}>
     <NavLink to="/budget" label="Budget" styles={styles} />
     <NavLink to="/reports" label="Reports" styles={styles} />
-    <GitHubButton className={styles.gitHubButton} type="Star" />
-    <GitHubButton className={styles.gitHubButton} type="Fork" />
-    <Logo />
+    <OnIdle>
+      <GitHubButton className={styles.gitHubButton} type="Star" />
+      <GitHubButton className={styles.gitHubButton} type="Fork" />
+      <Logo />
+    </OnIdle>
   </div>
 );
