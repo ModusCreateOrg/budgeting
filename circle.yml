@@ -104,20 +104,6 @@ jobs:
       - run: sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
       - run: echo "Scan complete, data sent to sonarcloud"
 
-  deploy:
-    docker:
-      - image: circleci/node:8.10
-    steps:
-      - checkout
-      - restore_cache: *restore-npm-cache
-      - restore_cache: *restore-dist-cache
-      - run:
-          name: Deploy to GitHub
-          command: |
-            git config --global user.email "contact@moduscreate.com"
-            git config --global user.name "Modus Labs"
-            npm run deploy-github
-
 workflows:
   version: 2
   build-and-deploy:
@@ -140,11 +126,4 @@ workflows:
           requires:
             - lint
             - test
-
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
       #- sonarqube
