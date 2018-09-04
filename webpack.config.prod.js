@@ -63,7 +63,7 @@ module.exports = require('./webpack.config.base')({
 
       new OptimizeCSSAssetsPlugin({}),
 
-      // copt statics
+      // copy statics
       new CopyWebpackPlugin([{ from: '**/*', context: path.join(sourceDir, 'static') }]),
 
       // remove null plugins
@@ -78,10 +78,17 @@ module.exports = require('./webpack.config.base')({
       chunkFilename: 'static/[id].[hash:4].css',
     }),
 
-    new CopyWebpackPlugin([{
-      from: path.join(__dirname, 'public'),
-      to: path.join(buildDir, 'static')
-    }]),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, 'public'),
+        to: path.join(buildDir, 'static'),
+        ignore: '_redirects',
+      },
+      {
+        from: path.join(__dirname, 'public', '_redirects'),
+        to: buildDir,
+      },
+    ]),
 
     new SWPrecacheWebpackPlugin({
       cacheId: 'budgeting-app',
