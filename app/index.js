@@ -2,11 +2,7 @@
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import * as React from 'react';
-
-// Using Hash router as HTML5 routing isn't supported in GitHub Pages.
-// Otherwise, BrowserRouter is recommended
-// import { BrowserRouter as Router } from 'react-router-dom';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import App from 'containers/App';
