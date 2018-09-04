@@ -23,10 +23,10 @@ const insertGithubApi = () => {
 
 const getHref = type => {
   const href = type === 'Fork' ? 'fork' : '';
-  return `https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/${href}`;
+  return `https://github.com/ModusCreateOrg/budgeting/${href}`;
 };
 
-const getAriaLabel = type => `${type} ModusCreateOrg/budgeting-sample-app-webpack2 on GitHub`;
+const getAriaLabel = type => `${type} ModusCreateOrg/budgeting on GitHub`;
 const getDataIcon = type => (type === 'Fork' ? 'octicon-repo-forked' : 'octicon-star');
 
 type GitHubButtonProps = {

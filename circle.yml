@@ -1,28 +1,129 @@
-machine:
-  node:
-    version: 8.1.2
-  environment:
-    CONTINUOUS_INTEGRATION: true
-    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+aliases:
+  - &restore-npm-cache
+    keys:
+      - v1-dependencies-{{ checksum "package-lock.json" }}
+      - v1-dependencies-master
+      - v1-dependencies-
+  - &restore-dist-cache
+    keys:
+      - v1-dist-{{ .Environment.CIRCLE_SHA1 }}
+      - v1-dist-master
+      - v1-dist-
 
-dependencies:
-  override:
-    - npm install
-  cache_directories:
-    - ~/.cache/npm
+version: 2
+jobs:
+  install-dependencies:
+    docker:
+      - image: circleci/node:8.10
 
-test:
-  override:
-    - npm run lint
-    - npm test:
-        parallel: true
-    - npm run build:
-        parallel: true
-  post:
-    - npm run coverage
-    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-deployment:
-  github:
-    branch: master
-    commands:
-      - ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
+    steps:
+      - checkout
+
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Install Node modules
+          command: npm i -ci
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+  build:
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Build the app
+          command: npm run build
+
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - build
+
+  lint:
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Run linter
+          command: npm run lint
+
+  test:
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Execute tests
+          command: npm test
+
+  coverage:
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Collect coverage
+          command: npm run coverage
+
+      - run:
+          name: Coveralls
+          command: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+  sonarqube:
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+
+      # SonarQube download, config and scanning
+      - run: echo "Starting SonarQube scan"
+      - run: wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
+      - run: unzip sonar-scanner-cli-3.2.0.1227-linux.zip
+      - run: echo "sonar.host.url=https://sonarcloud.io" > sonar-scanner-3.2.0.1227-linux/conf/sonar-scanner.properties
+      - run: echo "sonar.login=$sonarqubekey" >> sonar-project.properties
+      - run: echo "sonar.organization=$sonarorg" >> sonar-project.properties
+      - run: sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
+      - run: echo "Scan complete, data sent to sonarcloud"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - install-dependencies
+
+      - test:
+          requires:
+            - install-dependencies
+
+      - lint:
+          requires:
+            - install-dependencies
+
+      - coverage:
+          requires:
+            - install-dependencies
+
+      - build:
+          requires:
+            - lint
+            - test
+      #- sonarqube
