@@ -83,6 +83,7 @@
     "webpack-parallel-uglify-plugin": "1.1.0"
   },
   "dependencies": {
+    "@modus/react-idle": "1.0.1",
     "babel-runtime": "^6.26.0",
     "classnames": "2.2.6",
     "d3": "5.5.0",

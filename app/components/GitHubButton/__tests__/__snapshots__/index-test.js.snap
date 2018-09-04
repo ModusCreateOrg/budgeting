@@ -5,12 +5,12 @@ exports[`renders correctly 1`] = `
   className=""
 >
   <a
-    aria-label="Fork ModusCreateOrg/budgeting-sample-app-webpack2 on GitHub"
+    aria-label="Fork ModusCreateOrg/budgeting on GitHub"
     className="github-button"
     data-icon="octicon-repo-forked"
     data-show-count={true}
     data-size="large"
-    href="https://github.com/ModusCreateOrg/budgeting-sample-app-webpack2/fork"
+    href="https://github.com/ModusCreateOrg/budgeting/fork"
   >
     Fork
   </a>
