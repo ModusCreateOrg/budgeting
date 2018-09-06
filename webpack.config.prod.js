@@ -94,6 +94,7 @@ module.exports = require('./webpack.config.base')({
       cacheId: 'budgeting-app',
       filename: 'sw.js',
       maximumFileSizeToCacheInBytes: 800000,
+      staticFileGlobsIgnorePatterns: [/_redirects$/],
       mergeStaticsConfig: true,
       minify: true,
       runtimeCaching: [
