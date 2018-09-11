@@ -1,21 +1,28 @@
 {
   "plugins": [
-    "syntax-dynamic-import",
-    "transform-decorators-legacy",
-    "transform-class-properties",
-    "transform-object-rest-spread"
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread",
+    ["@babel/plugin-transform-runtime", { "corejs": 2 }]
   ],
   "presets": [
-    ["env", {
-      "useBuiltIns": "usage",
-      "targets": {
-        "browsers": ["> 0.25%", "IE 9"]
-      },
-      "modules": false,
-      "loose": true
-    }],
-    "react",
-    "flow"
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "targets": {
+          "browsers": [
+            "> 0.25%",
+            "IE 9"
+          ]
+        },
+        "modules": false,
+        "loose": true
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-flow"
   ],
   "env": {
     "development": {
@@ -25,7 +32,7 @@
     },
     "test": {
       "plugins": [
-        "transform-es2015-modules-commonjs",
+        "@babel/plugin-transform-modules-commonjs",
         "dynamic-import-node"
       ]
     }
