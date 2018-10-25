@@ -1,0 +1,46 @@
+@import "theme/variables";
+
+.inflow {
+  color: $green;
+}
+
+.outflow {
+  color: $red;
+}
+
+.transactionDetail {
+  h1,
+  h2 {
+    font-weight: 600;
+  }
+  h1 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: $mediumgray;
+  }
+  h2 {
+    margin: 0;
+    font-size: 14px;
+  }
+  a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: $verylightgray;
+    text-decoration: none;
+    border-radius: 4px;
+    color: $black;
+    margin: 16px 0;
+    font-size: 12px;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    &:hover {
+      background: $lightgray;
+    }
+  }
+  .donutChartContainer {
+    margin: 32px auto;
+  }
+  @media screen and (max-width: $screen-small) {
+    text-align: center;
+  }
+}

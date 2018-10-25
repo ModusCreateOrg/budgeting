@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="transactionDetail"
+>
+  <h1>
+    Trader Joe's food
+  </h1>
+  <h2
+    className="inflow"
+  >
+    +
+    50
+    %
+  </h2>
+  <a
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+  <div
+    className="donutChartContainer"
+  />
+</div>
+`;

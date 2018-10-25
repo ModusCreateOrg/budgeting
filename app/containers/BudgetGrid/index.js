@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { getTransactions } from 'selectors/transactions';
 import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
@@ -14,6 +15,8 @@ type BudgetGridProps = {
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
+  onTransactionSelect = id => this.props.history.push(`/transactions/${id}`);
+
   render() {
     const { transactions, categories } = this.props;
 
@@ -29,7 +32,12 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         <tbody>
           {transactions.map(
             (transaction: Transaction): React.Element<any> => (
-              <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
+              <BudgetGridRow
+                key={transaction.id}
+                transaction={transaction}
+                categories={categories}
+                onTransactionSelect={this.onTransactionSelect}
+              />
             )
           )}
         </tbody>
@@ -46,4 +54,4 @@ const mapStateToProps = state => ({
   categories: getCategories(state),
 });
 
-export default connect(mapStateToProps)(BudgetGrid);
+export default connect(mapStateToProps)(withRouter(BudgetGrid));
