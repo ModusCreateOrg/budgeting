@@ -80,5 +80,5 @@ export const getInflowByCategoryName = createSelector(getInflowByCategory, getCa
 );
 
 export function getTransactionById(state: State) {
-  return id => getTransactions(state).find(transaction => parseInt(transaction.id, 0) === parseInt(id, 0));
+  return (id: number) => getTransactions(state).find(transaction => parseInt(transaction.id, 0) === parseInt(id, 0));
 }

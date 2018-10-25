@@ -10,7 +10,7 @@ type TransactionInfoProps = {
   transaction: Transaction,
   isInflow: boolean,
   percentage: number,
-  data: TransactionGraphData,
+  data: TransactionGraphData[],
 };
 
 const TransactionInfo = ({ transaction, isInflow, percentage, data }: TransactionInfoProps) => (
