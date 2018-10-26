@@ -10,6 +10,9 @@
 
 [lints]
 all=warn
+unclear-type=off
+untyped-import=off
+sketchy-null=off
 
 [options]
 emoji=true
