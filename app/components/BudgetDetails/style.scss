@@ -1,0 +1,41 @@
+@import 'theme/variables';
+
+.button-wrapper{
+  background: $verylightgray;
+  width: 100%;
+  padding: 2%;
+  float: left;
+  margin-bottom: 3%;
+}
+
+.back-button{
+  background: $gray;
+  width: 20%;
+  min-width: 140px;
+  padding: 5px;
+  float: left;
+  font-size: 1em;
+  letter-spacing: 1px;
+}
+
+.back-button:hover{
+  cursor: pointer;
+  border-left: 2px solid $black;
+}
+
+.back-button:focus{
+  outline: none;
+}
+
+.neg{
+  color: $red;
+}
+
+.pos{
+  color: $green;
+}
+
+.bold{
+  font-weight: bold;
+}
+

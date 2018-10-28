@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import type { FormattedAmount } from 'utils/formatAmount';
+import type { FormattedAmount } from 'utils/amoutAndNumbers';
 
 import styles from './style.scss';
 
@@ -14,7 +14,6 @@ type BalanceProps = {
 
 const Balance = ({ title, amount, colorize, prefix }: BalanceProps) => {
   const amountCls = colorize && amount.isNegative ? styles.neg : styles.pos || '';
-
   const prefixElement = typeof prefix === 'string' && (
     <div key="prefix" className={styles.balanceSymbol}>
       {prefix}

@@ -14,10 +14,31 @@
   flex: 1;
 }
 
+tr:hover, tr:focus, tr:active{
+  background: $gray;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  height: 100%;
+  padding: 6px;
+}
+
+.containers-BudgetGrid-style-budgetGrid tr{
+  padding: 0;
+}
+
 .neg {
   color: $red;
 }
 
 .pos {
   color: $green;
+}
+
+.bold{
+  font-weight: bold;
 }

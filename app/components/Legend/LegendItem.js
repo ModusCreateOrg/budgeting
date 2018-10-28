@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import formatAmount from 'utils/formatAmount';
+import formatAmount from 'utils/amoutAndNumbers';
 import styles from './styles.scss';
 
 type LegendItemProps = {

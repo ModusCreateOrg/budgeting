@@ -245,7 +245,7 @@ module.exports = function(env) {
       ];
 
   return {
-    devtool: isProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
+    devtool: isProd ? 'cheap-source-map' : 'source-map',
     context: sourcePath,
     entry: {
       main: entryPoint,

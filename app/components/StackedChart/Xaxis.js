@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import type { TransactionSummary } from 'selectors/transactions';
-import formatAmount from 'utils/formatAmount';
+import formatAmount from 'utils/amoutAndNumbers';
 import styles from './styles.scss';
 
 type XaxisProps = {

@@ -2,43 +2,71 @@
 
 exports[`renders correctly 1`] = `
 <tr>
-  <td>
-    <div
-      className="cellLabel"
+  <td
+    className={undefined}
+  >
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/budget/Trader-Joe's-food/1"
+      onClick={[Function]}
+      style={undefined}
     >
-      Category
-    </div>
-    <div
-      className="cellContent"
-    >
-      Groceries
-    </div>
-  </td>
-  <td>
-    <div
-      className="cellLabel"
-    >
-      Description
-    </div>
-    <div
-      className="cellContent"
-    >
-      Trader Joe's food
-    </div>
+      <div
+        className="cellLabel"
+      >
+        Category
+      </div>
+      <div
+        className="cellContent"
+      >
+        Groceries
+      </div>
+    </a>
   </td>
   <td
-    className="neg"
+    className={undefined}
   >
-    <div
-      className="cellLabel"
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/budget/Trader-Joe's-food/1"
+      onClick={[Function]}
+      style={undefined}
     >
-      Amount
-    </div>
-    <div
-      className="cellContent"
+      <div
+        className="cellLabel"
+      >
+        Description
+      </div>
+      <div
+        className="cellContent"
+      >
+        Trader Joe's food
+      </div>
+    </a>
+  </td>
+  <td
+    className={undefined}
+  >
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/budget/Trader-Joe's-food/1"
+      onClick={[Function]}
+      style={undefined}
     >
-      -$423.34
-    </div>
+      <div
+        className="cellLabel"
+      >
+        Amount
+      </div>
+      <div
+        className="cellContent"
+      >
+        -$423.34
+      </div>
+    </a>
   </td>
 </tr>
 `;
