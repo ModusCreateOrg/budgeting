@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import type { FormattedAmount } from 'utils/formatAmount';
+import type { FormattedAmount } from 'utils/amoutAndNumbers';
 import { getFormattedBalance, getFormattedInflowBalance, getFormattedOutflowBalance } from 'selectors/transactions';
 
 import BalanceItem from 'components/Balance';

@@ -1,7 +1,7 @@
 // @flow
 
 import { createSelector } from 'reselect';
-import formatAmount from 'utils/formatAmount';
+import formatAmount from 'utils/amoutAndNumbers';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
 import { getCategories } from './categories';
@@ -38,6 +38,11 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
   });
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
+
+export const getTransactionId = (state: State, props: Object): string => props.routeProps.match.params.id;
+
+export const getTransaction = createSelector(getTransactions, getTransactionId, (transactions, id) => transactions.find(tran => tran.id == id)
+);
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)

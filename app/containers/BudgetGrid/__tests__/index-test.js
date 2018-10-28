@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { BudgetGrid } from '../index';
 
-// mock nested component
+// mock nested component-
 jest.mock('containers/EntryFormRow');
 
 it('renders correctly', () => {

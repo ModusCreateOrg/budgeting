@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
-import formatAmount from 'utils/formatAmount';
+import formatAmount from 'utils/amoutAndNumbers';
+import Td from 'components/BudgetGridRow/TableData';
 import type { Transaction } from 'modules/transactions';
 import type { Categories } from 'modules/categories';
 import styles from './style.scss';
@@ -15,21 +16,22 @@ const BudgetGridRow = ({ transaction, categories }: BudgetGridRowProps) => {
   const amountCls = amount.isNegative ? styles.neg : styles.pos;
   const { id, categoryId, description } = transaction;
   const category = categories[categoryId];
+  const linkto = `/budget/${description}/${id}`.replace(/ /g, '-').replace(/--/g, '');
 
   return (
     <tr key={id}>
-      <td>
+      <Td link={linkto}>
         <div className={styles.cellLabel}>Category</div>
         <div className={styles.cellContent}>{category}</div>
-      </td>
-      <td>
+      </Td>
+      <Td link={linkto}>
         <div className={styles.cellLabel}>Description</div>
         <div className={styles.cellContent}>{description}</div>
-      </td>
-      <td className={amountCls}>
+      </Td>
+      <Td className={amountCls} link={linkto}>
         <div className={styles.cellLabel}>Amount</div>
         <div className={styles.cellContent}>{amount.text}</div>
-      </td>
+      </Td>
     </tr>
   );
 };
