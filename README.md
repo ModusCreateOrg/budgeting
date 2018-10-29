@@ -120,6 +120,9 @@ The app was built using these aweseome technologies
 - [x] [Sass](http://sass-lang.com/)
 - [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
 - [x] [D3](https://d3js.org/)
+- [x] [react-helmet](https://www.npmjs.com/package/react-helmet)
+- [x] [react-easy-chart](https://rma-consulting.github.io/react-easy-chart/)
+-
 
 ## Yarn Scripts
 
@@ -131,6 +134,7 @@ The app was built using these aweseome technologies
 * `yarn run lint` - lint check
 * `yarn run lint:fix` - lint check + autofixes + prettify code with __prettier__
 * `yarn run test` - run test suite
+* `yarn run test:watch` - run test suite in watch mode
 * `yarn run test:fix` - run test suite watching files for changes
 * `yarn run flow` - run flow type checking
 * `yarn run update-types` - update flow library definitions

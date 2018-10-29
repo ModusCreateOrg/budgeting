@@ -21,8 +21,10 @@ export const absNumber = (str: strNum): number => {
 };
 
 export const computePercent = (part: strNum, whole: strNum): number => {
-  const getAbspart = absNumber(part);
+  const getAbsPart = absNumber(part);
   const getAbsWhole = absNumber(whole);
-  console.log('compu', getAbsWhole, getAbspart);
-  return (getAbspart/getAbsWhole) * 100;
+  const result = (getAbsPart/getAbsWhole) * 100;
+  // Percentages are usually rounded up to two decimal places
+  const roundedUpResult = Number(parseFloat(result).toFixed(2));
+  return roundedUpResult;
 };
