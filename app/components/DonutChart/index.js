@@ -1,5 +1,4 @@
 // @flow
-
 import loadable from 'utils/loadable';
 
 const LoadableDonutChart = loadable({

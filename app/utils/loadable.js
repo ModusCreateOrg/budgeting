@@ -1,32 +1,26 @@
 // @flow
-
 import * as React from 'react';
-import ReactLoadable from 'react-loadable';
 import Loading from 'components/Loading';
 
-type LoadingProps = {
-  pastDelay: boolean,
-  error: ?Error,
+export type Options = {
+  loader: () => Promise,
+  fallback: React.Node,
+  maxDuration: number,
 };
 
-const Placeholder = (props: LoadingProps) => {
-  if (props.error) {
-    return (
-      <div>
-        <p>Encountered an error</p>
-      </div>
-    );
-  }
-  if (props.pastDelay) {
-    return Loading;
-  }
-  return null;
+const defaultOptions = {
+  fallback: Loading,
+  maxDuration: 500,
 };
 
-export default function loadable(options: Object) {
-  return ReactLoadable({
-    loading: Placeholder,
-    delay: 500,
-    ...options,
-  });
+export default function loadable(options: Options) {
+  const safeOptions = { ...defaultOptions, ...options };
+  const Fallback = safeOptions.fallback;
+  const LazyComponent = React.lazy(safeOptions.loader);
+
+  return props => (
+    <React.Suspense maxDuration={safeOptions.maxDuration} fallback={<Fallback />}>
+      <LazyComponent {...props} />
+    </React.Suspense>
+  );
 }
