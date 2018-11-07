@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import StackedChart from '../StackedChart';
+import StackedChart from '../index';
 
 jest.mock('components/Legend', () => 'div');
 jest.mock('components/Chart', () => 'div');

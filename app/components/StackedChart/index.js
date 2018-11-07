@@ -1,8 +1,6 @@
 // @flow
-import loadable from 'utils/loadable';
+import { lazy } from 'react';
 
-const LoadableStackedChart = loadable({
-  loader: () => import('./StackedChart'),
-});
+const LoadableStackedChart = lazy(() => import('./StackedChart' /* webpackChunkName: "stacked-chart" */));
 
 export default LoadableStackedChart;
