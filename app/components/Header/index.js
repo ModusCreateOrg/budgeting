@@ -2,9 +2,10 @@
 import * as React from 'react';
 import OnIdle from '@modus/react-idle';
 import NavLink from 'components/NavLink';
-import GitHubButton from 'components/GitHubButton';
 import Logo from './Logo';
 import styles from './style.scss';
+
+const GitHubButton = React.lazy(() => import('components/GitHubButton' /* webpackChunkName: "gh-btn" */));
 
 export default () => (
   <div className={styles.header}>
