@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
@@ -38,11 +38,11 @@ module.exports = require('./webpack.config.base')({
       // in some cases we may want to try to run prod build without the uglifyer
       // for debugging purposes only
       NODE_ENV === 'production'
-        ? new ParallelUglifyPlugin({
+        ? new TerserPlugin({
             sourceMap: process.env.SOURCEMAPS === 'true',
-            workerCount: 4,
-            cacheDir: path.join(__dirname, '../.uglify-cache'),
-            uglifyES: {
+            parallel: 4,
+            cache: path.join(__dirname, '../.uglify-cache'),
+            terserOptions: {
               compress: {
                 warnings: false,
                 conditionals: true,
