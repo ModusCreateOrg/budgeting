@@ -1,9 +1,6 @@
 // @flow
+import { lazy } from 'react';
 
-import loadable from 'utils/loadable';
-
-const LoadableDonutChart = loadable({
-  loader: () => import('./DonutChart'),
-});
+const LoadableDonutChart = lazy(() => import('./DonutChart' /* webpackChunkName: "donut-chart" */));
 
 export default LoadableDonutChart;

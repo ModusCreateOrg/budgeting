@@ -4,7 +4,8 @@ import transactionReducer from 'modules/transactions';
 import categoryReducer from 'modules/categories';
 import { injectAsyncReducers } from 'store';
 import BudgetGrid from 'containers/BudgetGrid';
-import Balance from 'containers/Balance';
+
+const Balance = React.lazy(() => import('containers/Balance' /* webpackChunkName: "balance" */));
 
 // inject reducers that might not have been originally there
 injectAsyncReducers({

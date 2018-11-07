@@ -13,13 +13,15 @@ const renderApp = (Component: React.ComponentType<any>) => {
   if (!target) return;
 
   ReactDOM.render(
-    <Provider store={store}>
-      <Router>
-        <AppContainer>
-          <Component />
-        </AppContainer>
-      </Router>
-    </Provider>,
+    <React.Suspense fallback={null}>
+      <Provider store={store}>
+        <Router>
+          <AppContainer>
+            <Component />
+          </AppContainer>
+        </Router>
+      </Provider>
+    </React.Suspense>,
     target
   );
 };
