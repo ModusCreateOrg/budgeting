@@ -1,6 +1,8 @@
 // @flow
 import type { Categories } from 'modules/categories';
 import type { Transaction } from 'modules/transactions';
+import type { Location } from 'modules/location';
+import locationReducer from 'modules/location';
 
 // Empty placeholder to reserve reducer namespace.
 // Otherwise redux may complain when we asyncrhonously
@@ -9,11 +11,9 @@ import type { Transaction } from 'modules/transactions';
 export type State = {
   +categories?: Categories,
   +transactions?: Transaction[],
+  +location: Location,
 };
 
-/**
- * Routing to be implemented
- */
 export default {
-  nothing: () => ({}),
+  location: locationReducer,
 };

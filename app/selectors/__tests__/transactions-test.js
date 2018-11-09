@@ -1,6 +1,8 @@
 import {
   sortTransactions,
   getTransactions,
+  getCurrentTransactionId,
+  getCurrentTransaction,
   getInflowBalance,
   getOutflowBalance,
   getFormattedBalance,
@@ -47,6 +49,60 @@ describe('getTransactions', () => {
     const expectedSelection = [];
 
     expect(getTransactions(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getCurrentTransactionId', () => {
+  it('should return the selected transaction ID', () => {
+    const state = {
+      location: { pathname: '/transaction/2' },
+      transactions: [{ id: 1 }, { id: 2 }],
+    };
+    const expectedSelection = 2;
+
+    expect(getCurrentTransactionId(state)).toEqual(expectedSelection);
+  });
+
+  it('should return null if no transaction is selected', () => {
+    const state = {
+      location: { pathname: '/budget' },
+      transactions: [{ id: 1 }, { id: 2 }],
+    };
+    const expectedSelection = null;
+
+    expect(getCurrentTransactionId(state)).toEqual(expectedSelection);
+  });
+});
+
+describe('getCurrentTransaction', () => {
+  it('should return the selected transaction', () => {
+    const state = {
+      location: { pathname: '/transaction/2' },
+      transactions: [{ id: 1 }, { id: 2 }],
+    };
+    const expectedSelection = { id: 2 };
+
+    expect(getCurrentTransaction(state)).toEqual(expectedSelection);
+  });
+
+  it('should return null if no transaction is selected', () => {
+    const state = {
+      location: { pathname: '/budget' },
+      transactions: [{ id: 1 }, { id: 2 }],
+    };
+    const expectedSelection = null;
+
+    expect(getCurrentTransaction(state)).toEqual(expectedSelection);
+  });
+
+  it('should return null if an invalid transaction is selected', () => {
+    const state = {
+      location: { pathname: '/transaction/8' },
+      transactions: [{ id: 1 }, { id: 2 }],
+    };
+    const expectedSelection = null;
+
+    expect(getCurrentTransaction(state)).toEqual(expectedSelection);
   });
 });
 

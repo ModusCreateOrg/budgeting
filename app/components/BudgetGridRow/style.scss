@@ -1,8 +1,14 @@
-@import 'theme/variables';
+@import "theme/variables";
+
+.row {
+  &:hover {
+    background-color: $verylightgray;
+    cursor: pointer;
+  }
+}
 
 .cellLabel {
   display: none;
-
   @media only screen and (max-width: $screen-small) {
     display: flex;
     align-items: center;

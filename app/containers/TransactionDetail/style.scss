@@ -1,0 +1,47 @@
+@import "theme/variables";
+
+.transactionDetail {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  font-size: 0.8em;
+  text-align: center;
+  h1 {
+    margin: 0px;
+  }
+  h2 {
+    margin: 0px 0px 20px 0px;
+  }
+  div {
+    text-align: left;
+  }
+}
+
+.navLink {
+  padding: 10px;
+  text-align: center;
+  width: 100px;
+  margin: -6px 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  color: $mediumgray;
+  border: 1px solid $lightgray;
+  text-decoration: none;
+  margin-left: 50%;
+  transform: translate(-50%);
+
+  &:active,
+  &.selected {
+    color: $black;
+    text-decoration: underline;
+    box-shadow: 0 1px 4px 1px $darkgray;
+  }
+}
+
+.neg {
+  color: $red;
+}
+
+.pos {
+  color: $green;
+}

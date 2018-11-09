@@ -5,6 +5,7 @@ import formatAmount from 'utils/formatAmount';
 import type { State } from 'modules/rootReducer';
 import type { Transaction } from 'modules/transactions';
 import { getCategories } from './categories';
+import { getPath } from './location';
 
 export type TransactionSummary = {
   categoryId: string,
@@ -38,6 +39,17 @@ const applyCategoryName = (transactions: TransactionSummary[], categories) =>
   });
 
 export const getTransactions = (state: State): Transaction[] => state.transactions || [];
+
+export const getCurrentTransactionId = (state: State): number => {
+  const path = getPath(state);
+  if (path.length > 2 && path[1] === 'transaction') return Number(path[2]);
+  return null;
+};
+
+export const getCurrentTransaction = createSelector(
+  [getTransactions, getCurrentTransactionId],
+  (transactions, id: string) => transactions.find(item => item.id === id) || null
+);
 
 const getInflowTransactions = createSelector([getTransactions], transactions =>
   transactions.filter(item => item.value > 0)

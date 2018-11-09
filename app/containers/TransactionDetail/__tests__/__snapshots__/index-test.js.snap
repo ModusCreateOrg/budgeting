@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="transactionDetail"
+>
+  <h1>
+    Testing transaction
+  </h1>
+  <h2
+    className="neg"
+  >
+    -124.95%
+  </h2>
+  <a
+    aria-current={null}
+    className="navLink"
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+</div>
+`;
+
+exports[`renders correctly without a valid transaction 1`] = `
+<div
+  className="transactionDetail"
+>
+  <h2>
+    Invalid Transaction
+  </h2>
+  <a
+    aria-current={null}
+    className="navLink"
+    href="/budget"
+    onClick={[Function]}
+  >
+    Back
+  </a>
+</div>
+`;
