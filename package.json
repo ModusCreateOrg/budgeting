@@ -9,7 +9,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
-    "start": "webpack-dev-server --config webpack.config.dev.js --hot",
+    "start": "webpack-dev-server --config webpack.config.dev.js",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --config webpack.config.prod.js",
     "build": "rimraf build && cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "perf": "rimraf *.report.dom.html && npm run build && (npm run serve & lighthouse http://localhost:3000 --view)",
