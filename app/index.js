@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import * as React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AppContainer } from 'react-hot-loader';
 
 import App from 'containers/App';
 import store from 'store';
@@ -16,9 +15,7 @@ const renderApp = (Component: React.ComponentType<any>) => {
     <React.Suspense fallback={null}>
       <Provider store={store}>
         <Router>
-          <AppContainer>
-            <Component />
-          </AppContainer>
+          <Component />
         </Router>
       </Provider>
     </React.Suspense>,
@@ -27,8 +24,3 @@ const renderApp = (Component: React.ComponentType<any>) => {
 };
 
 renderApp(App);
-
-// Hot Module Replacement API
-if (module && module.hot && module.hot.accept) {
-  module.hot.accept('containers/App', () => renderApp(App));
-}

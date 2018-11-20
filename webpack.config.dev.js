@@ -17,9 +17,6 @@ module.exports = require('./webpack.config.base')({
 
   entry: {
     front: [
-      // activate HMR for React
-      'react-hot-loader/patch',
-
       // bundle the client for webpack-dev-server
       // and connect to the provided endpoint
       `webpack-dev-server/client?http://${host}:${port}`,
