@@ -104,7 +104,7 @@
     "prop-types": "15.6.2",
     "react": "16.6.1",
     "react-dom": "16.6.1",
-    "react-hot-loader": "4.3.12",
+    "react-hot-loader": "4.5.0",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
