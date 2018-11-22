@@ -24,3 +24,10 @@ const renderApp = (Component: React.ComponentType<any>) => {
 };
 
 renderApp(App);
+
+// webpack Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept('./containers/App', () => {
+    renderApp(App);
+  });
+}
