@@ -12,7 +12,9 @@ import styles from './style.scss';
 type EntryFormRowProps = {
   defaultCategoryId: string,
   categories: Object,
+  setEditTransaction: Function,
   addTransaction: Function,
+  updateTransaction: Function,
 };
 
 type EntryFormRowState = {
@@ -20,7 +22,7 @@ type EntryFormRowState = {
 };
 
 class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
-  static formFields = ['categoryId', 'description', 'value'];
+  static formFields = ['id', 'categoryId', 'description', 'value'];
 
   static validateForm = ({ value }) => {
     const errors = {};
@@ -36,9 +38,14 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
     formData: null,
   };
 
-  addEntry = (values): void => {
-    const { categoryId, description, value } = values;
-    this.props.addTransaction({ categoryId, description, value });
+  handleSubmit = (values): void => {
+    const { id, categoryId, description, value } = values;
+    if (!id) {
+      this.props.addTransaction({ categoryId, description, value });
+    } else {
+      this.props.updateTransaction({ id, categoryId, description, value });
+      this.props.setEditTransaction('');
+    }
   };
 
   focusValueField = (): void => {
@@ -77,8 +84,14 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
   };
 
   render() {
-    const { categories, defaultCategoryId } = this.props;
-    const initialValues = { categoryId: defaultCategoryId };
+    const { categories, defaultCategoryId, transaction, setEditTransaction } = this.props;
+    const id = transaction ? transaction.id : '';
+    const initialValues = {
+      id,
+      categoryId: transaction ? transaction.categoryId : defaultCategoryId,
+      description: transaction ? transaction.description : '',
+      value: transaction ? transaction.value : '',
+    };
     const { formData } = this.state;
     const isValid = formData && formData.valid;
 
@@ -90,7 +103,7 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
             initialValues={initialValues}
             validate={EntryFormRow.validateForm}
             onFormDataChange={this.handleFormDataChange}
-            onSubmit={this.addEntry}
+            onSubmit={this.handleSubmit}
             onSubmitSuccess={this.handleSubmitSuccess}
             onSubmitFail={this.handleSubmitFail}
           >
@@ -108,9 +121,15 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                 placeholder="Value"
                 handleRef={this.handleValueRefUpdate}
               />
+              <Field component="input" name="id" type="hidden" value={id} />
               <button type="submit" disabled={!isValid}>
-                Add
+                {!id ? 'Add' : 'Update'}
               </button>
+              {id ? (
+                <button type="button" onClick={() => setEditTransaction('')}>
+                  Cancel
+                </button>
+              ) : null}
             </div>
           </Form>
         </td>
@@ -126,6 +145,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addTransaction: actions.addTransaction,
+  updateTransaction: actions.updateTransaction,
 };
 
 export default connect(
