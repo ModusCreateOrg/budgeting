@@ -21,13 +21,6 @@ type UnindexedTransaction = {
   value: number,
 };
 
-type IndexedTransaction = {
-  id: string,
-  categoryId: string,
-  description: string,
-  value: number,
-};
-
 type Action = {
   type: string,
   transaction: Transaction,
@@ -41,27 +34,14 @@ function getNextTransactionID(state: Transaction[]): number {
   return state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
 }
 
-// Add a new transaction.
 function normalizeTransaction(
   state: Transaction[],
-  { categoryId, description, value }: UnindexedTransaction
+  { id, categoryId, description, value }: UnindexedTransaction
 ): Transaction {
   const realValue = inflowCategories.includes(categoryId) ? Math.abs(value) : Math.abs(value) * -1;
 
   return {
-    id: getNextTransactionID(state),
-    categoryId,
-    description,
-    value: realValue,
-  };
-}
-
-// Add a new transaction.
-function normalizeExistingTransaction({ id, categoryId, description, value }: IndexedTransaction): Transaction {
-  const realValue = inflowCategories.includes(categoryId) ? Math.abs(value) : Math.abs(value) * -1;
-
-  return {
-    id,
+    id: id || getNextTransactionID(state),
     categoryId,
     description,
     value: realValue,
@@ -78,10 +58,10 @@ export const actions = {
       transaction: normalizeTransaction(getState().transactions, transaction),
     }),
 
-  updateTransaction: (transaction: IndexedTransaction) => (dispatch: Function) =>
+  updateTransaction: (transaction: Transaction) => (dispatch: Function, getState: Function) =>
     dispatch({
       type: UPDATE_TRANSACTION,
-      transaction: normalizeExistingTransaction(transaction),
+      transaction: normalizeTransaction(getState().transactions, transaction),
     }),
 
   deleteTransaction: (id: $PropertyType<Transaction, 'id'>) => ({
