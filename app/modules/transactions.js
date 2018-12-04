@@ -22,7 +22,7 @@ type UnindexedTransaction = {
 };
 
 type IndexedTransaction = {
-  id: String,
+  id: string,
   categoryId: string,
   description: string,
   value: number,
