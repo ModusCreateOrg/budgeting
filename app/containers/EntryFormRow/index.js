@@ -134,22 +134,22 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                 {!id ? 'Add' : 'Update'}
               </button>
               {id ? (
-                <button
-                  className={`${styles.btn} ${styles.btnDefault}`}
-                  type="button"
-                  onClick={() => setEditTransaction('')}
-                >
-                  Cancel
-                </button>
-              ) : null}
-              {id ? (
-                <button
-                  className={`${styles.btn} ${styles.btnRed}`}
-                  type="button"
-                  onClick={() => this.handleDelete(id)}
-                >
-                  Delete
-                </button>
+                <>
+                  <button
+                    className={`${styles.btn} ${styles.btnDefault}`}
+                    type="button"
+                    onClick={() => setEditTransaction('')}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className={`${styles.btn} ${styles.btnRed}`}
+                    type="button"
+                    onClick={() => this.handleDelete(id)}
+                  >
+                    Delete
+                  </button>
+                </>
               ) : null}
             </div>
           </Form>
