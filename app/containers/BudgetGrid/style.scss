@@ -65,7 +65,8 @@
   }
 
   tfoot {
-    height: 40px;
+    display: flex;
+    flex-wrap: nowrap;
     border-top: 1px solid $gray;
   }
 
