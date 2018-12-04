@@ -18,6 +18,7 @@
 
     form {
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
     }
 
@@ -27,7 +28,6 @@
       min-width: 50px;
       height: 100%;
       font-size: 1.1em;
-
       padding: 0.5em 0.6em;
       display: inline-block;
       border: 1px solid #ccc;
@@ -53,6 +53,7 @@
       text-decoration: none;
       border: transparent;
       cursor: pointer;
+      height: 35px;
 
       &.btnDefault {
         @include btn-theme($mediumgray);

@@ -127,6 +127,8 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                 placeholder="Value"
                 handleRef={this.handleValueRefUpdate}
               />
+            </div>
+            <div className={styles.formSection}>
               <Field component="input" name="id" type="hidden" value={id} />
               <button className={`${styles.btn} ${styles.btnGreen}`} type="submit" disabled={!isValid}>
                 {!id ? 'Add' : 'Update'}
