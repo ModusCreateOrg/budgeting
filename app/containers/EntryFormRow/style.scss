@@ -1,3 +1,12 @@
+@import './../../theme/variables';
+
+@mixin btn-theme($btn-color) {
+  background-color: $btn-color;
+  &:hover {
+    background-color: darken($btn-color, 6%);
+  }
+}
+
 .entryFormRow {
   & {
     padding: 2px !important;
@@ -34,11 +43,10 @@
       margin: 0;
     }
 
-    button {
+    .btn {
       color: #fff;
       margin-left: 5px;
       text-transform: uppercase;
-      background: rgb(28, 184, 65);
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
       padding: 0.5em 1em;
@@ -46,8 +54,20 @@
       border: transparent;
       cursor: pointer;
 
+      &.btnDefault {
+        @include btn-theme($mediumgray);
+      }
+
+      &.btnGreen {
+        @include btn-theme($green);
+      }
+
+      &.btnRed {
+        @include btn-theme($red);
+      }
+
       &:disabled {
-        background: darkgray;
+        @include btn-theme($gray);
         cursor: not-allowed;
       }
     }

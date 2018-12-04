@@ -14,6 +14,7 @@ type EntryFormRowProps = {
   categories: Object,
   setEditTransaction: Function,
   addTransaction: Function,
+  deleteTransaction: Function,
   updateTransaction: Function,
 };
 
@@ -46,6 +47,11 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
       this.props.updateTransaction({ id, categoryId, description, value });
       this.props.setEditTransaction('');
     }
+  };
+
+  handleDelete = (id): void => {
+    this.props.setEditTransaction('');
+    this.props.deleteTransaction(id);
   };
 
   focusValueField = (): void => {
@@ -122,12 +128,25 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                 handleRef={this.handleValueRefUpdate}
               />
               <Field component="input" name="id" type="hidden" value={id} />
-              <button type="submit" disabled={!isValid}>
+              <button className={`${styles.btn} ${styles.btnGreen}`} type="submit" disabled={!isValid}>
                 {!id ? 'Add' : 'Update'}
               </button>
               {id ? (
-                <button type="button" onClick={() => setEditTransaction('')}>
+                <button
+                  className={`${styles.btn} ${styles.btnDefault}`}
+                  type="button"
+                  onClick={() => setEditTransaction('')}
+                >
                   Cancel
+                </button>
+              ) : null}
+              {id ? (
+                <button
+                  className={`${styles.btn} ${styles.btnRed}`}
+                  type="button"
+                  onClick={() => this.handleDelete(id)}
+                >
+                  X
                 </button>
               ) : null}
             </div>
@@ -145,6 +164,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addTransaction: actions.addTransaction,
+  deleteTransaction: actions.deleteTransaction,
   updateTransaction: actions.updateTransaction,
 };
 
