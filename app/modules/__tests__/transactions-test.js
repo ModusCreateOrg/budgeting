@@ -112,6 +112,35 @@ describe('actions', () => {
       expect(actions.deleteTransaction(id)).toEqual(expectedAction);
     });
   });
+
+  describe('updateTransaction', () => {
+    const store = mockStore({ transactions: [] });
+
+    it('should create an action to update a transaction', async () => {
+      const updatedTransaction = {
+        id: 0,
+        description: "Trader Joe's food",
+        value: -423.34,
+        categoryId: 1,
+      };
+
+      const expectedActions = [
+        {
+          type: 'budget/transaction/UPDATE',
+          transaction: {
+            id: 0,
+            description: "Trader Joe's food",
+            value: -423.34,
+            categoryId: 1,
+          },
+        },
+      ];
+
+      await store.dispatch(actions.updateTransaction(updatedTransaction));
+
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
 });
 
 describe('reducers', () => {
@@ -224,6 +253,104 @@ describe('reducers', () => {
           categoryId: 6,
         },
       ]);
+    });
+
+    describe('updateTransaction', () => {
+      const store = mockStore({
+        transactions: [
+          {
+            id: 0,
+            description: "Trader Joe's food",
+            value: -423.34,
+            categoryId: 1,
+          },
+        ],
+      });
+
+      it('should handle updateTransaction description and amount', () => {
+        expect(
+          transactionsReducer(
+            [
+              {
+                id: 0,
+                description: "Trader Joe's food",
+                value: -423.34,
+                categoryId: 1,
+              },
+              {
+                id: 1,
+                description: 'Some line item',
+                value: -123.45,
+                categoryId: 6,
+              },
+            ],
+            {
+              type: 'budget/transaction/UPDATE',
+              transaction: {
+                id: 1,
+                description: 'Some other line item!',
+                value: -234.56,
+                categoryId: 6,
+              },
+            }
+          )
+        ).toEqual([
+          {
+            id: 0,
+            description: "Trader Joe's food",
+            value: -423.34,
+            categoryId: 1,
+          },
+          {
+            id: 1,
+            description: 'Some other line item!',
+            value: -234.56,
+            categoryId: 6,
+          },
+        ]);
+      });
+
+      it('should handle updateTransaction category from inflow to outflow', async () => {
+        const updatedStore = await store.dispatch(
+          actions.updateTransaction({
+            id: 1,
+            description: 'Some inflow line item',
+            value: -423.34,
+            categoryId: 2,
+          })
+        );
+
+        expect(updatedStore).toEqual({
+          type: 'budget/transaction/UPDATE',
+          transaction: {
+            id: 1,
+            categoryId: 2,
+            description: 'Some inflow line item',
+            value: 423.34,
+          },
+        });
+      });
+
+      it('should handle updateTransaction category from outflow to inflow', async () => {
+        const updatedStore = await store.dispatch(
+          actions.updateTransaction({
+            id: 1,
+            description: 'Some outflow line item',
+            value: 423.34,
+            categoryId: 1,
+          })
+        );
+
+        expect(updatedStore).toEqual({
+          type: 'budget/transaction/UPDATE',
+          transaction: {
+            id: 1,
+            categoryId: 1,
+            description: 'Some outflow line item',
+            value: -423.34,
+          },
+        });
+      });
     });
   });
 });
