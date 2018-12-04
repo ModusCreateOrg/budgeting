@@ -148,7 +148,7 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                   type="button"
                   onClick={() => this.handleDelete(id)}
                 >
-                  X
+                  Delete
                 </button>
               ) : null}
             </div>
