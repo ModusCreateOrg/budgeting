@@ -36,12 +36,12 @@ function getNextTransactionID(state: Transaction[]): number {
 
 function normalizeTransaction(
   state: Transaction[],
-  { id, categoryId, description, value }: UnindexedTransaction
+  { categoryId, description, value }: UnindexedTransaction
 ): Transaction {
   const realValue = inflowCategories.includes(categoryId) ? Math.abs(value) : Math.abs(value) * -1;
 
   return {
-    id: id || getNextTransactionID(state),
+    id: getNextTransactionID(state),
     categoryId,
     description,
     value: realValue,
@@ -58,10 +58,10 @@ export const actions = {
       transaction: normalizeTransaction(getState().transactions, transaction),
     }),
 
-  updateTransaction: (transaction: Transaction) => (dispatch: Function, getState: Function) =>
+  updateTransaction: (transaction: Transaction) => (dispatch: Function) =>
     dispatch({
       type: UPDATE_TRANSACTION,
-      transaction: normalizeTransaction(getState().transactions, transaction),
+      transaction,
     }),
 
   deleteTransaction: (id: $PropertyType<Transaction, 'id'>) => ({
