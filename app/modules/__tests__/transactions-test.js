@@ -120,13 +120,14 @@ describe('transactions module', () => {
 
     describe('updateTransaction', () => {
       it('should create an action to update an existing transaction', async () => {
-        await store.dispatch(actions.updateTransaction(outflowTransaction));
-        expect(store.getActions()).toEqual([
+        const expectedActions = [
           {
             type: 'budget/transaction/UPDATE',
             transaction: outflowTransaction,
           },
-        ]);
+        ];
+        await store.dispatch(actions.updateTransaction(outflowTransaction));
+        expect(store.getActions()).toEqual(expectedActions);
       });
     });
   });
