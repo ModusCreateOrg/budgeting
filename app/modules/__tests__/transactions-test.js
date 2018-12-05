@@ -118,8 +118,8 @@ describe('transactions module', () => {
       });
     });
 
-    describe('deleteTransaction', () => {
-      it('should create an action to update a transaction', async () => {
+    describe('updateTransaction', () => {
+      it('should create an action to update an existing transaction', async () => {
         await store.dispatch(actions.updateTransaction(outflowTransaction));
         expect(store.getActions()).toEqual([
           {
