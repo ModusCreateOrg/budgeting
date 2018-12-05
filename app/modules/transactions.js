@@ -30,11 +30,11 @@ type Action = {
 /**
  * Helpers
  */
-function getNextTransactionID(state: Transaction[]): number {
+export function getNextTransactionID(state: Transaction[]): number {
   return state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
 }
 
-function normalizeTransaction(
+export function normalizeTransaction(
   state: Transaction[],
   { categoryId, description, value }: UnindexedTransaction
 ): Transaction {
