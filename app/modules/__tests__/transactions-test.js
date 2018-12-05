@@ -95,41 +95,38 @@ describe('transactions module', () => {
   describe('actions', () => {
     describe('addTransaction', () => {
       it('should create an action to add a transaction with the correct ID', async () => {
-        const expectedActions = [
+        await store.dispatch(actions.addTransaction(inflowTransaction));
+        expect(store.getActions()).toEqual([
           {
             type: 'budget/transaction/ADD',
             transaction: normalizedInflowTransaction,
           },
-        ];
-        await store.dispatch(actions.addTransaction(inflowTransaction));
-        expect(store.getActions()).toEqual(expectedActions);
+        ]);
       });
     });
 
     describe('deleteTransaction', () => {
       it('should create an action to delete a transaction', async () => {
         const id = 0;
-        const expectedAction = [
+        await store.dispatch(actions.deleteTransaction(id));
+        expect(store.getActions()).toEqual([
           {
             type: 'budget/transaction/DELETE',
             id,
           },
-        ];
-        await store.dispatch(actions.deleteTransaction(id));
-        expect(store.getActions()).toEqual(expectedAction);
+        ]);
       });
     });
 
     describe('deleteTransaction', () => {
       it('should create an action to update a transaction', async () => {
-        const expectedActions = [
+        await store.dispatch(actions.updateTransaction(outflowTransaction));
+        expect(store.getActions()).toEqual([
           {
             type: 'budget/transaction/UPDATE',
-            transaction: inflowTransaction,
+            transaction: outflowTransaction,
           },
-        ];
-        await store.dispatch(actions.updateTransaction(inflowTransaction));
-        expect(store.getActions()).toEqual(expectedActions);
+        ]);
       });
     });
   });
