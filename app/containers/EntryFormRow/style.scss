@@ -1,3 +1,12 @@
+@import './../../theme/variables';
+
+@mixin btn-theme($btn-color) {
+  background-color: $btn-color;
+  &:hover {
+    background-color: darken($btn-color, 6%);
+  }
+}
+
 .entryFormRow {
   & {
     padding: 2px !important;
@@ -9,43 +18,58 @@
 
     form {
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
-    };
+    }
 
-    input, select {
+    input,
+    select {
       flex: 1;
       min-width: 50px;
       height: 100%;
       font-size: 1.1em;
-
-      padding: .5em .6em;
+      padding: 0.5em 0.6em;
       display: inline-block;
       border: 1px solid #ccc;
-      box-shadow: inset 0 1px 3px rgba(50,50,50,.16);
+      box-shadow: inset 0 1px 3px rgba(50, 50, 50, 0.16);
       border-radius: 4px;
       vertical-align: middle;
       box-sizing: border-box;
     }
 
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
 
-    button {
+    .btn {
       color: #fff;
       margin-left: 5px;
       text-transform: uppercase;
-      background: rgb(28, 184, 65);
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
-      padding: .5em 1em;
+      padding: 0.5em 1em;
       text-decoration: none;
       border: transparent;
+      cursor: pointer;
+      height: 35px;
+
+      &.btnDefault {
+        @include btn-theme($mediumgray);
+      }
+
+      &.btnGreen {
+        @include btn-theme($green);
+      }
+
+      &.btnRed {
+        @include btn-theme($red);
+      }
 
       &:disabled {
-        background: darkgray;
+        @include btn-theme($gray);
+        cursor: not-allowed;
       }
     }
   }
@@ -55,7 +79,8 @@
   display: flex;
   padding: 1px;
 
-  &:nth-child(1), &:nth-child(3) {
+  &:nth-child(1),
+  &:nth-child(3) {
     min-width: 120px;
     flex: 1;
   }

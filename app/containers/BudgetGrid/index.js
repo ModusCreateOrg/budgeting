@@ -14,6 +14,31 @@ type BudgetGridProps = {
 };
 
 export class BudgetGrid extends React.Component<BudgetGridProps> {
+  state = {
+    editTransactionId: '',
+  };
+
+  editTransaction = (id: String) => {
+    this.setState({ editTransactionId: id });
+  };
+
+  getRowContent = (transaction, categories) =>
+    transaction.id === this.state.editTransactionId ? (
+      <EntryFormRow
+        key={transaction.id}
+        transaction={transaction}
+        categories={categories}
+        setEditTransaction={this.editTransaction}
+      />
+    ) : (
+      <BudgetGridRow
+        key={transaction.id}
+        transaction={transaction}
+        categories={categories}
+        setEditTransaction={this.editTransaction}
+      />
+    );
+
   render() {
     const { transactions, categories } = this.props;
 
@@ -28,9 +53,7 @@ export class BudgetGrid extends React.Component<BudgetGridProps> {
         </thead>
         <tbody>
           {transactions.map(
-            (transaction: Transaction): React.Element<any> => (
-              <BudgetGridRow key={transaction.id} transaction={transaction} categories={categories} />
-            )
+            (transaction: Transaction): React.Element<any> => this.getRowContent(transaction, categories)
           )}
         </tbody>
         <tfoot>

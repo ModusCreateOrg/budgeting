@@ -1,13 +1,15 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import transactionsReducer, { actions } from '../transactions';
+import transactionsReducer, { getNextTransactionID, normalizeTransaction, actions } from '../transactions';
 
-// Mock 'defaults' dependency to define a custom 'inflowCategories' and 'defaultTransactions'
+import { defaultTransactions, inflowCategories } from '../defaults';
+
+// Mock default state
 jest.mock('../defaults', () => ({
   inflowCategories: [2],
   defaultTransactions: [
     {
-      id: 1,
+      id: 0,
       description: "Trader Joe's food",
       value: -423.34,
       categoryId: 1,
@@ -19,211 +21,182 @@ jest.mock('../defaults', () => ({
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-describe('actions', () => {
-  describe('addTransaction', () => {
-    it('should create an action to add a transaction', async () => {
-      const store = mockStore({ transactions: [] });
+// Create reusable transaction data - can't be used in mock() above because Babel hoists Jest
+const initialTransaction = {
+  id: 0,
+  description: "Trader Joe's food",
+  value: -423.34,
+  categoryId: 1,
+};
 
-      const newTransaction = {
-        description: "Trader Joe's food",
-        value: 423.34,
-        categoryId: 1,
-      };
+const updatedInitialTransaction = {
+  id: 0,
+  description: "Trader Joe's food return",
+  value: -123.45,
+  categoryId: 2,
+};
 
-      const expectedActions = [
-        {
-          type: 'budget/transaction/ADD',
-          transaction: {
-            id: 0,
-            description: "Trader Joe's food",
-            value: -423.34,
-            categoryId: 1,
-          },
-        },
-      ];
+const inflowTransaction = {
+  description: 'Inflow item',
+  value: -234.56,
+  categoryId: 2,
+};
 
-      await store.dispatch(actions.addTransaction(newTransaction));
+const normalizedInflowTransaction = {
+  id: 1, // initial store has one transaction with id 1, so this will be 0 + 1
+  description: 'Inflow item',
+  value: 234.56, // will be a positive number since our mock's inflowCategories contains categoryId of 2
+  categoryId: 2,
+};
 
-      expect(store.getActions()).toEqual(expectedActions);
-    });
+const outflowTransaction = {
+  description: 'Outflow item',
+  value: 123.45,
+  categoryId: 1,
+};
 
-    it('should create an action to add a transaction with the right ID', async () => {
-      const store = mockStore({ transactions: [{ id: 5 }, { id: 3 }] });
+const normalizedOutflowTransaction = {
+  id: 1, // initial store has one transaction with id 1, so this will be 0 + 1
+  description: 'Outflow item',
+  value: -123.45, // will be a negative number since our mock's inflowCategories contains categoryId of 2
+  categoryId: 1,
+};
 
-      const newTransaction = {
-        description: "Trader Joe's food",
-        value: 423.34,
-        categoryId: 1,
-      };
-
-      const expectedActions = [
-        {
-          type: 'budget/transaction/ADD',
-          transaction: {
-            // new transaction id should by 1 more than the largest one in store
-            id: 6,
-            description: "Trader Joe's food",
-            value: -423.34,
-            categoryId: 1,
-          },
-        },
-      ];
-
-      await store.dispatch(actions.addTransaction(newTransaction));
-
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-
-    it('should create an action to add a transaction with the right value for inflow categories', async () => {
-      const store = mockStore({ transactions: [] });
-
-      const newTransaction = {
-        description: "Trader Joe's food",
-        value: 423.34,
-        categoryId: 2,
-      };
-
-      const expectedActions = [
-        {
-          type: 'budget/transaction/ADD',
-          transaction: {
-            id: 0,
-            description: "Trader Joe's food",
-            // value should be positive because the transaction is in an inflow category
-            value: 423.34,
-            categoryId: 2,
-          },
-        },
-      ];
-
-      await store.dispatch(actions.addTransaction(newTransaction));
-
-      expect(store.getActions()).toEqual(expectedActions);
+describe('transactions module', () => {
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      inflowCategories,
+      transactions: defaultTransactions,
     });
   });
 
-  describe('deleteTransaction', () => {
-    it('should create an action to delete a transaction', () => {
-      const id = 1;
-      const expectedAction = {
-        type: 'budget/transaction/DELETE',
-        id,
-      };
-      expect(actions.deleteTransaction(id)).toEqual(expectedAction);
+  describe('helpers', () => {
+    describe('getNextTransactionID', () => {
+      it('should get the next transaction id', () => {
+        expect(getNextTransactionID([])).toEqual(0);
+        expect(getNextTransactionID([{ id: 5 }, { id: 3 }])).toEqual(6);
+        expect(getNextTransactionID(store.getState().transactions)).toEqual(1);
+      });
+    });
+
+    describe('normalizeTransaction', () => {
+      it('should set value to positive when inflowCategories contains the categoryId, negative when it does not', () => {
+        expect(normalizeTransaction(store.getState().transactions, inflowTransaction)).toEqual(
+          normalizedInflowTransaction
+        );
+        expect(normalizeTransaction(store.getState().transactions, outflowTransaction)).toEqual(
+          normalizedOutflowTransaction
+        );
+      });
     });
   });
-});
 
-describe('reducers', () => {
-  describe('transactionsReducer', () => {
-    it('should return the initial state', () => {
-      expect(transactionsReducer(undefined, {})).toEqual([
-        {
-          id: 1,
-          description: "Trader Joe's food",
-          value: -423.34,
-          categoryId: 1,
-        },
-      ]);
-    });
-
-    it('should handle addTransaction action', () => {
-      // test with empty state
-      expect(
-        transactionsReducer([], {
-          type: 'budget/transaction/ADD',
-          transaction: {
-            id: 0,
-            description: "Trader Joe's food",
-            value: -423.34,
-            categoryId: 1,
-          },
-        })
-      ).toEqual([
-        {
-          id: 0,
-          description: "Trader Joe's food",
-          value: -423.34,
-          categoryId: 1,
-        },
-      ]);
-
-      // test with non-empty state
-      expect(
-        transactionsReducer(
-          [
-            {
-              id: 0,
-              description: "Trader Joe's food",
-              value: -423.34,
-              categoryId: 1,
-            },
-          ],
+  describe('actions', () => {
+    describe('addTransaction', () => {
+      it('should create an action to add a transaction with the correct ID', async () => {
+        await store.dispatch(actions.addTransaction(inflowTransaction));
+        expect(store.getActions()).toEqual([
           {
             type: 'budget/transaction/ADD',
-            transaction: {
-              id: 2,
-              description: 'Gas',
-              value: -764.73,
-              categoryId: 6,
-            },
-          }
-        )
-      ).toEqual([
-        {
-          id: 0,
-          description: "Trader Joe's food",
-          value: -423.34,
-          categoryId: 1,
-        },
-        {
-          id: 2,
-          description: 'Gas',
-          value: -764.73,
-          categoryId: 6,
-        },
-      ]);
+            transaction: normalizedInflowTransaction,
+          },
+        ]);
+      });
     });
 
-    it('should handle deleteTransaction action', () => {
-      // test with empty state
-      expect(
-        transactionsReducer([], {
-          type: 'budget/transaction/DELETE',
-          id: 0,
-        })
-      ).toEqual([]);
-
-      // test with non-empty state
-      expect(
-        transactionsReducer(
-          [
-            {
-              id: 0,
-              description: "Trader Joe's food",
-              value: -423.34,
-              categoryId: 1,
-            },
-            {
-              id: 1,
-              description: 'Gas',
-              value: -764.73,
-              categoryId: 6,
-            },
-          ],
+    describe('deleteTransaction', () => {
+      it('should create an action to delete a transaction', async () => {
+        const id = 0;
+        await store.dispatch(actions.deleteTransaction(id));
+        expect(store.getActions()).toEqual([
           {
             type: 'budget/transaction/DELETE',
-            id: 0,
-          }
-        )
-      ).toEqual([
-        {
-          id: 1,
-          description: 'Gas',
-          value: -764.73,
-          categoryId: 6,
-        },
-      ]);
+            id,
+          },
+        ]);
+      });
+    });
+
+    describe('updateTransaction', () => {
+      it('should create an action to update an existing transaction', async () => {
+        const expectedActions = [
+          {
+            type: 'budget/transaction/UPDATE',
+            transaction: outflowTransaction,
+          },
+        ];
+        await store.dispatch(actions.updateTransaction(outflowTransaction));
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
+  describe('reducers', () => {
+    describe('transactionsReducer', () => {
+      it('should return the initial state', () => {
+        expect(transactionsReducer(undefined, {})).toEqual([initialTransaction]);
+      });
+
+      describe('addTransaction action', () => {
+        it('should add a transaction to empty state', () => {
+          expect(
+            transactionsReducer([], {
+              type: 'budget/transaction/ADD',
+              transaction: inflowTransaction,
+            })
+          ).toEqual([inflowTransaction]);
+        });
+
+        it('should add a transactions to non-empty state', () => {
+          expect(
+            transactionsReducer(store.getState().transactions, {
+              type: 'budget/transaction/ADD',
+              transaction: inflowTransaction,
+            })
+          ).toEqual([initialTransaction, inflowTransaction]);
+        });
+      });
+
+      describe('deleteTransaction action', () => {
+        it('should do nothing when empty state', () => {
+          expect(
+            transactionsReducer([], {
+              type: 'budget/transaction/DELETE',
+              id: 1,
+            })
+          ).toEqual([]);
+        });
+
+        it('should add delete a transaction from non-empty state', () => {
+          expect(
+            transactionsReducer([initialTransaction, normalizedInflowTransaction], {
+              type: 'budget/transaction/DELETE',
+              id: 0,
+            })
+          ).toEqual([normalizedInflowTransaction]);
+        });
+      });
+
+      describe('updateTransaction action', () => {
+        it('should update a specific transaction', async () => {
+          // Confirm description, value and categoryId were updated.
+          expect(
+            transactionsReducer([initialTransaction, normalizedInflowTransaction], {
+              type: 'budget/transaction/UPDATE',
+              transaction: updatedInitialTransaction,
+            })
+          ).toEqual([
+            {
+              id: 0,
+              description: "Trader Joe's food return",
+              value: -123.45,
+              categoryId: 2,
+            },
+            normalizedInflowTransaction,
+          ]);
+        });
+      });
     });
   });
 });

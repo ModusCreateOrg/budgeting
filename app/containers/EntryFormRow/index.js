@@ -12,7 +12,10 @@ import styles from './style.scss';
 type EntryFormRowProps = {
   defaultCategoryId: string,
   categories: Object,
+  setEditTransaction: Function,
   addTransaction: Function,
+  deleteTransaction: Function,
+  updateTransaction: Function,
 };
 
 type EntryFormRowState = {
@@ -20,7 +23,7 @@ type EntryFormRowState = {
 };
 
 class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
-  static formFields = ['categoryId', 'description', 'value'];
+  static formFields = ['id', 'categoryId', 'description', 'value'];
 
   static validateForm = ({ value }) => {
     const errors = {};
@@ -36,9 +39,19 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
     formData: null,
   };
 
-  addEntry = (values): void => {
-    const { categoryId, description, value } = values;
-    this.props.addTransaction({ categoryId, description, value });
+  handleSubmit = (values): void => {
+    const { id, categoryId, description, value } = values;
+    if (!id) {
+      this.props.addTransaction({ categoryId, description, value });
+    } else {
+      this.props.updateTransaction({ id, categoryId, description, value });
+      this.props.setEditTransaction('');
+    }
+  };
+
+  handleDelete = (id): void => {
+    this.props.setEditTransaction('');
+    this.props.deleteTransaction(id);
   };
 
   focusValueField = (): void => {
@@ -77,8 +90,14 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
   };
 
   render() {
-    const { categories, defaultCategoryId } = this.props;
-    const initialValues = { categoryId: defaultCategoryId };
+    const { categories, defaultCategoryId, transaction, setEditTransaction } = this.props;
+    const id = transaction ? transaction.id : '';
+    const initialValues = {
+      id,
+      categoryId: transaction ? transaction.categoryId : defaultCategoryId,
+      description: transaction ? transaction.description : '',
+      value: transaction ? transaction.value : '',
+    };
     const { formData } = this.state;
     const isValid = formData && formData.valid;
 
@@ -90,7 +109,7 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
             initialValues={initialValues}
             validate={EntryFormRow.validateForm}
             onFormDataChange={this.handleFormDataChange}
-            onSubmit={this.addEntry}
+            onSubmit={this.handleSubmit}
             onSubmitSuccess={this.handleSubmitSuccess}
             onSubmitFail={this.handleSubmitFail}
           >
@@ -108,9 +127,30 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
                 placeholder="Value"
                 handleRef={this.handleValueRefUpdate}
               />
-              <button type="submit" disabled={!isValid}>
-                Add
+            </div>
+            <div className={styles.formSection}>
+              <Field component="input" name="id" type="hidden" value={id} />
+              <button className={`${styles.btn} ${styles.btnGreen}`} type="submit" disabled={!isValid}>
+                {!id ? 'Add' : 'Update'}
               </button>
+              {id ? (
+                <>
+                  <button
+                    className={`${styles.btn} ${styles.btnDefault}`}
+                    type="button"
+                    onClick={() => setEditTransaction('')}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className={`${styles.btn} ${styles.btnRed}`}
+                    type="button"
+                    onClick={() => this.handleDelete(id)}
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : null}
             </div>
           </Form>
         </td>
@@ -126,6 +166,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addTransaction: actions.addTransaction,
+  deleteTransaction: actions.deleteTransaction,
+  updateTransaction: actions.updateTransaction,
 };
 
 export default connect(

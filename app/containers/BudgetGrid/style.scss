@@ -16,7 +16,8 @@
     padding: 8px;
   }
 
-  th, td {
+  th,
+  td {
     text-align: left;
     overflow: hidden;
 
@@ -24,7 +25,8 @@
       text-align: right;
     }
 
-    &:nth-child(1), &:nth-child(3) {
+    &:nth-child(1),
+    &:nth-child(3) {
       flex: 1;
       min-width: 120px;
     }
@@ -34,7 +36,8 @@
     }
   }
 
-  thead, tfoot {
+  thead,
+  tfoot {
     background-color: $verylightgray;
   }
 
@@ -49,6 +52,10 @@
 
     tr {
       border-bottom: 1px solid $lightgray;
+      &:hover {
+        cursor: pointer;
+        background-color: $verylightgray;
+      }
     }
 
     td {
@@ -58,12 +65,16 @@
   }
 
   tfoot {
-    height: 40px;
+    display: flex;
+    flex-wrap: nowrap;
     border-top: 1px solid $gray;
   }
 
   @media only screen and (max-width: $screen-small) {
-    table, thead, tbody, tbody tr {
+    table,
+    thead,
+    tbody,
+    tbody tr {
       display: block;
     }
 
