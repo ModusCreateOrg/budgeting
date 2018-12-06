@@ -16,45 +16,50 @@ const addTransactionMock = jest.fn();
 const updateTransactionMock = jest.fn();
 const deleteTransactionMock = jest.fn();
 
+let addTransactionSpy;
+let updateTransactionSpy;
+let deleteTransactionSpy;
+let setEditTransactionSpy;
+
+function resetMockSpies(spies) {
+  spies.forEach(spy => spy.mockReset());
+}
+
+function setUpSpies(mountedComponent) {
+  addTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'addTransaction');
+  updateTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'updateTransaction');
+  deleteTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'deleteTransaction');
+  setEditTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'setEditTransaction');
+}
+
 describe('`Add transaction` form', () => {
-  const newTransaction = {
-    id: '',
-    description: 'Income line item',
-    value: 123.45,
-    categoryId: 2,
-  };
-
-  const propsAndActions = {
-    defaultCategoryId: 1,
-    transaction: newTransaction,
-    categories: mockCategories,
-    setEditTransaction: setEditTransactionMock,
-    // Actions
-    addTransaction: addTransactionMock,
-    updateTransaction: updateTransactionMock,
-    deleteTransaction: deleteTransactionMock,
-  };
-
   const wrappedComponent = mount(
     <table>
       <tbody>
-        <EntryFormRow {...propsAndActions} />
+        <EntryFormRow
+          defaultCategoryId={1}
+          transaction={{
+            id: '',
+            description: 'Income line item',
+            value: 123.45,
+            categoryId: 2,
+          }}
+          categories={mockCategories}
+          setEditTransaction={setEditTransactionMock}
+          // Actions
+          addTransaction={addTransactionMock}
+          updateTransaction={updateTransactionMock}
+          deleteTransaction={deleteTransactionMock}
+        />
       </tbody>
     </table>
   );
   const mountedComponent = wrappedComponent.find(EntryFormRow);
 
-  const addTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'addTransaction');
-  const updateTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'updateTransaction');
-  const deleteTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'deleteTransaction');
-  const setEditTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'setEditTransaction');
+  setUpSpies(mountedComponent);
 
-  afterEach(() => {
-    addTransactionSpy.mockReset();
-    updateTransactionSpy.mockReset();
-    deleteTransactionSpy.mockReset();
-    setEditTransactionSpy.mockReset();
-  });
+  afterEach(() =>
+    resetMockSpies([addTransactionSpy, updateTransactionSpy, deleteTransactionSpy, setEditTransactionSpy]));
 
   describe('Submit button', () => {
     it('should exist with text Add', () => {
@@ -74,58 +79,47 @@ describe('`Add transaction` form', () => {
 
   describe('Cancel button', () => {
     it('should not exist', () => {
-      const cancelButton = mountedComponent.find('button.cancel');
-      expect(cancelButton.length).toEqual(0);
+      expect(mountedComponent.find('button.cancel').length).toEqual(0);
     });
   });
 
   describe('Delete button', () => {
     it('should not exist', () => {
-      const deleteButton = mountedComponent.find('button.delete');
-      expect(deleteButton.length).toEqual(0);
+      expect(mountedComponent.find('button.delete').length).toEqual(0);
     });
   });
 });
 
 describe('`Update transaction` form', () => {
-  const existingTransaction = {
+  const updatedTransaction = {
     id: 1,
     description: 'Income line item',
     value: 234.56,
     categoryId: 2,
   };
 
-  const propsAndActions = {
-    defaultCategoryId: 1,
-    transaction: existingTransaction,
-    categories: mockCategories,
-    setEditTransaction: setEditTransactionMock,
-    // Actions
-    addTransaction: addTransactionMock,
-    updateTransaction: updateTransactionMock,
-    deleteTransaction: deleteTransactionMock,
-  };
-
   const wrappedComponent = mount(
     <table>
       <tbody>
-        <EntryFormRow {...propsAndActions} />
+        <EntryFormRow
+          defaultCategoryId={1}
+          transaction={updatedTransaction}
+          categories={mockCategories}
+          setEditTransaction={setEditTransactionMock}
+          // Actions
+          addTransaction={addTransactionMock}
+          updateTransaction={updateTransactionMock}
+          deleteTransaction={deleteTransactionMock}
+        />
       </tbody>
     </table>
   );
   const mountedComponent = wrappedComponent.find(EntryFormRow);
 
-  const addTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'addTransaction');
-  const updateTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'updateTransaction');
-  const deleteTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'deleteTransaction');
-  const setEditTransactionSpy = jest.spyOn(mountedComponent.instance().props, 'setEditTransaction');
+  setUpSpies(mountedComponent);
 
-  afterEach(() => {
-    addTransactionSpy.mockReset();
-    updateTransactionSpy.mockReset();
-    deleteTransactionSpy.mockReset();
-    setEditTransactionSpy.mockReset();
-  });
+  afterEach(() =>
+    resetMockSpies([addTransactionSpy, updateTransactionSpy, deleteTransactionSpy, setEditTransactionSpy]));
 
   describe('Submit button', () => {
     it('should exist with text Update', () => {
@@ -158,16 +152,14 @@ describe('`Update transaction` form', () => {
   });
 
   describe('Delete button', () => {
-    const deleteButton = mountedComponent.find('button.delete');
-
     it('should exist', () => {
-      expect(deleteButton.length).toEqual(1);
+      expect(mountedComponent.find('button.delete').length).toEqual(1);
     });
 
     it('should call handleDelete when clicked', async () => {
-      deleteButton.simulate('click');
+      mountedComponent.find('button.delete').simulate('click');
       expect(deleteTransactionSpy).toHaveBeenCalled();
-      expect(deleteTransactionSpy).toHaveBeenCalledWith(existingTransaction.id);
+      expect(deleteTransactionSpy).toHaveBeenCalledWith(1);
       expect(setEditTransactionSpy).toHaveBeenCalled();
     });
   });
