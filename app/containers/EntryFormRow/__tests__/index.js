@@ -72,6 +72,11 @@ describe('`Add transaction` form', () => {
       const form = mountedComponent.find('form');
       form.simulate('submit');
       expect(addTransactionSpy).toHaveBeenCalled();
+      expect(addTransactionSpy).toHaveBeenCalledWith({
+        description: 'Income line item',
+        value: 123.45,
+        categoryId: 2,
+      });
       expect(setEditTransactionSpy).not.toHaveBeenCalled();
       expect(updateTransactionSpy).not.toHaveBeenCalled();
     });
@@ -126,7 +131,9 @@ describe('`Update transaction` form', () => {
       const form = mountedComponent.find('form');
       form.simulate('submit');
       expect(updateTransactionSpy).toHaveBeenCalled();
+      expect(updateTransactionSpy).toHaveBeenCalledWith(updatedTransaction);
       expect(setEditTransactionSpy).toHaveBeenCalled();
+      expect(setEditTransactionSpy).toHaveBeenCalledWith('');
       expect(addTransactionSpy).not.toHaveBeenCalled();
     });
   });
