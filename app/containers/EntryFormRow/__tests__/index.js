@@ -77,14 +77,9 @@ describe('`Add transaction` form', () => {
     });
   });
 
-  describe('Cancel button', () => {
+  describe('Cancel and Delete buttons', () => {
     it('should not exist', () => {
       expect(mountedComponent.find('button.cancel').length).toEqual(0);
-    });
-  });
-
-  describe('Delete button', () => {
-    it('should not exist', () => {
       expect(mountedComponent.find('button.delete').length).toEqual(0);
     });
   });
@@ -123,9 +118,8 @@ describe('`Update transaction` form', () => {
 
   describe('Submit button', () => {
     it('should exist with text Update', () => {
-      const submitButton = mountedComponent.find('button.submit');
-      expect(submitButton.length).toEqual(1);
-      expect(submitButton.text()).toEqual('Update');
+      expect(mountedComponent.find('button.submit').length).toEqual(1);
+      expect(mountedComponent.find('button.submit').text()).toEqual('Update');
     });
 
     it('should call handleSubmit when clicked', async () => {
