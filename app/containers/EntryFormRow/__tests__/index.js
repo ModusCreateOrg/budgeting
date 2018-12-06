@@ -162,6 +162,7 @@ describe('`Update transaction` form', () => {
       expect(deleteTransactionSpy).toHaveBeenCalled();
       expect(deleteTransactionSpy).toHaveBeenCalledWith(1);
       expect(setEditTransactionSpy).toHaveBeenCalled();
+      expect(setEditTransactionSpy).toHaveBeenCalledWith('');
     });
   });
 });
