@@ -22,7 +22,7 @@ type EntryFormRowState = {
   formData: ?FormData,
 };
 
-class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
+export class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState> {
   static formFields = ['id', 'categoryId', 'description', 'value'];
 
   static validateForm = ({ value }) => {
@@ -130,20 +130,20 @@ class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRowState>
             </div>
             <div className={styles.formSection}>
               <Field component="input" name="id" type="hidden" value={id} />
-              <button className={`${styles.btn} ${styles.btnGreen}`} type="submit" disabled={!isValid}>
+              <button className={`submit ${styles.btn} ${styles.btnGreen}`} type="submit" disabled={!isValid}>
                 {!id ? 'Add' : 'Update'}
               </button>
               {id ? (
                 <>
                   <button
-                    className={`${styles.btn} ${styles.btnDefault}`}
+                    className={`cancel ${styles.btn} ${styles.btnDefault}`}
                     type="button"
                     onClick={() => setEditTransaction('')}
                   >
                     Cancel
                   </button>
                   <button
-                    className={`${styles.btn} ${styles.btnRed}`}
+                    className={`delete ${styles.btn} ${styles.btnRed}`}
                     type="button"
                     onClick={() => this.handleDelete(id)}
                   >
