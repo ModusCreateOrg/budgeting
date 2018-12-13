@@ -7,7 +7,7 @@ import Form from 'components/Form';
 import Field from 'components/Field';
 import DataSelector from 'components/DataSelector';
 import type { FormData } from 'components/Form';
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 type EntryFormRowProps = {
   defaultCategoryId: string,

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 type BalanceProps = {
   children: React.Node,

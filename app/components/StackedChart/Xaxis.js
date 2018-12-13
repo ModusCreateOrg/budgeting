@@ -2,7 +2,7 @@
 import * as React from 'react';
 import type { TransactionSummary } from 'selectors/transactions';
 import formatAmount from 'utils/formatAmount';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type XaxisProps = {
   transform?: string,

@@ -6,7 +6,7 @@ import { getCategories } from 'selectors/categories';
 import EntryFormRow from 'containers/EntryFormRow';
 import type { Transaction } from 'modules/transactions';
 import BudgetGridRow from 'components/BudgetGridRow';
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 type BudgetGridProps = {
   transactions: Transaction[],

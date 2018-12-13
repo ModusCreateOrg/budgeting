@@ -23,7 +23,8 @@
   border: 1px solid $lightgray;
   text-decoration: none;
 
-  &:active, &.selected {
+  &:active,
+  &.selected {
     color: $black;
     text-decoration: underline;
     box-shadow: 0 1px 4px 1px $darkgray;

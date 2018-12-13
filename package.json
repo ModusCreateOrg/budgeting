@@ -22,7 +22,10 @@
     "flow": "flow",
     "dll": "webpack --config webpack.config.dll.js",
     "postinstall": "rimraf .cache-loader & npm run dll",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "more-start": "more start",
+    "more-build": "more build",
+    "more-dll": "more dll"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -96,6 +99,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.0.0",
+    "@modus/babel-preset-react": "0.0.2",
+    "@modus/eslint-config-modus": "0.0.2",
+    "@modus/more": "0.0.2",
     "@modus/react-idle": "1.0.1",
     "classnames": "2.2.6",
     "d3": "5.5.0",
@@ -111,5 +117,19 @@
     "redux": "3.7.2",
     "redux-thunk": "2.3.0",
     "reselect": "^3.0.1"
-  }
+  },
+  "dll": [
+    "@babel/runtime-corejs2",
+    "@modus/react-idle",
+    "classnames",
+    "d3",
+    "husky",
+    "lint-staged",
+    "prop-types",
+    "react-hot-loader",
+    "react-redux",
+    "redux",
+    "redux-thunk",
+    "reselect"
+  ]
 }
