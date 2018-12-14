@@ -1,0 +1,56 @@
+@import 'theme/variables';
+
+@mixin btn-theme($btn-color) {
+  background-color: $btn-color;
+  &:hover {
+    background-color: darken($btn-color, 6%);
+  }
+}
+
+h2.neg {
+  color: $red;
+}
+
+h2.pos {
+  color: $green;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-left: 5px;
+  font: 400 11px system-ui;
+  text-transform: uppercase;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border: transparent;
+  cursor: pointer;
+  height: 35px;
+
+  &.btnDefault {
+    @include btn-theme($mediumgray);
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.details__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 2em;
+  border: 1px solid $gray;
+  border-radius: 6px;
+  width: 100%;
+}

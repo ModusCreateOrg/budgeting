@@ -25,10 +25,23 @@ export class DetailsPanel extends React.Component {
     }
 
     // Calculate total in / outflow
+    let totalIn = 0;
+    let totalOut = 0;
+    transactions.map(item => {
+      if (item.value > 0) {
+        totalIn += item.value;
+      } else {
+        totalOut += item.value;
+      }
+
+      return null;
+    });
 
     this.state = {
       transaction,
       category,
+      totalIn,
+      totalOut,
     };
   }
 
@@ -43,9 +56,20 @@ export class DetailsPanel extends React.Component {
   }
 
   render() {
-    const { transaction, category } = this.state;
+    const { transaction, category, totalIn, totalOut } = this.state;
+    const { history } = this.props;
 
-    return transaction ? <DetailsView transaction={transaction} category={category} /> : <Error404 />;
+    return transaction ? (
+      <DetailsView
+        transaction={transaction}
+        category={category}
+        goBack={history.goBack}
+        totalIn={totalIn}
+        totalOut={totalOut}
+      />
+    ) : (
+      <Error404 />
+    );
   }
 }
 
