@@ -1,14 +1,29 @@
 import React from 'react';
 import formatAmount from 'utils/formatAmount';
+import DonutChart from 'components/DonutChart';
 import style from './style.scss';
 
 const DetailsView = ({ transaction, category, goBack, totalIn, totalOut }) => {
   const description = (transaction && transaction.description) || '';
   const value = (transaction && transaction.value) || 0;
+  const totalValue = value > 0 ? totalIn : totalOut;
 
   const formattedAmount = formatAmount(value).text;
-  const totalValueAbs = Math.abs(value);
-  const totalAbs = Math.abs(value > 0 ? totalIn : totalOut);
+  const valueAbs = Math.abs(value);
+  const totalAbs = Math.abs(totalValue);
+
+  const chartData = [
+    {
+      category: category,
+      categoryId: 1,
+      value: valueAbs,
+    },
+    {
+      category: 'Other',
+      categoryId: 2,
+      value: totalAbs,
+    },
+  ];
 
   return (
     <div className={style.details}>
@@ -19,13 +34,11 @@ const DetailsView = ({ transaction, category, goBack, totalIn, totalOut }) => {
       </div>
       {transaction && (
         <React.Fragment>
-          <h1>{description}</h1>
-          <h2 className={transaction.value > 0 ? style.pos : style.neg}>{formattedAmount}</h2>
+          <h1>Description: {description}</h1>
+          <h2 className={transaction.value > 0 ? style.pos : style.neg}>Value: {formattedAmount}</h2>
           <br />
           <h5>Category: {category}</h5>
-          <h5>
-            {totalValueAbs} / {totalAbs}
-          </h5>
+          <DonutChart data={chartData} dataLabel="category" dataKey="categoryId" />
         </React.Fragment>
       )}
     </div>
