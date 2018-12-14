@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getDefaultCategoryId, getCategories } from 'selectors/categories';
 import { actions } from 'modules/transactions';
 import Form from 'components/Form';
@@ -142,6 +143,9 @@ export class EntryFormRow extends React.Component<EntryFormRowProps, EntryFormRo
                   >
                     Cancel
                   </button>
+                  <Link className={`view ${styles.btn} ${styles.btnBlue}`} to={`/details/${id}`}>
+                    View Details
+                  </Link>
                   <button
                     className={`delete ${styles.btn} ${styles.btnRed}`}
                     type="button"

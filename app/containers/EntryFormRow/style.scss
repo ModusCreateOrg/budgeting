@@ -44,8 +44,12 @@
     }
 
     .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #fff;
       margin-left: 5px;
+      font: 400 11px system-ui;
       text-transform: uppercase;
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
@@ -61,6 +65,10 @@
 
       &.btnGreen {
         @include btn-theme($green);
+      }
+
+      &.btnBlue {
+        @include btn-theme($blue);
       }
 
       &.btnRed {
