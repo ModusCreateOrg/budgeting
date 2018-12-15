@@ -38,7 +38,7 @@ const DetailsView = ({ transaction, category, goBack, totalIn, totalOut }) => {
           <h2 className={transaction.value > 0 ? style.pos : style.neg}>Value: {formattedAmount}</h2>
           <br />
           <h5>Category: {category}</h5>
-          <DonutChart data={chartData} dataLabel="category" dataKey="categoryId" />
+          <DonutChart data={chartData} dataLabel="category" dataKey="categoryId" innerRatio={999} useFormat={false} />
         </React.Fragment>
       )}
     </div>
