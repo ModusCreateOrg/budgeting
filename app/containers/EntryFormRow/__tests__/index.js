@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { EntryFormRow } from '../index';
 
 // Mock default categories
@@ -99,20 +100,22 @@ describe('`Update transaction` form', () => {
   };
 
   const wrappedComponent = mount(
-    <table>
-      <tbody>
-        <EntryFormRow
-          defaultCategoryId={1}
-          transaction={updatedTransaction}
-          categories={mockCategories}
-          setEditTransaction={setEditTransactionMock}
-          // Actions
-          addTransaction={addTransactionMock}
-          updateTransaction={updateTransactionMock}
-          deleteTransaction={deleteTransactionMock}
-        />
-      </tbody>
-    </table>
+    <Router>
+      <table>
+        <tbody>
+          <EntryFormRow
+            defaultCategoryId={1}
+            transaction={updatedTransaction}
+            categories={mockCategories}
+            setEditTransaction={setEditTransactionMock}
+            // Actions
+            addTransaction={addTransactionMock}
+            updateTransaction={updateTransactionMock}
+            deleteTransaction={deleteTransactionMock}
+          />
+        </tbody>
+      </table>
+    </Router>
   );
   const mountedComponent = wrappedComponent.find(EntryFormRow);
 
