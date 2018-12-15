@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="details"
+>
+  <div
+    className="details__header"
+  >
+    <button
+      className="btn btnDefault"
+      type="button"
+    >
+      Go back to list
+    </button>
+  </div>
+</div>
+`;
