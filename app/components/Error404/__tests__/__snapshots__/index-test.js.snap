@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="errorScreen"
+>
+  <div
+    className="errorContainer"
+  >
+    <h1
+      className="errorTitle"
+    >
+      Sorry, item not found.
+    </h1>
+    <p>
+       Please check if if you have entered url correctly. 
+    </p>
+  </div>
+</div>
+`;
