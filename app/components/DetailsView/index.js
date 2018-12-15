@@ -11,17 +11,18 @@ const DetailsView = ({ transaction, category, goBack, totalIn, totalOut }) => {
   const formattedAmount = formatAmount(value).text;
   const valueAbs = Math.abs(value);
   const totalAbs = Math.abs(totalValue);
+  const valuePercent = ((valueAbs / totalAbs) * 100).toFixed(2);
 
   const chartData = [
     {
       category: category,
       categoryId: 1,
-      value: valueAbs,
+      value: valuePercent,
     },
     {
       category: 'Other',
       categoryId: 2,
-      value: totalAbs,
+      value: 100 - valuePercent,
     },
   ];
 

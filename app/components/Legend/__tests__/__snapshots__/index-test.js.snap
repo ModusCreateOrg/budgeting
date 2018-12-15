@@ -4,7 +4,11 @@ exports[`renders correctly 1`] = `
 <ul
   className="legend"
 >
-  <div />
-  <div />
+  <div
+    useFormat={true}
+  />
+  <div
+    useFormat={true}
+  />
 </ul>
 `;
