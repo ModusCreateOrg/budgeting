@@ -21,7 +21,7 @@ exports.config = {
   coloredLogs: true,
   // Saves a screenshot to a given path if a command fails.
   screenshotPath: './tests/screenshots',
-  baseUrl: 'http://localhost:8000',
+  baseUrl: "http://localhost:8000",
   waitforTimeout: 8000,
   framework: 'mocha',
   // if Selenium Grid doesn't send response

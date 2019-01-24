@@ -8,6 +8,8 @@
   "scripts": {
     "test": "jest",
     "test:e2e": "./node_modules/.bin/wdio wdio.conf.js",
+    "selenium-server": "node_modules/selenium-standalone/bin/selenium-standalone start",
+    "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "start": "webpack-dev-server --config webpack.config.dev.js",
@@ -105,6 +107,7 @@
     "@modus/react-idle": "1.0.1",
     "@wdio/cli": "^5.4.1",
     "chai": "^4.2.0",
+    "chromedriver": "^2.45.0",
     "classnames": "2.2.6",
     "d3": "5.5.0",
     "husky": "^0.14.3",
