@@ -40,8 +40,9 @@ $ npm install wdio-mocha-framework
 $ npm install chromedriver
 ```
 ### Now let's setup dependencies
-1. Run `npm run e2e-setup` , this will install drivers for selenium.
-2. Move to another terminal (same path) and start selenium standalone server `npm run selenium-server` This will help you to verify the interaction with elements as well. Very useful in debugging.
+1. Install now the needed for testing `$ npm install`
+2. Run `npm run e2e-setup` , this will install drivers for selenium.
+3. Move to another terminal (same path) and start selenium standalone server `npm run selenium-server` This will help you to verify the interaction with elements as well. Very useful in debugging.
 
 ## Test Execution
 `$ npm run test:e2e`
