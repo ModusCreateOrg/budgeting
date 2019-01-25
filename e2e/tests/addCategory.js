@@ -1,9 +1,9 @@
-var expect = require('chai').expect;
-var homePage = require('../pages/homePage.js');
+const expect = require('chai').expect;
+const homePage = require('../pages/homePage.js');
 
-describe('Welcome Page', function() {
-
-  it('When: The user launches the web application, the user should be redirected to home page', function(){
-    homePage.clickCategoryIdDropDown();
+describe('Welcome Page', () => {
+  it('Verifies Add button exists and is disabled', () => {
+    browser.url('/');
+    expect(homePage.verifyAddButton()).to.be.false;
   });
 });

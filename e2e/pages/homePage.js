@@ -4,19 +4,18 @@ const homePage = Object.create(Page, {
   //= ===========================================================================
   //= ======================== APP ELEMENTS =====================================
   //= ===========================================================================
-  categoryIdDropDown: {
+  addButton: {
     get: function() {
-      return browser.element("categoryId");
+      return browser.element("//button[contains(text(), 'Add')]");
     },
   },
 
   //= ===========================================================================
   //= ======================== TEST ACTIONS =====================================
   //= ===========================================================================
-  clickCategoryIdDropDown: {
+  verifyAddButton: {
     value: function() {
-      this.categoryIdDropDown.waitForVisible();
-      this.categoryIdDropDown.click();
+      return this.addButton.isEnabled();
     },
   },
 });

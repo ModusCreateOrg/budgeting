@@ -1,0 +1,28 @@
+{
+  "name": "End2End-GUI-Test-Automation",
+  "version": "0.0.1",
+  "scripts": {
+    "generateWebReport": "marge ./mochawesome-report/Reports/TestExecutionReport.json --reportTitle 'End to End Test Report'",
+    "test:e2e": "./node_modules/.bin/wdio wdio.conf.js",
+    "selenium-server": "node_modules/selenium-standalone/bin/selenium-standalone start",
+    "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install"
+  },
+  "dependencies": {
+    "appium": "^1.10.0",
+    "chai": "^4.2.0",
+    "fibers": "^3.0.0",
+    "mocha": "*",
+    "mochawesome-report-generator": "^2.3.2",
+    "parallel-mocha": "*",
+    "wdio": "^3.0.0",
+    "wdio-mocha-framework": "^0.6.4",
+    "wdio-mochawesome-reporter": "^1.3.0",
+    "wdio-sauce-service": "^0.4.13",
+    "wdio-selenium-standalone-service": "*",
+    "wdio-spec-reporter": "0.0.5",
+    "webdriverio": "^4.14.0"
+  },
+  "devDependencies": {
+    "wdio-allure-reporter": "^0.6.0"
+  }
+}

@@ -4,7 +4,7 @@ exports.config = {
   port: 4444,
   path: '/wd/hub',
   /* specify test files */
-  specs: ['./e2e/tests/addCategory.js'],
+  specs: ['./tests/addCategory.js'],
   exclude: [
     // Here are going to be the exclusions
   ],
