@@ -2,7 +2,7 @@
   "name": "End2End-GUI-Test-Automation",
   "version": "0.0.1",
   "scripts": {
-    "generateWebReport": "marge ./mochawesome-report/Reports/TestExecutionReport.json --reportTitle 'End to End Test Report'",
+    "generateWebReport": "marge ./mochawesome-report/Reports/e2e-TestExecutionReport.json --reportTitle 'End to End Test Report'",
     "test:e2e": "./node_modules/.bin/wdio wdio.conf.js",
     "selenium-server": "node_modules/selenium-standalone/bin/selenium-standalone start",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install"

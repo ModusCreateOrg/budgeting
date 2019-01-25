@@ -45,6 +45,8 @@ $ npm install chromedriver
 
 ## Test Execution
 `$ npm run test:e2e`
+## Test Reporting in HTML
+`$ npm run generateWebReport`
 
 # TEST PLAN
 
@@ -98,7 +100,7 @@ Test Reporting: 1 day
   7.3.3 Percentage of elements
   7.4.4 Compare data
 
-#### T E S T   S C E N A R I O S
+#### TEST SCENARIOS
 Below is going to be displayed as test scenarios
 
 ##### POSITIVE TEST SCENARIOS
