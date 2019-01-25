@@ -56,16 +56,21 @@ exports.config = {
     includeScreenshots: true,
     screenshotUseRelativePath: false,
   },
-  //     mochaOpts: {
-  //        ui: 'bdd',
-  //        timeout: 999999
-  //    },
+  // ================
+  // GLOBAL VARIABLES
+  // ================
+  // Set global variables here to be used across project
+
+  globals:{
+    description_beer: 'Pale Ale',
+    value_beer: '10'
+  },
   /* hooks */
 
   onPrepare: function() {
-    console.log('Will run end2end tests');
+    console.log('Running end2end tests');
   },
   onComplete: function() {
-    console.log('Done!');
+    console.log('Execution Finished!');
   },
 };

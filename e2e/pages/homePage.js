@@ -1,9 +1,9 @@
 const Page = require('../base/page.js');
 
 const homePage = Object.create(Page, {
-  //============================================================================
+  //= ===========================================================================
   // ======================== APP ELEMENTS =====================================
-  //============================================================================
+  //= ===========================================================================
   addButton: {
     get: function() {
       return browser.element("//button[contains(text(), 'Add')]");
@@ -11,18 +11,18 @@ const homePage = Object.create(Page, {
   },
   descriptionTextBox: {
     get: function() {
-      return browser.element("input[name = description");
+      return browser.element('input[name = description');
     },
   },
   valueTextBox: {
     get: function() {
-      return browser.element("input[name = value");
+      return browser.element('input[name = value');
     },
   },
 
-  //============================================================================
-  //========================= TEST ACTIONS =====================================
-  //============================================================================
+  //= ===========================================================================
+  //= ======================== TEST ACTIONS =====================================
+  //= ===========================================================================
   verifyAddButton: {
     value: function() {
       return this.addButton.isEnabled();
@@ -40,7 +40,6 @@ const homePage = Object.create(Page, {
       this.valueTextBox.click();
     },
   },
-
 });
 
 module.exports = homePage;
