@@ -6,10 +6,6 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:e2e": "./node_modules/.bin/wdio wdio.conf.js",
-    "selenium-server": "node_modules/selenium-standalone/bin/selenium-standalone start",
-    "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "start": "webpack-dev-server --config webpack.config.dev.js",
