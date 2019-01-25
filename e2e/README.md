@@ -30,7 +30,7 @@ Do not forget to
 2.  Run `npm run prod` to serve the app on [localhost:3000](http://localhost:3000)
 3.  Run a new instance of Chrome with disabled security (because localhost is not on https):
 
-After that, go to the testing directory.
+After that, open another terminal (same path) and go to the testing directory.
 
 `$ cd e2e`
 
