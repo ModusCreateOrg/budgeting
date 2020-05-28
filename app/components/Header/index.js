@@ -3,7 +3,7 @@ import * as React from 'react';
 import OnIdle from '@modus/react-idle';
 import NavLink from 'components/NavLink';
 import Logo from './Logo';
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 const GitHubButton = React.lazy(() => import('components/GitHubButton' /* webpackChunkName: "gh-btn" */));
 

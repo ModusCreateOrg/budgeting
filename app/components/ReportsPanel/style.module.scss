@@ -23,7 +23,8 @@
     border-right: $border;
   }
 
-  &:active, &.selected {
+  &:active,
+  &.selected {
     color: $white;
     background-color: $mediumgray;
   }

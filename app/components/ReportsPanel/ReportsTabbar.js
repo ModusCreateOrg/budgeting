@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import NavLink from 'components/NavLink';
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 const ReportsTabbar = () => (
   <div className={styles.tabbar}>

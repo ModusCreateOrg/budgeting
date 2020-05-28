@@ -1,18 +1,18 @@
 @-webkit-keyframes placeHolderShimmer {
   0% {
-    background-position: -468px 0
+    background-position: -468px 0;
   }
   100% {
-    background-position: 468px 0
+    background-position: 468px 0;
   }
 }
 
 @keyframes placeHolderShimmer {
   0% {
-    background-position: -468px 0
+    background-position: -468px 0;
   }
   100% {
-    background-position: 468px 0
+    background-position: 468px 0;
   }
 }
 
@@ -27,7 +27,7 @@
   min-width: 300px;
   max-width: 472px;
   width: 90vw;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .16);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 }
 
 .animatedBackground {

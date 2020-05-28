@@ -7,7 +7,7 @@ import { max, scaleBand, scaleLinear, scaleOrdinal, schemeCategory10 } from 'd3'
 import { shuffle } from 'utils/array';
 import Bar from './Bar';
 import Xaxis from './Xaxis';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const outflowScheme = shuffle([...schemeCategory10.slice(0, 2), ...schemeCategory10.slice(3)]);
 const inflowScheme = ['#2ca02c']; // inflow always green

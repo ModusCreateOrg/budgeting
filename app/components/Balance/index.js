@@ -3,7 +3,7 @@
 import * as React from 'react';
 import type { FormattedAmount } from 'utils/formatAmount';
 
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 type BalanceProps = {
   title: string,

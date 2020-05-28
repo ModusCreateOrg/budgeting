@@ -7,7 +7,7 @@ import type { TransactionSummary } from 'selectors/transactions';
 import { arc, pie, scaleOrdinal, schemeCategory10 } from 'd3';
 import { shuffle } from 'utils/array';
 import Path from './Path';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const randomScheme = shuffle(schemeCategory10);
 

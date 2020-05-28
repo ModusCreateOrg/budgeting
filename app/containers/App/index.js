@@ -6,7 +6,7 @@ import ErrorBoundary from 'components/ErrorBoundary';
 import Header from 'components/Header';
 import Budget from 'routes/Budget';
 import Reports from 'routes/Reports';
-import './style.scss';
+import './style.module.scss';
 
 const AppError = React.lazy(() => import('components/AppError' /* webpackChunkName: "error-msg" */));
 

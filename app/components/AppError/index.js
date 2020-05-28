@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import styles from './style.scss';
+import styles from './style.module.scss';
 
 const AppError = () => (
   <div className={styles.errorScreen}>
