@@ -82,8 +82,7 @@ module.exports = config => ({
     watchOptions: {
       ignored: ['node_modules', '*.svg'],
     },
-    // hot: true,
-    // inline: true,
+    hot: true,
     compress: false,
     disableHostCheck: true,
     stats,

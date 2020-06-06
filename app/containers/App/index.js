@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
+import { hot } from 'react-hot-loader';
 import ErrorBoundary from 'components/ErrorBoundary';
 import Header from 'components/Header';
 import Budget from 'routes/Budget';
@@ -24,4 +24,4 @@ const App = () => (
   </ErrorBoundary>
 );
 
-export default App;
+export default hot(module)(App);
